@@ -2,4 +2,8 @@
 <p><%= @coffee_shop.description %></p>
 <p><%= @coffee_shop.rating %></p>
 
-<h1> You've reached coffee shops > show </h1>
+<% @coffee_shop.reviews.each do |review| %>
+  <h3><%= review.user.first_name %></h2>
+  <p><%= review.content %></p>
+  <p><%= review.rating %></p>
+<% end %>

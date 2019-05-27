@@ -66,13 +66,11 @@ puts 'Creating reviews...'
 
 review_attributes = [
   {
-    coffee_shop: CoffeeShop.first,
     user: User.first,
     content: "This is the content of the review.",
     rating: rand(1..5)
   },
   {
-    coffee_shop: CoffeeShop.last,
     user: User.last,
     content: "This is the content of the review.",
     rating: rand(1..5)
@@ -80,7 +78,11 @@ review_attributes = [
 ]
 
 CoffeeShop.all.each do |coffee_shop|
-  review = Review.create!(review_attributes)
+  reviews = Review.create(review_attributes)
+  reviews.each do |review|
+    review.coffee_shop = coffee_shop
+    review.save
+  end
 end
 
 puts "Created #{Review.count} reviews..."
