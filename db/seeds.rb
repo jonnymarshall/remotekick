@@ -62,23 +62,25 @@ puts 'Finished creating coffee shops.'
 
 
 #----------REVIEWS SEEDS----------
-# puts 'Creating reviews...'
-# require_relative "auxilliary/review_seeds"
+puts 'Creating reviews...'
 
-# Booking.all.each do |booking|
-#   if booking.status == "borrowed"
-#     review_randomiser = rand(0..5)
-#     if review_randomiser >= 2
-#       attribute = @reviews.sample
-#       review = Review.create!(
-#         title: attribute[:title],
-#         content: attribute[:content],
-#         item_rating: attribute[:item_rating],
-#         booking: booking,
-#         lender_rating: rand(2..5)
-#       )
-#     end
-#   end
-# end
+review_attributes = [
+  {
+    coffee_shop: CoffeeShop.first,
+    user: User.first,
+    content: "This is the content of the review.",
+    rating: rand(1..5)
+  },
+  {
+    coffee_shop: CoffeeShop.last,
+    user: User.last,
+    content: "This is the content of the review.",
+    rating: rand(1..5)
+  }
+]
 
-# puts "Created #{Review.count} reviews..."
+CoffeeShop.all.each do |coffee_shop|
+  review = Review.create!(review_attributes)
+end
+
+puts "Created #{Review.count} reviews..."

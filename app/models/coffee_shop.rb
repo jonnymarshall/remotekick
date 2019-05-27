@@ -1,4 +1,4 @@
 class CoffeeShop < ApplicationRecord
   belongs_to :user
-  has_many :reviews, through: :users
+  has_many :reviews
 end
