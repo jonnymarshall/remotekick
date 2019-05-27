@@ -1,0 +1,2 @@
+class CoffeeShop < ApplicationRecord
+end
