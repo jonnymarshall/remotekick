@@ -86,3 +86,41 @@ CoffeeShop.all.each do |coffee_shop|
 end
 
 puts "Created #{Review.count} reviews..."
+
+
+#----------FEATURE SET SEEDS----------
+puts 'Creating feature sets...'
+
+feature_set_attributes = {
+  price: 1,
+  serves_plant_milk: true,
+  serves_food: true,
+  serves_smoothies: false,
+  plug_sockets: 3,
+  busyness: 1,
+  comfort: 2
+}
+
+CoffeeShop.all.each do |coffee_shop|
+  coffee_shop.feature_set = FeatureSet.new(feature_set_attributes)
+  coffee_shop.feature_set.save
+end
+
+puts "Created #{FeatureSet.count} feature sets..."
+
+#----------WIFI SPEED SEEDS----------
+puts 'Creating wifi speeds...'
+
+wifi_speed_attributes = {
+  download_speed: 10000,
+  upload_speed: 5000,
+  ping: 100
+}
+
+FeatureSet.all.each do |feature_set|
+  feature_set.wifi_speed = WifiSpeed.new(wifi_speed_attributes)
+  feature_set.wifi_speed.save
+end
+
+puts "Created #{WifiSpeed.count} wifi speeds..."
+
