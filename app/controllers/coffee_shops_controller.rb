@@ -10,11 +10,11 @@ class CoffeeShopsController < ApplicationController
 
   def new
     @coffee_shop = CoffeeShop.new
-    redirect_to coffee_shop_path(@coffee_shop)
   end
 
   def create
     @coffee_shop = CoffeeShop.new(coffee_shop_params)
+    @coffee_shop.user = current_user
     @coffee_shop.save
     redirect_to coffee_shop_path(@coffee_shop)
   end
