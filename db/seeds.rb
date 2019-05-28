@@ -48,19 +48,11 @@ coffee_shop_attributes = [
   }
 ]
 
+byebug
+
 CoffeeShop.create!(coffee_shop_attributes)
+
 puts 'Finished creating coffee shops.'
-
-# puts "Putting items in their places..."
-
-# CoffeeShop.all.each do |coffee_shop|
-#   fake_coordinates = coordinates.sample
-#   coffee_shop[:latitude] = fake_coordinates[1]
-#   coffee_shop[:longitude] = fake_coordinates[0]
-#   item.save
-# end
-
-# puts "Created latitude and longitude for items..."
 
 
 #----------REVIEWS SEEDS----------
