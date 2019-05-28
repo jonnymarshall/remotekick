@@ -36,11 +36,13 @@ puts 'Creating coffee shops...'
 coffee_shop_attributes = [
   {
     name:         'CAMP @ Maya',
+    address: "Chiang Mai",
     description:  '24H coworking space on the 5th floor of MAYA shopping center',
     user: User.first
   },
   {
     name:         "Ab'Petite Café",
+    address: "Chiang Mai",
     description:  'Cosy little independent café',
     user: User.last
   }
