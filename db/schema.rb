@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_27_122244) do
+ActiveRecord::Schema.define(version: 2019_05_28_052653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,11 +25,18 @@ ActiveRecord::Schema.define(version: 2019_05_27_122244) do
     t.index ["user_id"], name: "index_coffee_shops_on_user_id"
   end
 
-  create_table "features", force: :cascade do |t|
+  create_table "feature_sets", force: :cascade do |t|
+    t.integer "price"
+    t.boolean "serves_plant_milk"
+    t.boolean "serves_food"
+    t.boolean "serves_smoothies"
+    t.integer "plug_sockets"
+    t.integer "busyness"
+    t.integer "comfort"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "coffee_shop_id"
-    t.index ["coffee_shop_id"], name: "index_features_on_coffee_shop_id"
+    t.index ["coffee_shop_id"], name: "index_feature_sets_on_coffee_shop_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -57,8 +64,19 @@ ActiveRecord::Schema.define(version: 2019_05_27_122244) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "wifi_speeds", force: :cascade do |t|
+    t.integer "upload_speed"
+    t.integer "download_speed"
+    t.integer "ping"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "feature_set_id"
+    t.index ["feature_set_id"], name: "index_wifi_speeds_on_feature_set_id"
+  end
+
   add_foreign_key "coffee_shops", "users"
-  add_foreign_key "features", "coffee_shops"
+  add_foreign_key "feature_sets", "coffee_shops"
   add_foreign_key "reviews", "coffee_shops"
   add_foreign_key "reviews", "users"
+  add_foreign_key "wifi_speeds", "feature_sets"
 end
