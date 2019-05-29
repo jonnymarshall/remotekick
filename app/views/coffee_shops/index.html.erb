@@ -1,7 +1,6 @@
 <% @coffee_shops.each do |coffee_shop| %>
-  <h2><%= coffee_shop.name %></h2>
-  <p><%= coffee_shop.description %></p>
-  <p><%= coffee_shop.rating %></p>
+  <h2>Name: <%= coffee_shop.name %></h2>
+  <p>Description: <%= coffee_shop.description %></p>
+  <p>Rating: <%= coffee_shop.rating %></p>
+  <p>Wifi Speed: <%= coffee_shop.feature_set.wifi_speed.upload_speed %></p>
 <% end %>
-
-<h1> You've reached coffee shops > index </h1>
