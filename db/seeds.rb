@@ -36,19 +36,19 @@ puts 'Creating coffee shops...'
 coffee_shop_attributes = [
   {
     name:         'CAMP @ Maya',
-    address: 'Chang Phueak, Mueang Chiang Mai District, Chiang Mai 50300',
+    address: 'Chiang Mai 50300',
     description:  '24H coworking space on the 5th floor of MAYA shopping center',
     user: User.first
   },
   {
     name:         "Ab'Petite Café",
-    address: 'Tambon Chang Phueak, Amphoe Mueang Chiang Mai, Chang Wat Chiang Mai 50300',
+    address: "Ab'Petite Café",
     description:  'Cosy little independent café',
     user: User.last
   }
 ]
 
-byebug
+# byebug
 
 CoffeeShop.create!(coffee_shop_attributes)
 

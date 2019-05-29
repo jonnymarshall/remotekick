@@ -4,7 +4,6 @@ class CoffeeShop < ApplicationRecord
   has_one :feature_set
   has_one :wifi_speed, through: :feature_sets
 
-  validates :name, :address, presence: true
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 end
