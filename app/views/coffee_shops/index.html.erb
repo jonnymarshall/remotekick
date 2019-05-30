@@ -1,6 +1,24 @@
-<% @coffee_shops.each do |coffee_shop| %>
-  <h2>Name: <%= coffee_shop.name %></h2>
-  <p>Description: <%= coffee_shop.description %></p>
-  <p>Rating: <%= coffee_shop.rating %></p>
-  <p>Wifi Speed: <%= coffee_shop.feature_set.wifi_speed.upload_speed %></p>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col" style="background-color:black;">
+      Filter Area
+    </div>
+    <div class="col-8" style="background-color:grey;">
+      <div class="d-flex flex-row">
+        <% @coffee_shops.each do |coffee_shop| %>
+          <div class="p-2">
+            <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src="https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2585&q=80
+      " alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title"><%= coffee_shop.name %></h5>
+                <p class="card-text"><%= coffee_shop.description %>. Rating: <%= coffee_shop.rating %>. Wifi Speed: <%= coffee_shop.feature_set.wifi_speed.upload_speed %>.</p>
+                <a href="#" class="btn btn-primary">Visit</a>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
