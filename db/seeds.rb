@@ -35,16 +35,28 @@ puts 'Finished creating users.'
 puts 'Creating coffee shops...'
 coffee_shop_attributes = [
   {
-    name:         'CAMP @ Maya',
+    name: 'CAMP @ Maya',
     address: 'Chiang Mai 50300',
     description:  '24H coworking space on the 5th floor of MAYA shopping center',
     user: User.first
   },
   {
-    name:         "Ab'Petite Café",
+    name: "Ab'Petite Café",
     address: "Ab'Petite Café",
     description:  'Cosy little independent café',
     user: User.last
+  },
+  {
+    name: "My Secret Cafe In Town",
+    address: "My Secret Cafe In Town Chiang Mai",
+    description:  'Cute and quiet café in the middle of old town',
+    user: User.first
+  },
+  {
+    name: "The Barn Eatery And Design",
+    address: "The Barn Chiang Mai",
+    description:  'Light, rustic and airy café',
+    user: User.first
   }
 ]
 
@@ -85,19 +97,49 @@ puts "Created #{Review.count} reviews..."
 #----------FEATURE SET SEEDS----------
 puts 'Creating feature sets...'
 
-feature_set_attributes = {
-  price: 1,
-  serves_plant_milk: true,
-  serves_food: true,
-  serves_smoothies: false,
-  plug_sockets: 3,
-  busyness: 1,
-  comfort: 2
-}
+feature_set_attributes = [
+  {
+    serves_plant_milk: false,
+    serves_food: false,
+    serves_smoothies: true,
+    air_conditioning: true,
+    plug_sockets: 3,
+    busyness: 3,
+    comfort: 1,
+  },
+  {
+    serves_plant_milk: false,
+    serves_food: true,
+    serves_smoothies: true,
+    air_conditioning: true,
+    plug_sockets: 2,
+    busyness: 1,
+    comfort: 3,
+  },
+  {
+    serves_plant_milk: true,
+    serves_food: true,
+    serves_smoothies: true,
+    air_conditioning: true,
+    plug_sockets: 2,
+    busyness: 2,
+    comfort: 3,
+  },
+  {
+    serves_plant_milk: true,
+    serves_food: true,
+    serves_smoothies: false,
+    air_conditioning: true,
+    plug_sockets: 2,
+    busyness: 2,
+    comfort: 3,
+  }
+]
 
-CoffeeShop.all.each do |coffee_shop|
-  coffee_shop.feature_set = FeatureSet.new(feature_set_attributes)
+CoffeeShop.all.each do |coffee_shop, x = 0|
+  coffee_shop.feature_set = FeatureSet.new(feature_set_attributes[x])
   coffee_shop.feature_set.save
+  x += 1
 end
 
 puts "Created #{FeatureSet.count} feature sets..."
