@@ -80,15 +80,26 @@ review_attributes = [
     user: User.last,
     content: "This is the content of the review.",
     rating: rand(1..5)
+  },
+  {
+    user: User.first,
+    content: "This is the content of the review.",
+    rating: rand(1..5)
+  },
+  {
+    user: User.last,
+    content: "This is the content of the review.",
+    rating: rand(1..5)
   }
 ]
 
-CoffeeShop.all.each do |coffee_shop|
-  reviews = Review.create(review_attributes)
-  reviews.each do |review|
-    review.coffee_shop = coffee_shop
-    review.save
-  end
+x = 0
+review_attributes.each do |attributes|
+  byebug
+  review = Review.new(review_attributes[x])
+  review.coffee_shop = CoffeeShop.find(x + 1)
+  review.save
+  x += 1
 end
 
 puts "Created #{Review.count} reviews..."
@@ -136,7 +147,8 @@ feature_set_attributes = [
   }
 ]
 
-CoffeeShop.all.each do |coffee_shop, x = 0|
+x = 0
+CoffeeShop.all.each do |coffee_shop|
   coffee_shop.feature_set = FeatureSet.new(feature_set_attributes[x])
   coffee_shop.feature_set.save
   x += 1
@@ -170,7 +182,8 @@ wifi_speed_attributes = [
   }
 ]
 
-FeatureSet.all.each do |feature_set, x = 0|
+x = 0
+FeatureSet.all.each do |feature_set|
   feature_set.wifi_speed = WifiSpeed.new(wifi_speed_attributes[x])
   feature_set.wifi_speed.save
   x += 1
