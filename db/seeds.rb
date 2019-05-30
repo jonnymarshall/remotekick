@@ -100,7 +100,8 @@ review_attributes = [
 x = 0
 review_attributes.each do |attributes|
   review = Review.new(review_attributes[x])
-  review.coffee_shop = CoffeeShop.find(x + 1)
+  first_coffee_shop_id = CoffeeShop.first.id
+  review.coffee_shop = CoffeeShop.find(first_coffee_shop_id + x)
   review.save
   x += 1
 end
