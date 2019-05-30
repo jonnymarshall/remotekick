@@ -99,7 +99,6 @@ review_attributes = [
 
 x = 0
 review_attributes.each do |attributes|
-  byebug
   review = Review.new(review_attributes[x])
   review.coffee_shop = CoffeeShop.find(x + 1)
   review.save
