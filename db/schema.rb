@@ -69,8 +69,8 @@ ActiveRecord::Schema.define(version: 2019_05_30_104554) do
   end
 
   create_table "wifi_speeds", force: :cascade do |t|
-    t.integer "upload_speed"
-    t.integer "download_speed"
+    t.float "upload_speed"
+    t.float "download_speed"
     t.integer "ping"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

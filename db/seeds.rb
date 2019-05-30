@@ -147,15 +147,33 @@ puts "Created #{FeatureSet.count} feature sets..."
 #----------WIFI SPEED SEEDS----------
 puts 'Creating wifi speeds...'
 
-wifi_speed_attributes = {
-  download_speed: 10000,
-  upload_speed: 5000,
-  ping: 100
-}
+wifi_speed_attributes = [
+  {
+    download_speed: 4.93,
+    upload_speed: 2.91,
+    ping: 78
+  },
+  {
+    download_speed: 10.79,
+    upload_speed: 11.59,
+    ping: 2
+  },
+  {
+    download_speed: 73.25,
+    upload_speed: 58.57,
+    ping: 23
+  },
+  {
+    download_speed: 64.42,
+    upload_speed: 24.75,
+    ping: 23
+  }
+]
 
-FeatureSet.all.each do |feature_set|
-  feature_set.wifi_speed = WifiSpeed.new(wifi_speed_attributes)
+FeatureSet.all.each do |feature_set, x = 0|
+  feature_set.wifi_speed = WifiSpeed.new(wifi_speed_attributes[x])
   feature_set.wifi_speed.save
+  x += 1
 end
 
 puts "Created #{WifiSpeed.count} wifi speeds..."
