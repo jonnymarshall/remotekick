@@ -12,6 +12,7 @@ Review.destroy_all
 WifiSpeed.destroy_all
 FeatureSet.destroy_all
 CoffeeShop.destroy_all
+User.destroy_all
 
 #----------USER SEEDS----------
 puts 'Creating users...'
@@ -27,7 +28,7 @@ user_attributes = [
     last_name:  'Doe',
     email: 'janedoe@wifiwarriors.com',
     password: "coffee",
-  }
+  },
 ]
 User.create!(user_attributes)
 puts 'Finished creating users.'
