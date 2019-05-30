@@ -8,6 +8,9 @@
 #----------CLEAN DB----------
 puts 'Cleaning database...'
 
+Review.destroy_all
+WifiSpeed.destroy_all
+FeatureSet.destroy_all
 CoffeeShop.destroy_all
 
 #----------USER SEEDS----------
