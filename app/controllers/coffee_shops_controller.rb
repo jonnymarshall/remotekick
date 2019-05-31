@@ -1,8 +1,13 @@
 class CoffeeShopsController < ApplicationController
   before_action :set_coffee_shop, only: [:show, :edit, :update, :destroy]
+  before_action :coffee_shop_params, only: [:index]
+
   def index
     if params[:address]
       @coffee_shops = CoffeeShop.near(params[:address])
+    elsif
+      params[:serves_plant_milk]
+      @coffee_shops = CoffeeShop.where(CoffeeShop.feature_set.serves_plant_milk = true)
     else
       @coffee_shops = CoffeeShop.all
     end
@@ -46,6 +51,6 @@ class CoffeeShopsController < ApplicationController
   def coffee_shop_params
     # *Strong params*: You need to *whitelist* what can be updated by the user
     # Never trust user data!
-    params.require(:coffee_shop).permit(:name, :description)
+    params.permit(:address)
   end
 end
