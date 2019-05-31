@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 #----------CLEAN DB----------
 puts 'Cleaning database...'
-WifiSpeed.destroy_all if WifiSpeed
-FeatureSet.destroy_all if FeatureSet
+# WifiSpeed.destroy_all
+# FeatureSet.destroy_all
 Review.destroy_all
 CoffeeShop.destroy_all
 User.destroy_all
