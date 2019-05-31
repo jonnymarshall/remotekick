@@ -3,13 +3,12 @@ class CoffeeShopsController < ApplicationController
   before_action :coffee_shop_params, only: [:index]
 
   def index
-    if params[:address]
-      @coffee_shops = CoffeeShop.near(params[:address])
-    elsif
-      params[:serves_plant_milk]
-      @coffee_shops = CoffeeShop.where(CoffeeShop.feature_set.serves_plant_milk = true)
-    else
+    if coffee_shop_params.empty?
       @coffee_shops = CoffeeShop.all
+    else
+      @coffee_shops = CoffeeShop.near(params[:address]) if coffee_shop_params[:address]
+      @coffee_shops = CoffeeShop.where(serves_plant_milk: true) if params[:serves_plant_milk]
+      @coffee_shops = CoffeeShop.where("wifi_restrictions = 0") if params[:wifi_restrictions]
     end
   end
 
@@ -51,6 +50,6 @@ class CoffeeShopsController < ApplicationController
   def coffee_shop_params
     # *Strong params*: You need to *whitelist* what can be updated by the user
     # Never trust user data!
-    params.permit(:address)
+    params.permit(:address, :serves_plant_milk, :wifi_restrictions)
   end
 end
