@@ -1,9 +1,11 @@
 class CoffeeShopsController < ApplicationController
   before_action :set_coffee_shop, only: [:show, :edit, :update, :destroy]
   def index
-    # @coffee_shops = CoffeeShop.all
-    # raise
-    @coffee_shops = CoffeeShop.near(params[:address])
+    if params[:address]
+      @coffee_shops = CoffeeShop.near(params[:address])
+    else
+      @coffee_shops = CoffeeShop.all
+    end
   end
 
   def show
