@@ -3,9 +3,9 @@
 <p>Rating: <%= @coffee_shop.rating %></p>
 
 <p>Wifi Speeds</p>
-<p>Upload Speed: <%= @coffee_shop.feature_set.wifi_speed.upload_speed %></p>
-<p>Download Speed: <%= @coffee_shop.feature_set.wifi_speed.download_speed %></p>
-<p>PING: <%= @coffee_shop.feature_set.wifi_speed.ping %></p>
+<p>Upload Speed: <%= @coffee_shop.upload_speed %></p>
+<p>Download Speed: <%= @coffee_shop.download_speed %></p>
+<p>PING: <%= @coffee_shop.ping %></p>
 
 
 <% @coffee_shop.reviews.each do |review| %>
