@@ -9,8 +9,6 @@
 puts 'Cleaning database...'
 
 Review.destroy_all
-WifiSpeed.destroy_all
-FeatureSet.destroy_all
 CoffeeShop.destroy_all
 User.destroy_all
 
@@ -42,25 +40,69 @@ coffee_shop_attributes = [
     name: 'CAMP @ Maya',
     address: 'Chiang Mai 50300',
     description:  '24H coworking space on the 5th floor of MAYA shopping center',
-    user: User.first
+    user: User.first,
+    serves_plant_milk: false,
+    serves_food: false,
+    serves_smoothies: true,
+    air_conditioning: true,
+    plug_sockets: 3,
+    busyness: 3,
+    comfort: 1,
+    download_speed: 4.93,
+    upload_speed: 2.91,
+    ping: 78,
+    wifi_restrictions: 2
   },
   {
     name: "Ab'Petite Café",
     address: "Ab'Petite Café",
     description:  'Cosy little independent café',
-    user: User.last
+    user: User.last,
+    serves_plant_milk: false,
+    serves_food: true,
+    serves_smoothies: true,
+    air_conditioning: true,
+    plug_sockets: 2,
+    busyness: 1,
+    comfort: 3,
+    download_speed: 10.79,
+    upload_speed: 11.59,
+    ping: 2,
+    wifi_restrictions: 0
   },
   {
     name: "My Secret Cafe In Town",
     address: "My Secret Cafe In Town Chiang Mai",
     description:  'Cute and quiet café in the middle of old town',
-    user: User.first
+    user: User.first,
+    serves_plant_milk: true,
+    serves_food: true,
+    serves_smoothies: true,
+    air_conditioning: true,
+    plug_sockets: 2,
+    busyness: 2,
+    comfort: 3,
+    download_speed: 73.25,
+    upload_speed: 58.57,
+    ping: 23,
+    wifi_restrictions: 0
   },
   {
     name: "The Barn Eatery And Design",
     address: "The Barn Chiang Mai",
     description:  'Light, rustic and airy café',
-    user: User.first
+    user: User.first,
+    serves_plant_milk: true,
+    serves_food: true,
+    serves_smoothies: false,
+    air_conditioning: true,
+    plug_sockets: 2,
+    busyness: 2,
+    comfort: 3,
+    download_speed: 64.42,
+    upload_speed: 24.75,
+    ping: 23,
+    wifi_restrictions: 0
   }
 ]
 
@@ -107,91 +149,3 @@ review_attributes.each do |attributes|
 end
 
 puts "Created #{Review.count} reviews..."
-
-
-#----------FEATURE SET SEEDS----------
-puts 'Creating feature sets...'
-
-feature_set_attributes = [
-  {
-    serves_plant_milk: false,
-    serves_food: false,
-    serves_smoothies: true,
-    air_conditioning: true,
-    plug_sockets: 3,
-    busyness: 3,
-    comfort: 1,
-  },
-  {
-    serves_plant_milk: false,
-    serves_food: true,
-    serves_smoothies: true,
-    air_conditioning: true,
-    plug_sockets: 2,
-    busyness: 1,
-    comfort: 3,
-  },
-  {
-    serves_plant_milk: true,
-    serves_food: true,
-    serves_smoothies: true,
-    air_conditioning: true,
-    plug_sockets: 2,
-    busyness: 2,
-    comfort: 3,
-  },
-  {
-    serves_plant_milk: true,
-    serves_food: true,
-    serves_smoothies: false,
-    air_conditioning: true,
-    plug_sockets: 2,
-    busyness: 2,
-    comfort: 3,
-  }
-]
-
-x = 0
-CoffeeShop.all.each do |coffee_shop|
-  coffee_shop.feature_set = FeatureSet.new(feature_set_attributes[x])
-  coffee_shop.feature_set.save
-  x += 1
-end
-
-puts "Created #{FeatureSet.count} feature sets..."
-
-#----------WIFI SPEED SEEDS----------
-puts 'Creating wifi speeds...'
-
-wifi_speed_attributes = [
-  {
-    download_speed: 4.93,
-    upload_speed: 2.91,
-    ping: 78
-  },
-  {
-    download_speed: 10.79,
-    upload_speed: 11.59,
-    ping: 2
-  },
-  {
-    download_speed: 73.25,
-    upload_speed: 58.57,
-    ping: 23
-  },
-  {
-    download_speed: 64.42,
-    upload_speed: 24.75,
-    ping: 23
-  }
-]
-
-x = 0
-FeatureSet.all.each do |feature_set|
-  feature_set.wifi_speed = WifiSpeed.new(wifi_speed_attributes[x])
-  feature_set.wifi_speed.save
-  x += 1
-end
-
-puts "Created #{WifiSpeed.count} wifi speeds..."
-
