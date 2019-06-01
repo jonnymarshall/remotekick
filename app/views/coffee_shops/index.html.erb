@@ -3,12 +3,24 @@
     <div class="col" style="background-color:white;">
       <form action="/coffee_shops" method="get">
         <div>
-          <input type="checkbox" id="checkbox_1" name="serves_plant_milk" value="true">
+          <input type="checkbox" id="serves_plant_milk_checkbox" name="serves_plant_milk" value="true">
           <label for="checkbox_1">Serves plant milk</label>
         </div>
         <div>
-          <input type="checkbox" id="checkbox_1" name="wifi_restrictions" value="true">
-          <label for="checkbox_1">Filter out results with WiFi restrictions</label>
+          <input type="checkbox" id="serves_food_checkbox" name="serves_food" value="true">
+          <label for="checkbox_1">Serves food</label>
+        </div>
+        <div>
+          <input type="checkbox" id="serves_smoothies_checkbox" name="serves_smoothies" value="true">
+          <label for="checkbox_1">Serves smoothies</label>
+        </div>
+        <div>
+          <input type="checkbox" id="air_conditioning_checkbox" name="air_conditioning" value="true">
+          <label for="checkbox_1">Air conditioning</label>
+        </div>
+        <div>
+          <input type="checkbox" id="wifi_restrictions_checkbox" name="wifi_restrictions" value="0">
+          <label for="checkbox_1">Only show results with no wifi restrictions</label>
         </div>
         <div>
           <button type="submit">Filter</button>
@@ -18,18 +30,20 @@
     </div>
     <div class="col-8" style="background-color:grey;">
       <div class="d-flex flex-row wrap">
-        <% @coffee_shops.each do |coffee_shop| %>
-          <div class="p-2">
-            <div class="card" style="width: 18rem;">
-              <img class="card-img-top" src="https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2585&q=80
-      " alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title"><%= coffee_shop.name %> ID: <%= coffee_shop.id %></h5>
-                <p class="card-text"><%= coffee_shop.description %>. Rating: <%= coffee_shop.rating %>. Wifi Speed: <%= coffee_shop.upload_speed %>.</p>
-                <a href="#" class="btn btn-primary">Visit</a>
+        <% if @coffee_shops%>
+          <% @coffee_shops.each do |coffee_shop| %>
+            <div class="p-2">
+              <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2585&q=80
+        " alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title"><%= coffee_shop.name %> ID: <%= coffee_shop.id %></h5>
+                  <p class="card-text"><%= coffee_shop.description %>. Rating: <%= coffee_shop.rating %>. Wifi Speed: <%= coffee_shop.upload_speed %>.</p>
+                  <a href="#" class="btn btn-primary">Visit</a>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
       </div>
     </div>
