@@ -18,6 +18,7 @@ gem 'webpacker'
 
 # Added Gems
 gem 'geocoder'
+gem 'has_scope'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
