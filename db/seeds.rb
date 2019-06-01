@@ -30,7 +30,8 @@ user_attributes = [
   },
 ]
 User.create!(user_attributes)
-puts 'Finished creating users.'
+
+puts "Created #{User.count} users..."
 
 
 #----------COFFEE SHOP SEEDS----------
@@ -104,6 +105,23 @@ coffee_shop_attributes = [
     upload_speed: 24.75,
     ping: 23,
     wifi_restrictions: 0
+  },
+  {
+    name: "Cottontree",
+    address: "Cottontree Chiang Mai",
+    description:  'Bright, airy café behind MAYA shopping center',
+    user: User.first,
+    serves_plant_milk: true,
+    serves_food: true,
+    serves_smoothies: false,
+    air_conditioning: true,
+    plug_sockets: 1,
+    busyness: 1,
+    comfort: 2,
+    download_speed: 55.14,
+    upload_speed: 43.67,
+    ping: 21,
+    wifi_restrictions: 0
   }
 ]
 
@@ -111,42 +129,22 @@ coffee_shop_attributes = [
 
 CoffeeShop.create!(coffee_shop_attributes)
 
-puts 'Finished creating coffee shops.'
+puts "Created #{CoffeeShop.count} coffee shops..."
 
 
 #----------REVIEWS SEEDS----------
 puts 'Creating reviews...'
 
-review_attributes = [
-  {
-    user: User.first,
-    content: "This is the content of the review.",
-    rating: rand(1..5)
-  },
-  {
-    user: User.last,
-    content: "This is the content of the review.",
-    rating: rand(1..5)
-  },
-  {
-    user: User.first,
-    content: "This is the content of the review.",
-    rating: rand(1..5)
-  },
-  {
-    user: User.last,
+review_attributes = {
+    user: User.all.sample,
     content: "This is the content of the review.",
     rating: rand(1..5)
   }
-]
 
-x = 0
-review_attributes.each do |attributes|
-  review = Review.new(review_attributes[x])
-  first_coffee_shop_id = CoffeeShop.first.id
-  review.coffee_shop = CoffeeShop.find(first_coffee_shop_id + x)
+CoffeeShop.all.each do |coffee_shop|
+  review = Review.new(review_attributes)
+  review.coffee_shop = coffee_shop
   review.save
-  x += 1
 end
 
 puts "Created #{Review.count} reviews..."
