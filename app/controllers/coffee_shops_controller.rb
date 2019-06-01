@@ -15,7 +15,7 @@ class CoffeeShopsController < ApplicationController
     #   @coffee_shops = CoffeeShop.where(serves_plant_milk: true) if params[:serves_plant_milk]
     #   @coffee_shops = CoffeeShop.where("wifi_restrictions = 0") if params[:wifi_restrictions]
     # end
-    @coffee_shops = apply_scopes(CoffeeShop).all unless coffee_shop_params.empty?
+    @coffee_shops = apply_scopes(CoffeeShop).all
   end
 
   def show
