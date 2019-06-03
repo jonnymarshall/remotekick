@@ -6,6 +6,7 @@ class CoffeeShopsController < ApplicationController
   has_scope :serves_smoothies, type: :boolean
   has_scope :air_conditioning, type: :boolean
   # has_scope :wifi_restrictions, type: :integer
+  has_scope :no_wifi_restrictions, type: :boolean
 
   def index
     # if coffee_shop_params.empty?
@@ -16,6 +17,7 @@ class CoffeeShopsController < ApplicationController
     #   @coffee_shops = CoffeeShop.where("wifi_restrictions = 0") if params[:wifi_restrictions]
     # end
     @coffee_shops = apply_scopes(CoffeeShop).all
+    # raise
   end
 
   def show

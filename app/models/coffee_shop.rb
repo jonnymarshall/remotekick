@@ -9,5 +9,6 @@ class CoffeeShop < ApplicationRecord
   scope :serves_food, -> { where(serves_food: true) }
   scope :serves_smoothies, -> { where(serves_smoothies: true) }
   scope :air_conditioning, -> { where(air_conditioning: true) }
-  # scope :by_wifi_restrictions, -> wifi_restrictions { where(wifi_restrictions: wifi_restrictions) }
+  # scope :wifi_restrictions, -> hours { where(wifi_restrictions: hours) }
+  scope :no_wifi_restrictions, -> { where(wifi_restrictions: 0) }
 end
