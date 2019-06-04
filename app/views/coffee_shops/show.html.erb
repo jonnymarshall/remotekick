@@ -7,6 +7,20 @@
 <p>Download Speed: <%= @coffee_shop.download_speed %></p>
 <p>PING: <%= @coffee_shop.ping %></p>
 
+<%= form_for [@coffee_shop, @review] do |f| %>
+  <div class="form-group">
+    <div class="form-group col-md-12">
+      <%= f.text_area :content, required:true, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6" style="margin-top:15px;">
+      <%= f.label :rating %>:
+      <%= f.number_field :rating, required:true, class: 'form-control' %><br />
+    </div>
+  </div>
+  <%= f.submit "Submit review", { class: "btn-primary" } %>
+<% end %>
 
 <% @coffee_shop.reviews.each do |review| %>
   <h3><%= review.user.first_name %></h2>
