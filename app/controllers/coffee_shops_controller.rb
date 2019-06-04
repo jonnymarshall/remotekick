@@ -25,6 +25,7 @@ class CoffeeShopsController < ApplicationController
 
   def show
     @coffee_shop = CoffeeShop.find(params[:id])
+    @review = Review.new
   end
 
   def new
