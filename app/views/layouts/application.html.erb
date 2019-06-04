@@ -3,7 +3,13 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>TODO</title>
+
+    <% if yield(:title).empty? %>
+      <title>Wifi Warriors</title>
+    <% else %>
+      <title><%= yield(:title)%></title>
+    <% end %>
+
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
