@@ -1,6 +1,5 @@
 class ReviewsController < ApplicationController
   def create
-    raise
     @review = Review.new(review_params)
     @review.user = current_user
     @coffee_shop = CoffeeShop.find(coffee_shop_params[:coffee_shop_id].to_i)
