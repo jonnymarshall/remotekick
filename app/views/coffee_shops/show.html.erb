@@ -1,33 +1,35 @@
-<h2>Name: <%= @coffee_shop.name %> ID: <%= @coffee_shop.id %></h2>
-<p>Description: <%= @coffee_shop.description %></p>
-<p>Rating: <% if @coffee_shop.rating.nil? %>
-            n/a
-          <% else %>
-            <%= @coffee_shop.rating.round(1) %>
-          <% end %></p>
+<div class="container">
+  <h2>Name: <%= @coffee_shop.name %> ID: <%= @coffee_shop.id %></h2>
+  <p>Description: <%= @coffee_shop.description %></p>
+  <p>Rating: <% if @coffee_shop.rating.nil? %>
+              n/a
+            <% else %>
+              <%= @coffee_shop.rating.round(1) %>
+            <% end %></p>
 
-<p>Wifi Speeds</p>
-<p>Upload Speed: <%= @coffee_shop.upload_speed %></p>
-<p>Download Speed: <%= @coffee_shop.download_speed %></p>
-<p>PING: <%= @coffee_shop.ping %></p>
+  <p>Wifi Speeds</p>
+  <p>Upload Speed: <%= @coffee_shop.upload_speed %></p>
+  <p>Download Speed: <%= @coffee_shop.download_speed %></p>
+  <p>PING: <%= @coffee_shop.ping %></p>
 
-<%= form_for [@coffee_shop, @review] do |f| %>
-  <div class="form-group">
-    <div class="form-group col-md-12">
-      <%= f.text_area :content, required:true, class: 'form-control' %>
+  <%= form_for [@coffee_shop, @review] do |f| %>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <%= f.text_area :content, required:true, class: 'form-control' %>
+      </div>
     </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6" style="margin-top:15px;">
-      <%= f.label :rating %>:
-      <%= f.number_field :rating, required:true, class: 'form-control' %><br />
+    <div class="form-row">
+      <div class="form-group col-md-6" style="margin-top:15px;">
+        <%= f.label :rating %>:
+        <%= f.number_field :rating, required:true, class: 'form-control' %><br />
+      </div>
     </div>
-  </div>
-  <%= f.submit "Submit review", { class: "btn-primary" } %>
-<% end %>
+    <%= f.submit "Submit review", { class: "btn-primary" } %>
+  <% end %>
 
-<% @coffee_shop.reviews.each do |review| %>
-  <h3><%= review.user.first_name %></h2>
-  <p><%= review.content %></p>
-  <p><%= review.rating %></p>
-<% end %>
+  <% @coffee_shop.reviews.each do |review| %>
+    <h3><%= review.user.first_name %></h2>
+    <p><%= review.content %></p>
+    <p><%= review.rating %></p>
+  <% end %>
+</div>
