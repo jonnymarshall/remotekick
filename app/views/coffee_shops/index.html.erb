@@ -57,7 +57,9 @@
                                <%= coffee_shop.rating.round(1) %>
                              <% end %></p>.
                   <p>Wifi Speed: <%= coffee_shop.upload_speed %>.</p>
-                  <a href="#" class="btn btn-primary">Visit</a>
+                  <%= link_to coffee_shops_path(coffee_shop) do %>
+                    <div class="btn btn-primary">Visit</div>
+                  <% end %>
                 </div>
               </div>
             </div>
