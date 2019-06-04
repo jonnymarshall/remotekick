@@ -1,6 +1,7 @@
 class CoffeeShopsController < ApplicationController
   before_action :set_coffee_shop, only: [:show, :edit, :update, :destroy]
   before_action :coffee_shop_params, only: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
   has_scope :serves_plant_milk, type: :boolean
   has_scope :serves_food, type: :boolean
   has_scope :serves_smoothies, type: :boolean
