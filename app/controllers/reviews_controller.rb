@@ -18,7 +18,7 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:content, :rating)
+    params.require(:review).permit(:content, :rating, :plug_sockets, :comfort, :busyness)
   end
 
   def coffee_shop_params

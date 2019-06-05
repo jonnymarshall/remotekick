@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_04_062743) do
+ActiveRecord::Schema.define(version: 2019_06_05_092847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,9 +27,9 @@ ActiveRecord::Schema.define(version: 2019_06_04_062743) do
     t.boolean "serves_plant_milk"
     t.boolean "serves_food"
     t.boolean "serves_smoothies"
-    t.integer "plug_sockets"
-    t.integer "busyness"
-    t.integer "comfort"
+    t.float "plug_sockets"
+    t.float "busyness"
+    t.float "comfort"
     t.boolean "air_conditioning"
     t.integer "wifi_restrictions"
     t.datetime "created_at", null: false
@@ -47,6 +47,9 @@ ActiveRecord::Schema.define(version: 2019_06_04_062743) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "coffee_shop_id"
+    t.float "busyness"
+    t.float "comfort"
+    t.float "plug_sockets"
     t.index ["coffee_shop_id"], name: "index_reviews_on_coffee_shop_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
