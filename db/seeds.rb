@@ -40,7 +40,6 @@ puts 'Creating coffee shops...'
 coffee_shop_attributes = [
   {
     name: 'CAMP @ Maya',
-    address: 'Chiang Mai 50300',
     description:  '24H coworking space on the 5th floor of MAYA shopping center',
     user: User.first,
     serves_plant_milk: false,
@@ -53,11 +52,12 @@ coffee_shop_attributes = [
     download_speed: 4.93,
     upload_speed: 2.91,
     ping: 78,
-    wifi_restrictions: 2
+    wifi_restrictions: 2,
+    latitude: 18.80117127010728,
+    longitude: 98.96564847010727
   },
   {
     name: "Ab'Petite Café",
-    address: "Ab'Petite Café",
     description:  'Cosy little independent café',
     user: User.last,
     serves_plant_milk: false,
@@ -70,11 +70,12 @@ coffee_shop_attributes = [
     download_speed: 10.79,
     upload_speed: 11.59,
     ping: 2,
-    wifi_restrictions: 0
+    wifi_restrictions: 0,
+    latitude: 18.805657,
+    longitude: 98.983306
   },
   {
     name: "My Secret Cafe In Town",
-    address: "My Secret Cafe In Town Chiang Mai",
     description:  'Cute and quiet café in the middle of old town',
     user: User.first,
     serves_plant_milk: true,
@@ -87,11 +88,12 @@ coffee_shop_attributes = [
     download_speed: 73.25,
     upload_speed: 58.57,
     ping: 23,
-    wifi_restrictions: 0
+    wifi_restrictions: 0,
+    latitude: 18.788347,
+    longitude: 98.983274
   },
   {
     name: "The Barn Eatery And Design",
-    address: "The Barn Chiang Mai",
     description:  'Light, rustic and airy café',
     user: User.first,
     serves_plant_milk: true,
@@ -104,11 +106,12 @@ coffee_shop_attributes = [
     download_speed: 64.42,
     upload_speed: 24.75,
     ping: 23,
-    wifi_restrictions: 0
+    wifi_restrictions: 0,
+    latitude: 18.787627,
+    longitude: 98.966519
   },
   {
     name: "Cottontree",
-    address: "Cottontree Chiang Mai",
     description:  'Bright, airy café behind MAYA shopping center',
     user: User.first,
     serves_plant_milk: true,
@@ -121,11 +124,11 @@ coffee_shop_attributes = [
     download_speed: 55.14,
     upload_speed: 43.67,
     ping: 21,
-    wifi_restrictions: 0
+    wifi_restrictions: 0,
+    latitude: 18.804544,
+    longitude: 98.967806
   }
 ]
-
-# byebug
 
 CoffeeShop.create!(coffee_shop_attributes)
 

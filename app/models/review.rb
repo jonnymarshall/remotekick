@@ -1,7 +1,8 @@
 class Review < ApplicationRecord
   belongs_to :user
   belongs_to :coffee_shop
-  validates :content, :rating, presence: true, numericality: { less_than_or_equal_to: 5 }
+  validates :content, :rating, presence: true
+  validates :rating, numericality: { less_than_or_equal_to: 5 }
 
   after_create :update_coffee_shop_rating
 end
