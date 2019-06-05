@@ -14,7 +14,8 @@
 
   <%= form_for [@coffee_shop, @review] do |f| %>
     <div class="form-row">
-      <div class="form-group col-md-12">
+      <div class="form-group col-md-6">
+        <%= f.label :content %>:
         <%= f.text_area :content, required:true, class: 'form-control' %>
       </div>
     </div>
@@ -22,6 +23,24 @@
       <div class="form-group col-md-6" style="margin-top:15px;">
         <%= f.label :rating %>:
         <%= f.number_field :rating, required:true, class: 'form-control' %><br />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6" style="margin-top:15px;">
+        <%= f.label :plug_sockets %>:
+        <%= f.number_field :plug_sockets, class: 'form-control' %><br />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6" style="margin-top:15px;">
+        <%= f.label :comfort %>:
+        <%= f.number_field :comfort, class: 'form-control' %><br />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6" style="margin-top:15px;">
+        <%= f.label :busyness %>:
+        <%= f.number_field :busyness, class: 'form-control' %><br />
       </div>
     </div>
     <%= f.submit "Submit review", { class: "btn-primary" } %>
