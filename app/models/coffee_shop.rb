@@ -17,5 +17,5 @@ class CoffeeShop < ApplicationRecord
   # scope :by_degree, -> degree { where(degree: degree) }
   scope :by_comfort, -> number { where("comfort >= ?", number) }
   scope :by_busyness, -> number { where("busyness >= ?", number) }
-  scope :by_plug_sockets, -> number { where("comfort >= ?", number) }
+  scope :by_plug_sockets, -> number { where("plug_sockets >= ?", number) }
 end
