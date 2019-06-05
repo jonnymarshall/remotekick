@@ -16,6 +16,9 @@ class CoffeeShop < ApplicationRecord
   scope :no_wifi_restrictions, -> hours { where("wifi_restrictions = 0", hours) }
   # scope :by_degree, -> degree { where(degree: degree) }
   scope :by_comfort, -> number { where("comfort >= ?", number) }
-  scope :by_busyness, -> number { where("busyness <= ?", number) }
-  scope :by_plug_sockets, -> number { where("comfort >= ?", number) }
+  scope :by_busyness, -> number { where("busyness >= ?", number) }
+  scope :by_plug_sockets, -> number {
+    byebug
+    where("comfort >= ?", number)
+  }
 end

@@ -21,7 +21,6 @@ class CoffeeShopsController < ApplicationController
     #   @coffee_shops = CoffeeShop.where("wifi_restrictions = 0") if params[:wifi_restrictions]
     # end
     @coffee_shops = apply_scopes(CoffeeShop).all
-    # raise
   end
 
   def show

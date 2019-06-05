@@ -11,6 +11,9 @@
   <p>Upload Speed: <%= @coffee_shop.upload_speed %></p>
   <p>Download Speed: <%= @coffee_shop.download_speed %></p>
   <p>PING: <%= @coffee_shop.ping %></p>
+  <p>Plug sockets: <%= @coffee_shop.plug_sockets %></p>
+  <p>Comfort: <%= @coffee_shop.comfort %></p>
+  <p>Busyness: <%= @coffee_shop.busyness %></p>
 
   <%= form_for [@coffee_shop, @review] do |f| %>
     <div class="form-row">

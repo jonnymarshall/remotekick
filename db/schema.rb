@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_05_092847) do
+ActiveRecord::Schema.define(version: 2019_06_05_102539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,9 @@ ActiveRecord::Schema.define(version: 2019_06_05_092847) do
     t.float "busyness"
     t.float "comfort"
     t.float "plug_sockets"
+    t.float "upload_speed"
+    t.float "download_speed"
+    t.float "ping"
     t.index ["coffee_shop_id"], name: "index_reviews_on_coffee_shop_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end

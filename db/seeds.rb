@@ -17,16 +17,16 @@ User.destroy_all
 puts 'Creating users...'
 user_attributes = [
   {
-    first_name: 'John',
-    last_name:  'Doe',
-    email: 'johndoe@wifiwarriors.com',
+    first_name: 'Jonny',
+    last_name:  'Marshall',
+    email: 'jm@wifiwarriors.io',
     password: "coffee",
   },
   {
-    first_name:         'Jane',
-    last_name:  'Doe',
-    email: 'janedoe@wifiwarriors.com',
-    password: "coffee",
+    first_name: 'Michael',
+    last_name: 'Keller',
+    email: 'mk@wifiwarriors.io',
+    password: 'coffee',
   },
 ]
 User.create!(user_attributes)
@@ -46,9 +46,6 @@ coffee_shop_attributes = [
     serves_food: false,
     serves_smoothies: true,
     air_conditioning: true,
-    download_speed: 4.93,
-    upload_speed: 2.91,
-    ping: 78,
     wifi_restrictions: 2,
     latitude: 18.80117127010728,
     longitude: 98.96564847010727
@@ -56,14 +53,11 @@ coffee_shop_attributes = [
   {
     name: "Ab'Petite Café",
     description:  'Cosy little independent café',
-    user: User.last,
+    user: User.first,
     serves_plant_milk: false,
     serves_food: true,
     serves_smoothies: true,
     air_conditioning: true,
-    download_speed: 10.79,
-    upload_speed: 11.59,
-    ping: 2,
     wifi_restrictions: 0,
     latitude: 18.805657,
     longitude: 98.983306
@@ -76,9 +70,6 @@ coffee_shop_attributes = [
     serves_food: true,
     serves_smoothies: true,
     air_conditioning: true,
-    download_speed: 73.25,
-    upload_speed: 58.57,
-    ping: 23,
     wifi_restrictions: 0,
     latitude: 18.788347,
     longitude: 98.983274
@@ -91,9 +82,6 @@ coffee_shop_attributes = [
     serves_food: true,
     serves_smoothies: false,
     air_conditioning: true,
-    download_speed: 64.42,
-    upload_speed: 24.75,
-    ping: 23,
     wifi_restrictions: 0,
     latitude: 18.787627,
     longitude: 98.966519
@@ -106,12 +94,21 @@ coffee_shop_attributes = [
     serves_food: true,
     serves_smoothies: false,
     air_conditioning: true,
-    download_speed: 55.14,
-    upload_speed: 43.67,
-    ping: 21,
     wifi_restrictions: 0,
     latitude: 18.804544,
     longitude: 98.967806
+  },
+  {
+    name: "Ombra Caffe",
+    description:  'Cafe and popular coworking spot',
+    user: User.first,
+    serves_plant_milk: true,
+    serves_food: true,
+    serves_smoothies: false,
+    air_conditioning: true,
+    wifi_restrictions: 0,
+    latitude: 18.800055,
+    longitude: 98.974610
   }
 ]
 
@@ -121,21 +118,86 @@ puts "Created #{CoffeeShop.count} coffee shops..."
 
 
 #----------REVIEWS SEEDS----------
-puts 'Creating reviews...'
+puts 'Creating Jonnys reviews...'
 
-review_attributes = {
-    user: User.all.sample,
-    content: "This is the content of the review.",
-    rating: rand(1..5),
-    plug_sockets: 3,
-    busyness: 3,
-    comfort: 3,
+review_attributes = [{
+    user: User.first,
+    content: "Hate this fucking place",
+    rating: 2,
+    plug_sockets: 2,
+    busyness: 0,
+    comfort: 0,
+    download_speed: 4.93,
+    upload_speed: 2.91,
+    ping: 78
+  },
+  {
+    user: User.first,
+    content: "Love this fucking place",
+    rating: 5,
+    plug_sockets: 1,
+    busyness: 2,
+    comfort: 2,
+    download_speed: 10.79,
+    upload_speed: 11.59,
+    ping: 2
+  },
+  {
+    user: User.first,
+    content: "Like this place",
+    rating: 4,
+    plug_sockets: 1,
+    busyness: 1,
+    comfort: 2,
+    download_speed: 73.25,
+    upload_speed: 58.57,
+    ping: 23
+  },
+  {
+    user: User.first,
+    content: "Like this place",
+    rating: 5,
+    plug_sockets: 1,
+    busyness: 1,
+    comfort: 2,
+    download_speed: 64.42,
+    upload_speed: 24.75,
+    ping: 23
+  },
+  {
+    user: User.first,
+    content: "Don't like this place",
+    rating: 4,
+    plug_sockets: 0,
+    busyness: 2,
+    comfort: 1,
+    download_speed: 73.25,
+    upload_speed: 58.57,
+    ping: 23
+  },
+  {
+    user: User.first,
+    content: "Love this place",
+    rating: 5,
+    plug_sockets: 2,
+    busyness: 1,
+    comfort: 2,
+    download_speed: 43.25,
+    upload_speed: 32.61,
+    ping: 22
   }
+]
+
+puts 'Applying Jonnys reviews to coffee shops'
+
+x = 0
 
 CoffeeShop.all.each do |coffee_shop|
-  review = Review.new(review_attributes)
+  review = Review.new(review_attributes[x])
   review.coffee_shop = coffee_shop
   review.save
+  x += 1
+  byebug
 end
 
 puts "Created #{Review.count} reviews..."
