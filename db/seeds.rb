@@ -197,7 +197,6 @@ CoffeeShop.all.each do |coffee_shop|
   review.coffee_shop = coffee_shop
   review.save
   x += 1
-  byebug
 end
 
 puts "Created #{Review.count} reviews..."
