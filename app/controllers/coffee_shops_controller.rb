@@ -2,6 +2,7 @@ class CoffeeShopsController < ApplicationController
   before_action :set_coffee_shop, only: [:show, :edit, :update, :destroy]
   before_action :coffee_shop_params, only: [:index]
   before_action :authenticate_user!, except: [:index, :show]
+  has_scope :address
   has_scope :serves_plant_milk, type: :boolean
   has_scope :serves_food, type: :boolean
   has_scope :serves_smoothies, type: :boolean
@@ -20,6 +21,7 @@ class CoffeeShopsController < ApplicationController
     #   @coffee_shops = CoffeeShop.where(serves_plant_milk: true) if params[:serves_plant_milk]
     #   @coffee_shops = CoffeeShop.where("wifi_restrictions = 0") if params[:wifi_restrictions]
     # end
+    # raise
     @coffee_shops = apply_scopes(CoffeeShop).all
   end
 
