@@ -14,24 +14,47 @@ private
 
 def update_coffee_shop_values
   # run the update method on coffee shops to reflect new rating values
-  coffee_shop.update(rating: recalculate_value(rating))
-  coffee_shop.update(plug_sockets: recalculate_value(plug_sockets))
-  coffee_shop.update(comfort: recalculate_value(comfort))
-  coffee_shop.update(busyness: recalculate_value(busyness))
-  coffee_shop.update(upload_speed: recalculate_value(upload_speed))
-  coffee_shop.update(download_speed: recalculate_value(download_speed))
-  coffee_shop.update(ping: recalculate_value(ping))
+  review_values = {
+    rating: rating,
+    plug_sockets: plug_sockets,
+    comfort: comfort,
+    busyness: busyness,
+    upload_speed: upload_speed,
+    download_speed: download_speed,
+    ping: ping
+  }
+
+  review_values.each do |key, value|
+    coffee_shop.update(key => recalculate_value(key, value)) if !value.nil?
+  end
+  # coffee_shop.update(rating: recalculate_value(rating)) if rating
+  # coffee_shop.update(plug_sockets: recalculate_value(plug_sockets)) if plug_sockets
+  # coffee_shop.update(comfort: recalculate_value(comfort)) if comfort
+  # coffee_shop.update(busyness: recalculate_value(busyness)) if busyness
+  # coffee_shop.update(upload_speed: recalculate_value(upload_speed)) if upload_speed
+  # coffee_shop.update(download_speed: recalculate_value(download_speed)) if download_speed
+  # coffee_shop.update(ping: recalculate_value(ping)) if ping
 end
 
-def recalculate_value(value)
+def recalculate_value(key, value)
   # apply the rating as-is if no existing ratings, otherwise recalculate average
-  coffee_shop.rating.nil? ? value : (coffee_shop.rating + value) / 2
-  coffee_shop.plug_sockets.nil? ? value : (coffee_shop.plug_sockets + value) / 2
-  coffee_shop.comfort.nil? ? value : (coffee_shop.comfort + value) / 2
-  coffee_shop.busyness.nil? ? value : (coffee_shop.busyness + value) / 2
-  coffee_shop.upload_speed.nil? ? value : (coffee_shop.upload_speed + value) / 2
-  coffee_shop.download_speed.nil? ? value : (coffee_shop.download_speed + value) / 2
-  coffee_shop.ping.nil? ? value : (coffee_shop.ping + value) / 2
+  # byebug
+  case key
+  when :rating
+    coffee_shop.rating.nil? ? value : (coffee_shop.rating + value) / 2
+  when :plug_sockets
+    coffee_shop.plug_sockets.nil? ? value : (coffee_shop.plug_sockets + value) / 2
+  when :comfort
+    coffee_shop.comfort.nil? ? value : (coffee_shop.comfort + value) / 2
+  when :busyness
+    coffee_shop.busyness.nil? ? value : (coffee_shop.busyness + value) / 2
+  when :upload_speed
+    coffee_shop.upload_speed.nil? ? value : (coffee_shop.upload_speed + value) / 2
+  when :download_speed
+    coffee_shop.download_speed.nil? ? value : (coffee_shop.download_speed + value) / 2
+  when :ping
+    coffee_shop.ping.nil? ? value : (coffee_shop.ping + value) / 2
+  end
 end
 
 def coffee_shop

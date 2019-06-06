@@ -46,6 +46,12 @@
         <%= f.number_field :busyness, class: 'form-control' %><br />
       </div>
     </div>
+    <div class="form-row">
+      <div class="form-group col-md-6" style="margin-top:15px;">
+        <%= f.label :upload_speed %>:
+        <%= f.number_field :upload_speed, class: 'form-control' %><br />
+      </div>
+    </div>
     <%= f.submit "Submit review", { class: "btn-primary" } %>
   <% end %>
 
