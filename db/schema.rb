@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_07_100131) do
+ActiveRecord::Schema.define(version: 2019_06_07_112952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,14 @@ ActiveRecord::Schema.define(version: 2019_06_07_100131) do
     t.index ["user_id"], name: "index_coffee_shops_on_user_id"
   end
 
+  create_table "review_photos", force: :cascade do |t|
+    t.string "photo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "review_id"
+    t.index ["review_id"], name: "index_review_photos_on_review_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.text "content"
     t.integer "rating"
@@ -53,7 +61,6 @@ ActiveRecord::Schema.define(version: 2019_06_07_100131) do
     t.float "upload_speed"
     t.float "download_speed"
     t.float "ping"
-    t.string "photo"
     t.index ["coffee_shop_id"], name: "index_reviews_on_coffee_shop_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
@@ -73,6 +80,7 @@ ActiveRecord::Schema.define(version: 2019_06_07_100131) do
   end
 
   add_foreign_key "coffee_shops", "users"
+  add_foreign_key "review_photos", "reviews"
   add_foreign_key "reviews", "coffee_shops"
   add_foreign_key "reviews", "users"
 end
