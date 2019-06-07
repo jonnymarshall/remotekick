@@ -8,6 +8,8 @@ class Review < ApplicationRecord
   validates :busyness, numericality: { less_than_or_equal_to: 2 }
 
   after_create :update_coffee_shop_values
+
+  mount_uploader :photo, PhotoUploader
 end
 
 private
