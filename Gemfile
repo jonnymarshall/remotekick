@@ -19,6 +19,8 @@ gem 'webpacker'
 # Added Gems
 gem 'geocoder'
 gem 'has_scope'
+gem 'figaro'
+gem 'cloudinary'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
