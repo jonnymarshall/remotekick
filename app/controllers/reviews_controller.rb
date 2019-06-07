@@ -26,7 +26,8 @@ class ReviewsController < ApplicationController
       :busyness,
       :upload_speed,
       :download_speed,
-      :ping
+      :ping,
+      :photo
     )
   end
 

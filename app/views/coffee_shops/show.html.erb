@@ -15,50 +15,28 @@
   <p>Comfort: <%= @coffee_shop.comfort %></p>
   <p>Busyness: <%= @coffee_shop.busyness %></p>
 
-  <%= form_for [@coffee_shop, @review] do |f| %>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <%= f.label :content %>:
-        <%= f.text_area :content, required:true, class: 'form-control' %>
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= f.label :rating %>:
-        <%= f.number_field :rating, required:true, class: 'form-control' %><br />
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= f.label :plug_sockets %>:
-        <%= f.number_field :plug_sockets, class: 'form-control' %><br />
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= f.label :comfort %>:
-        <%= f.number_field :comfort, class: 'form-control' %><br />
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= f.label :busyness %>:
-        <%= f.number_field :busyness, class: 'form-control' %><br />
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= f.label :upload_speed %>:
-        <%= f.number_field :upload_speed, class: 'form-control' %><br />
-      </div>
-    </div>
-
-    <%= f.submit "Submit review", { class: "btn-primary" } %>
+  <%= simple_form_for [@coffee_shop, @review] do |f| %>
+    <!-- [...] -->
+    <%= f.input :content %>
+    <%= f.input :rating %>
+    <%= f.input :upload_speed %>
+    <%= f.input :download_speed %>
+    <%= f.input :ping %>
+    <%= f.input :plug_sockets %>
+    <%= f.input :busyness %>
+    <%= f.input :comfort %>
+    <%= f.input :photo_cache, as: :hidden %>
+    <%= f.input :photo %>
+    <%= f.button :submit, class: "btn-primary" %>
+    <!-- [...] -->
   <% end %>
 
   <% @coffee_shop.reviews.each do |review| %>
     <h3><%= review.user.first_name %></h2>
     <p><%= review.content %></p>
     <p><%= review.rating %></p>
+    <% if review.photo.present? %>
+      <p><%= cl_image_tag review.photo, height: 90, width: 160, crop: :fill %></p>
+    <% end %>
   <% end %>
 </div>
