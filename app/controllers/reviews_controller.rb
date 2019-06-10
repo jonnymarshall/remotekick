@@ -1,18 +1,13 @@
 class ReviewsController < ApplicationController
   def create
-    raise
-    @review = current_user.reviews.new(review_and_review_photo_params)
-    # @review.user = current_user
+    # raise
+    @review = current_user.reviews.new(review_params)
     @coffee_shop = CoffeeShop.find(coffee_shop_params[:coffee_shop_id])
     @review.coffee_shop = @coffee_shop
+    @review_photo = @review.review_photos.new(review_photo_params[review_photo: [:photo]])
+    @review_photo.save!
     @review.save!
     redirect_to coffee_shop_path(@coffee_shop)
-
-    member = Member.create(params[:member])
-    member.posts.length # => 2
-    member.posts.first.title # => 'Kari, the awesome Ruby documentation browser!'
-    member.posts.second.title # => 'The egalitarian assumption of the modern citizen'
-
 #       respond_to do |format|
 #         format.js
 #       end
@@ -42,8 +37,21 @@ class ReviewsController < ApplicationController
   #   )
   # end
 
-  def test_params
-    params.permit(:review[:content, :rating, :review_photo[:photo]])
+  def review_params
+    params.require(:review).permit(
+      :content,
+      :rating,
+      :plug_sockets,
+      :comfort,
+      :busyness,
+      :upload_speed,
+      :download_speed,
+      :ping
+    )
+  end
+
+  def review_photo_params
+    params.require(:review).permit(review_photo: [:photo])
   end
 
   def coffee_shop_params

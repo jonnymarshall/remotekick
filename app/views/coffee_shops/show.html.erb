@@ -55,14 +55,13 @@
 
     <div class="form-row">
       <%= review.simple_fields_for :review_photo do |review_photo| %>
+        <%= review_photo.input :photo_cache, as: :hidden %>
         <%= review_photo.input :photo %>
       <% end %>
     </div>
 
     <%= review.submit "Submit review", { class: "btn-primary" } %>
   <% end %>
-
-
 
 
   <% @coffee_shop.reviews.each do |review| %>
