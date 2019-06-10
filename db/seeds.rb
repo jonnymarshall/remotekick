@@ -200,3 +200,9 @@ CoffeeShop.all.each do |coffee_shop|
 end
 
 puts "Created #{Review.count} reviews..."
+
+#----------CLOUDINARY IMAGE SEEDS----------
+# url = "http://static.giantbomb.com/uploads/original/9/99864/2419866-nes_console_set.png"
+# article = Article.new(title: 'NES', body: "A great console")
+# article.remote_photo_url = url
+# article.save

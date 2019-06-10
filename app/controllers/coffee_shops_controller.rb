@@ -21,13 +21,13 @@ class CoffeeShopsController < ApplicationController
     #   @coffee_shops = CoffeeShop.where(serves_plant_milk: true) if params[:serves_plant_milk]
     #   @coffee_shops = CoffeeShop.where("wifi_restrictions = 0") if params[:wifi_restrictions]
     # end
-    # raise
     @coffee_shops = apply_scopes(CoffeeShop).all
   end
 
   def show
     @coffee_shop = CoffeeShop.find(params[:id])
     @review = Review.new
+    @review_photo = @review.review_photos.new
   end
 
   def new

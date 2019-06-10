@@ -1,12 +1,14 @@
 class Review < ApplicationRecord
   belongs_to :user
   belongs_to :coffee_shop
+  has_many :review_photos
   validates :content, :rating, presence: true
   validates :rating, numericality: { less_than_or_equal_to: 5 }
   validates :plug_sockets, numericality: { less_than_or_equal_to: 2 }
   validates :comfort, numericality: { less_than_or_equal_to: 2 }
   validates :busyness, numericality: { less_than_or_equal_to: 2 }
 
+  accepts_nested_attributes_for :review_photos
   after_create :update_coffee_shop_values
 end
 
