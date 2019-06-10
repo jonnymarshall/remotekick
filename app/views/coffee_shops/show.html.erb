@@ -54,7 +54,8 @@
     </div>
 
     <div class="form-row">
-      <%= review.simple_fields_for :review_photo do |review_photo| %>
+      <%= review.simple_fields_for @review_photo do |review_photo| %>
+        <%= review_photo.input :photo_cache, as: :hidden %>
         <%= review_photo.input :photo %>
       <% end %>
     </div>
@@ -67,8 +68,10 @@
     <h3><%= review.user.first_name %></h2>
     <p><%= review.content %></p>
     <p><%= review.rating %></p>
-    <% if review.review_photos.first.present? %>
-      <p><%= cl_image_tag review.photo, height: 90, width: 160, crop: :fill %></p>
+    <% if review.review_photos.present? %>
+      <% review.review_photos.each do |review_photo| %>
+        <%= cl_image_tag review_photo.photo, height: 90, width: 160, crop: :fill %>
+      <% end %>
     <% end %>
   <% end %>
 </div>
