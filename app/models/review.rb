@@ -1,7 +1,7 @@
 class Review < ApplicationRecord
   belongs_to :user
   belongs_to :coffee_shop
-  has_many :review_photos
+  has_many :review_photos, dependent: :destroy
   validates :content, :rating, presence: true
   validates :rating, numericality: { less_than_or_equal_to: 5 }
   validates :plug_sockets, numericality: { less_than_or_equal_to: 2 }
