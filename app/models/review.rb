@@ -8,8 +8,8 @@ class Review < ApplicationRecord
   validates :comfort, numericality: { less_than_or_equal_to: 2 }
   validates :busyness, numericality: { less_than_or_equal_to: 2 }
 
+  accepts_nested_attributes_for :review_photos
   after_create :update_coffee_shop_values
-
 end
 
 private

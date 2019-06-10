@@ -15,8 +15,7 @@
   <p>Comfort: <%= @coffee_shop.comfort %></p>
   <p>Busyness: <%= @coffee_shop.busyness %></p>
 
-  <%= simple_form_for [@coffee_shop, @review] do |f| %>
-    <!-- [...] -->
+  <%= simple_form_for [@coffee_shop, @review] do |review| %>
     <%= f.input :content %>
     <%= f.input :rating %>
     <%= f.input :upload_speed %>
@@ -25,17 +24,17 @@
     <%= f.input :plug_sockets %>
     <%= f.input :busyness %>
     <%= f.input :comfort %>
-    <%= f.input :photo_cache, as: :hidden %>
-    <%= f.input :photo %>
-    <%= f.button :submit, class: "btn-primary" %>
-    <!-- [...] -->
-  <% end %>
+  <%= review.submit %>
+<% end %>
+
+
+
 
   <% @coffee_shop.reviews.each do |review| %>
     <h3><%= review.user.first_name %></h2>
     <p><%= review.content %></p>
     <p><%= review.rating %></p>
-    <% if review.photo.present? %>
+    <% if review.review_photos.first.present? %>
       <p><%= cl_image_tag review.photo, height: 90, width: 160, crop: :fill %></p>
     <% end %>
   <% end %>

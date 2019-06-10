@@ -7,6 +7,19 @@ class ReviewsController < ApplicationController
     @review.save!
     redirect_to coffee_shop_path(@coffee_shop)
 
+    params = { member: {
+      name: 'joe', posts_attributes: [
+        { title: 'Kari, the awesome Ruby documentation browser!' },
+        { title: 'The egalitarian assumption of the modern citizen' },
+        { title: '', _destroy: '1' } # this will be ignored
+      ]
+    }}
+
+    member = Member.create(params[:member])
+    member.posts.length # => 2
+    member.posts.first.title # => 'Kari, the awesome Ruby documentation browser!'
+    member.posts.second.title # => 'The egalitarian assumption of the modern citizen'
+
 #       respond_to do |format|
 #         format.js
 #       end
@@ -17,18 +30,22 @@ class ReviewsController < ApplicationController
 
   private
 
-  def review_params
-    params.require(:review).permit(
-      :content,
-      :rating,
-      :plug_sockets,
-      :comfort,
-      :busyness,
-      :upload_speed,
-      :download_speed,
-      :ping,
-      :photo
-    )
+  def review_and_review_photo_params
+    params.require(:review).permit({
+      review: {
+        :content,
+        :rating,
+        :plug_sockets,
+        :comfort,
+        :busyness,
+        :upload_speed,
+        :download_speed,
+        :ping,
+        review_photos_attributes: [
+          { photo: 'Kari, the awesome Ruby documentation browser!' }
+        ]
+      }
+    })
   end
 
   def coffee_shop_params
