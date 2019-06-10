@@ -1,19 +1,12 @@
 class ReviewsController < ApplicationController
   def create
-    @review = current_user.reviews.new(review_params)
+    raise
+    @review = current_user.reviews.new(review_and_review_photo_params)
     # @review.user = current_user
     @coffee_shop = CoffeeShop.find(coffee_shop_params[:coffee_shop_id])
     @review.coffee_shop = @coffee_shop
     @review.save!
     redirect_to coffee_shop_path(@coffee_shop)
-
-    params = { member: {
-      name: 'joe', posts_attributes: [
-        { title: 'Kari, the awesome Ruby documentation browser!' },
-        { title: 'The egalitarian assumption of the modern citizen' },
-        { title: '', _destroy: '1' } # this will be ignored
-      ]
-    }}
 
     member = Member.create(params[:member])
     member.posts.length # => 2
@@ -30,22 +23,27 @@ class ReviewsController < ApplicationController
 
   private
 
-  def review_and_review_photo_params
-    params.require(:review).permit({
-      review: {
-        :content,
-        :rating,
-        :plug_sockets,
-        :comfort,
-        :busyness,
-        :upload_speed,
-        :download_speed,
-        :ping,
-        review_photos_attributes: [
-          { photo: 'Kari, the awesome Ruby documentation browser!' }
-        ]
-      }
-    })
+  # def review_and_review_photo_params
+  #   params.require(:review).permit(
+  #     review: {
+  #       :content,
+  #       :rating,
+  #       :plug_sockets,
+  #       :comfort,
+  #       :busyness,
+  #       :upload_speed,
+  #       :download_speed,
+  #       :ping,
+  #       review_photo: [{
+  #         :photo
+  #         }
+  #       ]
+  #     }
+  #   )
+  # end
+
+  def test_params
+    params.permit(:review[:content, :rating, :review_photo[:photo]])
   end
 
   def coffee_shop_params
