@@ -1,12 +1,12 @@
-// Specific CSS for your home-page
-.fullscreen {
+.cover-image {
     width: 100vw;
-    height: 100vh;
+    height: 50vh;
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
 }
 
-.home-bg {
+.cover-image-bg {
     background-image: asset-url('petr-sevcovic-594807-unsplash.jpg');
 }
 
@@ -16,4 +16,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.show-padding {
+  padding-top: 25vh;
 }
