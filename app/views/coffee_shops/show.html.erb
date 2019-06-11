@@ -4,7 +4,7 @@
       <div class="cover-image-text-container">
         <h1 class="light"><%= @coffee_shop.name %></h1>
         <h5 class="regular"><%= @coffee_shop.description %></h5>
-        <h5>
+        <h2>
           <% if @coffee_shop.rating.nil? %>
             No ratings yet.
           <% else %>
@@ -12,7 +12,7 @@
               <i class="fas fa-star"></i>
             <% end %>
           <% end %>
-        </h5>
+        </h2>
         <h6 class = "regular">Based on <%= @coffee_shop.reviews.count %> reviews.</h6>
       </div>
 
