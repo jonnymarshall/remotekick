@@ -1,77 +1,104 @@
-<div class="container">
-  <h2>Name: <%= @coffee_shop.name %> ID: <%= @coffee_shop.id %></h2>
-  <p>Description: <%= @coffee_shop.description %></p>
-  <p>Rating: <% if @coffee_shop.rating.nil? %>
-              n/a
-            <% else %>
-              <%= @coffee_shop.rating.round(1) %>
-            <% end %></p>
+<div class="cover-image-container relative-element">
+  <%= image_tag ("petr-sevcovic-594807-unsplash.jpg"), :class => "cover-image absolute-element" %>
+    <div class="container relative-element">
+      <div class="cover-image-text-container">
+        <h1 class="light"><%= @coffee_shop.name %></h1>
+        <h5 class="regular"><%= @coffee_shop.description %></h5>
+        <h2>
+          <% if @coffee_shop.rating.nil? %>
+            No ratings yet.
+          <% else %>
+            <% @coffee_shop.rating.round(0).times do %>
+              <i class="fas fa-star"></i>
+            <% end %>
+          <% end %>
+        </h2>
+        <h6 class = "regular">Based on <%= @coffee_shop.reviews.count %> reviews.</h6>
+      </div>
 
-  <p>Wifi Speeds</p>
-  <p>Upload Speed: <%= @coffee_shop.upload_speed %></p>
-  <p>Download Speed: <%= @coffee_shop.download_speed %></p>
-  <p>PING: <%= @coffee_shop.ping %></p>
-  <p>Plug sockets: <%= @coffee_shop.plug_sockets %></p>
-  <p>Comfort: <%= @coffee_shop.comfort %></p>
-  <p>Busyness: <%= @coffee_shop.busyness %></p>
+      <div>
+        <p>Wifi Speeds</p>
+        <p>Upload Speed: <%= @coffee_shop.upload_speed %></p>
+        <p>Download Speed: <%= @coffee_shop.download_speed %></p>
+        <p>PING: <%= @coffee_shop.ping %></p>
+        <div class="smile-rating">
+          <p>Plug sockets:</p>
+          <% @coffee_shop.plug_sockets.round(0).times do %>
+            <i class="fas fa-smile"></i>
+          <% end %>
+        </div>
+        <div class="smile-rating">
+          <p>Plug sockets:</p>
+          <% @coffee_shop.comfort.round(0).times do %>
+            <i class="fas fa-smile"></i>
+          <% end %>
+        </div>
+        <div class="smile-rating">
+          <p>Plug sockets:</p>
+          <% @coffee_shop.busyness.round(0).times do %>
+            <i class="fas fa-smile"></i>
+          <% end %>
+        </div>
 
-  <%= simple_form_for [@coffee_shop, @review] do |review| %>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <%= review.label :content %>:
-        <%= review.text_area :content, required:true, class: 'form-control' %>
+        <%= simple_form_for [@coffee_shop, @review] do |review| %>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <%= review.label :content %>:
+              <%= review.text_area :content, required:true, class: 'form-control' %>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6" style="margin-top:15px;">
+              <%= review.label :rating %>:
+              <%= review.number_field :rating, required:true, class: 'form-control' %><br />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6" style="margin-top:15px;">
+              <%= review.label :plug_sockets %>:
+              <%= review.number_field :plug_sockets, class: 'form-control' %><br />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6" style="margin-top:15px;">
+              <%= review.label :comfort %>:
+              <%= review.number_field :comfort, class: 'form-control' %><br />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6" style="margin-top:15px;">
+              <%= review.label :busyness %>:
+              <%= review.number_field :busyness, class: 'form-control' %><br />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6" style="margin-top:15px;">
+              <%= review.label :upload_speed %>:
+              <%= review.number_field :upload_speed, class: 'form-control' %><br />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <%= review.simple_fields_for @review_photo do |review_photo| %>
+              <%= review_photo.input :photo_cache, as: :hidden %>
+              <%= review_photo.input :photo %>
+            <% end %>
+          </div>
+
+          <%= review.submit "Submit review", { class: "btn-primary" } %>
+        <% end %>
+
+
+        <% @coffee_shop.reviews.each do |review| %>
+          <h3><%= review.user.first_name %></h3>
+          <p><%= review.content %></p>
+          <p><%= review.rating %></p>
+          <% if review.review_photos.present? %>
+            <% review.review_photos.each do |review_photo| %>
+              <%= cl_image_tag review_photo.photo, height: 90, width: 160, crop: :fill %>
+            <% end %>
+          <% end %>
+        <% end %>
       </div>
     </div>
-    <div class="form-row">
-      <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= review.label :rating %>:
-        <%= review.number_field :rating, required:true, class: 'form-control' %><br />
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= review.label :plug_sockets %>:
-        <%= review.number_field :plug_sockets, class: 'form-control' %><br />
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= review.label :comfort %>:
-        <%= review.number_field :comfort, class: 'form-control' %><br />
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= review.label :busyness %>:
-        <%= review.number_field :busyness, class: 'form-control' %><br />
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= review.label :upload_speed %>:
-        <%= review.number_field :upload_speed, class: 'form-control' %><br />
-      </div>
-    </div>
-
-    <div class="form-row">
-      <%= review.simple_fields_for @review_photo do |review_photo| %>
-        <%= review_photo.input :photo_cache, as: :hidden %>
-        <%= review_photo.input :photo %>
-      <% end %>
-    </div>
-
-    <%= review.submit "Submit review", { class: "btn-primary" } %>
-  <% end %>
-
-
-  <% @coffee_shop.reviews.each do |review| %>
-    <h3><%= review.user.first_name %></h2>
-    <p><%= review.content %></p>
-    <p><%= review.rating %></p>
-    <% if review.review_photos.present? %>
-      <% review.review_photos.each do |review_photo| %>
-        <%= cl_image_tag review_photo.photo, height: 90, width: 160, crop: :fill %>
-      <% end %>
-    <% end %>
-  <% end %>
 </div>

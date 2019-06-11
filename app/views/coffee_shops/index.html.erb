@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col" style="background-color:white;">
+    <div class="col" style="background-color:blue;">
       <form action="/coffee_shops" method="get">
         <div>
           <input type="checkbox" id="serves_plant_milk_checkbox" name="serves_plant_milk" value="true">
@@ -35,7 +35,7 @@
           <label for="checkbox_1">Only show results with plug_sockets rating over 2</label>
         </div>
         <div>
-          <button type="submit">Filter</button>
+          <button type="submit" class="btn-primary">Filter</button>
         </div>
       </form>
 
@@ -49,14 +49,15 @@
                 <img class="card-img-top" src="https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2585&q=80
         " alt="Card image cap">
                 <div class="card-body">
-                  <h5 class="card-title"><%= coffee_shop.name %> ID: <%= coffee_shop.id %></h5>
-                  <p class="card-text"><%= coffee_shop.description %>.
-                  <p>Rating: <% if coffee_shop.rating.nil? %>
+                  <h3 class="card-title dark-gray"><%= coffee_shop.name %></h2>
+                  <p class="card-text">
+                    <p class="dark-gray"><%= coffee_shop.description %>.</p>
+                    <p class="dark-gray">Rating: <% if coffee_shop.rating.nil? %>
                                n/a
                              <% else %>
                                <%= coffee_shop.rating.round(1) %>
                              <% end %></p>
-                  <p>Wifi Speed: <%= coffee_shop.upload_speed %>.</p>
+                  <p class="dark-gray">Wifi Speed: <%= coffee_shop.upload_speed %>.</p>
                   <%= link_to coffee_shop_path(coffee_shop) do %>
                     <div class="btn btn-primary">Visit</div>
                     <!-- <p>go to page</p> -->

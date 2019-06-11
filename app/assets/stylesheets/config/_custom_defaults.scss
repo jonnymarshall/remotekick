@@ -1,0 +1,43 @@
+//
+* {
+  margin: 0;
+  padding: 0;
+  color: $white;
+  body {
+    background-color: $dark-gray;
+  }
+  h1, h2, h3, h4, h5, h6, p {
+    color: $white;
+  }
+  a {
+    color: $dark-gray;
+  }
+  .light {
+    font-weight: 300;
+  }
+  .regular {
+    font-weight: 400;
+  }
+  .bold {
+    font-weight: 700;
+  }
+}
+
+.heading1 {
+  font-size: 50px
+}
+
+// 40
+// 30
+// 20
+// 15
+
+.dark-gray {
+    color: $dark-gray;
+  }
+
+#bootstrap-overrides {
+    a {
+    color: $dark-gray;
+  }
+}
