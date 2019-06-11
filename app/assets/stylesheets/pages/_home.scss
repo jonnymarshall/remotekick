@@ -7,10 +7,13 @@ padding: 0;
 .fullscreen {
     width: 100vw;
     height: 100vh;
-    background-image: url('petr-sevcovic-594807-unsplash.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+.home-bg {
+    background-image: asset-url('petr-sevcovic-594807-unsplash.jpg');
+  }
 
 .search-container {
   height: 100%;
