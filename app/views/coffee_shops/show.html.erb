@@ -1,3 +1,4 @@
+<!--BANNER SECTION-->
 <div class="cover-image-container relative-element">
   <%= image_tag ("petr-sevcovic-594807-unsplash.jpg"), :class => "cover-image absolute-element" %>
     <div class="container relative-element">
@@ -16,37 +17,95 @@
         <h6 class = "regular">Based on <%= @coffee_shop.reviews.count %> reviews.</h6>
       </div>
 
-      <div>
-        <p>Wifi Speeds</p>
-        <p>Upload Speed: <%= @coffee_shop.upload_speed %></p>
-        <p>Download Speed: <%= @coffee_shop.download_speed %></p>
-        <p>PING: <%= @coffee_shop.ping %></p>
-        <div class="smile-rating">
-          <p>Plug sockets:</p>
-          <% @coffee_shop.plug_sockets.round(0).times do %>
-            <i class="fas fa-smile"></i>
-          <% end %>
+      <!--RATINGS SECTION-->
+      <div class="row">
+        <div class="col">
+          <i class="fa fa-wifi text-primary" aria-hidden="true"></i>
+          <p><%= @coffee_shop.upload_speed %> Mbps Wifi</p>
+          <p><%= @coffee_shop.download_speed %> Mbps download Speed: </p>
+          <p><%= @coffee_shop.ping %> ms PING</p>
         </div>
-        <div class="smile-rating">
-          <p>Plug sockets:</p>
-          <% @coffee_shop.comfort.round(0).times do %>
-            <i class="fas fa-smile"></i>
-          <% end %>
+        <div class="col">
+          <div class="rating-block">
+            <% 3.times do %>
+              <i class="fas fa-dollar-sign"></i>
+            <% end %>
+            <p>Price</p>
+          </div>
         </div>
-        <div class="smile-rating">
-          <p>Plug sockets:</p>
-          <% @coffee_shop.busyness.round(0).times do %>
-            <i class="fas fa-smile"></i>
-          <% end %>
+        <div class="col">
+          <div class="rating-block">
+            <p>Plug sockets:</p>
+            <% (@coffee_shop.plug_sockets.round(0) + 1).times do %>
+              <i class="fas fa-smile text-primary"></i>
+            <% end %>
+            <% (2 - @coffee_shop.plug_sockets.round(0)).times do %>
+              <i class="fas fa-smile dark-gray"></i>
+            <% end %>
+          </div>
+        </div>
+        <div class="col">
+          <div class="rating-block">
+            <p>Comfort:</p>
+            <% (@coffee_shop.comfort.round(0) + 1).times do %>
+              <i class="fas fa-smile text-primary"></i>
+            <% end %>
+            <% (2 - @coffee_shop.comfort.round(0)).times do %>
+              <i class="fas fa-smile dark-gray"></i>
+            <% end %>
+          </div>
+        </div>
+        <div class="col">
+          <div class="rating-block">
+            <p>Busyness:</p>
+            <% (@coffee_shop.busyness.round(0) + 1).times do %>
+              <i class="fas fa-smile text-primary"></i>
+            <% end %>
+            <% (2 - @coffee_shop.busyness.round(0)).times do %>
+              <i class="fas fa-smile dark-gray"></i>
+            <% end %>
+          </div>
         </div>
       </div>
 
+      <!--DIVIDING LINE-->
+      <div class="divider"></div>
+
+      <!-- FEATURES SECTION-->
+      <div class="row">
+        <% if @coffee_shop.serves_food %>
+          <div class="col">
+            <p>Serves food</p>
+          </div>
+        <% end %>
+        <% if @coffee_shop.serves_plant_milk %>
+          <div class="col">
+            <p>Serves plant milk</p>
+          </div>
+        <% end %>
+        <% if @coffee_shop.serves_smoothies %>
+          <div class="col">
+            <p>Serves smoothies</p>
+          </div>
+        <% end %>
+        <% if @coffee_shop.air_conditioning %>
+          <div class="col">
+            <p>Air conditioning</p>
+          </div>
+        <% end %>
+      </div>
+
+      <!--DIVIDING LINE-->
+      <div class="divider"></div>
+
+      <!--CREATE A REVIEW BUTTON-->
       <div>
         <%= link_to new_coffee_shop_review_path(@coffee_shop) do %>
           <div class="btn btn-primary">Create a review</div>
         <% end %>
       </div>
 
+      <!--REVIEWS SECTION-->
       <div>
         <% @coffee_shop.reviews.each do |review| %>
           <h3><%= review.user.first_name %></h3>
