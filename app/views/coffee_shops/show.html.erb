@@ -39,56 +39,15 @@
             <i class="fas fa-smile"></i>
           <% end %>
         </div>
+      </div>
 
-        <%= simple_form_for [@coffee_shop, @review] do |review| %>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <%= review.label :content %>:
-              <%= review.text_area :content, required:true, class: 'form-control' %>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6" style="margin-top:15px;">
-              <%= review.label :rating %>:
-              <%= review.number_field :rating, required:true, class: 'form-control' %><br />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6" style="margin-top:15px;">
-              <%= review.label :plug_sockets %>:
-              <%= review.number_field :plug_sockets, class: 'form-control' %><br />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6" style="margin-top:15px;">
-              <%= review.label :comfort %>:
-              <%= review.number_field :comfort, class: 'form-control' %><br />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6" style="margin-top:15px;">
-              <%= review.label :busyness %>:
-              <%= review.number_field :busyness, class: 'form-control' %><br />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6" style="margin-top:15px;">
-              <%= review.label :upload_speed %>:
-              <%= review.number_field :upload_speed, class: 'form-control' %><br />
-            </div>
-          </div>
-
-          <div class="form-row">
-            <%= review.simple_fields_for @review_photo do |review_photo| %>
-              <%= review_photo.input :photo_cache, as: :hidden %>
-              <%= review_photo.input :photo %>
-            <% end %>
-          </div>
-
-          <%= review.submit "Submit review", { class: "btn-primary" } %>
+      <div>
+        <%= link_to new_coffee_shop_review_path(@coffee_shop) do %>
+          <div class="btn btn-primary">Create a review</div>
         <% end %>
+      </div>
 
-
+      <div>
         <% @coffee_shop.reviews.each do |review| %>
           <h3><%= review.user.first_name %></h3>
           <p><%= review.content %></p>

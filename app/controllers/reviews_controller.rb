@@ -1,8 +1,15 @@
 class ReviewsController < ApplicationController
+  before_action :assign_coffee_shop, only: [:show, :create, :new, :edit, :update, :destroy]
+
+  def new
+    # @coffee_shop = CoffeeShop.find(coffee_shop_params[:coffee_shop_id])
+    @review = current_user.reviews.new
+    @review_photo = ReviewPhoto.new
+  end
+
   def create
     # raise
     @review = current_user.reviews.new(review_params)
-    @coffee_shop = CoffeeShop.find(coffee_shop_params[:coffee_shop_id])
     @review.coffee_shop = @coffee_shop
     @review_photo = @review.review_photos.new(photo: review_photo_params[:review_photo][:photo])
     @review_photo.save!
@@ -67,6 +74,11 @@ class ReviewsController < ApplicationController
   #                 :ping,
   #                 review_photo: [:photo])
   # end
+
+
+  def assign_coffee_shop
+    @coffee_shop = CoffeeShop.find(coffee_shop_params[:coffee_shop_id])
+  end
 
   def coffee_shop_params
     params.permit(:coffee_shop_id)
