@@ -44,6 +44,18 @@
   background: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.8)),
 }
 
-.right-margin {
-  margin-right: $spacer;
+.rating-block {
+  width: 10%;
+}
+
+#price-rating-block {
+  width: 7%;
+}
+
+.review {
+  width: 30%;
+}
+
+.review p {
+  font-size: 14px;
 }
