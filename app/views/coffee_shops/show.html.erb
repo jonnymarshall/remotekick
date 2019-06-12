@@ -1,122 +1,129 @@
 <!--BANNER SECTION-->
 <div class="cover-image-container relative-element">
+  <div class="gradient absolute-element"></div>
   <%= image_tag ("petr-sevcovic-594807-unsplash.jpg"), :class => "cover-image absolute-element" %>
-    <div class="container relative-element">
-      <div class="cover-image-text-container">
-        <h1 class="light"><%= @coffee_shop.name %></h1>
-        <h5 class="regular"><%= @coffee_shop.description %></h5>
-        <h2>
-          <% if @coffee_shop.rating.nil? %>
-            No ratings yet.
-          <% else %>
-            <% @coffee_shop.rating.round(0).times do %>
-              <i class="fas fa-star"></i>
-            <% end %>
-          <% end %>
-        </h2>
-        <h6 class = "regular">Based on <%= @coffee_shop.reviews.count %> reviews.</h6>
-      </div>
+  <div class="cover-image-text-container relative-element">
+    <h1 class="light"><%= @coffee_shop.name %></h1>
+    <h5 class="regular"><%= @coffee_shop.description %></h5>
+    <h2>
+      <% if @coffee_shop.rating.nil? %>
+        No ratings yet.
+      <% else %>
+        <% @coffee_shop.rating.round(0).times do %>
+          <i class="fas fa-star"></i>
+        <% end %>
+      <% end %>
+    </h2>
+    <h6 class = "regular">Based on <%= @coffee_shop.reviews.count %> reviews.</h6>
+  </div>
+</div>
 
-      <!--RATINGS SECTION-->
-      <div class="row">
-        <div class="col">
-          <i class="fa fa-wifi text-primary" aria-hidden="true"></i>
-          <p><%= @coffee_shop.upload_speed %> Mbps Wifi</p>
-          <p><%= @coffee_shop.download_speed %> Mbps download Speed: </p>
+<!--INFO SECTION-->
+<div class="container">
+
+  <!--TEST RATINGS SECTION-->
+  <div class="d-flex justify-content-between">
+    <div class="p-2">
+      <div class="d-inline-flex">
+        <h3><i class="fa fa-wifi text-primary right-margin" aria-hidden="true"></i></h3>
+        <div>
+          <strong><%= @coffee_shop.upload_speed %> Mbps Wifi</strong>
+          <p><%= @coffee_shop.download_speed %> Mbps download speed: </p>
           <p><%= @coffee_shop.ping %> ms PING</p>
         </div>
-        <div class="col">
-          <div class="rating-block">
-            <% 3.times do %>
-              <i class="fas fa-dollar-sign"></i>
-            <% end %>
-            <p>Price</p>
-          </div>
-        </div>
-        <div class="col">
-          <div class="rating-block">
-            <p>Plug sockets:</p>
-            <% (@coffee_shop.plug_sockets.round(0) + 1).times do %>
-              <i class="fas fa-smile text-primary"></i>
-            <% end %>
-            <% (2 - @coffee_shop.plug_sockets.round(0)).times do %>
-              <i class="fas fa-smile dark-gray"></i>
-            <% end %>
-          </div>
-        </div>
-        <div class="col">
-          <div class="rating-block">
-            <p>Comfort:</p>
-            <% (@coffee_shop.comfort.round(0) + 1).times do %>
-              <i class="fas fa-smile text-primary"></i>
-            <% end %>
-            <% (2 - @coffee_shop.comfort.round(0)).times do %>
-              <i class="fas fa-smile dark-gray"></i>
-            <% end %>
-          </div>
-        </div>
-        <div class="col">
-          <div class="rating-block">
-            <p>Busyness:</p>
-            <% (@coffee_shop.busyness.round(0) + 1).times do %>
-              <i class="fas fa-smile text-primary"></i>
-            <% end %>
-            <% (2 - @coffee_shop.busyness.round(0)).times do %>
-              <i class="fas fa-smile dark-gray"></i>
-            <% end %>
-          </div>
-        </div>
-      </div>
-
-      <!--DIVIDING LINE-->
-      <div class="divider"></div>
-
-      <!-- FEATURES SECTION-->
-      <div class="row">
-        <% if @coffee_shop.serves_food %>
-          <div class="col">
-            <p>Serves food</p>
-          </div>
-        <% end %>
-        <% if @coffee_shop.serves_plant_milk %>
-          <div class="col">
-            <p>Serves plant milk</p>
-          </div>
-        <% end %>
-        <% if @coffee_shop.serves_smoothies %>
-          <div class="col">
-            <p>Serves smoothies</p>
-          </div>
-        <% end %>
-        <% if @coffee_shop.air_conditioning %>
-          <div class="col">
-            <p>Air conditioning</p>
-          </div>
-        <% end %>
-      </div>
-
-      <!--DIVIDING LINE-->
-      <div class="divider"></div>
-
-      <!--CREATE A REVIEW BUTTON-->
-      <div>
-        <%= link_to new_coffee_shop_review_path(@coffee_shop) do %>
-          <div class="btn btn-primary">Create a review</div>
-        <% end %>
-      </div>
-
-      <!--REVIEWS SECTION-->
-      <div>
-        <% @coffee_shop.reviews.each do |review| %>
-          <h3><%= review.user.first_name %></h3>
-          <p><%= review.content %></p>
-          <p><%= review.rating %></p>
-          <% if review.review_photos.present? %>
-            <% review.review_photos.each do |review_photo| %>
-              <%= cl_image_tag review_photo.photo, height: 90, width: 160, crop: :fill %>
-            <% end %>
-          <% end %>
-        <% end %>
       </div>
     </div>
+    <div class="p-2">
+      <div class="rating-block">
+        <% 3.times do %>
+          <i class="fas fa-dollar-sign"></i>
+        <% end %>
+        <p>Price</p>
+      </div>
+    </div>
+    <div class="p-2">
+      <div class="rating-block">
+        <% (@coffee_shop.plug_sockets.round(0) + 1).times do %>
+          <i class="fas fa-smile text-primary"></i>
+        <% end %>
+        <% (2 - @coffee_shop.plug_sockets.round(0)).times do %>
+          <i class="fas fa-smile dark-gray"></i>
+        <% end %>
+        <p>Plug sockets</p>
+      </div>
+    </div>
+    <div class="p2">
+      <div class="rating-block">
+        <% (@coffee_shop.comfort.round(0) + 1).times do %>
+          <i class="fas fa-smile text-primary"></i>
+        <% end %>
+        <% (2 - @coffee_shop.comfort.round(0)).times do %>
+          <i class="fas fa-smile dark-gray"></i>
+        <% end %>
+        <p>Comfort</p>
+      </div>
+    </div>
+    <div class="p2">
+      <div class="rating-block">
+        <% (@coffee_shop.busyness.round(0) + 1).times do %>
+          <i class="fas fa-smile text-primary"></i>
+        <% end %>
+        <% (2 - @coffee_shop.busyness.round(0)).times do %>
+          <i class="fas fa-smile dark-gray"></i>
+        <% end %>
+        <p>Busyness</p>
+      </div>
+    </div>
+  </div>
+
+  <!--DIVIDING LINE-->
+  <div class="divider"></div>
+
+  <!-- FEATURES SECTION-->
+  <div class="row">
+    <% if @coffee_shop.serves_food %>
+      <div class="col">
+        <p>Serves food</p>
+      </div>
+    <% end %>
+    <% if @coffee_shop.serves_plant_milk %>
+      <div class="col">
+        <p>Serves plant milk</p>
+      </div>
+    <% end %>
+    <% if @coffee_shop.serves_smoothies %>
+      <div class="col">
+        <p>Serves smoothies</p>
+      </div>
+    <% end %>
+    <% if @coffee_shop.air_conditioning %>
+      <div class="col">
+        <p>Air conditioning</p>
+      </div>
+    <% end %>
+  </div>
+
+  <!--DIVIDING LINE-->
+  <div class="divider"></div>
+
+  <!--CREATE A REVIEW BUTTON-->
+  <div>
+    <%= link_to new_coffee_shop_review_path(@coffee_shop) do %>
+      <div class="btn btn-primary">Create a review</div>
+    <% end %>
+  </div>
+
+  <!--REVIEWS SECTION-->
+  <div>
+    <% @coffee_shop.reviews.each do |review| %>
+      <h3><%= review.user.first_name %></h3>
+      <p><%= review.content %></p>
+      <p><%= review.rating %></p>
+      <% if review.review_photos.present? %>
+        <% review.review_photos.each do |review_photo| %>
+          <%= cl_image_tag review_photo.photo, height: 90, width: 160, crop: :fill %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
 </div>

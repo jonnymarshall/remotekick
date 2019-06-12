@@ -37,7 +37,13 @@
 }
 
 #bootstrap-overrides {
-    a {
+  a {
     color: $dark-gray;
+  }
+  h1, h2, h3, h4, h5, h6, p, a {
+    margin: 0px;
+  }
+  p {
+    font-weight: 300;
   }
 }
