@@ -44,7 +44,6 @@
       <div class="d-flex flex-row wrap">
         <% if @coffee_shops%>
           <% @coffee_shops.each do |coffee_shop| %>
-            <div class="p-2">
               <div class="card" style="width: 18rem;">
                 <img class="card-img-top" src="https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2585&q=80
         " alt="Card image cap">
@@ -60,11 +59,9 @@
                   <p class="dark-gray">Wifi Speed: <%= coffee_shop.upload_speed %>.</p>
                   <%= link_to coffee_shop_path(coffee_shop) do %>
                     <div class="btn btn-primary">Visit</div>
-                    <!-- <p>go to page</p> -->
                   <% end %>
                 </div>
               </div>
-            </div>
           <% end %>
         <% end %>
       </div>

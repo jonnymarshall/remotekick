@@ -199,6 +199,17 @@ end
 
 puts "Created #{Review.count} reviews..."
 
+puts "Creating 10 additional reviews for coffee shop with ID: #{CoffeeShop.first.id}"
+
+10.times do
+  review = Review.new(review_attributes.sample)
+  review.coffee_shop = CoffeeShop.first
+  byebug
+  review.save
+end
+
+puts "Created 10 additional reviews for coffee shop with ID: #{CoffeeShop.first.id}"
+
 #----------CLOUDINARY IMAGE SEEDS----------
 # url = "http://static.giantbomb.com/uploads/original/9/99864/2419866-nes_console_set.png"
 # article = Article.new(title: 'NES', body: "A great console")

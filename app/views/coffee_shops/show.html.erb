@@ -112,6 +112,22 @@
   <!--DIVIDING LINE-->
   <div class="divider"></div>
 
+    <!-- TOGGLES SECTION-->
+  <div class="row">
+    <div class="col-lg-2">
+      <p class="padding">Reviews</p>
+    </div>
+    <div class="col-lg-2">
+      <p class="padding">Photos</p>
+    </div>
+    <div class="col-lg-2">
+      <p class="padding">Map</p>
+    </div>
+  </div>
+
+  <!--DIVIDING LINE-->
+  <div class="divider"></div>
+
   <!--CREATE A REVIEW BUTTON-->
   <div>
     <%= link_to new_coffee_shop_review_path(@coffee_shop) do %>
@@ -121,7 +137,6 @@
 
   <!--REVIEWS SECTION-->
   <div class="d-flex flex-row wrap">
-    <div class="d-flex justify-content-start padding-top-bottom">
       <% @coffee_shop.reviews.each do |review| %>
         <div class="review">
           <div class="row no-gutters">
@@ -153,14 +168,8 @@
                 </div>
               <% end %>
             <% end %>
-            <div class="review-photo-thumbnail"></div>
-            <div class="review-photo-thumbnail"></div>
-            <div class="review-photo-thumbnail"></div>
-            <div class="review-photo-thumbnail"></div>
-            <div class="review-photo-thumbnail"></div>
           </div>
         </div>
       <% end %>
-    </div>
   </div>
 </div>
