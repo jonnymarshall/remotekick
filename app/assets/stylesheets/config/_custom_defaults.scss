@@ -23,8 +23,20 @@
   }
 }
 
-.heading1 {
-  font-size: 50px
+.padding {
+  padding: $spacer;
+}
+
+.right-margin {
+  margin-right: $spacer;
+}
+
+.top-margin {
+  margin-top: $spacer;
+}
+
+.bottom-padding {
+  padding-bottom: $spacer;
 }
 
 // 40
@@ -33,11 +45,17 @@
 // 15
 
 .dark-gray {
-    color: $dark-gray;
-  }
+  color: $dark-gray;
+}
 
 #bootstrap-overrides {
-    a {
+  a {
     color: $dark-gray;
+  }
+  h1, h2, h3, h4, h5, h6, p, a {
+    margin: 0px;
+  }
+  p {
+    font-weight: 300;
   }
 }
