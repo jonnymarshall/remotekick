@@ -120,7 +120,7 @@ puts 'Creating Jonnys reviews...'
 
 review_attributes = [{
     user: User.first,
-    content: "Hate this fucking place",
+    content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
     rating: 2,
     plug_sockets: 2,
     busyness: 0,
@@ -131,7 +131,7 @@ review_attributes = [{
   },
   {
     user: User.first,
-    content: "Love this fucking place",
+    content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
     rating: 5,
     plug_sockets: 1,
     busyness: 2,
@@ -142,7 +142,7 @@ review_attributes = [{
   },
   {
     user: User.first,
-    content: "Like this place",
+    content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
     rating: 4,
     plug_sockets: 1,
     busyness: 1,
@@ -153,7 +153,7 @@ review_attributes = [{
   },
   {
     user: User.first,
-    content: "Like this place",
+    content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
     rating: 5,
     plug_sockets: 1,
     busyness: 1,
@@ -164,7 +164,7 @@ review_attributes = [{
   },
   {
     user: User.first,
-    content: "Don't like this place",
+    content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
     rating: 4,
     plug_sockets: 0,
     busyness: 2,
@@ -175,7 +175,7 @@ review_attributes = [{
   },
   {
     user: User.first,
-    content: "Love this place",
+    content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
     rating: 5,
     plug_sockets: 2,
     busyness: 1,
@@ -198,6 +198,17 @@ CoffeeShop.all.each do |coffee_shop|
 end
 
 puts "Created #{Review.count} reviews..."
+
+puts "Creating 10 additional reviews for coffee shop with ID: #{CoffeeShop.first.id}"
+
+10.times do
+  review = Review.new(review_attributes.sample)
+  review.coffee_shop = CoffeeShop.first
+  byebug
+  review.save
+end
+
+puts "Created 10 additional reviews for coffee shop with ID: #{CoffeeShop.first.id}"
 
 #----------CLOUDINARY IMAGE SEEDS----------
 # url = "http://static.giantbomb.com/uploads/original/9/99864/2419866-nes_console_set.png"
