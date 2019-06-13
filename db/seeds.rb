@@ -120,7 +120,7 @@ puts 'Creating Jonnys reviews...'
 
 review_attributes = [{
     user: User.first,
-    content: "Hate this fucking place",
+    content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
     rating: 2,
     plug_sockets: 2,
     busyness: 0,
@@ -131,7 +131,7 @@ review_attributes = [{
   },
   {
     user: User.first,
-    content: "Love this fucking place",
+    content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
     rating: 5,
     plug_sockets: 1,
     busyness: 2,
@@ -142,7 +142,7 @@ review_attributes = [{
   },
   {
     user: User.first,
-    content: "Like this place",
+    content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
     rating: 4,
     plug_sockets: 1,
     busyness: 1,
@@ -153,7 +153,7 @@ review_attributes = [{
   },
   {
     user: User.first,
-    content: "Like this place",
+    content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
     rating: 5,
     plug_sockets: 1,
     busyness: 1,
@@ -164,7 +164,7 @@ review_attributes = [{
   },
   {
     user: User.first,
-    content: "Don't like this place",
+    content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
     rating: 4,
     plug_sockets: 0,
     busyness: 2,
@@ -175,7 +175,7 @@ review_attributes = [{
   },
   {
     user: User.first,
-    content: "Love this place",
+    content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
     rating: 5,
     plug_sockets: 2,
     busyness: 1,

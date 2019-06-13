@@ -22,6 +22,7 @@ gem 'has_scope'
 gem 'figaro'
 gem 'cloudinary'
 gem 'carrierwave', '~> 1.3', '>= 1.3.1'
+gem 'faker'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

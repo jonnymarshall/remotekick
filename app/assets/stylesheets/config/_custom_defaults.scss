@@ -27,8 +27,17 @@
   padding: $spacer;
 }
 
+.padding-top-bottom {
+  padding-top: $spacer;
+  padding-bottom: $spacer;
+}
+
 .right-margin {
   margin-right: $spacer;
+}
+
+.left-margin {
+  margin-left: $spacer;
 }
 
 .top-margin {
