@@ -1,0 +1,47 @@
+.index-card {
+  width: 240px;
+  height: 270px;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  p {
+    font-size: 12px;
+    color: $dark-gray;
+  }
+  h1, h2, h3, h4, h5, h6, strong {
+    color: $dark-gray;
+  }
+}
+
+.card-photo-section {
+  height: 180px;
+}
+
+.card-name {
+  height: 35px;
+}
+
+.border-radius {
+  border-radius: 10px;
+}
+
+.card-photo {
+  height: 100%;
+  width: 100%;
+}
+
+.card-photo-overlay {
+  bottom: 0;
+  width: 100%;
+  p, h1, h2, h3, h4, h5, h6, strong {
+    color: $white;
+  }
+}
+
+.cards-photo-gradient {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0),rgba(0,0,0,0.9));
+}

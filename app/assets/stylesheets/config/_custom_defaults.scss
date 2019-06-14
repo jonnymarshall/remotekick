@@ -27,9 +27,19 @@
   padding: $spacer;
 }
 
+.padding-top-bottom-sm {
+  padding-top: $spacer / 2;
+  padding-bottom: $spacer / 2;
+}
+
 .padding-top-bottom {
   padding-top: $spacer;
   padding-bottom: $spacer;
+}
+
+.padding-left-right {
+  padding-left: $spacer;
+  padding-right: $spacer;
 }
 
 .right-margin {
@@ -46,6 +56,14 @@
 
 .bottom-padding {
   padding-bottom: $spacer;
+}
+
+.right-padding {
+  padding-right: $spacer;
+}
+
+.right-padding-sm {
+  padding-right: $spacer / 2;
 }
 
 // 40
