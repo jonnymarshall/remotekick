@@ -1,6 +1,6 @@
 .index-card {
   width: 240px;
-  height: 300px;
+  height: 305px;
   background-color: white;
   border-radius: 10px;
   overflow: hidden;
@@ -10,6 +10,9 @@
   }
   h1, h2, h3, h4, h5, h6, strong {
     color: $dark-gray;
+  }
+  &:hover {
+    background: linear-gradient(#F7F7F7, #F1F1F1);
   }
 }
 
@@ -44,4 +47,9 @@
   left: 0;
   right: 0;
   background: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0),rgba(0,0,0,0.9));
+}
+
+.card-description {
+  height: 40px;
+  line-height: 15px;
 }

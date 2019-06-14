@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col" style="background-color:blue;">
+    <div class="col-3" style="background-color:blue;">
       <form action="/coffee_shops" method="get">
         <div>
           <input type="checkbox" id="serves_plant_milk_checkbox" name="serves_plant_milk" value="true">
@@ -40,82 +40,10 @@
       </form>
     </div>
 
-    <div class="col-8" style="background-color:grey;">
+    <div class="col-9" style="background-color:grey;">
       <div class="d-flex flex-row wrap">
-        <div class="index-card">
-          <div>
-            <div class="card-photo-section relative-element" style="background-color:#F1F1F1;">
-              <div class="cards-photo-gradient absolute-element"></div>
-              <div class="card-photo-overlay absolute-element padding-left-right padding-top-bottom">
-                <div class="d-flex justify-content-between">
-                  <div>
-                    <h6>
-                      <i class="fa fa-wifi text-primary" aria-hidden="true"></i>
-                      <strong>50 Mbps</strong>
-                    </h6>
-                  </div>
-                  <div class="d-flex justify-content-between">
-                    <i class="fas fa-map-marker-alt right-padding-sm"></i>
-                    <p>X kilometers away</p>
-                  </div>
-                </div>
-              </div>
-              <%= image_tag ("petr-sevcovic-594807-unsplash.jpg"), :class => "card-photo" %>
-            </div>
-          </div>
-          <div class="row no-gutters">
-            <div class="col">
-              <h5 class="padding-top-bottom-sm padding-left-right">
-                <strong>I'm a name</strong>
-              </h5>
-            </div>
-          </div>
-          <div class="row no-gutters">
-            <div class="col">
-              <h5 class="padding-top-bottom-sm padding-left-right">
-                <p>I'm a description blah blah blah</p>
-              </h5>
-            </div>
-          </div>
-          <div class="d-flex padding-left-right">
-            <p class="right-padding">Feature</p>
-            <p class="right-padding">Feature</p>
-            <p class="right-padding">Feature</p>
-          </div>
-          <div class="d-flex padding-left-right justify-content-between align-items-center">
-            <h5><i class="fas fa-dollar-sign dark-gray"></i></h5>
-            <div class="d-flex padding-top-bottom-sm align-items-end">
-              <div class="right-padding-sm">
-              <% 5.times do %>
-                <i class="fas fa-star dark-gray"></i>
-              <% end %>
-              </div>
-              <p>(144)</p>
-            </div>
-          </div>
-        </div>
-
         <% if @coffee_shops%>
-          <% @coffee_shops.each do |coffee_shop| %>
-              <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2585&q=80
-        " alt="Card image cap">
-                <div class="card-body">
-                  <h3 class="card-title dark-gray"><%= coffee_shop.name %></h2>
-                  <p class="card-text">
-                    <p class="dark-gray"><%= coffee_shop.description %>.</p>
-                    <p class="dark-gray">Rating: <% if coffee_shop.rating.nil? %>
-                               n/a
-                             <% else %>
-                               <%= coffee_shop.rating.round(1) %>
-                             <% end %></p>
-                  <p class="dark-gray">Wifi Speed: <%= coffee_shop.upload_speed.round(0) %>.</p>
-                  <%= link_to coffee_shop_path(coffee_shop) do %>
-                    <div class="btn btn-primary">Visit</div>
-                  <% end %>
-                </div>
-              </div>
-          <% end %>
+          <%= render 'shared/cards' %>
         <% end %>
       </div>
     </div>
