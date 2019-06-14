@@ -9,9 +9,6 @@
   h1, h2, h3, h4, h5, h6, p {
     color: $white;
   }
-  a {
-    color: $dark-gray;
-  }
   .light {
     font-weight: 300;
   }
@@ -27,13 +24,44 @@
   padding: $spacer;
 }
 
+.padding-top {
+  padding-top: $spacer;
+}
+
 .padding-top-bottom {
   padding-top: $spacer;
   padding-bottom: $spacer;
 }
 
-.right-margin {
+.padding-top-bottom-sm {
+  padding-top: $spacer / 2;
+  padding-bottom: $spacer / 2;
+}
+
+.padding-left-right {
+  padding-left: $spacer;
+  padding-right: $spacer;
+}
+
+.padding-left-right-sm {
+  padding-left: $spacer / 2;
+  padding-right: $spacer / 2;
+}
+
+.margin-right-sm {
+  margin-right: $spacer / 2;
+}
+
+.margin-right {
   margin-right: $spacer;
+}
+
+.margin-right-lg {
+  margin-right: $spacer * 2;
+}
+
+.margin-bottom-lg {
+  margin-bottom: $spacer * 2;
 }
 
 .left-margin {
@@ -46,6 +74,14 @@
 
 .bottom-padding {
   padding-bottom: $spacer;
+}
+
+.padding-right {
+  padding-right: $spacer;
+}
+
+.padding-right-sm {
+  padding-right: $spacer / 2;
 }
 
 // 40
@@ -63,6 +99,7 @@
   }
   h1, h2, h3, h4, h5, h6, p, a {
     margin: 0px;
+    text-decoration: none;
   }
   p {
     font-weight: 300;

@@ -1,0 +1,65 @@
+<% @coffee_shops.each do |coffee_shop| %>
+  <div class="index-card margin-right-lg margin-bottom-lg" id="<%="coffee_shop_#{coffee_shop.id}" %>">
+    <%= link_to coffee_shop_path(coffee_shop) do %>
+    <div class="card-photo-section relative-element" style="background-color:#F1F1F1;">
+      <div class="cards-photo-gradient absolute-element"></div>
+        <div class="card-photo-overlay absolute-element padding-left-right padding-top-bottom">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h6>
+                <i class="fa fa-wifi text-primary" aria-hidden="true"></i>
+                <strong>50 Mbps</strong>
+              </h6>
+            </div>
+            <div class="d-flex justify-content-between">
+              <i class="fas fa-map-marker-alt padding-right-sm"></i>
+              <p>X kilometers away</p>
+            </div>
+          </div>
+        </div>
+        <%= image_tag ("petr-sevcovic-594807-unsplash.jpg"), :class => "card-photo" %>
+      </div>
+    <div class="row no-gutters">
+      <div class="col">
+        <div class="padding-top padding-left-right">
+          <h6><strong><%= coffee_shop.name %></strong></h6>
+        </div>
+      </div>
+    </div>
+    <div class="row no-gutters">
+      <div class="col">
+        <div class="card-description padding-top-bottom-sm padding-left-right">
+          <p><%= coffee_shop.description %></p>
+        </div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="d-flex padding-left-right">
+      <% if coffee_shop.serves_food %>
+        <p class="padding-right-sm">Serves food</p>
+      <% end %>
+      <% if coffee_shop.serves_plant_milk %>
+        <p class="padding-right-sm">Plant milk</p>
+      <% end %>
+      <% if coffee_shop.serves_smoothies %>
+        <p class="padding-right-sm">Smoothies</p>
+      <% end %>
+      <% if coffee_shop.air_conditioning %>
+        <p class="padding-right-sm">Air con</p>
+      <% end %>
+    </div>
+    <div class="divider"></div>
+    <div class="d-flex padding-left-right justify-content-between align-items-center">
+      <h5><i class="fas fa-dollar-sign dark-gray"></i></h5>
+      <div class="d-flex padding-top-bottom-sm align-items-end">
+        <div class="padding-right-sm">
+        <% 5.times do %>
+          <i class="fas fa-star dark-gray"></i>
+        <% end %>
+        </div>
+        <p>(144)</p>
+      </div>
+    </div>
+    <% end %>
+  </div>
+<% end %>

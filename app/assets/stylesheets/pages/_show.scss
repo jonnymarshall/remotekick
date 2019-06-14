@@ -36,12 +36,12 @@
   height: 1px;
 }
 
-.gradient {
+.cover-image-gradient {
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.8)),
+  background: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.8));
 }
 
 .rating-block {

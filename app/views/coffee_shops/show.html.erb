@@ -1,6 +1,6 @@
 <!--BANNER SECTION-->
 <div class="cover-image-container relative-element">
-  <div class="gradient absolute-element"></div>
+  <div class="cover-image-gradient absolute-element"></div>
   <%= image_tag ("petr-sevcovic-594807-unsplash.jpg"), :class => "cover-image absolute-element" %>
   <div class="cover-image-text-container relative-element">
     <h1 class="light"><%= @coffee_shop.name %></h1>
@@ -24,11 +24,11 @@
   <!--TEST RATINGS SECTION-->
   <div class="d-flex justify-content-between padding-top-bottom">
     <div id="wifi-rating-block" class="d-inline-flex">
-      <h3><i class="fa fa-wifi text-primary right-margin" aria-hidden="true"></i></h3>
+      <h3><i class="fa fa-wifi text-primary margin-right" aria-hidden="true"></i></h3>
       <div>
-        <strong><%= @coffee_shop.upload_speed %> Mbps Wifi</strong>
-        <p><%= @coffee_shop.download_speed %> Mbps download speed: </p>
-        <p><%= @coffee_shop.ping %> ms PING</p>
+        <strong><%= @coffee_shop.upload_speed.round(0) %> Mbps Wifi</strong>
+        <p><%= @coffee_shop.download_speed.round(0) %> Mbps download speed: </p>
+        <p><%= @coffee_shop.ping.round(0) %> ms PING</p>
       </div>
     </div>
     <div id="price-rating-block" class="align-self-center">
@@ -163,7 +163,7 @@
           <div class="d-flex flex-row wrap">
             <% if review.review_photos.present? %>
               <% review.review_photos.each do |review_photo| %>
-                <div class="">
+                <div>
                   <%= cl_image_tag review_photo.photo, class: "review-photo-thumbnail" %>
                 </div>
               <% end %>
