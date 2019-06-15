@@ -8,6 +8,9 @@
 
 .home-bg {
     background-image: asset-url('petr-sevcovic-594807-unsplash.jpg');
+    z-index: -1;
+    position: absolute;
+    top: 0px;
 }
 
 .search-container {
