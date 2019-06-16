@@ -3,12 +3,23 @@
     <h1>wifiwarriors</h1>
     <p>Remote working. On caffeine.</p>
     <div class="container">
-      <form action="/coffee_shops" method="get">
+   <!--    <form action="/coffee_shops" method="get">
           <div class="form-group col-xs-6">
             <input type="text" name="address" class="form-control" placeholder="Where are you working?">
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+      </form> -->
+
+      <%= form_tag coffee_shops_path, method: :get, class: "form-group col-xs-6" do %>
+        <%= text_field_tag :address, class: "form-control" %>
+        <%= submit_tag, class: "btn btn-primary" %>
+      <% end %>
+
+      <%= form_with url: coffee_shops_path, local: true, method: :get, class: "form-group col-xs-6" do |form| %>
+        <%= form.text_field :address, class: "form-control" %>
+        <%= form.submit, class: "btn btn-primary" %>
+      <% end %>
+
     </div>
   </div>
 </div>
