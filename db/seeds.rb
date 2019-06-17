@@ -204,7 +204,7 @@ puts "Creating 10 additional reviews for coffee shop with ID: #{CoffeeShop.first
 10.times do
   review = Review.new(review_attributes.sample)
   review.coffee_shop = CoffeeShop.first
-  byebug
+  # byebug
   review.save
 end
 
