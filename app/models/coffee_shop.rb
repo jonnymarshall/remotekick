@@ -9,6 +9,7 @@ class CoffeeShop < ApplicationRecord
   after_validation :reverse_geocode
 
   scope :address, -> address_search { where("address ILIKE ?", "%#{address_search}%") }
+  scope :rating, -> number { where("rating >= ?", number) }
   scope :serves_plant_milk, -> { where(serves_plant_milk: true) }
   scope :serves_food, -> { where(serves_food: true) }
   scope :serves_smoothies, -> { where(serves_smoothies: true) }

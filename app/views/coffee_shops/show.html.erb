@@ -21,7 +21,7 @@
 <!--INFO SECTION-->
 <div class="container">
 
-  <!--TEST RATINGS SECTION-->
+  <!--RATINGS SECTION-->
   <div class="d-flex justify-content-between padding-top-bottom">
     <div id="wifi-rating-block" class="d-inline-flex">
       <h3><i class="fa fa-wifi text-primary margin-right" aria-hidden="true"></i></h3>
@@ -82,8 +82,14 @@
     </div>
   </div>
 
-  <!--DIVIDING LINE-->
-  <div class="divider"></div>
+  <!--DIVIDING LINE (ONLY DISPLAY IF COFFEE SHOP FEATURES EXIST) -->
+  <% if
+    @coffee_shop.serves_food ||
+    @coffee_shop.serves_plant_milk ||
+    @coffee_shop.serves_smoothies ||
+    @coffee_shop.air_conditioning %>
+    <div class="divider"></div>
+  <% end %>
 
   <!-- FEATURES SECTION-->
   <div class="row">

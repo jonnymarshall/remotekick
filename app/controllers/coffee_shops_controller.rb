@@ -3,6 +3,7 @@ class CoffeeShopsController < ApplicationController
   before_action :coffee_shop_params, only: [:index]
   before_action :authenticate_user!, except: [:index, :show]
   has_scope :address
+  has_scope :rating
   has_scope :serves_plant_milk, type: :boolean
   has_scope :serves_food, type: :boolean
   has_scope :serves_smoothies, type: :boolean
@@ -22,6 +23,7 @@ class CoffeeShopsController < ApplicationController
     #   @coffee_shops = CoffeeShop.where("wifi_restrictions = 0") if params[:wifi_restrictions]
     # end
     @coffee_shops = apply_scopes(CoffeeShop).all
+    @coffee_shop_params = coffee_shop_params
   end
 
   def show
@@ -63,6 +65,6 @@ class CoffeeShopsController < ApplicationController
   def coffee_shop_params
     # *Strong params*: You need to *whitelist* what can be updated by the user
     # Never trust user data!
-    params.permit(:address, :serves_plant_milk, :wifi_restrictions, :serves_food, :serves_smoothies, :air_conditioning)
+    params.permit(:address, :rating, :comfort, :plug_sockets, :busyness, :serves_plant_milk, :wifi_restrictions, :serves_food, :serves_smoothies, :air_conditioning)
   end
 end

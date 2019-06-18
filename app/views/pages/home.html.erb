@@ -5,7 +5,7 @@
     <div class="container">
       <%= form_with url: coffee_shops_path, local: true, method: :get, class: "form-group col-xs-6" do |form| %>
         <%= form.text_field :address, class: "form-control" %>
-        <%= form.submit class: "btn btn-primary" %>
+        <%= form.submit "Search", class: "btn btn-primary" %>
       <% end %>
     </div>
   </div>
