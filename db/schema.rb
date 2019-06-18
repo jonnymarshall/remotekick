@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_07_112952) do
+ActiveRecord::Schema.define(version: 2019_06_18_044953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,10 @@ ActiveRecord::Schema.define(version: 2019_06_07_112952) do
     t.float "upload_speed"
     t.float "download_speed"
     t.float "ping"
+    t.boolean "serves_plant_milk"
+    t.boolean "serves_smoothies"
+    t.boolean "serves_food"
+    t.boolean "air_conditioning"
     t.index ["coffee_shop_id"], name: "index_reviews_on_coffee_shop_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end

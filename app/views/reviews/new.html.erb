@@ -36,6 +36,31 @@
         <%= review.number_field :upload_speed, class: 'form-control' %><br />
       </div>
     </div>
+    <div class="form-row">
+      <div class="form-group col-md-6" style="margin-top:15px;">
+        <%= review.label :serves_plant_milk %>:
+        <%= review.input :serves_plant_milk, as: :boolean, class: 'form-control' %><br />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6" style="margin-top:15px;">
+        <%= review.label :serves_smoothies %>:
+        <%= review.input :serves_smoothies, as: :boolean, class: 'form-control' %><br />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6" style="margin-top:15px;">
+        <%= review.label :serves_food %>:
+        <%= review.input :serves_food, as: :boolean, class: 'form-control' %><br />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6" style="margin-top:15px;">
+        <%= review.label :air_conditioning %>:
+        <%= review.input :air_conditioning, as: :boolean, class: 'form-control' %><br />
+      </div>
+    </div>
+
 
     <div class="form-row">
       <%= review.simple_fields_for @review_photo do |review_photo| %>

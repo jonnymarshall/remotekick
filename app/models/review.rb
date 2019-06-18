@@ -16,7 +16,7 @@ private
 
 def update_coffee_shop_values
   # run the update method on coffee shops to reflect new rating values
-  review_values = {
+  averageable_values = {
     rating: rating,
     plug_sockets: plug_sockets,
     comfort: comfort,
@@ -26,13 +26,24 @@ def update_coffee_shop_values
     ping: ping
   }
 
-  review_values.each do |key, value|
+  boolean_values = {
+    serves_plant_milk: serves_plant_milk,
+    serves_food: serves_food,
+    serves_smoothies: serves_smoothies,
+    air_conditioning: air_conditioning
+  }
+
+  averageable_values.each do |key, value|
     coffee_shop.update(key => recalculate_value(key, value)) if !value.nil?
+  end
+
+  boolean_values.each do |key, value|
+    coffee_shop.update(key => value) if !value.nil?
   end
 end
 
 def recalculate_value(key, value)
-  # assign coffee shop value based on a dynamic method call for each key in review_values
+  # assign coffee shop value based on a dynamic method call for each key in averageable_values
   coffee_shop_value = coffee_shop.send(key)
   # apply the rating as-is if no existing ratings, otherwise recalculate average
   coffee_shop_value.nil? ? value : (coffee_shop_value + value) / 2
