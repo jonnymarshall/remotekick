@@ -15,13 +15,15 @@
         <%= form.label :upload_speed %>:
         <%= form.number_field :upload_speed, value: "#{@coffee_shop_params[:upload_speed]}", class: 'form-control' %>
         <%= form.label :serves_plant_milk %>:
-        <%= form.check_box :serves_plant_milk, value: "#{@coffee_shop_params[:serves_plant_milk]}", class: 'form-control' %>
+        <%= form.check_box :serves_plant_milk, as: :boolean, value: "#{@coffee_shop_params[:serves_plant_milk]}", class: 'form-control' %>
         <%= form.label :serves_smoothies %>:
-        <%= form.check_box :serves_smoothies, value: "#{@coffee_shop_params[:serves_smoothies]}", class: 'form-control' %>
+        <%= form.check_box :serves_smoothies, as: :boolean, value: "#{@coffee_shop_params[:serves_smoothies]}", class: 'form-control' %>
         <%= form.label :serves_food %>:
-        <%= form.check_box :serves_food, value: "#{@coffee_shop_params[:serves_food]}", class: 'form-control' %>
+        <%= form.check_box :serves_food, as: :boolean, value: "#{@coffee_shop_params[:serves_food]}", class: 'form-control' %>
         <%= form.label :air_conditioning %>:
-        <%= form.check_box :air_conditioning, value: "#{@coffee_shop_params[:air_conditioning]}", class: 'form-control' %>
+        <%= form.check_box :air_conditioning, as: :boolean, value: "#{@coffee_shop_params[:air_conditioning]}", class: 'form-control' %>
+        <%= form.label :wifi_restrictions %>:
+        <%= form.check_box :wifi_restrictions, as: :boolean, value: "#{@coffee_shop_params[:wifi_restrictions]}", class: 'form-control' %>
         <%= form.submit "Search", class: "btn btn-primary" %>
       <% end %>
     </div>
