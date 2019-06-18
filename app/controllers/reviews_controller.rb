@@ -11,8 +11,10 @@ class ReviewsController < ApplicationController
     # raise
     @review = current_user.reviews.new(review_params)
     @review.coffee_shop = @coffee_shop
-    @review_photo = @review.review_photos.new(photo: review_photo_params[:review_photo][:photo])
-    @review_photo.save!
+    if @review_photo != nil
+      @review_photo = @review.review_photos.new(photo: review_photo_params[:review_photo][:photo])
+      @review_photo.save!
+    end
     @review.save!
     redirect_to coffee_shop_path(@coffee_shop)
 #       respond_to do |format|
