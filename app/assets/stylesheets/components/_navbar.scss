@@ -1,6 +1,7 @@
 #navbar-lewagon {
   justify-content: space-between;
   background: white;
+  font-weight: 300;
 }
 
 #navbar-lewagon .navbar-collapse {
@@ -23,6 +24,7 @@
 
 #navbar-lewagon-transparent .navbar-collapse {
   flex-grow: 0;
+  font-weight: 300;
 }
 
 #navbar-lewagon-transparent .navbar-brand img {
