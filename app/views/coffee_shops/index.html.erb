@@ -1,7 +1,6 @@
 <div class="container">
   <div class="row">
     <div class="col-3">
-      <% raise %>
       <%= form_with url: coffee_shops_path, local: true, method: :get, class: "form-group col-xs-6" do |form| %>
         <%= form.label :address %>:
         <%= form.text_field :address, value: "#{@coffee_shop_params[:address]}", class: "form-control" %>
