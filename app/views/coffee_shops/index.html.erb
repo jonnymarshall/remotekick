@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-3">
+      <% raise %>
       <%= form_with url: coffee_shops_path, local: true, method: :get, class: "form-group col-xs-6" do |form| %>
         <%= form.label :address %>:
         <%= form.text_field :address, value: "#{@coffee_shop_params[:address]}", class: "form-control" %>
@@ -23,7 +24,7 @@
         <%= form.label :air_conditioning %>:
         <%= form.check_box :air_conditioning, as: :boolean, value: "#{@coffee_shop_params[:air_conditioning]}", class: 'form-control' %>
         <%= form.label :wifi_restrictions %>:
-        <%= form.check_box :wifi_restrictions, as: :boolean, value: "#{@coffee_shop_params[:wifi_restrictions]}", class: 'form-control' %>
+        <%= form.check_box :wifi_restrictions, value: "#{@coffee_shop_params[:wifi_restrictions]}", checked: @coffee_shop_params[:wifi_restrictions], class: 'form-control' %>
         <%= form.submit "Search", class: "btn btn-primary" %>
       <% end %>
     </div>
