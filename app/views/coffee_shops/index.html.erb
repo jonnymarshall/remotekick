@@ -36,7 +36,7 @@
         <%= form.check_box :air_conditioning, checked: @coffee_shop_boolean_params[:air_conditioning] == "1", class: 'form-control' %>
 
         <%= form.label :wifi_restrictions %>:
-        <%= form.check_box :wifi_restrictions, checked: @coffee_shop_params[:wifi_restrictions], class: 'form-control' %>
+        <%= form.check_box :wifi_restrictions, class: "form-control" %>
 
         <%= form.submit "Search", class: "btn btn-primary" %>
       <% end %>

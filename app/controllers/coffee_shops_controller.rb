@@ -26,7 +26,8 @@ class CoffeeShopsController < ApplicationController
     @coffee_shops = apply_scopes(CoffeeShop).all
     @coffee_shop_params = coffee_shop_params
     @coffee_shop_boolean_params = coffee_shop_boolean_params
-    @coffee_shop_boolean_params[:wifi_restrictions] = reverse_checkbox_value(coffee_shop_boolean_params[:wifi_restrictions])
+
+    # @coffee_shop_boolean_params[:wifi_restrictions] = reverse_checkbox_value(coffee_shop_boolean_params[:wifi_restrictions])
     # raise
   end
 
@@ -76,17 +77,17 @@ class CoffeeShopsController < ApplicationController
     params.permit(:serves_food, :serves_smoothies, :air_conditioning, :serves_plant_milk, :wifi_restrictions)
   end
 
-  def convert_to_boolean(coffee_shop_boolean_params, boolean_params = [])
-    # make array of params to iterate
-    boolean_params << coffee_shop_boolean_params[:serves_food]
-    boolean_params << coffee_shop_boolean_params[:serves_smoothies]
-    boolean_params << coffee_shop_boolean_params[:air_conditioning]
-    boolean_params << coffee_shop_boolean_params[:serves_plant_milk]
-    # assign boolean value based on integer value
-    boolean_params.each do |boolean_param|
-      boolean_param
-    end
-  end
+  # def convert_to_boolean(coffee_shop_boolean_params, boolean_params = [])
+  #   # make array of params to iterate
+  #   boolean_params << coffee_shop_boolean_params[:serves_food]
+  #   boolean_params << coffee_shop_boolean_params[:serves_smoothies]
+  #   boolean_params << coffee_shop_boolean_params[:air_conditioning]
+  #   boolean_params << coffee_shop_boolean_params[:serves_plant_milk]
+  #   # assign boolean value based on integer value
+  #   boolean_params.each do |boolean_param|
+  #     boolean_param
+  #   end
+  # end
 
   def reverse_checkbox_value(value)
     value.to_i.positive? ? 0 : 1
