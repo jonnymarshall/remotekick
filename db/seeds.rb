@@ -107,6 +107,54 @@ coffee_shop_attributes = [
     wifi_restrictions: 0,
     latitude: 18.800055,
     longitude: 98.974610
+  },
+  {
+    name: "SS1254372",
+    description:  'Cosy cafe with a homely feel',
+    user: User.first,
+    serves_plant_milk: true,
+    serves_food: true,
+    serves_smoothies: true,
+    air_conditioning: true,
+    wifi_restrictions: 0,
+    latitude: 18.795085,
+    longitude: 98.968436
+  },
+  {
+    name: "Wake Up",
+    description:  '24H cafe in the popular Nimman area',
+    user: User.first,
+    serves_plant_milk: false,
+    serves_food: false,
+    serves_smoothies: false,
+    air_conditioning: true,
+    wifi_restrictions: 4,
+    latitude: 18.795085,
+    longitude: 98.968436
+  },
+  {
+    name: "Nine One Coffee",
+    description:  'Small coffee shop in the popular Nimman area',
+    user: User.first,
+    serves_plant_milk: false,
+    serves_food: false,
+    serves_smoothies: false,
+    air_conditioning: true,
+    wifi_restrictions: 0,
+    latitude: 18.795085,
+    longitude: 98.966974
+  },
+  {
+    name: "Wawee Bistro",
+    description:  'Coffee chain serving food',
+    user: User.first,
+    serves_plant_milk: false,
+    serves_food: true,
+    serves_smoothies: false,
+    air_conditioning: true,
+    wifi_restrictions: 0,
+    latitude: 18.789085,
+    longitude: 98.990607
   }
 ]
 
@@ -183,7 +231,52 @@ review_attributes = [{
     download_speed: 43.25,
     upload_speed: 32.61,
     ping: 22
-  }
+  },
+  # SS1254372
+  {
+    user: User.first,
+    content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
+    rating: 5,
+    plug_sockets: 2,
+    busyness: 0,
+    comfort: 1,
+    download_speed: 161.03,
+    upload_speed: 96.88,
+    ping: 68
+  },
+  {
+    user: User.first,
+    content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
+    rating: 5,
+    plug_sockets: 2,
+    busyness: 2,
+    comfort: 2,
+    download_speed: 6.92,
+    upload_speed: 0.85,
+    ping: 5
+  },
+  {
+    user: User.first,
+    content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
+    rating: 5,
+    plug_sockets: 2,
+    busyness: 2,
+    comfort: 2,
+    download_speed: 85,
+    upload_speed: 25,
+    ping: 20
+  },
+  {
+    user: User.first,
+    content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
+    rating: 5,
+    plug_sockets: 1,
+    busyness: 1,
+    comfort: 2,
+    download_speed: 14.83,
+    upload_speed: 163.66,
+    ping: 2
+  },
 ]
 
 puts 'Applying Jonnys reviews to coffee shops'
