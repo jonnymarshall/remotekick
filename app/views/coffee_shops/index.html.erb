@@ -21,25 +21,38 @@
         <%= form.number_field :upload_speed, value: "#{@coffee_shop_params[:upload_speed]}", class: 'form-control' %>
 
         <%= form.label :serves_plant_milk %>:
-        <%= form.check_box :serves_plant_milk, checked: @coffee_shop_boolean_params[:serves_plant_milk] == "1", class: 'form-control' %>
+        <label class="switch">
+          <%= form.check_box :serves_plant_milk, checked: @coffee_shop_boolean_params[:serves_plant_milk] == "1", class: "slider round" %>
+          <span class="slider round"></span>
+        </label>
         <br>
 
         <%= form.label :serves_smoothies %>:
-        <%= form.check_box :serves_smoothies, checked: @coffee_shop_boolean_params[:serves_smoothies]  == "1", class: 'form-control' %>
+        <label class="switch">
+          <%= form.check_box :serves_smoothies, checked: @coffee_shop_boolean_params[:serves_smoothies]  == "1", class: 'form-control' %>
+          <span class="slider round"></span>
+        </label>
         <br>
 
         <%= form.label :serves_food %>:
-        <%= form.check_box :serves_food, checked: @coffee_shop_boolean_params[:serves_food]  == "1", class: 'form-control' %>
+        <label class="switch">
+          <%= form.check_box :serves_food, checked: @coffee_shop_boolean_params[:serves_food]  == "1", class: 'form-control' %>
+          <span class="slider round"></span>
+        </label>
         <br>
 
         <%= form.label :air_conditioning %>:
-        <%= form.check_box :air_conditioning, checked: @coffee_shop_boolean_params[:air_conditioning] == "1", class: 'form-control' %>
+        <label class="switch">
+          <%= form.check_box :air_conditioning, checked: @coffee_shop_boolean_params[:air_conditioning] == "1", class: 'form-control' %>
+          <span class="slider round"></span>
+        </label>
 
         <%= form.label :wifi_restrictions %>:
         <%= form.check_box :wifi_restrictions, class: "form-control" %>
 
         <%= form.submit "Search", class: "btn btn-primary" %>
       <% end %>
+
     </div>
 
     <div class="col-9" style="background-color:grey;">
