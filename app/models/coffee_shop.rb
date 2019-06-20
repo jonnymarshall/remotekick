@@ -15,7 +15,16 @@ class CoffeeShop < ApplicationRecord
   scope :serves_food, -> { where(serves_food: true) }
   scope :serves_smoothies, -> { where(serves_smoothies: true) }
   scope :air_conditioning, -> { where(air_conditioning: true) }
-  scope :no_wifi_restrictions, -> hours { where(wifi_restrictions: hours) }
+  scope :no_wifi_restrictions, -> hours do
+    # if checkbox is unchecked, show all the results (greater than or equal to 0 wifi_restrictions)
+    if hours == "0"
+      where("wifi_restrictions >= ?", hours)
+    # else if checkbox is checked, show only the results with 0 (less than 1) wifi_restrictions
+    else
+      where("wifi_restrictions < ?", hours)
+    end
+  end
+
   # scope :by_comfort, -> number { where("comfort >= ?", number) }
   # scope :by_busyness, -> number { where("busyness >= ?", number) }
   # scope :by_plug_sockets, -> number { where("plug_sockets >= ?", number) }

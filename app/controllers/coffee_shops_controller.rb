@@ -74,7 +74,14 @@ class CoffeeShopsController < ApplicationController
   end
 
   def coffee_shop_boolean_params
-    params.permit(:serves_food, :serves_smoothies, :air_conditioning, :serves_plant_milk, :wifi_restrictions)
+    params.permit(
+      :serves_food,
+      :serves_smoothies,
+      :air_conditioning,
+      :serves_plant_milk,
+      :wifi_restrictions,
+      :no_wifi_restrictions
+    )
   end
 
   # def convert_to_boolean(coffee_shop_boolean_params, boolean_params = [])

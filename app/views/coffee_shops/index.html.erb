@@ -47,8 +47,12 @@
           <span class="slider round"></span>
         </label>
 
-        <%= form.label :wifi_restrictions %>:
-        <%= form.check_box :wifi_restrictions, class: "form-control" %>
+        <%= form.label :no_wifi_restrictions %>:
+          <label class="switch">
+          <%= form.check_box :no_wifi_restrictions, checked: @coffee_shop_boolean_params[:no_wifi_restrictions] == "1", class: "form-control" %>
+          <span class="slider round"></span>
+        </label>
+        <br>
 
         <%= form.submit "Search", class: "btn btn-primary" %>
       <% end %>
