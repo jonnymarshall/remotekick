@@ -3,6 +3,8 @@ class CoffeeShopsController < ApplicationController
   before_action :coffee_shop_params, only: [:index]
   before_action :authenticate_user!, except: [:index, :show]
   has_scope :address
+  has_scope :rating
+  has_scope :upload_speed
   has_scope :serves_plant_milk, type: :boolean
   has_scope :serves_food, type: :boolean
   has_scope :serves_smoothies, type: :boolean
@@ -22,6 +24,11 @@ class CoffeeShopsController < ApplicationController
     #   @coffee_shops = CoffeeShop.where("wifi_restrictions = 0") if params[:wifi_restrictions]
     # end
     @coffee_shops = apply_scopes(CoffeeShop).all
+    @coffee_shop_params = coffee_shop_params
+    @coffee_shop_boolean_params = coffee_shop_boolean_params
+
+    # @coffee_shop_boolean_params[:wifi_restrictions] = reverse_checkbox_value(coffee_shop_boolean_params[:wifi_restrictions])
+    # raise
   end
 
   def show
@@ -63,6 +70,33 @@ class CoffeeShopsController < ApplicationController
   def coffee_shop_params
     # *Strong params*: You need to *whitelist* what can be updated by the user
     # Never trust user data!
-    params.permit(:address, :serves_plant_milk, :wifi_restrictions, :serves_food, :serves_smoothies, :air_conditioning)
+    params.permit(:address, :rating, :upload_speed, :comfort, :plug_sockets, :busyness)
+  end
+
+  def coffee_shop_boolean_params
+    params.permit(
+      :serves_food,
+      :serves_smoothies,
+      :air_conditioning,
+      :serves_plant_milk,
+      :wifi_restrictions,
+      :no_wifi_restrictions
+    )
+  end
+
+  # def convert_to_boolean(coffee_shop_boolean_params, boolean_params = [])
+  #   # make array of params to iterate
+  #   boolean_params << coffee_shop_boolean_params[:serves_food]
+  #   boolean_params << coffee_shop_boolean_params[:serves_smoothies]
+  #   boolean_params << coffee_shop_boolean_params[:air_conditioning]
+  #   boolean_params << coffee_shop_boolean_params[:serves_plant_milk]
+  #   # assign boolean value based on integer value
+  #   boolean_params.each do |boolean_param|
+  #     boolean_param
+  #   end
+  # end
+
+  def reverse_checkbox_value(value)
+    value.to_i.positive? ? 0 : 1
   end
 end

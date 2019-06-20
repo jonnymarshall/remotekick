@@ -1,43 +1,63 @@
 <div class="container">
   <div class="row">
-    <div class="col-3" style="background-color:blue;">
-      <form action="/coffee_shops" method="get">
-        <div>
-          <input type="checkbox" id="serves_plant_milk_checkbox" name="serves_plant_milk" value="true">
-          <label for="checkbox_1">Serves plant milk</label>
-        </div>
-        <div>
-          <input type="checkbox" id="serves_food_checkbox" name="serves_food" value="true">
-          <label for="checkbox_1">Serves food</label>
-        </div>
-        <div>
-          <input type="checkbox" id="serves_smoothies_checkbox" name="serves_smoothies" value="true">
-          <label for="checkbox_1">Serves smoothies</label>
-        </div>
-        <div>
-          <input type="checkbox" id="air_conditioning_checkbox" name="air_conditioning" value="true">
-          <label for="checkbox_1">Air conditioning</label>
-        </div>
-        <div>
-          <input type="checkbox" id="wifi_restrictions_checkbox" name="no_wifi_restrictions" value="0">
-          <label for="checkbox_1">Only show results with no wifi restrictions</label>
-        </div>
-        <div>
-          <input type="checkbox" id="comfort_checkbox" name="by_comfort" value="2">
-          <label for="checkbox_1">Only show results with comfort rating over 2</label>
-        </div>
-        <div>
-          <input type="checkbox" id="busyness_checkbox" name="by_busyness" value="2">
-          <label for="checkbox_1">Only show results with busyness rating over 2</label>
-        </div>
-        <div>
-          <input type="checkbox" id="plug_sockets" name="by_plug_sockets" value="2">
-          <label for="checkbox_1">Only show results with plug_sockets rating over 2</label>
-        </div>
-        <div>
-          <button type="submit" class="btn-primary">Filter</button>
-        </div>
-      </form>
+    <div class="col-3">
+      <%= form_with url: coffee_shops_path, local: true, method: :get, class: "form-group col-xs-6" do |form| %>
+        <%= form.label :address %>:
+        <%= form.text_field :address, value: "#{@coffee_shop_params[:address]}", class: "form-control" %>
+
+        <%= form.label :rating %>:
+        <%= form.number_field :rating, value: "#{@coffee_shop_params[:rating]}", class: 'form-control' %><br />
+
+        <%= form.label :plug_sockets %>:
+        <%= form.number_field :plug_sockets, value: "#{@coffee_shop_params[:plug_sockets]}", class: 'form-control' %>
+
+        <%= form.label :comfort %>:
+        <%= form.number_field :comfort, value: "#{@coffee_shop_params[:comfort]}", class: 'form-control' %>
+
+        <%= form.label :busyness %>:
+        <%= form.number_field :busyness, value: "#{@coffee_shop_params[:busyness]}", class: 'form-control' %>
+
+        <%= form.label :upload_speed %>:
+        <%= form.number_field :upload_speed, value: "#{@coffee_shop_params[:upload_speed]}", class: 'form-control' %>
+
+        <%= form.label :serves_plant_milk %>:
+        <label class="switch">
+          <%= form.check_box :serves_plant_milk, checked: @coffee_shop_boolean_params[:serves_plant_milk] == "1", class: "slider round" %>
+          <span class="slider round"></span>
+        </label>
+        <br>
+
+        <%= form.label :serves_smoothies %>:
+        <label class="switch">
+          <%= form.check_box :serves_smoothies, checked: @coffee_shop_boolean_params[:serves_smoothies]  == "1", class: 'form-control' %>
+          <span class="slider round"></span>
+        </label>
+        <br>
+
+        <%= form.label :serves_food %>:
+        <label class="switch">
+          <%= form.check_box :serves_food, checked: @coffee_shop_boolean_params[:serves_food]  == "1", class: 'form-control' %>
+          <span class="slider round"></span>
+        </label>
+        <br>
+
+        <%= form.label :air_conditioning %>:
+        <label class="switch">
+          <%= form.check_box :air_conditioning, checked: @coffee_shop_boolean_params[:air_conditioning] == "1", class: 'form-control' %>
+          <span class="slider round"></span>
+        </label>
+
+        <%= form.label :no_wifi_restrictions %>:
+          <label class="switch">
+          <%= form.check_box :no_wifi_restrictions, checked: @coffee_shop_boolean_params[:no_wifi_restrictions] == "1", class: "form-control" %>
+          <span class="slider round"></span>
+        </label>
+        <br>
+        <br>
+
+        <%= form.submit "Search", class: "btn btn-primary" %>
+      <% end %>
+
     </div>
 
     <div class="col-9" style="background-color:grey;">

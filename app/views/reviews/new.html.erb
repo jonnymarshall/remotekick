@@ -1,5 +1,6 @@
 <div class="container">
-  <%= simple_form_for [@coffee_shop, @review] do |review| %>
+  <%= simple_form_for [@coffee_shop, @review], method: :post do |review| %>
+
     <div class="form-row">
       <div class="form-group col-md-6">
         <%= review.label :content %>:
@@ -39,25 +40,25 @@
     <div class="form-row">
       <div class="form-group col-md-6" style="margin-top:15px;">
         <%= review.label :serves_plant_milk %>:
-        <%= review.input :serves_plant_milk, as: :boolean, class: 'form-control' %><br />
+        <%= review.check_box :serves_plant_milk, as: :boolean, class: 'form-control' %><br />
       </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6" style="margin-top:15px;">
         <%= review.label :serves_smoothies %>:
-        <%= review.input :serves_smoothies, as: :boolean, class: 'form-control' %><br />
+        <%= review.check_box :serves_smoothies, as: :boolean, class: 'form-control' %><br />
       </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6" style="margin-top:15px;">
         <%= review.label :serves_food %>:
-        <%= review.input :serves_food, as: :boolean, class: 'form-control' %><br />
+        <%= review.check_box :serves_food, as: :boolean, class: 'form-control' %><br />
       </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6" style="margin-top:15px;">
         <%= review.label :air_conditioning %>:
-        <%= review.input :air_conditioning, as: :boolean, class: 'form-control' %><br />
+        <%= review.check_box :air_conditioning, as: :boolean, class: 'form-control' %><br />
       </div>
     </div>
 
