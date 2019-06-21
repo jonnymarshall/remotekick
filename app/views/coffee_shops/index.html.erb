@@ -5,8 +5,16 @@
         <%= form.label :address %>:
         <%= form.text_field :address, value: "#{@coffee_shop_params[:address]}", class: "form-control" %>
 
-        <%= form.label :rating %>:
-        <%= form.number_field :rating, value: "#{@coffee_shop_params[:rating]}", class: 'form-control' %><br />
+        <%= form.label :rating, "Minimum rating:" %>
+        <br>
+        <div class="form-check form-check-inline">
+          <%= radio_button_tag(:rating, "1", @coffee_shop_params[:rating] == "1", class: "form-check-input") %>
+          <%= radio_button_tag(:rating, "2", @coffee_shop_params[:rating] == "2", class: "form-check-input") %>
+          <%= radio_button_tag(:rating, "3", @coffee_shop_params[:rating] == "3", class: "form-check-input") %>
+          <%= radio_button_tag(:rating, "4", @coffee_shop_params[:rating] == "4", class: "form-check-input") %>
+          <%= radio_button_tag(:rating, "5", @coffee_shop_params[:rating] == "5", class: "form-check-input") %>
+        </div>
+        <br>
 
         <%= form.label :plug_sockets %>:
         <%= form.number_field :plug_sockets, value: "#{@coffee_shop_params[:plug_sockets]}", class: 'form-control' %>
@@ -46,8 +54,9 @@
           <%= form.check_box :air_conditioning, checked: @coffee_shop_boolean_params[:air_conditioning] == "1", class: 'form-control' %>
           <span class="slider round"></span>
         </label>
+        <br>
 
-        <%= form.label :no_wifi_restrictions %>:
+        <%= form.label :no_wifi_restrictions, "Filter out results with wifi restrictions:" %>
           <label class="switch">
           <%= form.check_box :no_wifi_restrictions, checked: @coffee_shop_boolean_params[:no_wifi_restrictions] == "1", class: "form-control" %>
           <span class="slider round"></span>
