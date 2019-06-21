@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row margin-top-xl">
     <div class="col-3">
       <%= form_with url: coffee_shops_path, local: true, method: :get, class: "form-group col-xs-6" do |form| %>
         <%= form.label :address %>:
@@ -47,37 +47,44 @@
         <br>
         <%= form.number_field :upload_speed, value: "#{@coffee_shop_params[:upload_speed]}", class: 'form-control' %>
 
-        <%= form.label :serves_plant_milk %>:
-        <br>
-        <label class="switch">
-          <%= form.check_box :serves_plant_milk, checked: @coffee_shop_boolean_params[:serves_plant_milk] == "1", class: "slider round" %>
-          <span class="slider round"></span>
-        </label>
-        <br>
 
-        <%= form.label :serves_smoothies %>:
-        <br>
-        <label class="switch">
-          <%= form.check_box :serves_smoothies, checked: @coffee_shop_boolean_params[:serves_smoothies]  == "1", class: 'form-control' %>
-          <span class="slider round"></span>
-        </label>
-        <br>
+        <div class="d-flex flex-row wrap">
+          <div class="margin-right-lg">
+            <%= form.label :serves_plant_milk, "Plant milk" %>
+            <br>
+            <label class="switch">
+              <%= form.check_box :serves_plant_milk, checked: @coffee_shop_boolean_params[:serves_plant_milk] == "1", class: "slider round" %>
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <div class="margin-right-lg">
+            <%= form.label :serves_smoothies, "Smoothies" %>
+            <br>
+            <label class="switch">
+              <%= form.check_box :serves_smoothies, checked: @coffee_shop_boolean_params[:serves_smoothies]  == "1", class: 'form-control' %>
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <div class="margin-right-lg">
+            <%= form.label :serves_food, "Food" %>
+            <br>
+            <label class="switch">
+              <%= form.check_box :serves_food, checked: @coffee_shop_boolean_params[:serves_food]  == "1", class: 'form-control' %>
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <div class="margin-right-lg">
+            <%= form.label :air_conditioning, "Air con" %>
+            <br>
+            <label class="switch">
+              <%= form.check_box :air_conditioning, checked: @coffee_shop_boolean_params[:air_conditioning] == "1", class: 'form-control' %>
+              <span class="slider round"></span>
+            </label>
+          </div>
 
-        <%= form.label :serves_food %>:
-        <br>
-        <label class="switch">
-          <%= form.check_box :serves_food, checked: @coffee_shop_boolean_params[:serves_food]  == "1", class: 'form-control' %>
-          <span class="slider round"></span>
-        </label>
-        <br>
+        </div>
 
-        <%= form.label :air_conditioning %>:
-        <br>
-        <label class="switch">
-          <%= form.check_box :air_conditioning, checked: @coffee_shop_boolean_params[:air_conditioning] == "1", class: 'form-control' %>
-          <span class="slider round"></span>
-        </label>
-        <br>
+
 
         <%= form.label :no_wifi_restrictions, "Filter out results with wifi restrictions:" %>
         <br>
@@ -85,7 +92,6 @@
           <%= form.check_box :no_wifi_restrictions, checked: @coffee_shop_boolean_params[:no_wifi_restrictions] == "1", class: "form-control" %>
           <span class="slider round"></span>
         </label>
-        <br>
         <br>
 
         <%= form.submit "Search", class: "btn btn-primary" %>
@@ -97,7 +103,7 @@
 
     </div>
 
-    <div class="col-9" style="background-color:grey;">
+    <div class="col-9">
       <div class="d-flex flex-row wrap">
         <% if @coffee_shops%>
           <%= render 'shared/cards' %>
