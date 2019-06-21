@@ -11,9 +11,9 @@ class CoffeeShopsController < ApplicationController
   has_scope :air_conditioning, type: :boolean
   # has_scope :wifi_restrictions, type: :integer
   has_scope :no_wifi_restrictions
-  has_scope :by_comfort
-  has_scope :by_busyness
-  has_scope :by_plug_sockets
+  has_scope :comfort
+  has_scope :busyness
+  has_scope :plug_sockets
 
   def index
     # if coffee_shop_params.empty?
