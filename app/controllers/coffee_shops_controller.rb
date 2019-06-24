@@ -1,6 +1,7 @@
 class CoffeeShopsController < ApplicationController
   before_action :set_coffee_shop, only: [:show, :edit, :update, :destroy]
   before_action :coffee_shop_params, only: [:index]
+  before_action :new_coffee_shop_params, only: [:create]
   before_action :authenticate_user!, except: [:index, :show]
   has_scope :address
   has_scope :rating
@@ -41,9 +42,10 @@ class CoffeeShopsController < ApplicationController
   end
 
   def create
-    @coffee_shop = CoffeeShop.new(coffee_shop_params)
+    # byebug
+    @coffee_shop = CoffeeShop.new(new_coffee_shop_params)
     @coffee_shop.user = current_user
-    @coffee_shop.save
+    @coffee_shop.save!
     redirect_to coffee_shop_path(@coffee_shop)
   end
 
@@ -73,6 +75,18 @@ class CoffeeShopsController < ApplicationController
     params.permit(:address, :rating, :upload_speed, :comfort, :plug_sockets, :busyness)
   end
 
+  def new_coffee_shop_params
+      params.require(:coffee_shop).permit(
+        :name,
+        :description,
+        :address,
+        :serves_food,
+        :serves_smoothies,
+        :air_conditioning,
+        :serves_plant_milk,
+        :wifi_restrictions
+      )
+  end
   def coffee_shop_boolean_params
     params.permit(
       :serves_food,

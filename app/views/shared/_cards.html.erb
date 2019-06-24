@@ -8,7 +8,11 @@
             <div>
               <h6>
                 <i class="fa fa-wifi text-primary" aria-hidden="true"></i>
-                <strong><%= coffee_shop.upload_speed.round(0) %> Mbps</strong>
+                <% unless coffee_shop.upload_speed.nil? %>
+                  <strong><%= coffee_shop.upload_speed.round(0) %> Mbps</strong>
+                <% else %>
+                  <strong>Wifi speed unknown</strong>
+                <% end %>
               </h6>
             </div>
             <div class="d-flex justify-content-between">
@@ -53,11 +57,15 @@
       <h5><i class="fas fa-dollar-sign dark-gray"></i></h5>
       <div class="d-flex padding-top-bottom-sm align-items-end">
         <div class="padding-right-sm">
-        <% coffee_shop.rating.round(0).times do %>
-          <i class="fas fa-star dark-gray"></i>
-        <% end %>
+          <% unless coffee_shop.rating.nil? %>
+            <% coffee_shop.rating.round(0).times do %>
+              <i class="fas fa-star dark-gray"></i>
+            <% end %>
+          <% else %>
+            <p>No ratings yet</p>
+          <% end %>
         </div>
-        <p>(144)</p>
+        <p>(<%= coffee_shop.reviews.count %>)</p>
       </div>
     </div>
     <% end %>

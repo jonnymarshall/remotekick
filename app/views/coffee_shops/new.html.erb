@@ -1,0 +1,55 @@
+<div class="container">
+  <%= form_with model: @coffee_shop, local: true, method: :post do |field| %>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <%= field.label :name %>:
+        <%= field.text_field :name, required:true, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6" style="margin-top:15px;">
+        <%= field.label :description %>:
+        <%= field.text_field :description, class: 'form-control' %><br />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6" style="margin-top:15px;">
+        <%= field.label :address %>:
+        <%= field.text_field :address, class: 'form-control' %><br />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6" style="margin-top:15px;">
+        <%= field.label :serves_plant_milk %>:
+        <%= field.check_box :serves_plant_milk, as: :boolean, class: 'form-control' %><br />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6" style="margin-top:15px;">
+        <%= field.label :serves_smoothies %>:
+        <%= field.check_box :serves_smoothies, as: :boolean, class: 'form-control' %><br />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6" style="margin-top:15px;">
+        <%= field.label :serves_food %>:
+        <%= field.check_box :serves_food, as: :boolean, class: 'form-control' %><br />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6" style="margin-top:15px;">
+        <%= field.label :air_conditioning %>:
+        <%= field.check_box :air_conditioning, as: :boolean, class: 'form-control' %><br />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6" style="margin-top:15px;">
+        <%= field.label :wifi_restrictions %>:
+        <%= field.number_field :wifi_restrictions, class: 'form-control' %><br />
+      </div>
+    </div>
+
+    <%= field.submit "Submit review", { class: "btn-primary" } %>
+  <% end %>
+</div>
