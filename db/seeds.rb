@@ -155,6 +155,30 @@ coffee_shop_attributes = [
     wifi_restrictions: 0,
     latitude: 18.789085,
     longitude: 98.990607
+  },
+  {
+    name: "Wawee Coffee",
+    description:  'Popular coffee chain',
+    user: User.first,
+    serves_plant_milk: false,
+    serves_food: false,
+    serves_smoothies: false,
+    air_conditioning: true,
+    wifi_restrictions: 0,
+    latitude: 18.789689,
+    longitude: 99.002409
+  },
+  {
+    name: "Artisan Café",
+    description:  'Coffee shop popular with digital nomads',
+    user: User.first,
+    serves_plant_milk: true,
+    serves_food: true,
+    serves_smoothies: true,
+    air_conditioning: true,
+    wifi_restrictions: 0,
+    latitude: 18.776090,
+    longitude: 98.982000
   }
 ]
 
@@ -276,6 +300,30 @@ review_attributes = [{
     download_speed: 14.83,
     upload_speed: 163.66,
     ping: 2
+  },
+  # Wawee coffee
+  {
+    user: User.first,
+    content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
+    rating: 4,
+    plug_sockets: 2,
+    busyness: 0,
+    comfort: 2,
+    download_speed: 76,
+    upload_speed: 47,
+    ping: 12
+  },
+  # Artisan cafe
+  {
+    user: User.first,
+    content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
+    rating: 4,
+    plug_sockets: 1,
+    busyness: 2,
+    comfort: 1,
+    download_speed: 258,
+    upload_speed: 16.5,
+    ping: 81
   },
 ]
 
