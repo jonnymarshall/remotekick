@@ -1,5 +1,5 @@
 <div class="container">
-  <%= simple_form_for [@coffee_shop, @review], method: :post do |review| %>
+  <%= form_with model: [@coffee_shop, @review], local: true, method: :post do |review| %>
 
     <div class="form-row">
       <div class="form-group col-md-6">
@@ -9,8 +9,13 @@
     </div>
     <div class="form-row">
       <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= review.label :rating %>:
-        <%= review.number_field :rating, required:true, class: 'form-control' %><br />
+        <%= review.label :rating %>
+        <br>
+          <%= radio_button_tag(:rating, "1", class: "form-check-input") %>
+          <%= radio_button_tag(:rating, "2", class: "form-check-input") %>
+          <%= radio_button_tag(:rating, "3", class: "form-check-input") %>
+          <%= radio_button_tag(:rating, "4", class: "form-check-input") %>
+          <%= radio_button_tag(:rating, "5", class: "form-check-input") %>
       </div>
     </div>
     <div class="form-row">
