@@ -8,32 +8,45 @@
       </div>
     </div>
     <div class="form-row">
-      <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= review.label :rating %>
-        <br>
-          <%= radio_button_tag(:rating, "1", class: "form-check-input") %>
-          <%= radio_button_tag(:rating, "2", class: "form-check-input") %>
-          <%= radio_button_tag(:rating, "3", class: "form-check-input") %>
-          <%= radio_button_tag(:rating, "4", class: "form-check-input") %>
-          <%= radio_button_tag(:rating, "5", class: "form-check-input") %>
+      <%= review.label :rating %>
+    </div>
+    <div class="form-row">
+      <div class="form-check form-check-inline">
+        <%= review.radio_button :rating, "0", class: "form-check-input" %>
+        <%= review.radio_button :rating, "1", class: "form-check-input" %>
+        <%= review.radio_button :rating, "2", class: "form-check-input" %>
+        <%= review.radio_button :rating, "3", class: "form-check-input" %>
+        <%= review.radio_button :rating, "4", class: "form-check-input" %>
       </div>
     </div>
     <div class="form-row">
-      <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= review.label :plug_sockets %>:
-        <%= review.number_field :plug_sockets, class: 'form-control' %><br />
+      <%= review.label :plug_sockets %>
+    </div>
+    <div class="form-row">
+      <div class="form-check form-check-inline">
+        <%= review.radio_button :plug_sockets, "0", class: "form-check-input" %>
+        <%= review.radio_button :plug_sockets, "1", class: "form-check-input" %>
+        <%= review.radio_button :plug_sockets, "2", class: "form-check-input" %>
       </div>
     </div>
     <div class="form-row">
-      <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= review.label :comfort %>:
-        <%= review.number_field :comfort, class: 'form-control' %><br />
+      <%= review.label :comfort %>
+    </div>
+    <div class="form-row">
+      <div class="form-check form-check-inline">
+        <%= review.radio_button :comfort, "0", class: "form-check-input" %>
+        <%= review.radio_button :comfort, "1", class: "form-check-input" %>
+        <%= review.radio_button :comfort, "2", class: "form-check-input" %>
       </div>
     </div>
     <div class="form-row">
-      <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= review.label :busyness %>:
-        <%= review.number_field :busyness, class: 'form-control' %><br />
+      <%= review.label :busyness %>
+    </div>
+    <div class="form-row">
+      <div class="form-check form-check-inline">
+        <%= review.radio_button :busyness, "0", class: "form-check-input" %>
+        <%= review.radio_button :busyness, "1", class: "form-check-input" %>
+        <%= review.radio_button :busyness, "2", class: "form-check-input" %>
       </div>
     </div>
     <div class="form-row">
@@ -43,27 +56,82 @@
       </div>
     </div>
     <div class="form-row">
-      <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= review.label :serves_plant_milk %>:
-        <%= review.check_box :serves_plant_milk, as: :boolean, class: 'form-control' %><br />
-      </div>
+      <%= review.label :serves_plant_milk, "Does this venue serve plant milk (soy, almond, oat, coconut)?" %>
     </div>
     <div class="form-row">
-      <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= review.label :serves_smoothies %>:
-        <%= review.check_box :serves_smoothies, as: :boolean, class: 'form-control' %><br />
+      <div class="form-check form-check-inline">
+        <div>
+          <p>Yes</p>
+          <%= review.radio_button :serves_plant_milk, "true", class: "form-check-input" %>
+        </div>
+        <div>
+          <p>No</p>
+          <%= review.radio_button :serves_plant_milk, "false", class: "form-check-input" %>
+        </div>
+        <div>
+          <p>Don't know</p>
+          <%= review.radio_button :serves_plant_milk, "nil", class: "form-check-input" %>
+        </div>
       </div>
     </div>
+
     <div class="form-row">
-      <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= review.label :serves_food %>:
-        <%= review.check_box :serves_food, as: :boolean, class: 'form-control' %><br />
-      </div>
+      <%= review.label :serves_smoothies, "Does this venue serve smoothies?" %>
     </div>
     <div class="form-row">
-      <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= review.label :air_conditioning %>:
-        <%= review.check_box :air_conditioning, as: :boolean, class: 'form-control' %><br />
+      <div class="form-check form-check-inline">
+        <div>
+          <p>Yes</p>
+          <%= review.radio_button :serves_smoothies, "true", class: "form-check-input" %>
+        </div>
+        <div>
+          <p>No</p>
+          <%= review.radio_button :serves_smoothies, "false", class: "form-check-input" %>
+        </div>
+        <div>
+          <p>Don't know</p>
+          <%= review.radio_button :serves_smoothies, "nil", class: "form-check-input" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <%= review.label :serves_food, "Does this venue serve food?" %>
+    </div>
+    <div class="form-row">
+      <div class="form-check form-check-inline">
+        <div>
+          <p>Yes</p>
+          <%= review.radio_button :serves_food, "true", class: "form-check-input" %>
+        </div>
+        <div>
+          <p>No</p>
+          <%= review.radio_button :serves_food, "false", class: "form-check-input" %>
+        </div>
+        <div>
+          <p>Don't know</p>
+          <%= review.radio_button :serves_food, "nil", class: "form-check-input" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <%= review.label :air_conditioning, "Does this venue have air conditioning?" %>
+    </div>
+    <div class="form-row">
+      <div class="form-check form-check-inline">
+        <div>
+          <p>Yes</p>
+          <%= review.radio_button :air_conditioning, "true", class: "form-check-input" %>
+        </div>
+        <div>
+          <p>No</p>
+          <%= review.radio_button :air_conditioning, "false", class: "form-check-input" %>
+        </div>
+        <div>
+          <p>Don't know</p>
+          <%= review.radio_button :air_conditioning, "nil", class: "form-check-input" %>
+        </div>
       </div>
     </div>
 
