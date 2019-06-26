@@ -9,7 +9,7 @@
       <% if @coffee_shop.rating.nil? %>
         No ratings yet.
       <% else %>
-        <% @coffee_shop.rating.round(0).times do %>
+        <% (@coffee_shop.rating.round(0) + 1).times do %>
           <i class="fas fa-star"></i>
         <% end %>
       <% end %>

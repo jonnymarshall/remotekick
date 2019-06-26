@@ -58,7 +58,7 @@
       <div class="d-flex padding-top-bottom-sm align-items-end">
         <div class="padding-right-sm">
           <% unless coffee_shop.rating.nil? %>
-            <% coffee_shop.rating.round(0).times do %>
+            <% (coffee_shop.rating.round(0) + 1).times do %>
               <i class="fas fa-star dark-gray"></i>
             <% end %>
           <% else %>
