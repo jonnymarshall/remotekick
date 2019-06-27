@@ -2,6 +2,7 @@ class CoffeeShop < ApplicationRecord
   belongs_to :user
   has_many :reviews, dependent: :destroy
   has_many :review_photos, through: :reviews
+  has_many :opening_hours, dependent: :destroy
 
   # geocoded_by :address
   # after_validation :geocode, if: :will_save_change_to_address?

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_27_044310) do
+ActiveRecord::Schema.define(version: 2019_06_27_051241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 2019_06_27_044310) do
     t.integer "day"
     t.time "open"
     t.time "close"
+    t.bigint "coffee_shop_id"
+    t.index ["coffee_shop_id"], name: "index_opening_hours_on_coffee_shop_id"
   end
 
   create_table "review_photos", force: :cascade do |t|
@@ -92,6 +94,7 @@ ActiveRecord::Schema.define(version: 2019_06_27_044310) do
   end
 
   add_foreign_key "coffee_shops", "users"
+  add_foreign_key "opening_hours", "coffee_shops"
   add_foreign_key "review_photos", "reviews"
   add_foreign_key "reviews", "coffee_shops"
   add_foreign_key "reviews", "users"
