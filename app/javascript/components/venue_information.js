@@ -8,15 +8,18 @@
 
 const venueSearch = () => {
   const apiURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=restaurant&keyword=cruise&key=AIzaSyBHJdXVlnyzl4sAA1nJbwaBSpizjtGOUV0";
+  const resultsList = document.getElementById("resultsList")
 
   fetch(apiURL)
     .then(response => response.json())
     .then((data) => {
       data.results.forEach((result) => {
-        resultId = result.id;
+        const resultId = result.id;
         console.log(resultId);
         const resultName = result.name;
         console.log(resultName);
+        const resultListItem = `<li><p>${resultName}</p></li>`
+        resultsList.insertAdjacentHTML('beforeend', resultListItem);
       });
   });
 }

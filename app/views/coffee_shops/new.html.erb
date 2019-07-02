@@ -4,7 +4,7 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <%= field.label :name %>:
-        <%= field.text_field :name, required:true, {class: 'form-control', id: 'hello'} %>
+        <%= field.text_field :name, required:true, class: 'form-control', id: 'venueNameInupt' %>
       </div>
     </div>
     <div class="form-row">
@@ -52,4 +52,6 @@
 
     <%= field.submit "Submit review", { class: "btn-primary" } %>
   <% end %>
+
+  <ul id="resultsList"></ul>
 </div>
