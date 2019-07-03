@@ -4,7 +4,8 @@ const venueAutofill = () => {
 
   const searchBar = document.getElementById("venueNameInput");
   const dropdown = document.getElementById("myDropdown");
-  const address = document.getElementById("coffee_shop_address");
+  const address = document.getElementById("address");
+  const description = document.getElementById("description");
   const longitude = document.getElementById("longitude");
   const latitude = document.getElementById("latitude");
   const fourSquareId = document.getElementById("fourSquareId");
@@ -71,6 +72,12 @@ const venueAutofill = () => {
                 console.log(`i matched ${venue.name}`);
                 console.log(`lat is ${venue.location.lat}`);
                 console.log(`lng is ${venue.location.lng}`);
+                console.log(`formatted address is ${venue.location.formattedAddress}`);
+                venue.location.formattedAddress.forEach((line) => {
+                  address.value += `${line}, `;
+                });
+                address.value = address.value.slice(0, -2);
+                description.value = venue.categories[0].name;
                 longitude.value = venue.location.lat;
                 latitude.value = venue.location.lng;
               }
