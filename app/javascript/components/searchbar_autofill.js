@@ -10,6 +10,8 @@ const autofill = () => {
     const character = event.key;
     if (character === "Backspace") {
       searchQuery = searchQuery.slice(0, -1);
+      if (searchQuery.length > 0)
+        myDropdown.classList.remove("invisible");
     } else {
       searchQuery += event.key;
       myDropdown.classList.remove("invisible");
@@ -29,8 +31,6 @@ const autofill = () => {
               const prevSelection = document.querySelector(".dropdown-hover");
               if (prevSelection) {
                 prevSelection.classList.remove("dropdown-hover");
-              } else {
-                console.log("that");
               }
               mouseover.target.classList.add("dropdown-hover");
             });
@@ -39,8 +39,9 @@ const autofill = () => {
 
           listItems.forEach((listItem) => {
             listItem.addEventListener("click", (click) => {
-              console.log(listItem.innerHTML);
-              venueNameInput.value = listItem.innerHTML;
+              searchQuery = listItem.innerHTML;
+              console.log(searchQuery);
+              venueNameInput.value = searchQuery;
               myDropdown.classList.add("invisible");
             });
           });
