@@ -65,9 +65,9 @@
 
     <%= field.hidden_field :longitude, id: 'longitude' %>
     <%= field.hidden_field :latitude, id: 'latitude' %>
+    <%= field.hidden_field :foursquare_id, id: 'fourSquareId' %>
 
-
-    <%= field.submit "Submit review", { class: "btn-primary" } %>
+    <%= field.submit "Submit new listing", { class: "btn-primary" } %>
   <% end %>
 
   <ul id="resultsList"></ul>

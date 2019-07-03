@@ -86,7 +86,8 @@ class CoffeeShopsController < ApplicationController
         :serves_plant_milk,
         :wifi_restrictions,
         :longitude,
-        :latitude
+        :latitude,
+        :foursquare_id
       )
   end
 

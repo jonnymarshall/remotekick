@@ -73,6 +73,7 @@ const venueAutofill = () => {
                 console.log(`lat is ${venue.location.lat}`);
                 console.log(`lng is ${venue.location.lng}`);
                 console.log(`formatted address is ${venue.location.formattedAddress}`);
+                console.log(`foursquare_id is ${venue.id}`);
                 venue.location.formattedAddress.forEach((line) => {
                   address.value += `${line}, `;
                 });
@@ -80,6 +81,7 @@ const venueAutofill = () => {
                 description.value = venue.categories[0].name;
                 longitude.value = venue.location.lat;
                 latitude.value = venue.location.lng;
+                fourSquareId.value = venue.id;
               }
             });
           });
