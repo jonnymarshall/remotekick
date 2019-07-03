@@ -18,12 +18,29 @@ const autofill = () => {
     }
     console.log(searchQuery);
     results.innerHTML = "";
-    fetch(`https://wagon-dictionary.herokuapp.com/autocomplete/${searchQuery}`)
+
+
+    const URLRoot = "https://api.foursquare.com/v2/venues/search?";
+    const location = "bali";
+    const credentials = "&client_id=FUTTDSBGYDES4JISQRJTGHSIO4ELHQZQXXIO0FQWERW3EIMO&client_secret=XIU3I03M3Z42HDCIXWUTNEPK1YHJPYRQU1LEJBA50FJO1I4V&v=20190703";
+
+
+    // fetch(apiURL)
+    //   .then(response => response.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     data.response.venues.forEach((venue) => {
+    //       console.log(venue.name);
+    //     });
+    // });
+
+
+    fetch(`${URLRoot}near=${location}&query=${searchQuery}${credentials}`)
       .then(response => response.json())
       .then((data) => {
         console.log(data);
-        data.words.forEach((word) => {
-          results.insertAdjacentHTML("afterbegin", `<li class="list-group-item">${word}</li>`);
+        data.response.venues.forEach((venue) => {
+          results.insertAdjacentHTML("afterbegin", `<li class="list-group-item">${venue.name}</li>`);
           const listItems = document.querySelectorAll("li");
           listItems.forEach((listItem) => {
             listItem.addEventListener("mouseover", (mouseover) => {
