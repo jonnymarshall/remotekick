@@ -1,7 +1,9 @@
 // TODO: Autocomplete the input with AJAX calls.
 const autofill = () => {
-  const searchBar = document.getElementById("search");
-  const results = document.getElementById("results");
+  console.log("hello from searchbar autofill");
+
+  const searchBar = document.getElementById("venueNameInput");
+  const results = document.getElementById("myDropdown");
   let searchQuery = "";
 
   searchBar.addEventListener('keydown', (event) => {
@@ -10,6 +12,7 @@ const autofill = () => {
       searchQuery = searchQuery.slice(0, -1);
     } else {
       searchQuery += event.key;
+      myDropdown.classList.remove("invisible");
     }
     console.log(searchQuery);
     results.innerHTML = "";
@@ -23,15 +26,26 @@ const autofill = () => {
           listItems.forEach((listItem) => {
             listItem.addEventListener("mouseover", (mouseover) => {
               console.log(mouseover);
-              const prevSelection = document.querySelector(".active");
+              const prevSelection = document.querySelector(".dropdown-hover");
               if (prevSelection) {
-                prevSelection.classList.remove("active");
+                prevSelection.classList.remove("dropdown-hover");
               } else {
                 console.log("that");
               }
-              mouseover.target.classList.add("active");
+              mouseover.target.classList.add("dropdown-hover");
             });
           });
+
+
+          listItems.forEach((listItem) => {
+            listItem.addEventListener("click", (click) => {
+              console.log(listItem.innerHTML);
+              venueNameInput.value = listItem.innerHTML;
+              myDropdown.classList.add("invisible");
+            });
+          });
+
+
         });
       });
   });

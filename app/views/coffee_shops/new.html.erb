@@ -2,11 +2,24 @@
   <%= form_with model: @coffee_shop, local: true, method: :post do |field| %>
 
     <div class="form-row">
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-6 dropdown">
         <%= field.label :name %>:
-        <%= field.text_field :name, required:true, class: 'form-control', id: 'venueNameInupt' %>
+        <%= field.text_field :name, required:true, class: 'form-control', id: 'venueNameInput', placeholder: "Search..." %>
+        <div id="myDropdown" class="dropdown-content invisible">
+          <!-- <a href="#about">Item</a>
+          <a href="#about">Item</a> -->
+        </div>
       </div>
     </div>
+
+   <!--  <div class="dropdown">
+      <div id="myDropdown" class="dropdown-content">
+        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+        <a href="#about">Item1</a>
+        <a href="#base">Item2</a>
+      </div>
+    </div>
+ -->
     <div class="form-row">
       <div class="form-group col-md-6" style="margin-top:15px;">
         <%= field.label :description %>:
