@@ -27,7 +27,7 @@ const venueAutofill = () => {
 
     const URLRoot = "https://api.foursquare.com/v2/venues/search?";
     const location = "bali";
-    const credentials = "&client_id=FUTTDSBGYDES4JISQRJTGHSIO4ELHQZQXXIO0FQWERW3EIMO&client_secret=XIU3I03M3Z42HDCIXWUTNEPK1YHJPYRQU1LEJBA50FJO1I4V";
+    const credentials = "REDACTED - MOVED TO .ENV"
     const versionDate = "&v=20190703";
     const limit = "&limit=10";
     const foodCategoryId = "4d4b7105d754a06374d81259"
