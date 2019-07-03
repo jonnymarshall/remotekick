@@ -2,21 +2,34 @@
   <%= form_with model: @coffee_shop, local: true, method: :post do |field| %>
 
     <div class="form-row">
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-6 dropdown">
         <%= field.label :name %>:
-        <%= field.text_field :name, required:true, class: 'form-control' %>
+        <%= field.text_field :name, required:true, class: 'form-control', id: 'venueNameInput', placeholder: "Search..." %>
+        <div id="myDropdown" class="dropdown-content invisible">
+          <!-- <a href="#about">Item</a>
+          <a href="#about">Item</a> -->
+        </div>
       </div>
     </div>
+
+   <!--  <div class="dropdown">
+      <div id="myDropdown" class="dropdown-content">
+        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+        <a href="#about">Item1</a>
+        <a href="#base">Item2</a>
+      </div>
+    </div>
+ -->
     <div class="form-row">
       <div class="form-group col-md-6" style="margin-top:15px;">
         <%= field.label :description %>:
-        <%= field.text_field :description, class: 'form-control' %><br />
+        <%= field.text_field :description, id: 'description', class: 'form-control' %><br />
       </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6" style="margin-top:15px;">
         <%= field.label :address %>:
-        <%= field.text_field :address, class: 'form-control' %><br />
+        <%= field.text_field :address, id: 'address', class: 'form-control' %><br />
       </div>
     </div>
     <div class="form-row">
@@ -50,6 +63,12 @@
       </div>
     </div>
 
+    <%= field.hidden_field :longitude, id: 'longitude' %>
+    <%= field.hidden_field :latitude, id: 'latitude' %>
+
+
     <%= field.submit "Submit review", { class: "btn-primary" } %>
   <% end %>
+
+  <ul id="resultsList"></ul>
 </div>
