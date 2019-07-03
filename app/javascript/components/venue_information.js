@@ -7,7 +7,7 @@
 // }
 
 const venueSearch = () => {
-  const apiURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=restaurant&keyword=cruise&key=AIzaSyBHJdXVlnyzl4sAA1nJbwaBSpizjtGOUV0";
+  const apiURL = "REDACTED";
   const resultsList = document.getElementById("resultsList")
 
   fetch(apiURL)
