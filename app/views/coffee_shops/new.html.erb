@@ -63,6 +63,10 @@
       </div>
     </div>
 
+    <%= field.hidden_field :longitude, id: 'longitude' %>
+    <%= field.hidden_field :latitude, id: 'latitude' %>
+
+
     <%= field.submit "Submit review", { class: "btn-primary" } %>
   <% end %>
 

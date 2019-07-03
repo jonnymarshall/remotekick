@@ -42,7 +42,7 @@ class CoffeeShopsController < ApplicationController
   end
 
   def create
-    # byebug
+    # raise
     @coffee_shop = CoffeeShop.new(new_coffee_shop_params)
     @coffee_shop.user = current_user
     @coffee_shop.save!
@@ -84,9 +84,12 @@ class CoffeeShopsController < ApplicationController
         :serves_smoothies,
         :air_conditioning,
         :serves_plant_milk,
-        :wifi_restrictions
+        :wifi_restrictions,
+        :longitude,
+        :latitude
       )
   end
+
   def coffee_shop_boolean_params
     params.permit(
       :serves_food,
