@@ -63,16 +63,23 @@
       </div>
     </div>
 
-    <% @opening_hours.each_with_index do |opening_hour, i| %>
-      <div class="form-row">
-        <%= field. fields_for 'opening_hour[]', opening_hour do |f| %>
-          <%= f.label :day, "#{i + 1}" %>
-          <%= f.hidden_field :day, value: "#{i}" %>
-          <%= f.text_field :open, value: "00:00:00" %>
-          <%= f.text_field :close, value: "00:00:00" %>
-        <% end %>
-      </div>
-    <% end %>
+    <div id="opening-hours">
+      <%= field.label :opening_hours %>
+      <% @opening_hours.each_with_index do |opening_hour, i| %>
+        <div class="form-row">
+          <div class="form-group col-md-6" style="margin-top:15px;">
+            <%= field. fields_for 'opening_hour[]', opening_hour do |f| %>
+              <%= f.label :day, "#{@weekdays[i]}" %>
+              <%= f.hidden_field :day, value: "#{i}" %><br />
+              <%= f.label :opens %>
+              <%= f.text_field :open, value: "00:00:00" %>
+              <%= f.label :closes %>
+              <%= f.text_field :close, value: "00:00:00" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
     <%= field.hidden_field :longitude, id: 'longitude' %>
     <%= field.hidden_field :latitude, id: 'latitude' %>

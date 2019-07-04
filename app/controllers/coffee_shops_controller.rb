@@ -44,6 +44,7 @@ class CoffeeShopsController < ApplicationController
     7.times do
       @opening_hours << OpeningHour.new
     end
+    @weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
   end
 
   def create
