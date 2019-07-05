@@ -39,13 +39,31 @@ class CoffeeShopsController < ApplicationController
 
   def new
     @coffee_shop = CoffeeShop.new
+    @opening_hours = OpeningHour.new
+    @opening_hours = []
+    7.times do
+      @opening_hours << OpeningHour.new
+    end
+    @weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
   end
 
   def create
-    # raise
+    # create new coffee_shop and assign current user
     @coffee_shop = CoffeeShop.new(new_coffee_shop_params)
     @coffee_shop.user = current_user
     @coffee_shop.save!
+
+    # create new opening_hour_set and assign coffee_shop
+    @opening_hour_set = OpeningHourSet.new
+    @opening_hour_set.coffee_shop = @coffee_shop
+    @opening_hour_set.save!
+
+    # save all opening_hours and assign to opening_hour_set
+    opening_hours_params[:opening_hour].each do |hours|
+      new_opening_hours = OpeningHour.new(hours)
+      new_opening_hours.opening_hour_set = @opening_hour_set
+      new_opening_hours.save!
+    end
     redirect_to coffee_shop_path(@coffee_shop)
   end
 
@@ -100,6 +118,11 @@ class CoffeeShopsController < ApplicationController
       :wifi_restrictions,
       :no_wifi_restrictions
     )
+  end
+
+  def opening_hours_params
+    # params.require([:coffee_shop, :opening_hour]).permit(:day, :open, :close)
+    params.require(:coffee_shop).permit(opening_hour: [:day, :open, :close])
   end
 
   # def convert_to_boolean(coffee_shop_boolean_params, boolean_params = [])

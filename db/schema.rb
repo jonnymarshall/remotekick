@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_03_101428) do
+ActiveRecord::Schema.define(version: 2019_07_04_052446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,14 +41,21 @@ ActiveRecord::Schema.define(version: 2019_07_03_101428) do
     t.index ["user_id"], name: "index_coffee_shops_on_user_id"
   end
 
+  create_table "opening_hour_sets", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "coffee_shop_id"
+    t.index ["coffee_shop_id"], name: "index_opening_hour_sets_on_coffee_shop_id"
+  end
+
   create_table "opening_hours", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "day"
     t.time "open"
     t.time "close"
-    t.bigint "coffee_shop_id"
-    t.index ["coffee_shop_id"], name: "index_opening_hours_on_coffee_shop_id"
+    t.bigint "opening_hour_set_id"
+    t.index ["opening_hour_set_id"], name: "index_opening_hours_on_opening_hour_set_id"
   end
 
   create_table "review_photos", force: :cascade do |t|
@@ -95,7 +102,8 @@ ActiveRecord::Schema.define(version: 2019_07_03_101428) do
   end
 
   add_foreign_key "coffee_shops", "users"
-  add_foreign_key "opening_hours", "coffee_shops"
+  add_foreign_key "opening_hour_sets", "coffee_shops"
+  add_foreign_key "opening_hours", "opening_hour_sets"
   add_foreign_key "review_photos", "reviews"
   add_foreign_key "reviews", "coffee_shops"
   add_foreign_key "reviews", "users"

@@ -1,3 +1,3 @@
 class OpeningHour < ApplicationRecord
-  belongs_to :coffee_shop
+  belongs_to :opening_hour_set
 end
