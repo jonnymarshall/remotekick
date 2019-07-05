@@ -1,5 +1,5 @@
 // import "bootstrap";
-import { venueAutofill } from "../components/venue_autofill";
+import { venueAutofill } from "../components/venue_autofill.js.erb";
 // import { searchAlgoliaPlaces } from "../components/algolia_places";
 import { testAPI } from "../components/algolia_places";
 
