@@ -3,6 +3,7 @@ class CoffeeShop < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :review_photos, through: :reviews
   has_one :opening_hour_set, dependent: :destroy
+  has_many :opening_hours, through: :opening_hour_set
 
   # geocoded_by :address
   # after_validation :geocode, if: :will_save_change_to_address?
