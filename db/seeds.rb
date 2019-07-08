@@ -193,7 +193,7 @@ puts 'Creating Jonnys reviews...'
 review_attributes = [{
     user: User.first,
     content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
-    rating: 2,
+    rating: 1,
     plug_sockets: 2,
     busyness: 0,
     comfort: 0,
@@ -204,7 +204,7 @@ review_attributes = [{
   {
     user: User.first,
     content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
-    rating: 5,
+    rating: 4,
     plug_sockets: 1,
     busyness: 2,
     comfort: 2,
@@ -215,7 +215,7 @@ review_attributes = [{
   {
     user: User.first,
     content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
-    rating: 4,
+    rating: 3,
     plug_sockets: 1,
     busyness: 1,
     comfort: 2,
@@ -226,7 +226,7 @@ review_attributes = [{
   {
     user: User.first,
     content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
-    rating: 5,
+    rating: 4,
     plug_sockets: 1,
     busyness: 1,
     comfort: 2,
@@ -237,7 +237,7 @@ review_attributes = [{
   {
     user: User.first,
     content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
-    rating: 4,
+    rating: 3,
     plug_sockets: 0,
     busyness: 2,
     comfort: 1,
@@ -248,7 +248,7 @@ review_attributes = [{
   {
     user: User.first,
     content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
-    rating: 5,
+    rating: 4,
     plug_sockets: 2,
     busyness: 1,
     comfort: 2,
@@ -260,7 +260,7 @@ review_attributes = [{
   {
     user: User.first,
     content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
-    rating: 5,
+    rating: 4,
     plug_sockets: 2,
     busyness: 0,
     comfort: 1,
@@ -271,7 +271,7 @@ review_attributes = [{
   {
     user: User.first,
     content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
-    rating: 5,
+    rating: 4,
     plug_sockets: 2,
     busyness: 2,
     comfort: 2,
@@ -282,7 +282,7 @@ review_attributes = [{
   {
     user: User.first,
     content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
-    rating: 5,
+    rating: 4,
     plug_sockets: 2,
     busyness: 2,
     comfort: 2,
@@ -293,7 +293,7 @@ review_attributes = [{
   {
     user: User.first,
     content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
-    rating: 5,
+    rating: 4,
     plug_sockets: 1,
     busyness: 1,
     comfort: 2,
@@ -305,7 +305,7 @@ review_attributes = [{
   {
     user: User.first,
     content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
-    rating: 4,
+    rating: 3,
     plug_sockets: 2,
     busyness: 0,
     comfort: 2,
@@ -317,7 +317,7 @@ review_attributes = [{
   {
     user: User.first,
     content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
-    rating: 4,
+    rating: 3,
     plug_sockets: 1,
     busyness: 2,
     comfort: 1,
@@ -345,7 +345,6 @@ puts "Creating 10 additional reviews for coffee shop with ID: #{CoffeeShop.first
 10.times do
   review = Review.new(review_attributes.sample)
   review.coffee_shop = CoffeeShop.first
-  # byebug
   review.save
 end
 

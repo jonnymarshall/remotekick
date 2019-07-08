@@ -15,7 +15,7 @@ const venueAutofill = () => {
   const urlRoot = "https://api.foursquare.com/v2/venues/"
   const urlRootSearch = `${urlRoot}search?`;
   const location = "bali";
-  const credentials = `&client_id=${<% ENV['FOURSQUARE_CLIENT_ID'] %>}&client_secret=${<% ENV['FOURSQUARE_CLIENT_SECRET'] %>}`
+  const credentials = `&client_id=${<%= ENV['FOURSQUARE_CLIENT_ID'] %>}&client_secret=${<%= ENV['FOURSQUARE_CLIENT_SECRET'] %>}`
   const versionDate = "&v=20190703";
   const limit = "&limit=10";
   const foodCategoryId = "4d4b7105d754a06374d81259"
