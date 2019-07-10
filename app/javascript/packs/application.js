@@ -1,3 +1,5 @@
+console.log('Hello world from application.js.erb');
+
 // import "bootstrap";
 import { venueAutofill } from "../components/venue_autofill.js.erb";
 // import { searchAlgoliaPlaces } from "../components/algolia_places";
@@ -8,7 +10,10 @@ if (document.getElementById("venueNameInput")){
 }
 
 // searchAlgoliaPlaces();
-testAPI();
+if (document.getElementById("search")){
+  testAPI();
+}
+
 // import { venueSearch } from "../components/venue_information";
 // if (document.getElementById("venueNameInupt")){
 //   console.log("I found the element with ID venueNameInput");
