@@ -1,6 +1,35 @@
 // TODO: Autocomplete the input with AJAX calls.
 const venueAutofill = () => {
   console.log("hello from venue_autofill.js");
+  // const testOne = "<% 1 + 1 %>";
+  // const testOneB = "<%= 1 + 1 %>";
+  // const testTwo = "<% #{1 + 1} %>";
+  // const testTwoB = "<%= #{1 + 1} %>";
+  // const testThree = '<% "#{1 + 1}" %>';
+  // const testThreeB = '<%= "#{1 + 1}" %>';
+  // const testFour = `<% "#{1 + 1}" %>`;
+  // const testFourB = `<%= "#{1 + 1}" %>`;
+  // const testFive = <% "#{1 + 1}" %>;
+  // const testFiveB = <%= "#{1 + 1}" %>;
+  // const testSix = "<% "#{1 + 1}" %>";
+  // const testSixB = "<%= "#{1 + 1}" %>";
+  // const testSeven = '<% 1 + 1 %>'
+  // const testEight = '<%= 1 + 1 %>'
+
+  // console.log(testOne);
+  // console.log(testOneB);
+  // console.log(testTwo);
+  // console.log(testTwoB);
+  // console.log(testThree);
+  // console.log(testThreeB);
+  // console.log(testFour);
+  // console.log(testFourB);
+  // console.log(testFive);
+  // console.log(testFiveB);
+  // console.log(testSix);
+  // console.log(testSixB);
+  // console.log(testSeven);
+  // console.log(testEight);
 
   // Assign DOM elements to variables
   const searchBar = document.getElementById("venueNameInput");
@@ -10,20 +39,21 @@ const venueAutofill = () => {
   const longitude = document.getElementById("longitude");
   const latitude = document.getElementById("latitude");
   const fourSquareId = document.getElementById("fourSquareId");
+  const venueSearchPath = document.getElementById("venue_search_path").getAttribute('value');;
 
   // Assign FourSquare URL variables
-  const urlRoot = "https://api.foursquare.com/v2/venues/"
-  const urlRootSearch = `${urlRoot}search?`;
-  const location = "bali";
-  const credentials = `&client_id=${<%= ENV['FOURSQUARE_CLIENT_ID'] %>}&client_secret=${<%= ENV['FOURSQUARE_CLIENT_SECRET'] %>}`
-  const versionDate = "&v=20190703";
-  const limit = "&limit=10";
-  const foodCategoryId = "4d4b7105d754a06374d81259"
-  const barCategoryId = "4bf58dd8d48988d116941735"
-  const hotelCategoryId = "4bf58dd8d48988d1fa931735"
-  const corporateCoffeeShopId = "5665c7b9498e7d8a4f2c0f06"
-  const coworkingSpaceId = "4bf58dd8d48988d174941735"
-  const categoryIds = `${foodCategoryId},${barCategoryId},${hotelCategoryId},${corporateCoffeeShopId},${coworkingSpaceId}`
+  // const urlRoot = "https://api.foursquare.com/v2/venues/"
+  // const urlRootSearch = `${urlRoot}search?`;
+  // const location = "bali";
+  // const credentials = `&client_id=${<%= ENV['FOURSQUARE_CLIENT_ID'] %>}&client_secret=${<%= ENV['FOURSQUARE_CLIENT_SECRET'] %>}`
+  // const versionDate = "&v=20190703";
+  // const limit = "&limit=10";
+  // const foodCategoryId = "4d4b7105d754a06374d81259"
+  // const barCategoryId = "4bf58dd8d48988d116941735"
+  // const hotelCategoryId = "4bf58dd8d48988d1fa931735"
+  // const corporateCoffeeShopId = "5665c7b9498e7d8a4f2c0f06"
+  // const coworkingSpaceId = "4bf58dd8d48988d174941735"
+  // const categoryIds = `${foodCategoryId},${barCategoryId},${hotelCategoryId},${corporateCoffeeShopId},${coworkingSpaceId}`
 
 
   // Begin Search Query
@@ -49,11 +79,15 @@ const venueAutofill = () => {
     // Log the search query
     console.log(searchQuery);
 
-    // Call the FourSquare API
-    fetch(`${urlRootSearch}near=${location}&query=${searchQuery}&categoryId=${categoryIds}${limit}${credentials}${versionDate}`)
-      .then(response => response.json())
-      .then((data) => {
+
+    // MAKE AJAX request to fourSquare API
+    $.ajax({
+      type: "GET",
+      url: venueSearchPath,
+      data: {query: searchQuery},
+      success: function(data){
         console.log(data);
+        console.log("there's your data BRO");
         // Generate html list
         data.response.venues.forEach((venue) => {
           dropdown.insertAdjacentHTML("afterbegin", `<li class="list-group-item" id=${venue.id}>${venue.name}</li>`);
@@ -69,7 +103,6 @@ const venueAutofill = () => {
             mouseover.target.classList.add("dropdown-hover");
           });
         });
-
         // list item selection
         listItems.forEach((listItem) => {
           listItem.addEventListener("click", (click) => {
@@ -111,8 +144,9 @@ const venueAutofill = () => {
             });
           });
         });
-      });
+      },
+    });
   });
-}
+};
 
 export { venueAutofill }
