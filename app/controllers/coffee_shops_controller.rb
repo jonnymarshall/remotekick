@@ -88,10 +88,10 @@ class CoffeeShopsController < ApplicationController
     response = open(url).read
     @response_json = JSON.parse(response)
 
-    # respond_to do |format|
-    #   format.json { render json: @response_json }
-    #   format.html { render json: @response_json }
-    # end
+    respond_to do |format|
+      format.json { render json: @response_json }
+      # format.html { render json: @response_json }
+    end
   end
 
   private

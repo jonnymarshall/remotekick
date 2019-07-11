@@ -1,15 +1,14 @@
 // TODO: Autocomplete the input with AJAX calls.
 const venueAutofill = () => {
   console.log("hello from venue_autofill.js");
-  const coffeeShopsVenueSearch = "/coffee_shops/new/venue_search";
-  const testOne = "<% 1 + 1 %>";
-  const testOneB = "<%= 1 + 1 %>";
-  const testTwo = "<% #{1 + 1} %>";
-  const testTwoB = "<%= #{1 + 1} %>";
-  const testThree = '<% "#{1 + 1}" %>';
-  const testThreeB = '<%= "#{1 + 1}" %>';
-  const testFour = `<% "#{1 + 1}" %>`;
-  const testFourB = `<%= "#{1 + 1}" %>`;
+  // const testOne = "<% 1 + 1 %>";
+  // const testOneB = "<%= 1 + 1 %>";
+  // const testTwo = "<% #{1 + 1} %>";
+  // const testTwoB = "<%= #{1 + 1} %>";
+  // const testThree = '<% "#{1 + 1}" %>';
+  // const testThreeB = '<%= "#{1 + 1}" %>';
+  // const testFour = `<% "#{1 + 1}" %>`;
+  // const testFourB = `<%= "#{1 + 1}" %>`;
   // const testFive = <% "#{1 + 1}" %>;
   // const testFiveB = <%= "#{1 + 1}" %>;
   // const testSix = "<% "#{1 + 1}" %>";
@@ -17,14 +16,14 @@ const venueAutofill = () => {
   // const testSeven = '<% 1 + 1 %>'
   // const testEight = '<%= 1 + 1 %>'
 
-  console.log(testOne);
-  console.log(testOneB);
-  console.log(testTwo);
-  console.log(testTwoB);
-  console.log(testThree);
-  console.log(testThreeB);
-  console.log(testFour);
-  console.log(testFourB);
+  // console.log(testOne);
+  // console.log(testOneB);
+  // console.log(testTwo);
+  // console.log(testTwoB);
+  // console.log(testThree);
+  // console.log(testThreeB);
+  // console.log(testFour);
+  // console.log(testFourB);
   // console.log(testFive);
   // console.log(testFiveB);
   // console.log(testSix);
@@ -81,21 +80,14 @@ const venueAutofill = () => {
     console.log(searchQuery);
 
 
-    // MAKE AJAX request to venue_search_new_coffee_shop_path on each keypress, sending searchQuery each time
+    // MAKE AJAX request to fourSquare API
     $.ajax({
       type: "GET",
       url: venueSearchPath,
       data: {query: searchQuery},
       success: function(data){
-        console.log(data)
-      },
-    });
-
-    // Call the FourSquare API
-    // fetch(`${urlRootSearch}near=${location}&query=${searchQuery}&categoryId=${categoryIds}${limit}${credentials}${versionDate}`)
-    //   .then(response => response.json())
-    //   .then((data) => {
-    //     console.log(data);
+        console.log(data);
+        console.log("there's your data BRO");
         // Generate html list
         data.response.venues.forEach((venue) => {
           dropdown.insertAdjacentHTML("afterbegin", `<li class="list-group-item" id=${venue.id}>${venue.name}</li>`);
@@ -111,7 +103,6 @@ const venueAutofill = () => {
             mouseover.target.classList.add("dropdown-hover");
           });
         });
-
         // list item selection
         listItems.forEach((listItem) => {
           listItem.addEventListener("click", (click) => {
@@ -153,7 +144,9 @@ const venueAutofill = () => {
             });
           });
         });
-      });
-  };
+      },
+    });
+  });
+};
 
 export { venueAutofill }
