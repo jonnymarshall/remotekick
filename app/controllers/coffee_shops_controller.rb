@@ -84,14 +84,12 @@ class CoffeeShopsController < ApplicationController
   def venue_search
     # byebug
     search = venue_search_params[:query]
-    url = foursquare_api(search)
+    location = "bali"
+    url = foursquare_api(location, search)
     response = open(url).read
     @response_json = JSON.parse(response)
 
-    respond_to do |format|
-      format.json { render json: @response_json }
-      # format.html { render json: @response_json }
-    end
+    render json: @response_json
   end
 
   private
@@ -154,10 +152,9 @@ class CoffeeShopsController < ApplicationController
     value.to_i.positive? ? 0 : 1
   end
 
-  def foursquare_api(search)
+  def foursquare_api(location, search)
     url_root = "https://api.foursquare.com/v2/venues/"
     url_root_search = "#{url_root}search?"
-    location = "bali"
     credentials = "&client_id=#{ENV["FOURSQUARE_CLIENT_ID"]}&client_secret=#{ENV["FOURSQUARE_CLIENT_SECRET"]}"
     versionDate = "&v=20190703"
     limit = "&limit=10"
@@ -167,8 +164,7 @@ class CoffeeShopsController < ApplicationController
     corporate_coffee_shop_id = "5665c7b9498e7d8a4f2c0f06"
     coworking_space_id = "4bf58dd8d48988d174941735"
     category_ids = "#{food_category_id},#{bar_category_id},#{hotel_category_id},#{corporate_coffee_shop_id},#{coworking_space_id}"
-    search_query = search
-    full_search = "#{url_root_search}near=#{location}&query=#{search_query}&categoryId=#{category_ids}#{limit}#{credentials}#{versionDate}"
+    full_search = "#{url_root_search}near=#{location}&query=#{search}&categoryId=#{category_ids}#{limit}#{credentials}#{versionDate}"
     return full_search
   end
 
