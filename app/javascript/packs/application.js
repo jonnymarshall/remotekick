@@ -5,6 +5,8 @@ import { venueAutofill } from "../components/venue_autofill.js.erb";
 // import { searchAlgoliaPlaces } from "../components/algolia_places";
 import { testAPI } from "../components/algolia_places";
 
+// import { venueAutofillTimeout } from "../components/venue_autofill_timeout.js.erb";
+
 if (document.getElementById("venueNameInput")){
   venueAutofill();
 }
@@ -13,6 +15,8 @@ if (document.getElementById("venueNameInput")){
 if (document.getElementById("search")){
   testAPI();
 }
+
+// venueAutofillTimeout();
 
 // import { venueSearch } from "../components/venue_information";
 // if (document.getElementById("venueNameInupt")){

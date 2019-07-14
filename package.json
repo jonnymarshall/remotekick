@@ -2,11 +2,19 @@
   "name": "wifiwarriors",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "^4.0.2",
+    "@rails/webpacker": "^4.0.7",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
     "bootstrap": "^4.3.1",
+    "core-js": "3",
     "jquery": "^3.4.1",
     "popper.js": "^1.15.0",
-    "rails-erb-loader": "^5.5.2"
+    "rails-erb-loader": "^5.5.2",
+    "vue": "^2.6.10",
+    "vue-loader": "^15.7.0",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.5"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.4.1"
