@@ -70,6 +70,15 @@ const autoCompletejs = new autoComplete({
       .setAttribute("placeholder", selection);
     // Concole log autoComplete data feedback
     console.log(feedback);
+    // Get request onClick
+    const Http = new XMLHttpRequest();
+    const url=`/coffee_shops?utf8=✓&address=${selection}&commit=Search`;
+    Http.open("GET", url);
+    Http.send();
+
+    Http.onreadystatechange = (e) => {
+      console.log(Http.responseText)
+    }
   }
 });
 
