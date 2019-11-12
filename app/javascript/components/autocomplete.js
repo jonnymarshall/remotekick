@@ -61,7 +61,7 @@ const autoCompletejs = new autoComplete({
   onSelection: feedback => {
     const selection = feedback.selection.value.name;
     // Render selected choice to selection div
-    document.querySelector(".selection").innerHTML = selection;
+    // document.querySelector(".selection").innerHTML = selection;
     // Clear Input
     document.querySelector("#autoComplete").value = "";
     // Change placeholder with the selected value
@@ -73,46 +73,46 @@ const autoCompletejs = new autoComplete({
   }
 });
 
-// Toggle Search Engine Type/Mode
-document.querySelector(".toggeler").addEventListener("click", function() {
-  // Holdes the toggle buttin alignment
-  const toggele = document.querySelector(".toggele").style.justifyContent;
+// // Toggle Search Engine Type/Mode
+// document.querySelector(".toggeler").addEventListener("click", function() {
+//   // Holdes the toggle buttin alignment
+//   const toggele = document.querySelector(".toggele").style.justifyContent;
 
-  if (toggele === "flex-start" || toggele === "") {
-    // Set Search Engine mode to Loose
-    document.querySelector(".toggele").style.justifyContent = "flex-end";
-    document.querySelector(".toggeler").innerHTML = "Loose";
-    autoCompletejs.searchEngine = "loose";
-  } else {
-    // Set Search Engine mode to Strict
-    document.querySelector(".toggele").style.justifyContent = "flex-start";
-    document.querySelector(".toggeler").innerHTML = "Strict";
-    autoCompletejs.searchEngine = "strict";
-  }
-});
+//   if (toggele === "flex-start" || toggele === "") {
+//     // Set Search Engine mode to Loose
+//     document.querySelector(".toggele").style.justifyContent = "flex-end";
+//     document.querySelector(".toggeler").innerHTML = "Loose";
+//     autoCompletejs.searchEngine = "loose";
+//   } else {
+//     // Set Search Engine mode to Strict
+//     document.querySelector(".toggele").style.justifyContent = "flex-start";
+//     document.querySelector(".toggeler").innerHTML = "Strict";
+//     autoCompletejs.searchEngine = "strict";
+//   }
+// });
 
 // Toggle results list and other elements
-const action = function(action) {
-  const github = document.querySelector(".github-corner");
-  const title = document.querySelector("h1");
-  const mode = document.querySelector(".mode");
-  const selection = document.querySelector(".selection");
-  const footer = document.querySelector(".footer");
+// const action = function(action) {
+  // const github = document.querySelector(".github-corner");
+  // const title = document.querySelector("h1");
+  // const mode = document.querySelector(".mode");
+  // const selection = document.querySelector(".selection");
+  // const footer = document.querySelector(".footer");
 
-  if (action === "dim") {
-    github.style.opacity = 1;
-    title.style.opacity = 1;
-    mode.style.opacity = 1;
-    selection.style.opacity = 1;
-    footer.style.opacity = 1;
-  } else {
-    github.style.opacity = 0.1;
-    title.style.opacity = 0.3;
-    mode.style.opacity = 0.2;
-    selection.style.opacity = 0.1;
-    footer.style.opacity = 0.1;
-  }
-};
+  // if (action === "dim") {
+    // github.style.opacity = 1;
+    // title.style.opacity = 1;
+    // mode.style.opacity = 1;
+    // selection.style.opacity = 1;
+    // footer.style.opacity = 1;
+  // } else {
+    // github.style.opacity = 0.1;
+    // title.style.opacity = 0.3;
+    // mode.style.opacity = 0.2;
+    // selection.style.opacity = 0.1;
+    // footer.style.opacity = 0.1;
+  // }
+// };
 
 // Toggle event for search input
 // showing & hidding results list onfocus / blur
@@ -122,11 +122,11 @@ const action = function(action) {
   document.querySelector("#autoComplete").addEventListener(eventType, function() {
     // Hide results list & show other elemennts
     if (eventType === "blur") {
-      action("dim");
+      // action("dim");
       resultsList.style.display = "none";
     } else if (eventType === "focus") {
       // Show results list & hide other elemennts
-      action("light");
+      // action("light");
       resultsList.style.display = "block";
     }
   });
