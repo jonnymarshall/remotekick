@@ -58,6 +58,7 @@ const autoCompletejs = new autoComplete({
   resultItem: {
     content: (data, source) => {
       source.innerHTML = generateResultItem(data);
+      // debugger
     },
     element: "li"
   },
