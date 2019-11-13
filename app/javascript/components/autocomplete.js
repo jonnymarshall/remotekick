@@ -2,6 +2,11 @@
 document.querySelector("#autoComplete").addEventListener("autoComplete", event => {
   console.log(event);
 });
+
+// function linkify(datamatch){
+//   return `a href=http://localhost:3000/coffee_shops?utf8=%E2%9C%93&address=">${datamatch}</a>`
+// }
+
 // The autoComplete.js Engine instance creator
 const autoCompletejs = new autoComplete({
   data: {
@@ -47,12 +52,15 @@ const autoCompletejs = new autoComplete({
   },
   resultItem: {
     content: (data, source) => {
-      source.innerHTML = data.match;
+      console.log("data.value.name is");
+      console.log(data.value.name);
+      source.innerHTML = `<a href="coffee_shops?utf8=%E2%9C%93&address=${data.value.name}&commit=Search" id="${data.index}">${data.match}</a>`;
+      // debugger
     },
     element: "li"
   },
   noResults: () => {
-    const result = document.createElement("li");
+    const result = document.createElement("a");
     result.setAttribute("class", "no_result");
     result.setAttribute("tabindex", "1");
     result.innerHTML = "No Results";
@@ -60,6 +68,7 @@ const autoCompletejs = new autoComplete({
   },
   onSelection: feedback => {
     const selection = feedback.selection.value.name;
+    const selectionIndex = feedback.selection.index.toString();
     // Render selected choice to selection div
     // document.querySelector(".selection").innerHTML = selection;
     // Clear Input
@@ -70,15 +79,18 @@ const autoCompletejs = new autoComplete({
       .setAttribute("placeholder", selection);
     // Concole log autoComplete data feedback
     console.log(feedback);
+    const selectedItem = document.getElementById(selectionIndex);
+    selectedItem.click();
+    debugger
     // Get request onClick
-    const Http = new XMLHttpRequest();
-    const url=`/coffee_shops?utf8=✓&address=${selection}&commit=Search`;
-    Http.open("GET", url);
-    Http.send();
+    // const Http = new XMLHttpRequest();
+    // const url=`/coffee_shops?utf8=✓&address=${selection}&commit=Search`;
+    // Http.open("GET", url);
+    // Http.send();
 
-    Http.onreadystatechange = (e) => {
-      console.log(Http.responseText)
-    }
+    // Http.onreadystatechange = (e) => {
+    //   console.log(Http.responseText)
+    // }
   }
 });
 
