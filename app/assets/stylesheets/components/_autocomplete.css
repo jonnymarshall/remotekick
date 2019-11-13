@@ -3,28 +3,28 @@
   --transition-2: all 0.1s ease-in-out;
 }
 
-html {
-  font-size: 1rem;
-  font-family: "PT Sans", sans-serif;
-}
+/*html {*/
+  /*font-size: 1rem;*/
+  /*font-family: "PT Sans", sans-serif;*/
+/*}*/
 
-body {
+/*body {
   margin: 0;
   padding: 0;
-}
+}*/
 
-.contaier {
+/*.contaier {
   width: 100vw;
   height: 100vh;
-}
+}*/
 
-.header {
+/*.header {
   text-align: center;
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -webkit-touch-callout: none;
-}
+}*/
 
 .no_result {
   margin: 0.15rem auto;
@@ -67,24 +67,24 @@ h1 > a::selection {
   color: rgb(255, 122, 122);
 }*/
 
-h4 {
+/*h4 {
   margin-bottom: 5px;
   color: #ffc6c6;
 }
 
 h4::selection {
   color: #ffc6c6;
-}
+}*/
 
-.github-corner {
+/*.github-corner {
   transition: var(--transition-1);
 }
-
-.mode {
+*/
+/*.mode {
   margin-top: 20px;
-}
+}*/
 
-.toggele {
+/*.toggele {
   display: flex;
   position: abolute;
   border: 1px solid #ffc6c6;
@@ -113,24 +113,24 @@ h4::selection {
   -webkit-user-select: none;
   -moz-user-select: none;
   -webkit-touch-callout: none;
-}
+}*/
 
-.toggeler:hover {
+/*.toggeler:hover {
   width: 70px;
   background-color: rgba(255, 122, 122, 0.7);
 }
 
 .toggeler::selection {
   color: #fff;
-}
+}*/
 
-.strict {
+/*.strict {
   display: inline;
 }
 
 .loose {
   display: inline;
-}
+}*/
 
 .selection {
   margin-top: 10vh;
@@ -144,7 +144,7 @@ h4::selection {
   color: #64ceaa;
 }
 
-.footer {
+/*.footer {
   display: flex;
   width: 100vw;
   position: absolute;
@@ -161,9 +161,9 @@ h4::selection {
 
 .footer > div > a::selection {
   color: rgba(255, 122, 122, 1);
-}
+}*/
 
-.copyrights {
+/*.copyrights {
   font-size: 0.8rem;
 }
 
@@ -173,7 +173,7 @@ h4::selection {
 
 .copyrights > a::selection {
   color: rgb(147, 147, 147);
-}
+}*/
 
 @media only screen and (max-width: 600px) {
   .selection {
