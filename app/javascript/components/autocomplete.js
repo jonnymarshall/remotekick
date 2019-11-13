@@ -3,9 +3,14 @@ document.querySelector("#autoComplete").addEventListener("autoComplete", event =
   console.log(event);
 });
 
-// function linkify(datamatch){
-//   return `a href=http://localhost:3000/coffee_shops?utf8=%E2%9C%93&address=">${datamatch}</a>`
-// }
+// Generate the HTML item to assign to resultItem
+function generateResultItem(data){
+  const urlStart = `<a href="coffee_shops?utf8=%E2%9C%93&address=`
+  const urlEnd = `&commit=Search"`
+  const idTag = data.index
+  const generatedURl = `${urlStart}${data.value.name}${urlEnd} id="${idTag}">${data.match}</a>`;
+  return generatedURl;
+}
 
 // The autoComplete.js Engine instance creator
 const autoCompletejs = new autoComplete({
@@ -52,10 +57,7 @@ const autoCompletejs = new autoComplete({
   },
   resultItem: {
     content: (data, source) => {
-      console.log("data.value.name is");
-      console.log(data.value.name);
-      source.innerHTML = `<a href="coffee_shops?utf8=%E2%9C%93&address=${data.value.name}&commit=Search" id="${data.index}">${data.match}</a>`;
-      // debugger
+      source.innerHTML = generateResultItem(data);
     },
     element: "li"
   },
@@ -79,9 +81,10 @@ const autoCompletejs = new autoComplete({
       .setAttribute("placeholder", selection);
     // Concole log autoComplete data feedback
     console.log(feedback);
+
+    // Assign selectedItem html element by matching selectionIndex with element ID
     const selectedItem = document.getElementById(selectionIndex);
     selectedItem.click();
-    debugger
     // Get request onClick
     // const Http = new XMLHttpRequest();
     // const url=`/coffee_shops?utf8=✓&address=${selection}&commit=Search`;
