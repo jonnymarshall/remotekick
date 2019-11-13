@@ -5,6 +5,8 @@ class CoffeeShop < ApplicationRecord
   has_one :opening_hour_set, dependent: :destroy
   has_many :opening_hours, through: :opening_hour_set
 
+  validates :foursquare_id, uniqueness: true, allow_blank: true
+
   # geocoded_by :address
   # after_validation :geocode, if: :will_save_change_to_address?
   reverse_geocoded_by :latitude, :longitude
