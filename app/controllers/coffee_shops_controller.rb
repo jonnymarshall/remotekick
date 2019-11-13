@@ -33,6 +33,7 @@ class CoffeeShopsController < ApplicationController
   end
 
   def show
+    # raise
     @review = Review.new
     @review_photo = @review.review_photos.new
   end
@@ -66,6 +67,18 @@ class CoffeeShopsController < ApplicationController
       new_opening_hours.save!
     end
     redirect_to coffee_shop_path(@coffee_shop)
+  end
+
+  def autocomplete
+  end
+
+  def autocomplete_response
+    # redirect_to: autocomplete_data...
+    # @@data = File.read("/assets/data/autocomplete_data.json")
+    # render :json => @@data
+    url = coffee_shops_autocomplete_path
+    response = open(url).read
+    @response_json = JSON.parse(response)
   end
 
   # def edit          # GET /restaurants/:id/edit

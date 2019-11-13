@@ -2,6 +2,7 @@ console.log('Hello world from application.js.erb');
 
 // import "bootstrap";
 import { venueAutofill } from "../components/venue_autofill.js.erb";
+import { autoCompletejs } from "../components/autocomplete.js";
 // import { searchAlgoliaPlaces } from "../components/algolia_places";
 // import { testAPI } from "../components/algolia_places";
 
@@ -10,6 +11,9 @@ import { venueAutofill } from "../components/venue_autofill.js.erb";
 if (document.getElementById("venueNameInput")){
   venueAutofill();
 }
+
+// console.log(autoCompletejs);
+// autoCompletejs();
 
 // searchAlgoliaPlaces();
 // if (document.getElementById("search")){
