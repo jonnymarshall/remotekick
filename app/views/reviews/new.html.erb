@@ -154,16 +154,15 @@
 </div> -->
 
 <div class="new_review_container">
-  <h2>How comfortable was <%=@coffee_shop.name%>?</h2>
 
     <%= form_with model: [@coffee_shop, @review], local: true, method: :post do |review| %>
 
       <div class="form-style-5">
         <form>
-          <fieldset>
-          <legend><span class="number">1</span>Review:</legend>
-          <textarea name="field3"></textarea>
-          </fieldset>
+
+          <h2 class="margin-bottom-md">My review for <%=@coffee_shop.name%>:</h2>
+          <!-- <legend><span class="number">1</span>Review:</legend> -->
+            <%= review.text_area :content, required:true %>
 
       <ul>
         <li>
