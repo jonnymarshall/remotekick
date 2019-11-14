@@ -194,7 +194,7 @@
             <% if review.review_photos.present? %>
               <% review.review_photos.each do |review_photo| %>
                 <div>
-                  <%= cl_image_tag review_photo.photo, class: "review-photo-thumbnail" %>
+                  <%= cl_image_tag review_photo.photo, class: "review-photo-thumbnail margin-bottom-md" %>
                 </div>
               <% end %>
             <% end %>
