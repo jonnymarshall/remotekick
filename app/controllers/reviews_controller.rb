@@ -8,13 +8,13 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    # byebug
     @review = current_user.reviews.new(review_params)
     @review.coffee_shop = @coffee_shop
     unless review_photo_params[:review_photo][:photo] == nil
       @review_photo = @review.review_photos.new(photo: review_photo_params[:review_photo][:photo])
       @review_photo.save!
     end
+    byebug
     @review.save!
     redirect_to coffee_shop_path(@coffee_shop)
 #       respond_to do |format|

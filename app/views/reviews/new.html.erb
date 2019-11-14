@@ -146,3 +146,60 @@
     <%= review.submit "Submit review", { class: "btn-primary" } %>
   <% end %>
 </div>
+
+
+<!-- <div class="new_review_alert">
+  <h2>Leave a review for X</h2>
+  <p>Thanks for leaving a review for X>. Reviews help us to ensure that the best and most up-to-date information about venues can be offered to our community of remote workers.</p>
+</div> -->
+
+<div class="new_review_container">
+  <h2>How comfortable was <%=@coffee_shop.name%>?</h2>
+
+    <%= form_with model: [@coffee_shop, @review], local: true, method: :post do |review| %>
+
+      <div class="form-style-5">
+        <form>
+          <fieldset>
+          <legend><span class="number">1</span>Review:</legend>
+          <textarea name="field3"></textarea>
+          </fieldset>
+
+      <ul>
+        <li>
+          <!-- <input type="radio" id="f-option" name="selector"> -->
+          <%= review.radio_button :comfort, "2", id: "f-option" %>
+          <label for="f-option">It was very comfortable</label>
+
+          <div class="check"></div>
+        </li>
+
+        <li>
+          <!-- <input type="radio" id="s-option" name="selector"> -->
+          <%= review.radio_button :comfort, "1", id: "s-option" %>
+          <label for="s-option">It was somewhat comfortable</label>
+
+          <div class="check"><div class="inside"></div></div>
+        </li>
+
+        <li>
+          <!-- <input type="radio" id="t-option" name="selector"> -->
+          <%= review.radio_button :comfort, "0", id: "t-option" %>
+          <label for="t-option">It was not comfortable</label>
+
+          <div class="check"><div class="inside"></div></div>
+        </li>
+      </ul>
+
+      <div class="form-row">
+        <%= review.simple_fields_for @review_photo do |review_photo| %>
+          <%= review_photo.input :photo_cache, as: :hidden %>
+          <%= review_photo.input :photo %>
+        <% end %>
+      </div>
+
+      <%= review.submit "Submit review" %>
+    <% end %>
+    </form>
+  </div>
+</div>
