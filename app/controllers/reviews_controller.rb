@@ -4,6 +4,7 @@ class ReviewsController < ApplicationController
   def new
     # @coffee_shop = CoffeeShop.find(coffee_shop_params[:coffee_shop_id])
     @review = current_user.reviews.new
+    @descriptives = ["wonderful", "fabulous", "superb", "amazing", "stupendous", "phenomenal"]
     @review_photo = ReviewPhoto.new
   end
 
