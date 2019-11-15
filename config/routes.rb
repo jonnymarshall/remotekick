@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'coffee_shops/new/venue_search', to: 'coffee_shops#venue_search'
-  get 'coffee_shops/autocomplete', to: 'coffee_shops#autocomplete'
+  get 'coffee_shops/test_page', to: 'coffee_shops#test_page'
   get 'coffee_shops/autocomplete_response', to: 'coffee_shops#autocomplete_response'
   devise_for :users
   root to: 'pages#home'

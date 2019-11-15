@@ -179,6 +179,54 @@ coffee_shop_attributes = [
     wifi_restrictions: 0,
     latitude: 18.776090,
     longitude: 98.982000
+  },
+  {
+    name: "ADDICT CAFE",
+    description:  'Small, cosy and relaxed cafe in Nimman',
+    user: User.first,
+    serves_plant_milk: false,
+    serves_food: false,
+    serves_smoothies: false,
+    air_conditioning: true,
+    wifi_restrictions: 0,
+    latitude: 18.800859,
+    longitude: 98.967540
+  },
+  {
+    name: "Thesis Coffee",
+    description:  'Large cafe and popular coworking space',
+    user: User.first,
+    serves_plant_milk: false,
+    serves_food: true,
+    serves_smoothies: true,
+    air_conditioning: true,
+    wifi_restrictions: 3,
+    latitude: 18.807239,
+    longitude: 98.957395
+  },
+  {
+    name: "Only Coffee",
+    description:  'Large cafe and popular coworking space',
+    user: User.first,
+    serves_plant_milk: true,
+    serves_food: true,
+    serves_smoothies: false,
+    air_conditioning: true,
+    wifi_restrictions: 0,
+    latitude: 18.798354,
+    longitude: 98.965053
+  },
+  {
+    name: "Annista Cafe",
+    description:  'Large cafe and popular coworking space',
+    user: User.first,
+    serves_plant_milk: false,
+    serves_food: true,
+    serves_smoothies: true,
+    air_conditioning: true,
+    wifi_restrictions: 0,
+    latitude: 18.803645,
+    longitude: 98.959728
   }
 ]
 
@@ -191,6 +239,7 @@ puts "Created #{CoffeeShop.count} coffee shops..."
 puts 'Creating Jonnys reviews...'
 
 review_attributes = [{
+  # Camp@MAYA
     user: User.first,
     content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
     rating: 1,
@@ -201,6 +250,7 @@ review_attributes = [{
     upload_speed: 2.91,
     ping: 78
   },
+  # Ab'Petite Café
   {
     user: User.first,
     content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
@@ -213,6 +263,7 @@ review_attributes = [{
     ping: 2
   },
   {
+    # My Secret Cafe In Town
     user: User.first,
     content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
     rating: 3,
@@ -223,6 +274,7 @@ review_attributes = [{
     upload_speed: 58.57,
     ping: 23
   },
+  # The Barn Eatery And Design
   {
     user: User.first,
     content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
@@ -234,6 +286,7 @@ review_attributes = [{
     upload_speed: 24.75,
     ping: 23
   },
+  # Cottontree
   {
     user: User.first,
     content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
@@ -245,6 +298,7 @@ review_attributes = [{
     upload_speed: 58.57,
     ping: 23
   },
+  # Ombra Caffe
   {
     user: User.first,
     content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
@@ -268,6 +322,7 @@ review_attributes = [{
     upload_speed: 96.88,
     ping: 68
   },
+  # Wake Up
   {
     user: User.first,
     content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
@@ -279,6 +334,7 @@ review_attributes = [{
     upload_speed: 0.85,
     ping: 5
   },
+  # Nine One Coffee
   {
     user: User.first,
     content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
@@ -290,6 +346,7 @@ review_attributes = [{
     upload_speed: 25,
     ping: 20
   },
+  # Wawee Bistro
   {
     user: User.first,
     content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
