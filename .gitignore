@@ -9,6 +9,7 @@ tmp/*
 public/assets
 public/packs
 public/packs-test
+public/superseded_code
 node_modules
 yarn-error.log
 .byebug_history

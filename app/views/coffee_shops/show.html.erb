@@ -26,13 +26,13 @@
     <div id="wifi-rating-block" class="d-inline-flex">
       <h3><i class="fa fa-wifi text-primary margin-right" aria-hidden="true"></i></h3>
       <div>
-        <% unless @coffee_shop.upload_speed.nil? %>
-          <strong><%= @coffee_shop.upload_speed.round(0) %> Mbps Wifi</strong>
+        <% unless @coffee_shop.download_speed.nil? %>
+          <strong><%= @coffee_shop.download_speed.round(0) %> Mbps download speed</strong>
         <% else %>
           <strong>Upload speed unknown</strong>
         <% end %>
-        <% unless @coffee_shop.download_speed.nil? %>
-          <p><%= @coffee_shop.download_speed.round(0) %> Mbps download speed: </p>
+        <% unless @coffee_shop.upload_speed.nil? %>
+          <p><%= @coffee_shop.upload_speed.round(0) %> Mbps upload speed: </p>
         <% else %>
           <p>Download speed unknown</p>
         <% end %>
@@ -100,14 +100,8 @@
     <% end %>
   </div>
 
-  <!--DIVIDING LINE (ONLY DISPLAY IF COFFEE SHOP FEATURES EXIST) -->
-  <% if
-    @coffee_shop.serves_food ||
-    @coffee_shop.serves_plant_milk ||
-    @coffee_shop.serves_smoothies ||
-    @coffee_shop.air_conditioning %>
-    <div class="divider"></div>
-  <% end %>
+  <!--DIVIDING LINE -->
+  <div class="divider"></div>
 
   <!-- FEATURES SECTION-->
   <div class="row">
@@ -116,25 +110,18 @@
         <p class="padding">Serves food</p>
       </div>
     <% end %>
-    <% if @coffee_shop.serves_plant_milk %>
-      <div class="col">
-        <p class="padding">Serves plant milk</p>
-      </div>
-    <% end %>
-    <% if @coffee_shop.serves_smoothies %>
-      <div class="col">
-        <p class="padding">Serves smoothies</p>
-      </div>
-    <% end %>
-    <% if @coffee_shop.air_conditioning %>
-      <div class="col">
-        <p class="padding">Air conditioning</p>
-      </div>
-    <% end %>
   </div>
 
-  <!--DIVIDING LINE-->
-  <div class="divider"></div>
+  <!--DIVIDING LINE (ONLY DISPLAY IF COFFEE SHOP FEATURES EXIST) -->
+  <% if
+    @coffee_shop.serves_food
+    # ||
+    # @coffee_shop.serves_plant_milk ||
+    # @coffee_shop.serves_smoothies ||
+    # @coffee_shop.air_conditioning
+    %>
+      <div class="divider"></div>
+  <% end %>
 
     <!-- TOGGLES SECTION-->
   <div class="row">
@@ -178,7 +165,7 @@
                   <p><%= ((Time.now - review.updated_at) / 1.day).round %> days ago</p>
                 <% end %>
                 <p>
-                  <% review.rating.times do %>
+                  <% (review.rating + 1).times do %>
                     <i class="fas fa-star"></i>
                   <% end %>
                 </p>

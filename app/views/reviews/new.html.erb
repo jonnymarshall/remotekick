@@ -1,93 +1,3 @@
-<div class="container">
-  <%= form_with model: [@coffee_shop, @review], local: true, method: :post do |review| %>
-
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <%= review.label :content %>:
-        <%= review.text_area :content, required:true, class: 'form-control' %>
-      </div>
-    </div>
-    <div class="form-row">
-      <%= review.label :rating %>
-    </div>
-    <div class="form-row">
-      <div class="form-check form-check-inline">
-        <%= review.radio_button :rating, "0", class: "form-check-input" %>
-        <%= review.radio_button :rating, "1", class: "form-check-input" %>
-        <%= review.radio_button :rating, "2", class: "form-check-input" %>
-        <%= review.radio_button :rating, "3", class: "form-check-input" %>
-        <%= review.radio_button :rating, "4", class: "form-check-input" %>
-      </div>
-    </div>
-    <div class="form-row">
-      <%= review.label :plug_sockets %>
-    </div>
-    <div class="form-row">
-      <div class="form-check form-check-inline">
-        <%= review.radio_button :plug_sockets, "0", class: "form-check-input" %>
-        <%= review.radio_button :plug_sockets, "1", class: "form-check-input" %>
-        <%= review.radio_button :plug_sockets, "2", class: "form-check-input" %>
-      </div>
-    </div>
-    <div class="form-row">
-      <%= review.label :comfort %>
-    </div>
-    <div class="form-row">
-      <div class="form-check form-check-inline">
-        <%= review.radio_button :comfort, "0", class: "form-check-input" %>
-        <%= review.radio_button :comfort, "1", class: "form-check-input" %>
-        <%= review.radio_button :comfort, "2", class: "form-check-input" %>
-      </div>
-    </div>
-    <div class="form-row">
-      <%= review.label :busyness %>
-    </div>
-    <div class="form-row">
-      <div class="form-check form-check-inline">
-        <%= review.radio_button :busyness, "0", class: "form-check-input" %>
-        <%= review.radio_button :busyness, "1", class: "form-check-input" %>
-        <%= review.radio_button :busyness, "2", class: "form-check-input" %>
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= review.label :upload_speed %>:
-        <%= review.number_field :upload_speed, class: 'form-control' %><br />
-      </div>
-    </div>
-
-    <div class="form-row">
-      <%= review.label :serves_food, "Does this venue serve food?" %>
-    </div>
-    <div class="form-row">
-      <div class="form-check form-check-inline">
-        <div>
-          <p>Yes</p>
-          <%= review.radio_button :serves_food, "true", class: "form-check-input" %>
-        </div>
-        <div>
-          <p>No</p>
-          <%= review.radio_button :serves_food, "false", class: "form-check-input" %>
-        </div>
-        <div>
-          <p>Don't know</p>
-          <%= review.radio_button :serves_food, "nil", class: "form-check-input" %>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <%= review.simple_fields_for @review_photo do |review_photo| %>
-        <%= review_photo.input :photo_cache, as: :hidden %>
-        <%= review_photo.input :photo %>
-      <% end %>
-    </div>
-
-    <%= review.submit "Submit review", { class: "btn-primary" } %>
-  <% end %>
-</div>
-
-
 <!-- <div class="new_review_alert">
   <h2>Leave a review for X</h2>
   <p>Thanks for leaving a review for X>. Reviews help us to ensure that the best and most up-to-date information about venues can be offered to our community of remote workers.</p>
@@ -103,6 +13,51 @@
         <h2 class="margin-bottom-md">How was <%=@coffee_shop.name%>?</h2>
         <!-- <legend><span class="number">1</span>Review:</legend> -->
           <%= review.text_area :content, required:true, placeholder: "#{@coffee_shop.name} was #{@descriptives.sample}!" %>
+
+          <h2 class="margin-bottom-md">What was the download speed at <%=@coffee_shop.name%>? (Mbps)</h2>
+          <ul>
+            <li>
+              <%= review.number_field :download_speed, id: "number_field", placeholder: "Please insert download speed in Mbps" %><br />
+            </li>
+          </ul>
+
+          <h2 class="margin-bottom-md">What was the upload speed at <%=@coffee_shop.name%>? (Mbps)</h2>
+          <ul>
+            <li>
+              <%= review.number_field :upload_speed, id: "number_field", placeholder: "Please insert upload speed in Mbps" %><br />
+            </li>
+          </ul>
+
+          <h2 class="margin-bottom-md">What was the PING speed at <%=@coffee_shop.name%>? (ms)</h2>
+          <ul>
+            <li>
+              <%= review.number_field :ping, id: "number_field", placeholder: "Please insert PING speed in ms" %><br />
+            </li>
+          </ul>
+
+          <h2 class="margin-bottom-md">How were the prices at <%=@coffee_shop.name%>?</h2>
+          <ul>
+            <li>
+              <!-- <input type="radio" id="f-option" name="selector"> -->
+              <%= review.radio_button :price, "2", id: "price-opt-a" %>
+              <label for="price-opt-a">The prices were cheap</label>
+              <div class="check"></div>
+            </li>
+
+            <li>
+              <!-- <input type="radio" id="s-option" name="selector"> -->
+              <%= review.radio_button :price, "1", id: "price-opt-b" %>
+              <label for="price-opt-b">The prices were ok</label>
+              <div class="check"><div class="inside"></div></div>
+            </li>
+
+            <li>
+              <!-- <input type="radio" id="t-option" name="selector"> -->
+              <%= review.radio_button :price, "0", id: "price-opt-c" %>
+              <label for="price-opt-c">The prices were expensive</label>
+              <div class="check"><div class="inside"></div></div>
+            </li>
+          </ul>
 
         <h2 class="margin-bottom-md">How comfortable was <%=@coffee_shop.name%>?</h2>
         <ul>
@@ -148,30 +103,6 @@
             <!-- <input type="radio" id="t-option" name="selector"> -->
             <%= review.radio_button :plug_sockets, "0", id: "plug_sockets-opt-c" %>
             <label for="plug_sockets-opt-c">There weren't any plug sockets</label>
-            <div class="check"><div class="inside"></div></div>
-          </li>
-        </ul>
-
-        <h2 class="margin-bottom-md">How were the prices at <%=@coffee_shop.name%>?</h2>
-        <ul>
-          <li>
-            <!-- <input type="radio" id="f-option" name="selector"> -->
-            <%= review.radio_button :price, "2", id: "price-opt-a" %>
-            <label for="price-opt-a">The prices were cheap</label>
-            <div class="check"></div>
-          </li>
-
-          <li>
-            <!-- <input type="radio" id="s-option" name="selector"> -->
-            <%= review.radio_button :price, "1", id: "price-opt-b" %>
-            <label for="price-opt-b">The prices were ok</label>
-            <div class="check"><div class="inside"></div></div>
-          </li>
-
-          <li>
-            <!-- <input type="radio" id="t-option" name="selector"> -->
-            <%= review.radio_button :price, "0", id: "price-opt-c" %>
-            <label for="price-opt-c">The prices were expensive</label>
             <div class="check"><div class="inside"></div></div>
           </li>
         </ul>
