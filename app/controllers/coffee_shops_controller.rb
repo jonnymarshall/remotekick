@@ -69,7 +69,7 @@ class CoffeeShopsController < ApplicationController
     redirect_to coffee_shop_path(@coffee_shop)
   end
 
-  def autocomplete
+  def test_page
   end
 
   def autocomplete_response
