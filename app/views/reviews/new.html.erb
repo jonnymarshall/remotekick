@@ -2,6 +2,7 @@
   <h2>Leave a review for X</h2>
   <p>Thanks for leaving a review for X>. Reviews help us to ensure that the best and most up-to-date information about venues can be offered to our community of remote workers.</p>
 </div> -->
+<!-- <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css"> -->
 
 <div class="new_review_container">
 
@@ -191,3 +192,235 @@
     </div>
   <% end %>
 </div>
+
+<!-- Flickity HTML init -->
+<%= form_with model: [@coffee_shop, @review], local: true, method: :post do |review| %>
+  <div class="form-style-5">
+    <div class="carousel"
+      data-flickity='{ "freeScroll": true }'>
+      <div class="carousel-cell">
+        <div class="carousel-cell-content">
+          <h2 class="margin-bottom-md">How was <%=@coffee_shop.name%>?</h2>
+          <!-- <legend><span class="number">1</span>Review:</legend> -->
+          <%= review.text_area :content, required:true, placeholder: "#{@coffee_shop.name} was #{@descriptives.sample}!" %>
+        </div>
+      </div>
+
+      <div class="carousel-cell">
+        <div class="carousel-cell-content">
+          <h2 class="margin-bottom-md">What was the download speed at <%=@coffee_shop.name%>? (Mbps)</h2>
+          <ul>
+            <li>
+              <%= review.number_field :download_speed, id: "number_field", placeholder: "Please insert download speed in Mbps" %><br />
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="carousel-cell">
+        <div class="carousel-cell-content">
+          <h2 class="margin-bottom-md">What was the upload speed at <%=@coffee_shop.name%>? (Mbps)</h2>
+          <ul>
+            <li>
+              <%= review.number_field :upload_speed, id: "number_field", placeholder: "Please insert upload speed in Mbps" %><br />
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="carousel-cell">
+        <div class="carousel-cell-content">
+          <h2 class="margin-bottom-md">What was the PING speed at <%=@coffee_shop.name%>? (ms)</h2>
+          <ul>
+            <li>
+              <%= review.number_field :ping, id: "number_field", placeholder: "Please insert PING speed in ms" %><br />
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="carousel-cell">
+        <div class="carousel-cell-content">
+          <h2 class="margin-bottom-md">How were the prices at <%=@coffee_shop.name%>?</h2>
+          <ul>
+            <li>
+              <!-- <input type="radio" id="f-option" name="selector"> -->
+              <%= review.radio_button :price, "2", id: "price-opt-a" %>
+              <label for="price-opt-a">The prices were cheap</label>
+              <div class="check"></div>
+            </li>
+
+            <li>
+              <!-- <input type="radio" id="s-option" name="selector"> -->
+              <%= review.radio_button :price, "1", id: "price-opt-b" %>
+              <label for="price-opt-b">The prices were ok</label>
+              <div class="check"><div class="inside"></div></div>
+            </li>
+
+            <li>
+              <!-- <input type="radio" id="t-option" name="selector"> -->
+              <%= review.radio_button :price, "0", id: "price-opt-c" %>
+              <label for="price-opt-c">The prices were expensive</label>
+              <div class="check"><div class="inside"></div></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="carousel-cell">
+        <div class="carousel-cell-content">
+          <h2 class="margin-bottom-md">How comfortable was <%=@coffee_shop.name%>?</h2>
+          <ul>
+            <li>
+              <!-- <input type="radio" id="f-option" name="selector"> -->
+              <%= review.radio_button :comfort, "2", id: "comfort-opt-a" %>
+              <label for="comfort-opt-a">It was very comfortable</label>
+              <div class="check"></div>
+            </li>
+
+            <li>
+              <!-- <input type="radio" id="s-option" name="selector"> -->
+              <%= review.radio_button :comfort, "1", id: "comfort-opt-b" %>
+              <label for="comfort-opt-b">It was somewhat comfortable</label>
+              <div class="check"><div class="inside"></div></div>
+            </li>
+
+            <li>
+              <!-- <input type="radio" id="t-option" name="selector"> -->
+              <%= review.radio_button :comfort, "0", id: "comfort-opt-c" %>
+              <label for="comfort-opt-c">It was not comfortable</label>
+              <div class="check"><div class="inside"></div></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="carousel-cell">
+        <div class="carousel-cell-content">
+          <h2 class="margin-bottom-md">How many plug sockets were there at <%=@coffee_shop.name%>?</h2>
+          <ul>
+            <li>
+              <!-- <input type="radio" id="f-option" name="selector"> -->
+              <%= review.radio_button :plug_sockets, "2", id: "plug_sockets-opt-a" %>
+              <label for="plug_sockets-opt-a">There were a lot of plug sockets</label>
+              <div class="check"></div>
+            </li>
+
+            <li>
+              <!-- <input type="radio" id="s-option" name="selector"> -->
+              <%= review.radio_button :plug_sockets, "1", id: "plug_sockets-opt-b" %>
+              <label for="plug_sockets-opt-b">There were a few plug sockets</label>
+              <div class="check"><div class="inside"></div></div>
+            </li>
+
+            <li>
+              <!-- <input type="radio" id="t-option" name="selector"> -->
+              <%= review.radio_button :plug_sockets, "0", id: "plug_sockets-opt-c" %>
+              <label for="plug_sockets-opt-c">There weren't any plug sockets</label>
+              <div class="check"><div class="inside"></div></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="carousel-cell">
+        <div class="carousel-cell-content">
+          <h2 class="margin-bottom-md">How busy was it at <%=@coffee_shop.name%>?</h2>
+          <ul>
+            <li>
+              <!-- <input type="radio" id="f-option" name="selector"> -->
+              <%= review.radio_button :busyness, "2", id: "busyness-opt-a" %>
+              <label for="busyness-opt-a">It wasn't busy at all</label>
+              <div class="check"></div>
+            </li>
+            <li>
+              <!-- <input type="radio" id="s-option" name="selector"> -->
+              <%= review.radio_button :busyness, "1", id: "busyness-opt-b" %>
+              <label for="busyness-opt-b">It was a bit busy</label>
+              <div class="check"><div class="inside"></div></div>
+            </li>
+            <li>
+              <!-- <input type="radio" id="t-option" name="selector"> -->
+              <%= review.radio_button :busyness, "0", id: "busyness-opt-c" %>
+              <label for="busyness-opt-c">It was very busy</label>
+              <div class="check"><div class="inside"></div></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="carousel-cell">
+        <div class="carousel-cell-content">
+          <h2 class="margin-bottom-md">Does <%=@coffee_shop.name%> serve food?</h2>
+          <ul>
+            <li>
+              <label for="serves_food-opt-a">Yes</label>
+              <%= review.radio_button :serves_food, "true", id: "serves_food-opt-a" %>
+              <div class="check"></div>
+            </li>
+            <li>
+              <label for="serves_food-opt-b">No</label>
+              <%= review.radio_button :serves_food, "false", id: "serves_food-opt-b" %>
+              <div class="check"><div class="inside"></div></div>
+            </li>
+            <li>
+              <label for="serves_food-opt-c">Don't know</label>
+              <%= review.radio_button :serves_food, "nil", id: "serves_food-opt-c" %>
+              <div class="check"><div class="inside"></div></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="carousel-cell">
+        <div class="carousel-cell-content">
+          <h2 class="margin-bottom-md">Overall, how would you rate <%=@coffee_shop.name%>?</h2>
+          <ul>
+            <li>
+              <label for="rating-opt-a">5/5</label>
+              <%= review.radio_button :rating, "4", id: "rating-opt-a" %>
+              <div class="check"></div>
+            </li>
+            <li>
+              <label for="rating-opt-b">4/5</label>
+              <%= review.radio_button :rating, "3", id: "rating-opt-b" %>
+              <div class="check"><div class="inside"></div></div>
+            </li>
+            <li>
+              <label for="rating-opt-c">3/5</label>
+              <%= review.radio_button :rating, "2", id: "rating-opt-c" %>
+              <div class="check"><div class="inside"></div></div>
+            </li>
+            <li>
+              <label for="rating-opt-d">2/5</label>
+              <%= review.radio_button :rating, "1", id: "rating-opt-d" %>
+              <div class="check"><div class="inside"></div></div>
+            </li>
+            <li>
+              <label for="rating-opt-e">1/5</label>
+              <%= review.radio_button :rating, "0", id: "rating-opt-e" %>
+              <div class="check"><div class="inside"></div></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="carousel-cell">
+        <div class="carousel-cell-content">
+          <%= review.simple_fields_for @review_photo do |review_photo| %>
+            <%= review_photo.input :photo_cache, as: :hidden %>
+            <%= review_photo.input :photo %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="carousel-cell">
+        <div class="carousel-cell-content">
+          <%= review.submit "Submit review" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
