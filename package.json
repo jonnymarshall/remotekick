@@ -8,6 +8,7 @@
     "babel-loader": "^8.0.6",
     "bootstrap": "^4.3.1",
     "core-js": "3",
+    "flickity": "^2.2.1",
     "jquery": "^3.4.1",
     "popper.js": "^1.15.0",
     "rails-erb-loader": "^5.5.2",
