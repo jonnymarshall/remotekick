@@ -1,4 +1,4 @@
-const sayHello = () => {
+const runAutoComplete = () => {
   console.log("hello from autoComplete.js");
   // Check for the element with the id "autoComplete"
   if(document.querySelector("#autoComplete")) {
@@ -169,4 +169,4 @@ const sayHello = () => {
 }
 
 
-export { sayHello }
+export { runAutoComplete }
