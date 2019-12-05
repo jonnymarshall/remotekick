@@ -225,18 +225,18 @@ def create_melbourne_coffee_shops(melbourne_coffee_shop_attributes)
 end
 
 def create_melbourne_coffee_shop_reviews(melbourne_coffee_shop_attributes, melbourne_coffee_shop_review_attributes)
-  puts 'Applying Jonnys reviews to melbourne coffee shops'
+  # puts 'Applying Jonnys reviews to melbourne coffee shops'
 
-  x = 0
+  # x = 0
 
-  melbourne_coffee_shop_attributes.each do |coffee_shop|
-    review = Review.new(melbourne_coffee_shop_review_attributes[x])
-    review.coffee_shop = CoffeeShop.where(name: coffee_shop[:name])[0]
-    review.save
-    x += 1
-  end
+  # melbourne_coffee_shop_attributes.each do |coffee_shop|
+  #   review = Review.new(melbourne_coffee_shop_review_attributes[x])
+  #   review.coffee_shop = CoffeeShop.where(name: coffee_shop[:name])[0]
+  #   review.save
+  #   x += 1
+  # end
 
-  puts "Created #{Review.count} reviews..."
+  # puts "Created #{Review.count} reviews..."
 
   puts "Creating 10 additional reviews for Mr Tulk, with ID: #{CoffeeShop.where(name: "Mr Tulk").first.id}"
 
