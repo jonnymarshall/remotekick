@@ -139,6 +139,12 @@
     <div class="col-9">
       <h5> Displaying <%= @coffee_shops.count %> coffee shops</h5>
       <br>
+      <div
+        id="map"
+        data-markers="<%= @markers.to_json %>"
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+      ></div>
+      <br>
       <div class="d-flex flex-row wrap">
         <% if @coffee_shops%>
           <%= render 'shared/cards' %>

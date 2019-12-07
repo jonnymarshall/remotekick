@@ -2,8 +2,9 @@ class CoffeeShopsController < ApplicationController
   before_action :set_coffee_shop, only: [:show, :edit, :update, :destroy]
   before_action :coffee_shop_params, only: [:index]
   before_action :new_coffee_shop_params, only: [:create]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :test_page]
   has_scope :address
+  # has_scope :location
   has_scope :rating
   has_scope :upload_speed
   has_scope :serves_plant_milk, type: :boolean
@@ -17,23 +18,24 @@ class CoffeeShopsController < ApplicationController
   has_scope :plug_sockets
 
   def index
-    # if coffee_shop_params.empty?
-    #   @coffee_shops = CoffeeShop.all
-    # else
-    #   @coffee_shops = CoffeeShop.near(params[:address]) if coffee_shop_params[:address]
-    #   @coffee_shops = CoffeeShop.where(serves_plant_milk: true) if params[:serves_plant_milk]
-    #   @coffee_shops = CoffeeShop.where("wifi_restrictions = 0") if params[:wifi_restrictions]
-    # end
     @coffee_shops = apply_scopes(CoffeeShop).all
+    # byebug
     @coffee_shop_params = coffee_shop_params
     @coffee_shop_boolean_params = coffee_shop_boolean_params
 
+    @markers = []
+
+    @coffee_shops.each do |coffee_shop|
+      @markers << {
+        lat: coffee_shop.latitude,
+        lng: coffee_shop.longitude
+      }
+    end
+
     # @coffee_shop_boolean_params[:wifi_restrictions] = reverse_checkbox_value(coffee_shop_boolean_params[:wifi_restrictions])
-    # raise
   end
 
   def show
-    # raise
     @review = Review.new
     @review_photo = @review.review_photos.new
   end
@@ -70,6 +72,14 @@ class CoffeeShopsController < ApplicationController
   end
 
   def test_page
+    @markers = []
+
+    CoffeeShop.all.each do |coffee_shop|
+      @markers << {
+        lat: coffee_shop.latitude,
+        lng: coffee_shop.longitude
+      }
+    end
   end
 
   def autocomplete_response
@@ -163,6 +173,10 @@ class CoffeeShopsController < ApplicationController
 
   def reverse_checkbox_value(value)
     value.to_i.positive? ? 0 : 1
+  end
+
+  def mapbox_api
+    baseApiUrl = 'https://api.mapbox.com';
   end
 
   def foursquare_api(location, search)
