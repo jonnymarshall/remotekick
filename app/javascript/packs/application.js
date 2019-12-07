@@ -17,6 +17,9 @@ else {
   console.log("autoComplete.js attempted to run, element with id: 'autoComplete' not found");
 };
 
+// MapBox
+if (document.getElementById("map")){
+  runMapBox();
+}
 
-runMapBox();
 // venueAutofillTimeout();

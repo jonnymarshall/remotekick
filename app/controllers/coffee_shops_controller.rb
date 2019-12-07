@@ -2,7 +2,7 @@ class CoffeeShopsController < ApplicationController
   before_action :set_coffee_shop, only: [:show, :edit, :update, :destroy]
   before_action :coffee_shop_params, only: [:index]
   before_action :new_coffee_shop_params, only: [:create]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :test_page]
   has_scope :address
   has_scope :rating
   has_scope :upload_speed
@@ -29,11 +29,9 @@ class CoffeeShopsController < ApplicationController
     @coffee_shop_boolean_params = coffee_shop_boolean_params
 
     # @coffee_shop_boolean_params[:wifi_restrictions] = reverse_checkbox_value(coffee_shop_boolean_params[:wifi_restrictions])
-    # raise
   end
 
   def show
-    # raise
     @review = Review.new
     @review_photo = @review.review_photos.new
   end
@@ -70,6 +68,16 @@ class CoffeeShopsController < ApplicationController
   end
 
   def test_page
+    @coffee_shops = []
+    @coffee_shops << CoffeeShop.all[25]
+    @coffee_shops << CoffeeShop.all[24]
+    @markers = @coffee_shops.map do |coffee_shop|
+      {
+        lat: coffee_shop.latitude,
+        lng: coffee_shop.longitude
+      }
+    end
+    # raise
   end
 
   def autocomplete_response
@@ -163,6 +171,10 @@ class CoffeeShopsController < ApplicationController
 
   def reverse_checkbox_value(value)
     value.to_i.positive? ? 0 : 1
+  end
+
+  def mapbox_api
+    baseApiUrl = 'https://api.mapbox.com';
   end
 
   def foursquare_api(location, search)
