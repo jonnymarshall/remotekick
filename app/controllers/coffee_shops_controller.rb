@@ -68,16 +68,14 @@ class CoffeeShopsController < ApplicationController
   end
 
   def test_page
-    @coffee_shops = []
-    @coffee_shops << CoffeeShop.all[25]
-    @coffee_shops << CoffeeShop.all[24]
-    @markers = @coffee_shops.map do |coffee_shop|
-      {
+    @markers = []
+
+    CoffeeShop.all.each do |coffee_shop|
+      @markers << {
         lat: coffee_shop.latitude,
         lng: coffee_shop.longitude
       }
     end
-    # raise
   end
 
   def autocomplete_response
