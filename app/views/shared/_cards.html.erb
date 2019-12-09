@@ -21,7 +21,13 @@
             </div>
           </div>
         </div>
-        <%= image_tag ("petr-sevcovic-594807-unsplash.jpg"), :class => "card-photo" %>
+        <% if coffee_shop.cover_photo.present? %>
+          <%= cl_image_tag @coffee_shop.cover_photo, :class => "card-photo" %>
+        <% elsif coffee_shop.review_photos.first.present? %>
+          <%= cl_image_tag coffee_shop.review_photos.first.photo, :class => "card-photo" %>
+        <% else %>
+          <%= image_tag ("petr-sevcovic-594807-unsplash.jpg"), :class => "card-photo" %>
+        <% end %>
       </div>
     <div class="row no-gutters">
       <div class="col">
