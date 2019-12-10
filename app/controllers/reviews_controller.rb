@@ -15,7 +15,7 @@ class ReviewsController < ApplicationController
       @review_photo = @review.review_photos.new(photo: review_photo_params[:review_photo][:photo])
       @review_photo.save!
     end
-    byebug
+    # byebug
     @review.save!
     redirect_to coffee_shop_path(@coffee_shop)
 #       respond_to do |format|
