@@ -1,0 +1,77 @@
+<div class="index-card" id="<%="coffee_shop_#{coffee_shop.id}" %>">
+  <%= link_to coffee_shop_path(coffee_shop) do %>
+  <div class="card-photo-section relative-element" style="background-color:#F1F1F1;">
+    <div class="cards-photo-gradient absolute-element"></div>
+      <div class="card-photo-overlay absolute-element padding-left-right padding-top-bottom">
+        <div class="d-flex justify-content-between">
+          <div>
+            <h6>
+              <i class="fa fa-wifi text-primary" aria-hidden="true"></i>
+              <% unless coffee_shop.upload_speed.nil? %>
+                <strong><%= coffee_shop.upload_speed.round(0) %> Mbps</strong>
+              <% else %>
+                <strong>Wifi speed unknown</strong>
+              <% end %>
+            </h6>
+          </div>
+          <div class="d-flex justify-content-between">
+            <i class="fas fa-map-marker-alt padding-right-sm"></i>
+            <p>X kilometers away</p>
+          </div>
+        </div>
+      </div>
+      <% if coffee_shop.cover_photo.present? %>
+        <%= cl_image_tag @coffee_shop.cover_photo, :class => "card-photo" %>
+      <% elsif coffee_shop.review_photos.first.present? %>
+        <%= cl_image_tag coffee_shop.review_photos.first.photo, :class => "card-photo" %>
+      <% else %>
+        <%= image_tag ("petr-sevcovic-594807-unsplash.jpg"), :class => "card-photo" %>
+      <% end %>
+    </div>
+  <div class="row no-gutters">
+    <div class="col">
+      <div class="padding-top padding-left-right">
+        <h6><strong><%= coffee_shop.name %></strong></h6>
+      </div>
+    </div>
+  </div>
+  <div class="row no-gutters">
+    <div class="col">
+      <div class="card-description padding-top-bottom-sm padding-left-right">
+        <p><%= coffee_shop.description %></p>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="d-flex padding-left-right">
+    <% if coffee_shop.serves_food %>
+      <p class="padding-right-sm">Serves food</p>
+    <% end %>
+    <% if coffee_shop.serves_plant_milk %>
+      <p class="padding-right-sm">Plant milk</p>
+    <% end %>
+    <% if coffee_shop.serves_smoothies %>
+      <p class="padding-right-sm">Smoothies</p>
+    <% end %>
+    <% if coffee_shop.air_conditioning %>
+      <p class="padding-right-sm">Air con</p>
+    <% end %>
+  </div>
+  <div class="divider"></div>
+  <div class="d-flex padding-left-right justify-content-between align-items-center">
+    <h5><i class="fas fa-dollar-sign dark-gray"></i></h5>
+    <div class="d-flex padding-top-bottom-sm align-items-end">
+      <div class="padding-right-sm">
+        <% unless coffee_shop.rating.nil? %>
+          <% (coffee_shop.rating.round(0) + 1).times do %>
+            <i class="fas fa-star dark-gray"></i>
+          <% end %>
+        <% else %>
+          <p>No ratings yet</p>
+        <% end %>
+      </div>
+      <p>(<%= coffee_shop.reviews.count %>)</p>
+    </div>
+  </div>
+  <% end %>
+</div>

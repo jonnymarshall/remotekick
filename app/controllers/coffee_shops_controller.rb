@@ -20,7 +20,9 @@ class CoffeeShopsController < ApplicationController
   def index
     @coffee_shops = apply_scopes(CoffeeShop).all
     # raise
-    @coffee_shops = @coffee_shops.near(coffee_shop_params[:location])
+    if coffee_shop_params[:location]
+      @coffee_shops = @coffee_shops.near(coffee_shop_params[:location])
+    end
     @coffee_shop_params = coffee_shop_params
     @coffee_shop_boolean_params = coffee_shop_boolean_params
     @markers = []
@@ -28,7 +30,8 @@ class CoffeeShopsController < ApplicationController
     @coffee_shops.each do |coffee_shop|
       @markers << {
         lat: coffee_shop.latitude,
-        lng: coffee_shop.longitude
+        lng: coffee_shop.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { coffee_shop: coffee_shop })
       }
     end
 
