@@ -3,8 +3,8 @@ class CoffeeShopsController < ApplicationController
   before_action :coffee_shop_params, only: [:index]
   before_action :new_coffee_shop_params, only: [:create]
   before_action :authenticate_user!, except: [:index, :show, :test_page]
-  has_scope :address
-  # has_scope :location
+  # has_scope :address
+  has_scope :location
   has_scope :rating
   has_scope :upload_speed
   has_scope :serves_plant_milk, type: :boolean
@@ -19,10 +19,10 @@ class CoffeeShopsController < ApplicationController
 
   def index
     @coffee_shops = apply_scopes(CoffeeShop).all
-    # byebug
+    # raise
+    @coffee_shops = @coffee_shops.near(coffee_shop_params[:location])
     @coffee_shop_params = coffee_shop_params
     @coffee_shop_boolean_params = coffee_shop_boolean_params
-
     @markers = []
 
     @coffee_shops.each do |coffee_shop|
@@ -124,7 +124,7 @@ class CoffeeShopsController < ApplicationController
   def coffee_shop_params
     # *Strong params*: You need to *whitelist* what can be updated by the user
     # Never trust user data!
-    params.permit(:address, :rating, :upload_speed, :comfort, :plug_sockets, :busyness)
+    params.permit(:location, :rating, :upload_speed, :comfort, :plug_sockets, :busyness)
   end
 
   def new_coffee_shop_params

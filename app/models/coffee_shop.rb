@@ -13,8 +13,8 @@ class CoffeeShop < ApplicationRecord
   reverse_geocoded_by :latitude, :longitude
   after_validation :reverse_geocode
 
-  scope :address, -> address_search { where("address ILIKE ?", "%#{address_search}%") }
-  # scope :location, -> address_search { near("%#{address_search}%") }
+  # scope :address, -> address_search { where("address ILIKE ?", "%#{address_search}%") }
+  scope :location, -> address_search { near(address_search) }
   scope :rating, -> number { where("rating >= ?", number) }
   scope :upload_speed, -> number { where("upload_speed >= ?", number) }
   scope :serves_plant_milk, -> { where(serves_plant_milk: true) }

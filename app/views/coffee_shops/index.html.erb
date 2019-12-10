@@ -2,8 +2,8 @@
   <div class="row margin-top-xl">
     <div class="col-3">
       <%= form_with url: coffee_shops_path, local: true, method: :get, class: "form-group col-xs-6" do |form| %>
-        <%= form.label :address %>:
-        <%= form.text_field :address, value: "#{@coffee_shop_params[:address]}", class: "form-control", id: "autoComplete" %>
+        <%= form.label :location %>:
+        <%= form.text_field :location, value: "#{@coffee_shop_params[:location]}", class: "form-control", id: "autoComplete" %>
 
         <%= form.label :rating, "Minimum rating:" %>
 
@@ -137,7 +137,7 @@
     </div>
 
     <div class="col-9">
-      <h5> Displaying <%= @coffee_shops.count %> coffee shops</h5>
+      <h5> Displaying <%= @coffee_shops.count(:all) %> coffee shops</h5>
       <br>
       <div
         id="map"
