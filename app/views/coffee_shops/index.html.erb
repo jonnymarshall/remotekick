@@ -137,7 +137,7 @@
     </div>
 
     <div class="col-9">
-      <h5> Displaying <%= @coffee_shops.count %> coffee shops</h5>
+      <h5> Displaying <%= @coffee_shops.count(:all) %> coffee shops</h5>
       <br>
       <div
         id="map"

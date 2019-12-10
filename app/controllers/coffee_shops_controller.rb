@@ -4,7 +4,7 @@ class CoffeeShopsController < ApplicationController
   before_action :new_coffee_shop_params, only: [:create]
   before_action :authenticate_user!, except: [:index, :show, :test_page]
   # has_scope :address
-  # has_scope :location
+  has_scope :location
   has_scope :rating
   has_scope :upload_speed
   has_scope :serves_plant_milk, type: :boolean
