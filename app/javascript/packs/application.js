@@ -4,6 +4,7 @@ console.log('Hello world from application.js.erb');
 import { venueAutofill } from "../components/venue_autofill.js.erb";
 import { runAutoComplete } from "../components/autocomplete.js";
 import { runMapBox } from "../components/mapbox.js";
+import { algoliaPlacesInit } from "../components/algoliaPlacesInit.js";
 // import { venueAutofillTimeout } from "../components/venue_autofill_timeout.js.erb";
 
 if (document.getElementById("venueNameInput")){
@@ -21,5 +22,7 @@ else {
 if (document.getElementById("map")){
   runMapBox();
 }
+
+algoliaPlacesInit();
 
 // venueAutofillTimeout();
