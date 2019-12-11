@@ -23,6 +23,8 @@ if (document.getElementById("map")){
   runMapBox();
 }
 
-algoliaPlacesInit();
+if (document.getElementById("address-input")){
+  algoliaPlacesInit();
+}
 
 // venueAutofillTimeout();

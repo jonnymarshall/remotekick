@@ -11,6 +11,7 @@
     "flickity": "^2.2.1",
     "jquery": "^3.4.1",
     "mapbox-gl": "^1.6.0",
+    "places.js": "^1.17.1",
     "popper.js": "^1.15.0",
     "rails-erb-loader": "^5.5.2",
     "vue": "^2.6.10",
