@@ -5,7 +5,9 @@
 @import "config/custom_defaults";
 
 // External libraries
-@import "bootstrap/scss/bootstrap";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+// @import "bootstrap/scss/bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 

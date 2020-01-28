@@ -23,6 +23,8 @@ gem 'figaro'
 gem 'cloudinary'
 gem 'carrierwave', '~> 1.3', '>= 1.3.1'
 gem 'faker'
+gem 'bootstrap-sass', '~> 3.4.1'
+gem 'jquery-rails'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

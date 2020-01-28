@@ -1,17 +1,13 @@
 <div class="fullscreen home-bg">
   <div class="search-container">
-    <h1 id="headline">wifiwarriors</h1>
+    <h1 id="headline">RemoteKick</h1>
     <p id="tagline">Remote working. On caffeine.</p>
-    <div class="container">
       <%= form_with url: coffee_shops_path, local: true, method: :get, class: "form-group col-xs-6" do |form| %>
         <div class="body" align="center">
           <%= form.text_field :location, id: "autoComplete" %>
         </div>
         <!-- <%= form.submit "Search", class: "btn btn-primary" %> -->
       <% end %>
-
       <ul id="test-list"></ul>
-    </div>
   </div>
 </div>
-
