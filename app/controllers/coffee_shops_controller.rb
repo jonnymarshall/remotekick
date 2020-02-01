@@ -2,7 +2,7 @@ class CoffeeShopsController < ApplicationController
   before_action :set_coffee_shop, only: [:show, :edit, :update, :destroy]
   before_action :coffee_shop_params, only: [:index]
   before_action :new_coffee_shop_params, only: [:create]
-  before_action :authenticate_user!, except: [:index, :show, :test_page]
+  before_action :authenticate_user!, except: [:index, :show]
   # has_scope :address
   has_scope :location
   has_scope :rating
@@ -72,17 +72,6 @@ class CoffeeShopsController < ApplicationController
       new_opening_hours.save!
     end
     redirect_to coffee_shop_path(@coffee_shop)
-  end
-
-  def test_page
-    @markers = []
-
-    CoffeeShop.all.each do |coffee_shop|
-      @markers << {
-        lat: coffee_shop.latitude,
-        lng: coffee_shop.longitude
-      }
-    end
   end
 
   def autocomplete_response
