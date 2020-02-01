@@ -1,31 +1,60 @@
-<!--CHECKS TO SEE IF PAGE IS HOMEPAGE AS DEFINED IN PAGES_CONTROLLER#HOME-->
-<% if @current_page == "/" %>
-  <!--DISPLAYS TRANSPARENT c-navbar BY ID-->
-  <div class="c-navbar c-navbar-expand-sm c-navbar-light" id="c-navbar-lewagon-transparent">
-<% else %>
-  <!--DISPLAYS NON-TRANSPARENT c-navbar BY ID-->
-  <div class="c-navbar c-navbar-expand-sm c-navbar-light" id="c-navbar-lewagon">
-<% end %>
-    <%= link_to "/", class: "c-navbar-brand" do %>
-      <%= image_tag "https://image.flaticon.com/icons/png/512/63/63842.png" %>
-    <% end %>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://bulma.io">
+      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+    </a>
 
-    <button class="c-navbar-toggler" type="button" data-toggle="collapse" data-target="#c-navbarSupportedContent" aria-controls="c-navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="c-navbar-toggler-icon"></span>
-    </button>
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span class="has-background-primary" aria-hidden="true"></span>
+      <span class="has-background-primary" aria-hidden="true"></span>
+      <span class="has-background-primary" aria-hidden="true"></span>
+    </a>
+  </div>
 
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item">
+        Home
+      </a>
 
-    <div class="collapse c-navbar-collapse" id="c-navbarSupportedContent">
-      <ul class="c-navbar-nav mr-auto">
-        <% if user_signed_in? %>
-            <%= link_to "Add a new listing", new_coffee_shop_path, id: "new_coffee_shop_link", class: "nav-link" %>
-            <%= link_to "Dashboard", "#", class: "nav-link" %>
-            <%= link_to "Account Settings", edit_user_registration_path, class: "nav-link" %>
-            <%= link_to "Log Out", destroy_user_session_path, class: "nav-link", method: :delete %>
-        <% else %>
-            <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
-            <%= link_to "Log In", new_user_session_path, class: "nav-link" %>
-        <% end %>
-      </ul>
+      <a class="navbar-item">
+        Documentation
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item">
+            About
+          </a>
+          <a class="navbar-item">
+            Jobs
+          </a>
+          <a class="navbar-item">
+            Contact
+          </a>
+          <hr class="navbar-divider">
+          <a class="navbar-item">
+            Report an issue
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-primary">
+            <strong>Sign up</strong>
+          </a>
+          <a class="button is-light">
+            Log in
+          </a>
+        </div>
+      </div>
     </div>
   </div>
+</nav>

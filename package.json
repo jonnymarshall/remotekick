@@ -6,7 +6,6 @@
     "@tarekraafat/autocomplete.js": "^7.1.3",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.6",
-    "bootstrap": "^4.3.1",
     "bulma": "^0.8.0",
     "core-js": "3",
     "flickity": "^2.2.1",
