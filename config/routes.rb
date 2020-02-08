@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   # DEVELOPMENT
+  get 'development/development_bulma', to: 'development#development_bulma'
   get 'development/development_home', to: 'development#development_home'
   get 'development/development_index', to: 'development#development_index'
-  get 'development/development_bulma', to: 'development#development_bulma'
+  get 'development/development_show', to: 'development#development_show'
 
   get 'coffee_shops/new/venue_search', to: 'coffee_shops#venue_search'
   get 'coffee_shops/autocomplete_response', to: 'coffee_shops#autocomplete_response'

@@ -1,5 +1,5 @@
 class DevelopmentController < ApplicationController
-  before_action :authenticate_user!, except: [:development_bulma, :development_home, :development_index]
+  before_action :authenticate_user!, except: [:development_bulma, :development_home, :development_index, :development_show]
 
   def development_bulma
   end
@@ -8,5 +8,8 @@ class DevelopmentController < ApplicationController
   end
 
   def development_index
+  end
+
+  def development_show
   end
 end
