@@ -23,6 +23,8 @@ gem 'figaro'
 gem 'cloudinary'
 gem 'carrierwave', '~> 1.3', '>= 1.3.1'
 gem 'faker'
+gem 'rubocop', '~> 0.79.0', require: false
+gem 'rubocop-performance'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
