@@ -17,40 +17,42 @@ end
 private
 
 def update_coffee_shop_values
+  # raise
   # run the update method on coffee shops to reflect new rating values
-  averageable_values = {
-    rating: rating,
-    plug_sockets: plug_sockets,
-    comfort: comfort,
-    busyness: busyness,
-    upload_speed: upload_speed,
-    download_speed: download_speed,
-    ping: ping
+  updated_values = {
+    rating: recalculate_value("rating", rating),
+    plug_sockets: recalculate_value("plug_sockets", plug_sockets),
+    comfort: recalculate_value("comfort", comfort),
+    busyness: recalculate_value("busyness", busyness),
+    upload_speed: recalculate_value("upload_speed", upload_speed),
+    download_speed: recalculate_value("download_speed", download_speed),
+    ping: recalculate_value("ping", ping),
+    serves_plant_milk: update_boolean_value("serves_plant_milk", serves_plant_milk),
+    serves_food: update_boolean_value("serves_food", serves_food),
+    serves_smoothies: update_boolean_value("serves_smoothies", serves_smoothies),
+    air_conditioning: update_boolean_value("air_conditioning", air_conditioning)
   }
+  byebug
+  coffee_shop.update(updated_values)
+end
 
-  boolean_values = {
-    serves_plant_milk: serves_plant_milk,
-    serves_food: serves_food,
-    serves_smoothies: serves_smoothies,
-    air_conditioning: air_conditioning
-  }
-
-  averageable_values.each do |key, value|
-    coffee_shop.update(key => recalculate_value(key, value)) if !value.nil?
-  end
-
-  boolean_values.each do |key, value|
-    coffee_shop.update(key => value) if !value.nil?
+def recalculate_value(param_name, value)
+  # byebug
+  # assign existing value based on a dynamic active record query for param_name
+  coffee_shop_value = coffee_shop.send(param_name)
+  # apply the rating as-is if no existing ratings, otherwise recalculate average if we have a value
+  if value && coffee_shop_value
+    (coffee_shop_value + value) / 2
+  elsif value && coffee_shop_value.nil
+    value
+  else
+    coffee_shop_value
   end
 end
 
-def recalculate_value(key, value)
-  # assign coffee shop value based on a dynamic method call for each key in averageable_values
-  coffee_shop_value = coffee_shop.send(key)
-  # apply the rating as-is if no existing ratings, otherwise recalculate average
-  coffee_shop_value.nil? ? value : (coffee_shop_value + value) / 2
-end
-
-def coffee_shop
-  review.coffee_shop
+def update_boolean_value(param_name, value)
+  # assign existing value based on a dynamic active record query for param_name
+  coffee_shop_boolean_value = coffee_shop.send(param_name)
+  # return the new value if one was given, otherwise return the existing value
+  value ? value : coffee_shop_boolean_value
 end
