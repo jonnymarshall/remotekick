@@ -12,4 +12,7 @@ class DevelopmentController < ApplicationController
 
   def development_show
   end
+
+  def development_reviews_new
+  end
 end
