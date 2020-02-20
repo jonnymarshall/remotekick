@@ -1,13 +1,29 @@
-<div class="fullscreen home-bg">
-  <div class="search-container">
-    <h1 id="headline">RemoteKick</h1>
-    <p id="tagline">Remote working. On caffeine.</p>
-      <%= form_with url: coffee_shops_path, local: true, method: :get, class: "form-group col-xs-6" do |form| %>
-        <div class="body" align="center">
-          <%= form.text_field :location, id: "autoComplete" %>
+<section class="hero  is-fullheight-with-navbar  hero-image">
+  <div class="hero-body">
+    <div class="container  has-text-centered">
+      <h1 class="title  has-text-white">
+        RemoteKick
+      </h1>
+      <h2 class="subtitle  has-text-white">
+        Remote working. On caffeine.
+      </h2>
+      <div class="columns">
+        <div class="column is-paddingless"></div>
+        <div class="column is-two-fifths">
+          <%= form_with url: coffee_shops_path, local: true, method: :get, class: "form-group col-xs-6" do |form| %>
+            <div class="field has-addons">
+              <p class="control is-expanded">
+                <%= form.text_field :location, class: "input is-primary  is-rounded has-text-centered", placeholder: "Search for a city"  %>
+                <!-- <input type="text" class="input is-primary  is-rounded has-text-centered" placeholder="Search for a city"> -->
+              </p>
+              <p class="control">
+                <%= form.submit "Search", class: "button is-rounded is-primary" %>
+              </p>
+            </div>
+          <% end %>
         </div>
-        <!-- <%= form.submit "Search", class: "btn btn-primary" %> -->
-      <% end %>
-      <ul id="test-list"></ul>
+        <div class="column is-paddingless"></div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
