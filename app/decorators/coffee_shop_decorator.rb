@@ -16,26 +16,51 @@ class CoffeeShopDecorator < Draper::Decorator
     end
   end
 
-  def rating_stars(stars_elements = [])
+  def rating_stars
     unless object.rating.nil?
-      (object.rating.round(0) + 1).times do
-        stars_elements << h.content_tag( :i, nil, :class=>'fas fa-2x fas fa-star')
-      end
+      h.content_tag( :i, nil, :class=>'fas fa-2x fas fa-star') * (icon_count_calculator("rating"))
     end
-    stars_elements.join
   end
   
   def reviews_info_text
-    if has_reviews
+    if has_attribute("reviews")
       "Based on #{object.reviews.count} reviews."
     else
       "No reviews yet."
     end
   end
 
+  def wifi_speed
+    if has_attribute("upload_speed")
+      h.content_tag( :strong, "#{object.download_speed.round(0)} Mbps")
+    else
+      "Unknown"
+    end
+  end
+
+  def display_icons(attribute, icon_set = [])
+    if has_attribute(attribute)
+      icon_set << h.content_tag( :i, nil, :class=>'fas fa-smile has-text-primary') * (icon_count_calculator(attribute))
+      icon_set << h.content_tag( :i, nil, :class=>'far fa-smile') * (inverse_icon_count_calculator(attribute))
+    end
+    icon_set.join
+  end
+
   private
 
-  def has_reviews
-    !object.reviews.empty?
+  def has_attribute(attribute)
+    !object.send(attribute).nil?
+  end
+
+  def icon_count_calculator(attribute)
+    object.send(attribute).round(0) + 1
+  end
+
+  def inverse_icon_count_calculator(attribute)
+    if attribute == "rating"
+      5 - icon_count_calculator(attribute)
+    else
+      3 - icon_count_calculator(attribute)
+    end
   end
 end
