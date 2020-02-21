@@ -1,9 +1,10 @@
 class CoffeeShopsController < ApplicationController
-  before_action :set_coffee_shop, only: [:show, :edit, :update, :destroy]
+  before_action :set_coffee_shop, only: [:edit, :update, :destroy, :show]
   before_action :coffee_shop_params, only: [:index]
   before_action :new_coffee_shop_params, only: [:create]
   before_action :authenticate_user!, except: [:index, :show]
-  # has_scope :address
+  # @coffee_shop should be called as coffee_shop for decorated instance in views
+  decorates_assigned :coffee_shop
   has_scope :location
   has_scope :rating
   has_scope :upload_speed
@@ -11,7 +12,6 @@ class CoffeeShopsController < ApplicationController
   has_scope :serves_food, type: :boolean
   has_scope :serves_smoothies, type: :boolean
   has_scope :air_conditioning, type: :boolean
-  # has_scope :wifi_restrictions, type: :integer
   has_scope :no_wifi_restrictions
   has_scope :comfort
   has_scope :busyness
@@ -86,10 +86,12 @@ class CoffeeShopsController < ApplicationController
   # def edit          # GET /restaurants/:id/edit
   # end
 
-  # def update
-  #   @coffee_shop = CoffeeShop.find(params[:id])
-  #   @coffee_shop.update(coffee_shop_params)
-  # end
+  def update
+    if @coffee_shop.update(coffee_shop_params)
+      set_coffee_shop_decorated
+    else
+    end
+  end
 
   # def destroy
   #   @coffee_shop = CoffeeShop.find(params[:id])
@@ -111,6 +113,10 @@ class CoffeeShopsController < ApplicationController
 
   def set_coffee_shop
     @coffee_shop = CoffeeShop.find(params[:id])
+  end
+
+  def set_coffee_shop_decorated
+    @coffee_shop = CoffeeShop.find(params[:id]).decorate
   end
 
   def coffee_shop_params

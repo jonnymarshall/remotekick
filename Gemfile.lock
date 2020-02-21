@@ -29,6 +29,10 @@ GEM
       globalid (>= 0.3.6)
     activemodel (5.2.2)
       activesupport (= 5.2.2)
+    activemodel-serializers-xml (1.0.2)
+      activemodel (> 5.x)
+      activesupport (> 5.x)
+      builder (~> 3.1)
     activerecord (5.2.2)
       activemodel (= 5.2.2)
       activesupport (= 5.2.2)
@@ -76,6 +80,12 @@ GEM
     dotenv-rails (2.7.4)
       dotenv (= 2.7.4)
       railties (>= 3.2, < 6.1)
+    draper (4.0.0)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
+      activemodel-serializers-xml (>= 1.0)
+      activesupport (>= 5.0)
+      request_store (>= 1.0)
     erubi (1.9.0)
     execjs (2.7.0)
     faker (1.9.5)
@@ -170,6 +180,8 @@ GEM
     rb-inotify (0.10.0)
       ffi (~> 1.0)
     redis (4.1.2)
+    request_store (1.5.0)
+      rack (>= 1.4)
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -236,6 +248,7 @@ DEPENDENCIES
   cloudinary
   devise
   dotenv-rails
+  draper
   faker
   figaro
   font-awesome-sass (~> 5.6.1)

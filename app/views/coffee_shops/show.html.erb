@@ -3,32 +3,7 @@
 <%= render 'show__lower_section' %>
 
 
-BANNER SECTION
-<div class="cover-image-container relative-element">
-  <div class="cover-image-gradient absolute-element"></div>
 
-  <% if @coffee_shop.cover_photo.present? %>
-    <%= cl_image_tag @coffee_shop.cover_photo, :class => "cover-image absolute-element" %>
-  <% elsif @coffee_shop.review_photos.first.present? %>
-    <%= cl_image_tag @coffee_shop.review_photos.first.photo, :class => "cover-image absolute-element" %>
-  <% else %>
-    <%= image_tag ("petr-sevcovic-594807-unsplash.jpg"), :class => "cover-image absolute-element" %>
-  <% end %>
-  <div class="cover-image-text-container relative-element">
-    <h1 class="light"><%= @coffee_shop.name %></h1>
-    <h5 class="regular"><%= @coffee_shop.description %></h5>
-    <h2>
-      <% if @coffee_shop.rating.nil? %>
-        No ratings yet.
-      <% else %>
-        <% (@coffee_shop.rating.round(0) + 1).times do %>
-          <i class="fas fa-star"></i>
-        <% end %>
-      <% end %>
-    </h2>
-    <h6 class = "regular">Based on <%= @coffee_shop.reviews.count %> reviews.</h6>
-  </div>
-</div>
 
 <!--INFO SECTION-->
 <div class="container">
