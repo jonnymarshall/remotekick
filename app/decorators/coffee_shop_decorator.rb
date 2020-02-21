@@ -19,7 +19,7 @@ class CoffeeShopDecorator < Draper::Decorator
   def rating_stars(stars_elements = [])
     unless object.rating.nil?
       (object.rating.round(0) + 1).times do
-        stars_elements << h.content_tag( :i, nil, :class=>'fas fa-star')
+        stars_elements << h.content_tag( :i, nil, :class=>'fas fa-2x fas fa-star')
       end
     end
     stars_elements.join
