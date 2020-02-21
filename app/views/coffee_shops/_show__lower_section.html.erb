@@ -16,12 +16,14 @@
             </div>
             <div class="field">
               <p class="control">
-                <button class="button">Post comment</button>
+              <%= link_to new_coffee_shop_review_path(@coffee_shop) do %>
+                <button class="button">Post review</button>
+              <% end %>
               </p>
             </div>
           </div>
         </article>
-        <% 10.times do %>
+        <% @coffee_shop.reviews.order('updated_at DESC').each do |review| %>
         <article class="media">
           <figure class="media-left">
             <p class="image is-64x64">
@@ -31,10 +33,8 @@
           <div class="media-content">
             <div class="content">
               <p>
-                <strong>Barbara Middleton</strong>
-                <br>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in tempus turpis.
-                <br>
+                <strong><%= review.user.first_name %></strong>
+                <br><%= review.content %><br>
                 <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
               </p>
             </div>
@@ -48,3 +48,49 @@
     </div>
   </div>
 </section>
+
+
+  <!--REVIEWS SECTION-->
+  <!-- <div class="d-flex flex-row wrap">
+      <% @coffee_shop.reviews.order('updated_at DESC').each do |review| %>
+        <div class="review">
+          <div class="row no-gutters">
+            <div class="col-3">
+              <div class="avatar-review"></div>
+            </div>
+            <div class="col-9">
+              <div>
+                <p><strong><%= review.user.first_name %></strong></p>
+                <% if ((Time.now - review.updated_at) / 1.day).round == 0 %>
+                  <p>Today</p>
+                <% elsif ((Time.now - review.updated_at) / 1.day).round == 1 %>
+                  <p>Yesterday</p>
+                <% else %>
+                  <p><%= ((Time.now - review.updated_at) / 1.day).round %> days ago</p>
+                <% end %>
+                <p>
+                  <% (review.rating + 1).times do %>
+                    <i class="fas fa-star"></i>
+                  <% end %>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="row no-gutters">
+            <div class="col">
+              <p class="bottom-padding"><%= review.content %></p>
+            </div>
+          </div>
+          <div class="d-flex flex-row wrap">
+            <% if review.review_photos.present? %>
+              <% review.review_photos.each do |review_photo| %>
+                <div>
+                  <%= cl_image_tag review_photo.photo, class: "review-photo-thumbnail margin-bottom-md" %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+  </div>
+</div> -->
