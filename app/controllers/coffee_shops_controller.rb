@@ -1,6 +1,7 @@
 class CoffeeShopsController < ApplicationController
+  include CoffeeShopsHelper
   before_action :set_coffee_shop, only: [:edit, :update, :destroy, :show]
-  before_action :coffee_shop_params, only: [:index]
+  before_action :coffee_shops_params, only: [:index]
   before_action :new_coffee_shop_params, only: [:create]
   before_action :authenticate_user!, except: [:index, :show]
   # @coffee_shop should be called as coffee_shop for decorated instance in views
@@ -20,11 +21,11 @@ class CoffeeShopsController < ApplicationController
   def index
     @coffee_shops = apply_scopes(CoffeeShop).all
     # raise
-    if coffee_shop_params[:location]
-      @coffee_shops = @coffee_shops.near(coffee_shop_params[:location])
+    if coffee_shops_params[:location]
+      @coffee_shops = @coffee_shops.near(coffee_shops_params[:location])
     end
-    @coffee_shop_params = coffee_shop_params
-    @coffee_shop_boolean_params = coffee_shop_boolean_params
+    @coffee_shops_params = coffee_shops_params
+    @coffee_shops_boolean_params = coffee_shops_boolean_params
     @markers = []
 
     @coffee_shops.each do |coffee_shop|
@@ -86,12 +87,9 @@ class CoffeeShopsController < ApplicationController
   # def edit          # GET /restaurants/:id/edit
   # end
 
-  def update
-    if @coffee_shop.update(coffee_shop_params)
-      set_coffee_shop_decorated
-    else
-    end
-  end
+  # def update
+  #   @coffee_shop.update(coffee_shop_params)
+  # end
 
   # def destroy
   #   @coffee_shop = CoffeeShop.find(params[:id])
@@ -119,9 +117,7 @@ class CoffeeShopsController < ApplicationController
     @coffee_shop = CoffeeShop.find(params[:id]).decorate
   end
 
-  def coffee_shop_params
-    # *Strong params*: You need to *whitelist* what can be updated by the user
-    # Never trust user data!
+  def coffee_shops_params
     params.permit(:location, :rating, :upload_speed, :comfort, :plug_sockets, :busyness)
   end
 
@@ -141,7 +137,7 @@ class CoffeeShopsController < ApplicationController
       )
   end
 
-  def coffee_shop_boolean_params
+  def coffee_shops_boolean_params
     params.permit(
       :serves_food,
       :serves_smoothies,
@@ -156,18 +152,6 @@ class CoffeeShopsController < ApplicationController
     # params.require([:coffee_shop, :opening_hour]).permit(:day, :open, :close)
     params.require(:coffee_shop).permit(opening_hour: [:day, :open, :close])
   end
-
-  # def convert_to_boolean(coffee_shop_boolean_params, boolean_params = [])
-  #   # make array of params to iterate
-  #   boolean_params << coffee_shop_boolean_params[:serves_food]
-  #   boolean_params << coffee_shop_boolean_params[:serves_smoothies]
-  #   boolean_params << coffee_shop_boolean_params[:air_conditioning]
-  #   boolean_params << coffee_shop_boolean_params[:serves_plant_milk]
-  #   # assign boolean value based on integer value
-  #   boolean_params.each do |boolean_param|
-  #     boolean_param
-  #   end
-  # end
 
   def reverse_checkbox_value(value)
     value.to_i.positive? ? 0 : 1
