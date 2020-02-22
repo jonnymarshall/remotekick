@@ -1,0 +1,224 @@
+<div class="column is-one-third">
+  <%= form_with url: coffee_shops_path, local: true, method: :get do |form| %>
+  <!-- FILTER > LOCATION -->
+  <div class="field">
+    <p class="control has-icons-left">
+      <!-- <input class="input" type="location" placeholder="Location" value="<%= searched_location(@coffee_shops_params[:location]) %>"> -->
+      <%= form.text_field :location, value: "#{searched_location(@coffee_shops_params[:location])}", class: "input" %>
+      <span class="icon is-small is-left">
+        <i class="fas fa-city"></i>
+      </span>
+    </p>
+  </div>
+  <!-- FILTER > DISTANCE -->
+  <div class="field">
+    <div class="control is-expanded has-icons-left">
+      <div class="select is-fullwidth">
+        <select><%= distance_options %></select>
+      </div>
+      <div class="icon is-small is-left">
+        <i class="fas fa-map-marker-alt"></i>
+      </div>
+    </div>
+  </div>
+  <!-- FILTER > RATING -->
+  <div class="field">
+    <div class="control is-expanded has-icons-left">
+      <div class="select is-fullwidth">
+        <%= select_tag(:rating, rating_options ) %>
+      </div>
+      <div class="icon is-small is-left">
+        <i class="fas fa-star"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILTER > PLUG SOCKETS -->
+  <div class="field">
+    <label class="label">Plug sockets</label>
+    <div class="control">
+      <label class="radio">
+        <input type="radio" name="foobar">:(</label>
+      <label class="radio">
+        <input type="radio" name="foobar">:|</label>
+      <label class="radio">
+        <input type="radio" name="foobar">:)</label>
+    </div>
+  </div>
+
+  <!-- FILTER > COMFORT -->
+  <div class="field">
+    <label class="label">Comfort</label>
+    <div class="control">
+      <label class="radio">
+        <input type="radio" name="foobar">:(</label>
+      <label class="radio">
+        <input type="radio" name="foobar">:|</label>
+      <label class="radio">
+        <input type="radio" name="foobar">:)</label>
+    </div>
+  </div>
+
+  <!-- FILTER > BUSYNESS -->
+  <div class="field">
+    <label class="label">Busyness</label>
+    <div class="control">
+      <label class="radio">
+        <input type="radio" name="foobar">:(</label>
+      <label class="radio">
+        <input type="radio" name="foobar">:|</label>
+      <label class="radio">
+        <input type="radio" name="foobar">:)</label>
+    </div>
+  </div>
+
+  <!-- FILTER > WIFI RESTRICTIONS -->
+  <div class="field">
+    <label class="checkbox">
+      <%= form.check_box :no_wifi_restrictions, checked: @coffee_shops_boolean_params[:no_wifi_restrictions] == "1" %>
+      Filter out results with wifi restrictions
+    </label>
+  </div>
+
+  <div class="field is-grouped">
+    <p class="control">
+      <a class="button is-primary">
+        Submit
+      </a>
+    </p>
+    <p class="control">
+      <%= link_to "Clear all", coffee_shops_path, :class => "button is-light" %>
+    </p>
+  </div>
+</div>
+
+
+<!-- 
+      
+        <%= form.label :location %>:
+        <%= form.text_field :location, value: "#{@coffee_shops_params[:location]}", class: "form-control", id: "autoComplete" %>
+
+        <%= form.label :rating, "Minimum rating:" %>
+
+        <div id="test-page">
+          <ul>
+            <li>
+              <%= radio_button_tag(:rating, "1", @coffee_shops_params[:rating] == "1", name: "rating", id: "rating-1") %>
+              <label for="rating-1">Rate 1 star</label>
+            </li>
+            <li>
+              <%= radio_button_tag(:rating, "2", @coffee_shops_params[:rating] == "2", name: "rating", id: "rating-2") %>
+              <label for="rating-2">Rate 2 stars</label>
+            </li>
+            <li>
+              <%= radio_button_tag(:rating, "3", @coffee_shops_params[:rating] == "3", name: "rating", id: "rating-3") %>
+              <label for="rating-3">Rate 3 stars</label>
+            </li>
+            <li>
+              <%= radio_button_tag(:rating, "4", @coffee_shops_params[:rating] == "4", name: "rating", id: "rating-4") %>
+              <label for="rating-4">Rate 4 stars</label>
+            </li>
+            <li>
+              <%= radio_button_tag(:rating, "5", @coffee_shops_params[:rating] == "5", name: "rating", id: "rating-5") %>
+              <label for="rating-5">Rate 5 stars</label>
+            </li>
+          </ul>
+        </div>
+
+        <%= form.label :price, "Price:" %>
+        <div class="radio-tile-group">
+          <div class="input-container">
+            <input id="walk" class="radio-button" type="radio" name="radio" />
+            <div class="radio-tile">
+              <div class="icon dollar-icon">
+                <i class="fas fa-dollar-sign"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-container">
+            <input id="bike" class="radio-button" type="radio" name="radio" />
+            <div class="radio-tile">
+              <div class="icon dollar-icon">
+                <i class="fas fa-dollar-sign"></i>
+                <i class="fas fa-dollar-sign"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-container">
+            <input id="drive" class="radio-button" type="radio" name="radio" />
+            <div class="radio-tile">
+              <div class="icon dollar-icon">
+                <i class="fas fa-dollar-sign"></i>
+                <i class="fas fa-dollar-sign"></i>
+                <i class="fas fa-dollar-sign"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <%= form.label :plug_sockets %>:
+        <br>
+        <div class="form-check form-check-inline">
+          <%= radio_button_tag(:plug_sockets, "0", @coffee_shops_params[:plug_sockets] == "0", class: "form-check-input") %>
+          <%= radio_button_tag(:plug_sockets, "1", @coffee_shops_params[:plug_sockets] == "1", class: "form-check-input") %>
+          <%= radio_button_tag(:plug_sockets, "2", @coffee_shops_params[:plug_sockets] == "2", class: "form-check-input") %>
+        </div>
+        <br>
+
+        <%= form.label :comfort %>:
+        <br>
+        <div class="form-check form-check-inline">
+          <%= radio_button_tag(:comfort, "0", @coffee_shops_params[:comfort] == "0", class: "form-check-input") %>
+          <%= radio_button_tag(:comfort, "1", @coffee_shops_params[:comfort] == "1", class: "form-check-input") %>
+          <%= radio_button_tag(:comfort, "2", @coffee_shops_params[:comfort] == "2", class: "form-check-input") %>
+        </div>
+        <br>
+
+        <%= form.label :busyness %>:
+        <br>
+        <div class="form-check form-check-inline">
+          <%= radio_button_tag(:busyness, "0", @coffee_shops_params[:busyness] == "0", class: "form-check-input") %>
+          <%= radio_button_tag(:busyness, "1", @coffee_shops_params[:busyness] == "1", class: "form-check-input") %>
+          <%= radio_button_tag(:busyness, "2", @coffee_shops_params[:busyness] == "2", class: "form-check-input") %>
+        </div>
+        <br>
+
+        <%= form.label :upload_speed, "Minimum upload speed:" %>
+        <br>
+        <%= form.number_field :upload_speed, value: "#{@coffee_shops_params[:upload_speed]}", class: 'form-control' %>
+
+
+        <div class="d-flex flex-row wrap">
+          <div class="margin-right-lg">
+            <%= form.label :serves_food, "Food" %>
+            <br>
+            <label class="switch">
+              <%= form.check_box :serves_food, checked: @coffee_shops_boolean_params[:serves_food]  == "1", class: 'form-control' %>
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <div class="margin-right-lg">
+            <%= form.label :air_conditioning, "Air con" %>
+            <br>
+            <label class="switch">
+              <%= form.check_box :air_conditioning, checked: @coffee_shops_boolean_params[:air_conditioning] == "1", class: 'form-control' %>
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+
+
+
+        <%= form.label :no_wifi_restrictions, "Filter out results with wifi restrictions:" %>
+        <br>
+        <label class="switch">
+          <%= form.check_box :no_wifi_restrictions, checked: @coffee_shops_boolean_params[:no_wifi_restrictions] == "1", class: "form-control" %>
+          <span class="slider round"></span>
+        </label>
+        <br>
+
+        <%= form.submit "Search", class: "btn btn-primary" %> -->
+<% end %>

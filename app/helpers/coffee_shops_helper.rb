@@ -14,4 +14,12 @@ module CoffeeShopsHelper
       "Unknown"
     end
   end
+
+  def distance_options
+    options_for_select([['1 Kilometer', 1], ['3 Kilometers', 3], ['5 Kilometers', 5]], ['10 Kilometers', 10])
+  end
+
+  def rating_options
+    options_for_select([['*', 0], ['**', 1], ['***', 3], ['****', 4], ['*****', 5]] )
+  end
 end
