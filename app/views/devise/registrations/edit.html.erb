@@ -1,36 +1,60 @@
-<div class="container">
-
-  <h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= f.error_notification %>
-
-    <div class="form-inputs">
-      <%= f.input :email, required: true, autofocus: true %>
-
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-      <% end %>
-
-      <%= f.input :password,
-                  hint: "leave it blank if you don't want to change it",
-                  required: false,
-                  input_html: { autocomplete: "new-password" } %>
-      <%= f.input :password_confirmation,
-                  required: false,
-                  input_html: { autocomplete: "new-password" } %>
-      <%= f.input :current_password,
-                  hint: "we need your current password to confirm your changes",
-                  required: true,
-                  input_html: { autocomplete: "current-password" } %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <h1 class="title">Edit <%= resource_name.to_s.humanize %></h1>
+          <div class="field">
+            <p class="control has-icons-left has-icons-right">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+              <span class="icon is-small is-right">
+                <i class="fas fa-check"></i>
+              </span>
+            </p>
+          </div>
+          <div class="field">
+            <p class="control has-icons-left">
+              <%= f.password_field :password, autocomplete: "new-password", class: "input", placeholder: "New password" %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </p>
+          </div>
+          <div class="field">
+            <p class="control has-icons-left">
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input", placeholder: "Confirm new password" %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </p>
+          <p class="help is-danger">Password validation</p>
+          </div>
+          <div class="field">
+            <p class="control has-icons-left">
+              <%= f.password_field :current_password, autocomplete: "current-password", class: "input", placeholder: "Current password" %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </p>
+            <p class="help is-danger">We need your current password to confirm your changes.</p>
+          </div>
+          <div class="field is-grouped">
+            <p class="control">
+              <%= f.submit "Save changes", class: "button is-primary" %>
+            </p>
+            <p class="control">
+              <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "button is-light is-danger" %>
+            </p>
+          </div>
+        </div>
+        <div class="column">
+          <!-- Second column -->
+        </div>
+      </div>
     </div>
-
-    <div class="form-actions">
-      <%= f.button :submit, "Save Changes", class: "btn-primary" %>
-    </div>
-  <% end %>
-
-  <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-  <%= link_to "Back", :back %>
-</div>
+  </section>
+<% end %>
