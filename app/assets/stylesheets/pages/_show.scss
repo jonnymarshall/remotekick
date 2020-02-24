@@ -36,7 +36,8 @@
   height: 1px;
 }
 
-.cover-image-gradient {
+// style 
+.hero-styles {
   top: 0;
   bottom: 0;
   left: 0;
@@ -54,8 +55,8 @@
 
 .review {
   width: 30%;
-  padding-left: $spacer;
-  padding-right: $spacer;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .review p {

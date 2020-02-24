@@ -1,0 +1,101 @@
+<div class="column is-one-third">
+  <%= form_with url: coffee_shops_path, local: true, method: :get do |form| %>
+  <!-- FILTER > LOCATION -->
+  <div class="field">
+    <p class="control has-icons-left">
+      <%= form.text_field :location, value: "#{searched_location(@coffee_shops_params[:location])}", class: "input" %>
+      <span class="icon is-small is-left">
+        <i class="fas fa-city"></i>
+      </span>
+    </p>
+  </div>
+  <!-- FILTER > DISTANCE -->
+  <div class="field">
+    <div class="control is-expanded has-icons-left">
+      <div class="select is-fullwidth">
+        <select><%= distance_options %></select>
+      </div>
+      <div class="icon is-small is-left">
+        <i class="fas fa-map-marker-alt"></i>
+      </div>
+    </div>
+  </div>
+  <!-- FILTER > RATING -->
+  <div class="field">
+    <div class="control">
+      <% 5.times do | i | %>
+        <%= radio_button_tag(:rating, "#{i}", @coffee_shops_params[:rating] == "#{i}") %>
+        <%= rating_options_with_styles(:rating) %>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- FILTER > PLUG SOCKETS -->
+  <div class="field">
+    <label class="label">Plug sockets</label>
+    <div class="control">
+      <%= radio_button_tag(:plug_sockets, "0", @coffee_shops_params[:plug_sockets] == "0") %>
+      <%= feature_rating_options(:plug_sockets, 0) %>
+      <%= radio_button_tag(:plug_sockets, "1", @coffee_shops_params[:plug_sockets] == "1") %>
+      <%= feature_rating_options(:plug_sockets, 1) %>
+      <%= radio_button_tag(:plug_sockets, "2", @coffee_shops_params[:plug_sockets] == "2") %>
+      <%= feature_rating_options(:plug_sockets, 2) %>
+    </div>
+  </div>
+
+  <!-- FILTER > COMFORT -->
+  <div class="field">
+    <label class="label">Comfort</label>
+    <div class="control">
+      <%= radio_button_tag(:comfort, "0", @coffee_shops_params[:comfort] == "0") %>
+      <%= feature_rating_options(:comfort, 0) %>
+      <%= radio_button_tag(:comfort, "1", @coffee_shops_params[:comfort] == "1") %>
+      <%= feature_rating_options(:comfort, 1) %>
+      <%= radio_button_tag(:comfort, "2", @coffee_shops_params[:comfort] == "2") %>
+      <%= feature_rating_options(:comfort, 2) %>
+    </div>
+  </div>
+
+  <!-- FILTER > BUSYNESS -->
+  <div class="field">
+    <label class="label">Busyness</label>
+    <div class="control">
+      <%= radio_button_tag(:busyness, "0", @coffee_shops_params[:busyness] == "0") %>
+      <%= feature_rating_options(:busyness, 0) %>
+      <%= radio_button_tag(:busyness, "1", @coffee_shops_params[:busyness] == "1") %>
+      <%= feature_rating_options(:busyness, 1) %>
+      <%= radio_button_tag(:busyness, "2", @coffee_shops_params[:busyness] == "2") %>
+      <%= feature_rating_options(:busyness, 2) %>
+    </div>
+  </div>
+
+  <label class="label">Tags</label>
+  <div class="tags">
+    <span class="tag">
+      Serves Food
+      <button class="delete is-small"></button>
+    </span>
+    <span class="tag">
+      Open late
+      <button class="delete is-small"></button>
+    </span>
+  </div>
+
+  <!-- FILTER > WIFI RESTRICTIONS -->
+  <div class="field">
+    <label class="checkbox">
+      <%= form.check_box :no_wifi_restrictions, checked: @coffee_shops_boolean_params[:no_wifi_restrictions] == "1" %>
+      Filter out results with wifi restrictions
+    </label>
+  </div>
+
+  <div class="field is-grouped">
+    <p class="control">
+      <%= form.submit "Search", class: "button is-primary" %>
+    </p>
+    <p class="control">
+      <%= link_to "Clear all", coffee_shops_path, :class => "button is-light" %>
+    </p>
+  </div>
+  <% end %>
+</div>

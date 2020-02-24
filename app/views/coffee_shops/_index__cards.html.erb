@@ -1,0 +1,77 @@
+<div id="c-card" class="column is-one-third has-text-centered">
+  <%= link_to coffee_shop_path(coffee_shop), data: { id: "#{coffee_shop.id}"} do %>
+  <section id="c-card__image" class="hero is-primary" style="<%= coffee_shop.decorate.gradient %>, <%= coffee_shop.decorate.hero_image_url %>">
+    <div class="hero-body u-maxheight-170px">
+      <div class="container">
+        <h1 class="title is-6">
+          <%= coffee_shop.name %>
+        </h1>
+        <h1 class="subtitle is-6">
+          Venue type
+        </h1>
+        <h1 class="subtitle is-6">
+          Wifi Info
+        </h1>
+      </div>
+    </div>
+  </section>
+  <div id="c-card__description" class="notification u-maxheight-170px">
+    <h1 class="subtitle is-6"><%= coffee_shop.description %></p>
+    <i class="fas fa-star dark-gray"></i>
+    <i class="fas fa-star dark-gray"></i>
+    <i class="fas fa-star dark-gray"></i>
+    <i class="fas fa-star dark-gray"></i>
+    <i class="fas fa-star dark-gray"></i>
+  </div>
+  <% end %>
+</div>
+<!-- 
+  <div class="index-card margin-right-xl margin-bottom-xl" id="<%="#{"coffeeshopid"}" %>">
+    <div class="card-photo-section relative-element" style="background-color:#F1F1F1;">
+      <div class="cards-photo-gradient absolute-element"></div>
+        <div class="card-photo-overlay absolute-element padding-left-right padding-top-bottom">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h6>
+                <i class="fa fa-wifi text-primary" aria-hidden="true"></i>
+                  <strong>Wifi speed unknown</strong>
+              </h6>
+            </div>
+            <div class="d-flex justify-content-between">
+              <i class="fas fa-map-marker-alt padding-right-sm"></i>
+              <p>X kilometers away</p>
+            </div>
+          </div>
+        </div>
+
+          <%= image_tag ("petr-sevcovic-594807-unsplash.jpg"), :class => "card-photo" %>
+      </div>
+    <div class="row no-gutters">
+      <div class="col">
+        <div class="padding-top padding-left-right">
+          <h6><strong>Name</strong></h6>
+        </div>
+      </div>
+    </div>
+    <div class="row no-gutters">
+      <div class="col">
+        <div class="card-description padding-top-bottom-sm padding-left-right">
+          <p>Desc</p>
+        </div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="d-flex padding-left-right justify-content-between align-items-center">
+      <h5><i class="fas fa-dollar-sign dark-gray"></i></h5>
+      <div class="d-flex padding-top-bottom-sm align-items-end">
+        <div class="padding-right-sm">
+          <i class="fas fa-star dark-gray"></i>
+          <i class="fas fa-star dark-gray"></i>
+          <i class="fas fa-star dark-gray"></i>
+          <i class="fas fa-star dark-gray"></i>
+          <i class="fas fa-star dark-gray"></i>
+        </div>
+        <p>CoffeeShop.reviews.count???</p>
+      </div>
+    </div>
+  </div> -->

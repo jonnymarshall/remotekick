@@ -1,9 +1,10 @@
 class CoffeeShopsController < ApplicationController
-  before_action :set_coffee_shop, only: [:show, :edit, :update, :destroy]
-  before_action :coffee_shop_params, only: [:index]
+  before_action :set_coffee_shop, only: [:edit, :show, :update, :destroy]
+  before_action :coffee_shops_params, only: [:index]
   before_action :new_coffee_shop_params, only: [:create]
-  before_action :authenticate_user!, except: [:index, :show, :test_page]
-  # has_scope :address
+  before_action :authenticate_user!, except: [:index, :show]
+  # @coffee_shop should be called as coffee_shop for decorated instance in views
+  decorates_assigned :coffee_shop
   has_scope :location
   has_scope :rating
   has_scope :upload_speed
@@ -11,7 +12,6 @@ class CoffeeShopsController < ApplicationController
   has_scope :serves_food, type: :boolean
   has_scope :serves_smoothies, type: :boolean
   has_scope :air_conditioning, type: :boolean
-  # has_scope :wifi_restrictions, type: :integer
   has_scope :no_wifi_restrictions
   has_scope :comfort
   has_scope :busyness
@@ -19,12 +19,11 @@ class CoffeeShopsController < ApplicationController
 
   def index
     @coffee_shops = apply_scopes(CoffeeShop).all
-    # raise
-    if coffee_shop_params[:location]
-      @coffee_shops = @coffee_shops.near(coffee_shop_params[:location])
+    if coffee_shops_params[:location]
+      @coffee_shops = @coffee_shops.near(coffee_shops_params[:location])
     end
-    @coffee_shop_params = coffee_shop_params
-    @coffee_shop_boolean_params = coffee_shop_boolean_params
+    @coffee_shops_params = coffee_shops_params
+    @coffee_shops_boolean_params = coffee_shops_boolean_params
     @markers = []
 
     @coffee_shops.each do |coffee_shop|
@@ -74,17 +73,6 @@ class CoffeeShopsController < ApplicationController
     redirect_to coffee_shop_path(@coffee_shop)
   end
 
-  def test_page
-    @markers = []
-
-    CoffeeShop.all.each do |coffee_shop|
-      @markers << {
-        lat: coffee_shop.latitude,
-        lng: coffee_shop.longitude
-      }
-    end
-  end
-
   def autocomplete_response
     # redirect_to: autocomplete_data...
     # @@data = File.read("/assets/data/autocomplete_data.json")
@@ -98,17 +86,15 @@ class CoffeeShopsController < ApplicationController
   # end
 
   # def update
-  #   @coffee_shop = CoffeeShop.find(params[:id])
   #   @coffee_shop.update(coffee_shop_params)
   # end
 
   # def destroy
-  #   @coffee_shop = CoffeeShop.find(params[:id])
   #   @coffee_shop.destroy
   #   redirect_to coffee_shops_path
   # end
+
   def venue_search
-    # byebug
     search = venue_search_params[:query]
     location = "bali"
     url = foursquare_api(location, search)
@@ -124,9 +110,7 @@ class CoffeeShopsController < ApplicationController
     @coffee_shop = CoffeeShop.find(params[:id])
   end
 
-  def coffee_shop_params
-    # *Strong params*: You need to *whitelist* what can be updated by the user
-    # Never trust user data!
+  def coffee_shops_params
     params.permit(:location, :rating, :upload_speed, :comfort, :plug_sockets, :busyness)
   end
 
@@ -146,7 +130,7 @@ class CoffeeShopsController < ApplicationController
       )
   end
 
-  def coffee_shop_boolean_params
+  def coffee_shops_boolean_params
     params.permit(
       :serves_food,
       :serves_smoothies,
@@ -161,18 +145,6 @@ class CoffeeShopsController < ApplicationController
     # params.require([:coffee_shop, :opening_hour]).permit(:day, :open, :close)
     params.require(:coffee_shop).permit(opening_hour: [:day, :open, :close])
   end
-
-  # def convert_to_boolean(coffee_shop_boolean_params, boolean_params = [])
-  #   # make array of params to iterate
-  #   boolean_params << coffee_shop_boolean_params[:serves_food]
-  #   boolean_params << coffee_shop_boolean_params[:serves_smoothies]
-  #   boolean_params << coffee_shop_boolean_params[:air_conditioning]
-  #   boolean_params << coffee_shop_boolean_params[:serves_plant_milk]
-  #   # assign boolean value based on integer value
-  #   boolean_params.each do |boolean_param|
-  #     boolean_param
-  #   end
-  # end
 
   def reverse_checkbox_value(value)
     value.to_i.positive? ? 0 : 1

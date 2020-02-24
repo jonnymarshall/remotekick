@@ -1,0 +1,35 @@
+<!--CHECKS TO SEE IF PAGE IS HOMEPAGE AS DEFINED IN PAGES_CONTROLLER#HOME-->
+<% if @current_page == "/" %>
+  <!--DISPLAYS TRANSPARENT c-navbar BY ID-->
+  <div class="c-navbar c-navbar-expand-sm c-navbar-light" id="c-navbar-lewagon-transparent">
+<% else %>
+  <!--DISPLAYS NON-TRANSPARENT c-navbar BY ID-->
+  <div class="c-navbar c-navbar-expand-sm c-navbar-light" id="c-navbar-lewagon">
+<% end %>
+    <%= link_to "/", class: "c-navbar-brand" do %>
+      <%= image_tag "https://image.flaticon.com/icons/png/512/63/63842.png" %>
+    <% end %>
+
+    <button class="c-navbar-toggler" type="button" data-toggle="collapse" data-target="#c-navbarSupportedContent" aria-controls="c-navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="c-navbar-toggler-icon"></span>
+    </button>
+
+
+    <div class="collapse c-navbar-collapse" id="c-navbarSupportedContent">
+      <ul class="c-navbar-nav mr-auto">
+        <% if user_signed_in? %>
+            <%= link_to "Add a new listing", new_coffee_shop_path, id: "new_coffee_shop_link", class: "nav-link" %>
+            <%= link_to "Dashboard", "#", class: "nav-link" %>
+            <%= link_to "Account Settings", edit_user_registration_path, class: "nav-link" %>
+            <%= link_to "Log Out", destroy_user_session_path, class: "nav-link", method: :delete %>
+        <% else %>
+            <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
+            <%= link_to "Log In", new_user_session_path, class: "nav-link" %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  
+  <!--CHECKS TO SEE IF PAGE IS HOMEPAGE AS DEFINED IN PAGES_CONTROLLER#HOME-->
+  

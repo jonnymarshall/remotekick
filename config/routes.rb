@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
+  # DEVELOPMENT
+  get 'development/development_bulma', to: 'development#development_bulma'
+  get 'development/development_home', to: 'development#development_home'
+  get 'development/development_index', to: 'development#development_index'
+  get 'development/development_show', to: 'development#development_show'
+  get 'development/development_reviews_new', to: 'development#development_reviews_new'
+
   get 'coffee_shops/new/venue_search', to: 'coffee_shops#venue_search'
-  get 'coffee_shops/test_page', to: 'coffee_shops#test_page'
   get 'coffee_shops/autocomplete_response', to: 'coffee_shops#autocomplete_response'
+
   devise_for :users
   root to: 'pages#home'
   resources :coffee_shops, only: [:index, :show, :new, :create] do

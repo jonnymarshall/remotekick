@@ -1,156 +1,22 @@
-<div class="container">
-  <div class="row margin-top-xl">
-    <div class="col-3">
-      <%= form_with url: coffee_shops_path, local: true, method: :get, class: "form-group col-xs-6" do |form| %>
-        <%= form.label :location %>:
-        <%= form.text_field :location, value: "#{@coffee_shop_params[:location]}", class: "form-control", id: "autoComplete" %>
-
-        <%= form.label :rating, "Minimum rating:" %>
-
-        <div id="test-page">
-          <ul>
-            <li>
-              <%= radio_button_tag(:rating, "1", @coffee_shop_params[:rating] == "1", name: "rating", id: "rating-1") %>
-              <label for="rating-1">Rate 1 star</label>
-            </li>
-            <li>
-              <%= radio_button_tag(:rating, "2", @coffee_shop_params[:rating] == "2", name: "rating", id: "rating-2") %>
-              <label for="rating-2">Rate 2 stars</label>
-            </li>
-            <li>
-              <%= radio_button_tag(:rating, "3", @coffee_shop_params[:rating] == "3", name: "rating", id: "rating-3") %>
-              <label for="rating-3">Rate 3 stars</label>
-            </li>
-            <li>
-              <%= radio_button_tag(:rating, "4", @coffee_shop_params[:rating] == "4", name: "rating", id: "rating-4") %>
-              <label for="rating-4">Rate 4 stars</label>
-            </li>
-            <li>
-              <%= radio_button_tag(:rating, "5", @coffee_shop_params[:rating] == "5", name: "rating", id: "rating-5") %>
-              <label for="rating-5">Rate 5 stars</label>
-            </li>
-          </ul>
-        </div>
-
-        <%= form.label :price, "Price:" %>
-        <div class="radio-tile-group">
-          <div class="input-container">
-            <input id="walk" class="radio-button" type="radio" name="radio" />
-            <div class="radio-tile">
-              <div class="icon dollar-icon">
-                <i class="fas fa-dollar-sign"></i>
-              </div>
+<%= render 'index__info_bar' %>
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <!-- FILTERS -->
+      <%= render 'index__filters' %>
+      <div class="column has-text-centered">
+        <%= render 'index__map' %>
+        <section class="section u-padding-lr-0px">
+          <div class="container">
+            <div class="columns is-multiline">
+            <% @coffee_shops.each do |coffee_shop| %>
+              <%= render partial: "index__cards", locals: { coffee_shop: coffee_shop } %>
+            <% end %>
             </div>
           </div>
-
-          <div class="input-container">
-            <input id="bike" class="radio-button" type="radio" name="radio" />
-            <div class="radio-tile">
-              <div class="icon dollar-icon">
-                <i class="fas fa-dollar-sign"></i>
-                <i class="fas fa-dollar-sign"></i>
-              </div>
-            </div>
-          </div>
-
-          <div class="input-container">
-            <input id="drive" class="radio-button" type="radio" name="radio" />
-            <div class="radio-tile">
-              <div class="icon dollar-icon">
-                <i class="fas fa-dollar-sign"></i>
-                <i class="fas fa-dollar-sign"></i>
-                <i class="fas fa-dollar-sign"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <%= form.label :plug_sockets %>:
-        <br>
-        <div class="form-check form-check-inline">
-          <%= radio_button_tag(:plug_sockets, "0", @coffee_shop_params[:plug_sockets] == "0", class: "form-check-input") %>
-          <%= radio_button_tag(:plug_sockets, "1", @coffee_shop_params[:plug_sockets] == "1", class: "form-check-input") %>
-          <%= radio_button_tag(:plug_sockets, "2", @coffee_shop_params[:plug_sockets] == "2", class: "form-check-input") %>
-        </div>
-        <br>
-
-        <%= form.label :comfort %>:
-        <br>
-        <div class="form-check form-check-inline">
-          <%= radio_button_tag(:comfort, "0", @coffee_shop_params[:comfort] == "0", class: "form-check-input") %>
-          <%= radio_button_tag(:comfort, "1", @coffee_shop_params[:comfort] == "1", class: "form-check-input") %>
-          <%= radio_button_tag(:comfort, "2", @coffee_shop_params[:comfort] == "2", class: "form-check-input") %>
-        </div>
-        <br>
-
-        <%= form.label :busyness %>:
-        <br>
-        <div class="form-check form-check-inline">
-          <%= radio_button_tag(:busyness, "0", @coffee_shop_params[:busyness] == "0", class: "form-check-input") %>
-          <%= radio_button_tag(:busyness, "1", @coffee_shop_params[:busyness] == "1", class: "form-check-input") %>
-          <%= radio_button_tag(:busyness, "2", @coffee_shop_params[:busyness] == "2", class: "form-check-input") %>
-        </div>
-        <br>
-
-        <%= form.label :upload_speed, "Minimum upload speed:" %>
-        <br>
-        <%= form.number_field :upload_speed, value: "#{@coffee_shop_params[:upload_speed]}", class: 'form-control' %>
-
-
-        <div class="d-flex flex-row wrap">
-          <div class="margin-right-lg">
-            <%= form.label :serves_food, "Food" %>
-            <br>
-            <label class="switch">
-              <%= form.check_box :serves_food, checked: @coffee_shop_boolean_params[:serves_food]  == "1", class: 'form-control' %>
-              <span class="slider round"></span>
-            </label>
-          </div>
-          <div class="margin-right-lg">
-            <%= form.label :air_conditioning, "Air con" %>
-            <br>
-            <label class="switch">
-              <%= form.check_box :air_conditioning, checked: @coffee_shop_boolean_params[:air_conditioning] == "1", class: 'form-control' %>
-              <span class="slider round"></span>
-            </label>
-          </div>
-        </div>
-
-
-
-        <%= form.label :no_wifi_restrictions, "Filter out results with wifi restrictions:" %>
-        <br>
-        <label class="switch">
-          <%= form.check_box :no_wifi_restrictions, checked: @coffee_shop_boolean_params[:no_wifi_restrictions] == "1", class: "form-control" %>
-          <span class="slider round"></span>
-        </label>
-        <br>
-
-        <%= form.submit "Search", class: "btn btn-primary" %>
-      <% end %>
-
-      <%= link_to coffee_shops_path do %>
-        <div class="btn btn-secondary">Clear filters</div>
-      <% end %>
-
-    </div>
-
-    <div class="col-9">
-      <h5> Displaying <%= @coffee_shops.count(:all) %> coffee shops</h5>
-      <br>
-      <div
-        id="map"
-        data-markers="<%= @markers.to_json %>"
-        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-      ></div>
-      <br>
-      <div class="d-flex flex-row wrap">
-        <% if @coffee_shops%>
-          <%= render 'shared/cards' %>
-        <% end %>
+        </section>
       </div>
     </div>
   </div>
-</div>
-
+</section>
+<%= render 'index__pagination' %>

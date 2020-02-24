@@ -4,6 +4,7 @@ console.log('Hello world from application.js.erb');
 import { venueAutofill } from "../components/venue_autofill.js.erb";
 import { runAutoComplete } from "../components/autocomplete.js";
 import { runMapBox } from "../components/mapbox.js";
+import { navbarHamburger } from "../components/navbarHamburger.js";
 // import { venueAutofillTimeout } from "../components/venue_autofill_timeout.js.erb";
 
 if (document.getElementById("venueNameInput")){
@@ -23,3 +24,6 @@ if (document.getElementById("map")){
 }
 
 // venueAutofillTimeout();
+
+// NavbarHamburger
+navbarHamburger();
