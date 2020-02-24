@@ -54,8 +54,19 @@
   line-height: 15px;
 }
 
+#c-card {
+  min-width: 300px;
+}
+
+
 #c-card__description {
+  height: 170px;
+  border-radius: 0px 0px 15px 15px;
   &:hover {
     background: linear-gradient(#E7E7E7, #F1F1F1);
   }
+}
+
+#c-card__image {
+  border-radius: 15px 15px 0px 0px;
 }

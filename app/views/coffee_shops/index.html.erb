@@ -9,7 +9,9 @@
         <section class="section u-padding-lr-0px">
           <div class="container">
             <div class="columns is-multiline">
-              <%= render 'index__cards' %>
+            <% @coffee_shops.each do |coffee_shop| %>
+              <%= render partial: "index__cards", locals: { coffee_shop: coffee_shop } %>
+            <% end %>
             </div>
           </div>
         </section>

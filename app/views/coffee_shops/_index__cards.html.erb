@@ -1,32 +1,30 @@
-<% @coffee_shops.each do |coffee_shop| %>
-  <div id="<%="coffee_shop_#{coffee_shop.id}" %>" class="column is-one-third has-text-centered">
-    <%= link_to coffee_shop_path(coffee_shop) do %>
-    <section class="hero is-primary" style="<%= coffee_shop.decorate.gradient %>, <%= coffee_shop.decorate.hero_image_url %>">
-      <div class="hero-body u-maxheight-170px">
-        <div class="container">
-          <h1 class="title is-6">
-            Primary title
-          </h1>
-          <h1 class="subtitle is-6">
-            Venue type
-          </h1>
-          <h1 class="subtitle is-6">
-            Wifi Info
-          </h1>
-        </div>
+<div id="c-card" class="column is-one-third has-text-centered">
+  <%= link_to coffee_shop_path(coffee_shop), data: { id: "#{coffee_shop.id}"} do %>
+  <section id="c-card__image" class="hero is-primary" style="<%= coffee_shop.decorate.gradient %>, <%= coffee_shop.decorate.hero_image_url %>">
+    <div class="hero-body u-maxheight-170px">
+      <div class="container">
+        <h1 class="title is-6">
+          <%= coffee_shop.name %>
+        </h1>
+        <h1 class="subtitle is-6">
+          Venue type
+        </h1>
+        <h1 class="subtitle is-6">
+          Wifi Info
+        </h1>
       </div>
-    </section>
-    <div id="c-card__description" class="notification u-maxheight-170px">
-      <h1 class="subtitle is-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum dolor.</p>
-      <i class="fas fa-star dark-gray"></i>
-      <i class="fas fa-star dark-gray"></i>
-      <i class="fas fa-star dark-gray"></i>
-      <i class="fas fa-star dark-gray"></i>
-      <i class="fas fa-star dark-gray"></i>
     </div>
-    <% end %>
+  </section>
+  <div id="c-card__description" class="notification u-maxheight-170px">
+    <h1 class="subtitle is-6"><%= coffee_shop.description %></p>
+    <i class="fas fa-star dark-gray"></i>
+    <i class="fas fa-star dark-gray"></i>
+    <i class="fas fa-star dark-gray"></i>
+    <i class="fas fa-star dark-gray"></i>
+    <i class="fas fa-star dark-gray"></i>
   </div>
-<% end %>
+  <% end %>
+</div>
 <!-- 
   <div class="index-card margin-right-xl margin-bottom-xl" id="<%="#{"coffeeshopid"}" %>">
     <div class="card-photo-section relative-element" style="background-color:#F1F1F1;">
