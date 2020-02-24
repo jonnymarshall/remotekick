@@ -1,6 +1,5 @@
 class CoffeeShopsController < ApplicationController
-  include CoffeeShopsHelper
-  before_action :set_coffee_shop, only: [:edit, :update, :destroy, :show]
+  before_action :set_coffee_shop, only: [:edit, :show, :update, :destroy]
   before_action :coffee_shops_params, only: [:index]
   before_action :new_coffee_shop_params, only: [:create]
   before_action :authenticate_user!, except: [:index, :show]
@@ -20,7 +19,6 @@ class CoffeeShopsController < ApplicationController
 
   def index
     @coffee_shops = apply_scopes(CoffeeShop).all
-    # raise
     if coffee_shops_params[:location]
       @coffee_shops = @coffee_shops.near(coffee_shops_params[:location])
     end
@@ -92,12 +90,11 @@ class CoffeeShopsController < ApplicationController
   # end
 
   # def destroy
-  #   @coffee_shop = CoffeeShop.find(params[:id])
   #   @coffee_shop.destroy
   #   redirect_to coffee_shops_path
   # end
+
   def venue_search
-    # byebug
     search = venue_search_params[:query]
     location = "bali"
     url = foursquare_api(location, search)
@@ -111,10 +108,6 @@ class CoffeeShopsController < ApplicationController
 
   def set_coffee_shop
     @coffee_shop = CoffeeShop.find(params[:id])
-  end
-
-  def set_coffee_shop_decorated
-    @coffee_shop = CoffeeShop.find(params[:id]).decorate
   end
 
   def coffee_shops_params

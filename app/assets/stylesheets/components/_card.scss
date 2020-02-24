@@ -53,3 +53,9 @@
   height: 40px;
   line-height: 15px;
 }
+
+#c-card__description {
+  &:hover {
+    background: linear-gradient(#E7E7E7, #F1F1F1);
+  }
+}
