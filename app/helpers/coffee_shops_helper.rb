@@ -1,5 +1,5 @@
 module CoffeeShopsHelper
-  
+
   def searched_location(location)
     if location
       location.capitalize
@@ -8,19 +8,19 @@ module CoffeeShopsHelper
     end
   end
 
-  def average_wifi_speed(coffee_shops, average_speed = [])
-    if coffee_shops
-      coffee_shops.each do |coffee_shop|
-        puts "coffee shop: #{coffee_shop.name} speed: #{coffee_shop.upload_speed}"
+  def average_wifi_speed(location, average_speed = [])
+    if location
+      full_results_for_location(location).each do |coffee_shop|
         average_speed << coffee_shop.upload_speed if !coffee_shop.upload_speed.nil?
       end
-      puts "average_speed = #{average_speed}"
-      puts "average_speed.sum = #{average_speed.sum}"
-      puts "average_speed.length = #{average_speed.length}"
       (average_speed.sum / average_speed.length).round(2)
     else
       "Unknown"
     end
+  end
+
+  def total_listings_count(location)
+    full_results_for_location(location).count(:all)
   end
 
   def distance_options
@@ -55,5 +55,9 @@ module CoffeeShopsHelper
     when 2
       "smile"
     end
+  end
+
+  def full_results_for_location(location)
+    CoffeeShop.near("#{location}")
   end
 end
