@@ -1,36 +1,22 @@
 <section class="section">
   <div class="container">
     <nav class="level">
-      <div class="level-item">
+      <div class="level-item has-text-centered">
         <div>
           <p class="heading">Location</p>
           <p class="title"><%= searched_location(@coffee_shops_params[:location]) %></p>
         </div>
       </div>
-      <div class="level-item">
+      <div class="level-item has-text-centered">
         <div>
           <p class="heading">Average Wifi Speed</p>
-          <p class="title"><%= average_wifi_speed(@coffee_shops_params[:location]) %></p>
+          <p class="title"><%= average_wifi_speed(@coffee_shops_params[:location]) %> Mbps</p>
         </div>
       </div>
       <div class="level-item has-text-centered">
         <div>
           <p class="heading">Listings on RemoteKick</p>
-          <p class="title"><%= @coffee_shops.count(:all) %></p>
-        </div>
-      </div>
-      <div class="level-item has-text-centered">
-        <div class="field">
-          <div class="control">
-            <div class="select is-primary">
-              <select>
-                <option>Top rated</option>
-                <option>Distance</option>
-                <option>Wifi Speed</option>
-                <option>Price</option>
-              </select>
-            </div>
-          </div>
+          <p class="title"><%= total_listings_count(@coffee_shops_params[:location]) %></p>
         </div>
       </div>
     </nav>

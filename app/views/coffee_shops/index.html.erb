@@ -7,7 +7,35 @@
       <div class="column has-text-centered">
         <%= render 'index__map' %>
         <section class="section u-padding-lr-0px">
-          <div class="container">
+          <div class="container">            
+
+            <nav class="level is-mobile">
+              <div class="level-left">
+                <div class="level-item has-text-left">
+                  <div>
+                    <p class="heading">Displaying</p>
+                    <p class="title is-5"><%= @coffee_shops.count(:all) %> listings</p>
+                  </div>
+                </div>
+              </div>
+              <div class="level-right">
+                <div class="level-item has-text-right">
+                  <div class="field">
+                    <div class="control">
+                      <div class="select is-primary">
+                        <select>
+                          <option>Top rated</option>
+                          <option>Distance</option>
+                          <option>Wifi Speed</option>
+                          <option>Price</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </nav>
+
             <div class="columns is-multiline">
             <% @coffee_shops.each do |coffee_shop| %>
               <%= render partial: "index__cards", locals: { coffee_shop: coffee_shop } %>
