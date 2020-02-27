@@ -1,86 +1,97 @@
-<div class="container">
-  <%= form_with model: @coffee_shop, local: true, method: :post do |field| %>
+<%= form_with model: @coffee_shop, local: true, method: :post do |field| %>
+<section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <h1 class="title">Add a new venue</h1>
+          <div class="field">
+            <p class="control has-icons-left has-icons-right">
+              <%= field.text_field :name, autofocus: true, class: "input", id: 'venueNameInput', placeholder: "Search for a venue" %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-store-alt"></i>
+              </span>
+            </p>
+            <!-- <div><a class="input">Somtesxt</a></div> -->
+            <div id="myDropdown" class="dropdown-content">
+            </div>
+            
 
-    <div class="form-row">
-      <div class="form-group col-md-6 dropdown">
-        <%= field.label :name %>:
-        <%= field.text_field :name, required:true, class: 'form-control', id: 'venueNameInput', placeholder: "Search..." %>
-        <div id="myDropdown" class="dropdown-content invisible">
-        </div>
-      </div>
-    </div>
+          </div>
+          <div class="field">
+            <p class="control has-icons-left">
+              <%= field.text_field :description, class: "input", id: 'description', placeholder: "Description" %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-info-circle"></i>
+              </span>
+            </p>
+          </div>
+          <div class="field">
+            <p class="control has-icons-left">
+              <%= field.text_field :address, class: "input", id: 'address', placeholder: "Address" %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-city"></i>
+              </span>
+            </p>
+          </div>
+          <div class="field">
+            <div class="control">
+              <label class="checkbox">
+                <%= field.check_box :serves_food  %>
+                Serves food
+              </label>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Wifi restrictions</label>
+            <div class="control is-expanded has-icons-left">
+              <div class="select is-fullwidth">
+                <select>
+                  <%= options_for_select([['1 Hour', 1], ['2 Hours', 2], ['3 Hours', 3]], ['4 Hours', 4]) %>
+                </select>
+              </div>
+              <div class="icon is-small is-left">
+                <i class="fas fa-stopwatch"></i>
+              </div>
+            </div>
+          </div>
 
- <!--    <input type="text"/>
-    <div class="output">Type to start</div> -->
 
-    <div class="form-row">
-      <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= field.label :description %>:
-        <%= field.text_field :description, id: 'description', class: 'form-control' %><br />
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= field.label :address %>:
-        <%= field.text_field :address, id: 'address', class: 'form-control' %><br />
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= field.label :serves_plant_milk %>:
-        <%= field.check_box :serves_plant_milk, as: :boolean, class: 'form-control' %><br />
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= field.label :serves_smoothies %>:
-        <%= field.check_box :serves_smoothies, as: :boolean, class: 'form-control' %><br />
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= field.label :serves_food %>:
-        <%= field.check_box :serves_food, as: :boolean, class: 'form-control' %><br />
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= field.label :air_conditioning %>:
-        <%= field.check_box :air_conditioning, as: :boolean, class: 'form-control' %><br />
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6" style="margin-top:15px;">
-        <%= field.label :wifi_restrictions %>:
-        <%= field.number_field :wifi_restrictions, class: 'form-control' %><br />
-      </div>
-    </div>
-
-    <div id="opening-hours">
-      <%= field.label :opening_hours %>
-      <% @opening_hours.each_with_index do |opening_hour, i| %>
-        <div class="form-row">
-          <div class="form-group col-md-6" style="margin-top:15px;">
-            <%= field. fields_for 'opening_hour[]', opening_hour do |f| %>
-              <%= f.label :day, "#{@weekdays[i]}" %>
-              <%= f.hidden_field :day, value: "#{i}" %><br />
-              <%= f.label :opens %>
-              <%= f.text_field :open, value: "00:00:00" %>
-              <%= f.label :closes %>
-              <%= f.text_field :close, value: "00:00:00" %>
+          <div id="opening-hours">
+            <%= field.label :opening_hours %>
+            <% @opening_hours.each_with_index do |opening_hour, i| %>
+              <div class="form-row">
+                <div class="form-group col-md-6" style="margin-top:15px;">
+                  <%= field. fields_for 'opening_hour[]', opening_hour do |f| %>
+                    <%= field.label :day, "#{@weekdays[i]}" %>
+                    <%= field.hidden_field :day, value: "#{i}" %><br />
+                    <%= field.label :opens %>
+                    <%= field.text_field :open, value: "00:00:00" %>
+                    <%= field.label :closes %>
+                    <%= field.text_field :close, value: "00:00:00" %>
+                  <% end %>
+                </div>
+              </div>
             <% end %>
           </div>
+
+          
+          <%= field.hidden_field :longitude, id: 'longitude' %>
+          <%= field.hidden_field :latitude, id: 'latitude' %>
+          <%= field.hidden_field :foursquare_id, id: 'fourSquareId' %>
+          <div class="field is-grouped">
+            <p class="control">
+              <%= field.submit "Submit new listing", class: "button is-primary" %>
+            </p>
+            <p class="control">
+              <%= link_to "Back", :back, class: "button is-light is-light" %>
+            </p>
+          </div>
         </div>
-      <% end %>
+        <div class="column">
+          <ul id="resultsList"></ul>
+          <div id="venue_search_path" class="vanish" value="<%= @venue_search_path %>"></div>
+        </div>
+      </div>
     </div>
-
-    <%= field.hidden_field :longitude, id: 'longitude' %>
-    <%= field.hidden_field :latitude, id: 'latitude' %>
-    <%= field.hidden_field :foursquare_id, id: 'fourSquareId' %>
-
-    <%= field.submit "Submit new listing", { class: "btn-primary" } %>
+  </section>
   <% end %>
-
-  <ul id="resultsList"></ul>
-</div>
-<div id="venue_search_path" class="vanish" value="<%= @venue_search_path %>"></div>

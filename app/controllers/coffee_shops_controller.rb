@@ -65,10 +65,12 @@ class CoffeeShopsController < ApplicationController
     @opening_hour_set.save!
 
     # save all opening_hours and assign to opening_hour_set
-    opening_hours_params[:opening_hour].each do |hours|
-      new_opening_hours = OpeningHour.new(hours)
-      new_opening_hours.opening_hour_set = @opening_hour_set
-      new_opening_hours.save!
+    unless opening_hours_params.empty?
+      opening_hours_params[:opening_hour].each do |hours|
+        new_opening_hours = OpeningHour.new(hours)
+        new_opening_hours.opening_hour_set = @opening_hour_set
+        new_opening_hours.save!
+      end
     end
     redirect_to coffee_shop_path(@coffee_shop)
   end
@@ -96,7 +98,7 @@ class CoffeeShopsController < ApplicationController
 
   def venue_search
     search = venue_search_params[:query]
-    location = "bali"
+    location = "melbourne"
     url = foursquare_api(location, search)
     response = open(url).read
     @response_json = JSON.parse(response)
