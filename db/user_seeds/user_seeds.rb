@@ -4,7 +4,7 @@ def create_user_seeds
     {
       first_name: 'Jonny',
       last_name:  'Marshall',
-      email: 'jm@wifiwarriors.io',
+      email: 'jonny@remotekick.com',
       password: "coffee",
     },
   ]

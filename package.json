@@ -1,5 +1,5 @@
 {
-  "name": "wifiwarriors",
+  "name": "remotekick",
   "private": true,
   "dependencies": {
     "@rails/webpacker": "^4.0.7",
