@@ -46,7 +46,7 @@ const venueAutofill = () => {
         console.log("there's your data BRO");
         // Generate html list
         data.response.venues.forEach((venue) => {
-          dropdown.insertAdjacentHTML("afterbegin", `<li class="list-group-item" id=${venue.id}>${venue.name}</li>`);
+          dropdown.insertAdjacentHTML("afterbegin", `<li class="input" id=${venue.id}>${venue.name}</li>`);
         });
         // list item highlighting
         const listItems = document.querySelectorAll("li");
@@ -62,6 +62,7 @@ const venueAutofill = () => {
         // list item selection
         listItems.forEach((listItem) => {
           listItem.addEventListener("click", (click) => {
+            
             // Get the FourSquare id from the <li>
             let clickedListItemId = listItem.id;
             // Reassign searchQuery to be the name of the selected venue
@@ -69,7 +70,7 @@ const venueAutofill = () => {
             // Make the value attribute of venueNameInput field to be the same as the venue
             venueNameInput.value = searchQuery;
             // Kill the venue results list
-            myDropdown.classList.add("invisible");
+            myDropdown.classList.add("is-invisible");
             // Check the clickedListItemId against the venue results to rematch object
             data.response.venues.forEach((venue) => {
               if (clickedListItemId == venue.id){
