@@ -32,18 +32,20 @@ def update_coffee_shop_values
     serves_smoothies: update_boolean_value("serves_smoothies", serves_smoothies),
     air_conditioning: update_boolean_value("air_conditioning", air_conditioning)
   }
-  byebug
+  # byebug
   coffee_shop.update(updated_values)
 end
 
 def recalculate_value(param_name, value)
+  puts "the param_name is #{param_name}"
+  puts "value is #{value}"
   # byebug
   # assign existing value based on a dynamic active record query for param_name
   coffee_shop_value = coffee_shop.send(param_name)
   # apply the rating as-is if no existing ratings, otherwise recalculate average if we have a value
-  if value && coffee_shop_value
+  if value && !coffee_shop_value.nil?
     (coffee_shop_value + value) / 2
-  elsif value && coffee_shop_value.nil
+  elsif value && coffee_shop_value.nil?
     value
   else
     coffee_shop_value
