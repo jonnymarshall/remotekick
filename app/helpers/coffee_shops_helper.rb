@@ -4,13 +4,20 @@ module CoffeeShopsHelper
     if location
       location.capitalize
     else
-      "Unknown"
+      "Search a location"
     end
   end
 
-  def average_wifi_speed(location)
-    if location
-      "Value to be calc'd"
+  def average_wifi_speed(coffee_shops, average_speed = [])
+    if coffee_shops
+      coffee_shops.each do |coffee_shop|
+        puts "coffee shop: #{coffee_shop.name} speed: #{coffee_shop.upload_speed}"
+        average_speed << coffee_shop.upload_speed if !coffee_shop.upload_speed.nil?
+      end
+      puts "average_speed = #{average_speed}"
+      puts "average_speed.sum = #{average_speed.sum}"
+      puts "average_speed.length = #{average_speed.length}"
+      (average_speed.sum / average_speed.length).round(2)
     else
       "Unknown"
     end
