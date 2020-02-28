@@ -16,10 +16,12 @@ class CoffeeShopsController < ApplicationController
   has_scope :comfort
   has_scope :busyness
   has_scope :plug_sockets
+  has_scope :has_wifi
 
   def index
     @coffee_shops = apply_scopes(CoffeeShop).all
-    if coffee_shops_params[:location]
+    # raise
+    if coffee_shops_params[:location].length > 0
       @coffee_shops = @coffee_shops.near(coffee_shops_params[:location])
     end
     @coffee_shops_params = coffee_shops_params

@@ -1,19 +1,19 @@
 module CoffeeShopsHelper
 
   def searched_location(location)
-    if location
+    if location && location.length > 0
       location.capitalize
     else
-      "Search a location"
+      "Everywhere"
     end
   end
 
-  def average_wifi_speed(location, average_speed = [])
-    if location
+  def average_wifi_speed(location, wifi_speeds = [])
+    if location && location.length > 0
       full_results_for_location(location).each do |coffee_shop|
-        average_speed << coffee_shop.upload_speed if !coffee_shop.upload_speed.nil?
+        wifi_speeds << coffee_shop.upload_speed if !coffee_shop.upload_speed.nil?
       end
-      (average_speed.sum / average_speed.length).round(2)
+      wifi_speeds.empty? ? "No wifi speed data" : "#{calculate_average_wifi_speed(wifi_speeds)} Mbps"
     else
       "Unknown"
     end
@@ -59,5 +59,9 @@ module CoffeeShopsHelper
 
   def full_results_for_location(location)
     CoffeeShop.near("#{location}")
+  end
+
+  def calculate_average_wifi_speed(wifi_speeds)
+    (wifi_speeds.sum / wifi_speeds.length).round(2)
   end
 end

@@ -33,8 +33,10 @@ class CoffeeShopDecorator < Draper::Decorator
   def wifi_speed
     if has_attribute("upload_speed")
       h.content_tag( :strong, "#{object.download_speed.round(0)} Mbps")
-    else
+    elsif object.has_wifi || object.has_wifi.nil?
       "Unknown"
+    else !object.has_wifi
+      "No wifi"
     end
   end
 
