@@ -84,6 +84,14 @@
   <!-- FILTER > WIFI RESTRICTIONS -->
   <div class="field">
     <label class="checkbox">
+      <%= form.check_box :has_wifi, checked: @coffee_shops_boolean_params[:has_wifi] == "1" %>
+      Only show results with wifi
+    </label>
+  </div>
+
+  <!-- FILTER > WIFI RESTRICTIONS -->
+  <div class="field">
+    <label class="checkbox">
       <%= form.check_box :no_wifi_restrictions, checked: @coffee_shops_boolean_params[:no_wifi_restrictions] == "1" %>
       Filter out results with wifi restrictions
     </label>

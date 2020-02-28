@@ -9,6 +9,7 @@ def create_chiang_mai_coffee_shops
       serves_food: false,
       serves_smoothies: true,
       air_conditioning: true,
+      has_wifi: true,
       wifi_restrictions: 2,
       latitude: 18.80117127010728,
       longitude: 98.96564847010727
@@ -21,6 +22,7 @@ def create_chiang_mai_coffee_shops
       serves_food: true,
       serves_smoothies: true,
       air_conditioning: true,
+      has_wifi: true,
       wifi_restrictions: 0,
       latitude: 18.805657,
       longitude: 98.983306
@@ -33,6 +35,7 @@ def create_chiang_mai_coffee_shops
       serves_food: true,
       serves_smoothies: true,
       air_conditioning: true,
+      has_wifi: true,
       wifi_restrictions: 0,
       latitude: 18.788347,
       longitude: 98.983274
@@ -45,6 +48,7 @@ def create_chiang_mai_coffee_shops
       serves_food: true,
       serves_smoothies: false,
       air_conditioning: true,
+      has_wifi: true,
       wifi_restrictions: 0,
       latitude: 18.787627,
       longitude: 98.966519
@@ -57,6 +61,7 @@ def create_chiang_mai_coffee_shops
       serves_food: true,
       serves_smoothies: false,
       air_conditioning: true,
+      has_wifi: true,
       wifi_restrictions: 0,
       latitude: 18.804544,
       longitude: 98.967806
@@ -69,6 +74,7 @@ def create_chiang_mai_coffee_shops
       serves_food: true,
       serves_smoothies: true,
       air_conditioning: true,
+      has_wifi: true,
       wifi_restrictions: 0,
       latitude: 18.800055,
       longitude: 98.974610
@@ -81,6 +87,7 @@ def create_chiang_mai_coffee_shops
       serves_food: true,
       serves_smoothies: true,
       air_conditioning: true,
+      has_wifi: true,
       wifi_restrictions: 0,
       latitude: 18.795085,
       longitude: 98.968436
@@ -93,6 +100,7 @@ def create_chiang_mai_coffee_shops
       serves_food: false,
       serves_smoothies: false,
       air_conditioning: true,
+      has_wifi: true,
       wifi_restrictions: 4,
       latitude: 18.795085,
       longitude: 98.968436
@@ -105,6 +113,7 @@ def create_chiang_mai_coffee_shops
       serves_food: false,
       serves_smoothies: false,
       air_conditioning: true,
+      has_wifi: true,
       wifi_restrictions: 0,
       latitude: 18.795085,
       longitude: 98.966974
@@ -117,6 +126,7 @@ def create_chiang_mai_coffee_shops
       serves_food: true,
       serves_smoothies: false,
       air_conditioning: true,
+      has_wifi: true,
       wifi_restrictions: 0,
       latitude: 18.789085,
       longitude: 98.990607
@@ -129,6 +139,7 @@ def create_chiang_mai_coffee_shops
       serves_food: false,
       serves_smoothies: false,
       air_conditioning: true,
+      has_wifi: true,
       wifi_restrictions: 0,
       latitude: 18.789689,
       longitude: 99.002409
@@ -141,6 +152,7 @@ def create_chiang_mai_coffee_shops
       serves_food: true,
       serves_smoothies: true,
       air_conditioning: true,
+      has_wifi: true,
       wifi_restrictions: 0,
       latitude: 18.776090,
       longitude: 98.982000
@@ -153,6 +165,7 @@ def create_chiang_mai_coffee_shops
       serves_food: false,
       serves_smoothies: false,
       air_conditioning: true,
+      has_wifi: true,
       wifi_restrictions: 0,
       latitude: 18.800859,
       longitude: 98.967540
@@ -165,6 +178,7 @@ def create_chiang_mai_coffee_shops
       serves_food: true,
       serves_smoothies: true,
       air_conditioning: true,
+      has_wifi: true,
       wifi_restrictions: 3,
       latitude: 18.807239,
       longitude: 98.957395
@@ -177,6 +191,7 @@ def create_chiang_mai_coffee_shops
       serves_food: true,
       serves_smoothies: false,
       air_conditioning: true,
+      has_wifi: true,
       wifi_restrictions: 0,
       latitude: 18.798354,
       longitude: 98.965053
@@ -189,6 +204,7 @@ def create_chiang_mai_coffee_shops
       serves_food: true,
       serves_smoothies: true,
       air_conditioning: true,
+      has_wifi: true,
       wifi_restrictions: 0,
       latitude: 18.803645,
       longitude: 98.959728
