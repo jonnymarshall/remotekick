@@ -21,7 +21,7 @@ class CoffeeShopsController < ApplicationController
   def index
     @coffee_shops = apply_scopes(CoffeeShop).all
     # raise
-    if coffee_shops_params[:location].length > 0
+    if !coffee_shops_params[:location].nil?
       @coffee_shops = @coffee_shops.near(coffee_shops_params[:location])
     end
     @coffee_shops_params = coffee_shops_params

@@ -6,6 +6,7 @@ def melbourne_coffee_shop_attributes
       user: User.first,
       serves_plant_milk: true,
       serves_food: true,
+      has_wifi: true,
       wifi_restrictions: 0,
       latitude: -37.8096094,
       longitude: 144.9624115
@@ -21,6 +22,7 @@ def melbourne_coffee_shop_attributes
       name: "Seven Seeds Coffee Roasters",
       description:  'Airy, industrial-chic cafe and micro-roaster serving all-day brunch, salads and specialty teas.',
       user: User.first,
+      has_wifi: false,
       latitude: -37.8028677,
       longitude: 144.9569323
     },
@@ -49,6 +51,7 @@ def melbourne_coffee_shop_attributes
       serves_plant_milk: true,
       serves_food: true,
       air_conditioning: false,
+      has_wifi: true,
       wifi_restrictions: 0,
       latitude: -37.7987609,
       longitude: 144.915152
@@ -58,6 +61,7 @@ def melbourne_coffee_shop_attributes
       description:  'Cafe',
       user: User.first,
       serves_plant_milk: true,
+      has_wifi: true,
       wifi_restrictions: 0,
       latitude: -37.8527938,
       longitude: 144.999051
@@ -66,6 +70,7 @@ def melbourne_coffee_shop_attributes
       name: "Three Bags Full",
       description:  'Industrial-chic cafe with art gallery, prepping eclectic dishes, gourmet coffee and handmade sodas.',
       user: User.first,
+      has_wifi: true,
       latitude: -37.8074648,
       longitude: 144.9943101
     },
@@ -75,6 +80,7 @@ def melbourne_coffee_shop_attributes
       serves_plant_milk: true,
       serves_food: true,
       air_conditioning: false,
+      has_wifi: true,
       wifi_restrictions: 0,
       latitude: -37.7983588,
       longitude: 144.9506491
@@ -86,6 +92,7 @@ def melbourne_coffee_shop_attributes
       serves_plant_milk: false,
       serves_food: true,
       air_conditioning: true,
+      has_wifi: true,
       wifi_restrictions: 0,
       latitude: -37.802497,
       longitude: 144.9472996

@@ -36,7 +36,7 @@ class CoffeeShopDecorator < Draper::Decorator
     elsif object.has_wifi || object.has_wifi.nil?
       "Unknown"
     else !object.has_wifi
-      "No wifi"
+      "No wifi at venue"
     end
   end
 
