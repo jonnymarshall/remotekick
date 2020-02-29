@@ -7,21 +7,21 @@ require_relative "./city_specific_seeds/chiang_mai_seeds.rb"
 require_relative "./user_seeds/user_seeds.rb"
 
 #----------CLEAN DB----------
-puts 'Cleaning database...'
-Review.destroy_all
-CoffeeShop.destroy_all
-User.destroy_all
+# puts 'Cleaning database...'
+# Review.destroy_all
+# CoffeeShop.destroy_all
+# User.destroy_all
 
 #----------USER SEEDS----------
-create_user_seeds
+# create_user_seeds
 
 #----------COFFEE SHOP SEEDS----------
 #CHIANG MAI
-create_chiang_mai_coffee_shops
-create_chiang_mai_coffee_shop_reviews
+# create_chiang_mai_coffee_shops
+# create_chiang_mai_coffee_shop_reviews
 
 # MELBOURE
-create_melbourne_coffee_shops(melbourne_coffee_shop_attributes)
+# create_melbourne_coffee_shops(melbourne_coffee_shop_attributes)
 create_melbourne_coffee_shop_reviews(melbourne_coffee_shop_attributes, melbourne_coffee_shop_review_attributes)
 
 #----------CLOUDINARY IMAGE SEEDS----------
