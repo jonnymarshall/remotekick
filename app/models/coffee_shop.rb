@@ -24,14 +24,6 @@ class CoffeeShop < ApplicationRecord
   scope :comfort, -> number { where("comfort >= ?", number) }
   scope :busyness, -> number { where("busyness >= ?", number) }
   scope :plug_sockets, -> number { where("plug_sockets >= ?", number) }
-  scope :has_wifi, -> number { where(has_wifi: true) }
-  scope :no_wifi_restrictions, -> hours do
-    # if checkbox is unchecked, show all the results (greater than or equal to 0 wifi_restrictions)
-    if hours == "0"
-      where("wifi_restrictions >= ?", hours)
-    # else if checkbox is checked, show only the results with 0 (less than 1) wifi_restrictions
-    else
-      where("wifi_restrictions < ?", hours)
-    end
-  end
+  scope :has_wifi, -> boolean { where("has_wifi = ?", boolean) if boolean == "1" }
+  scope :no_wifi_restrictions, -> hours { where("wifi_restrictions < ?", hours) if hours > "0" }
 end

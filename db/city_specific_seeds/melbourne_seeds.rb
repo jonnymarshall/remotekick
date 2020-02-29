@@ -15,8 +15,8 @@ def melbourne_coffee_shop_attributes
       name: "Cheeky Monkey",
       description:  'Classic brekkie, plus sandwiches and salads, in a casual, industrial cafe with pavement tables.',
       user: User.first,
-      latitude: -37.7984796,
-      longitude: 144.8100859
+      latitude: -37.824971,
+      longitude: 144.994392
     },
     {
       name: "Seven Seeds Coffee Roasters",
