@@ -20,7 +20,6 @@ class CoffeeShopsController < ApplicationController
 
   def index
     @coffee_shops = apply_scopes(CoffeeShop).all
-    # raise
     if !coffee_shops_params[:location].nil?
       @coffee_shops = @coffee_shops.near(coffee_shops_params[:location])
     end
@@ -35,8 +34,6 @@ class CoffeeShopsController < ApplicationController
         infoWindow: render_to_string(partial: "info_window", locals: { coffee_shop: coffee_shop })
       }
     end
-
-    # @coffee_shop_boolean_params[:wifi_restrictions] = reverse_checkbox_value(coffee_shop_boolean_params[:wifi_restrictions])
   end
 
   def show
@@ -115,7 +112,7 @@ class CoffeeShopsController < ApplicationController
   end
 
   def coffee_shops_params
-    params.permit(:location, :rating, :upload_speed, :comfort, :plug_sockets, :busyness)
+    params.permit(:location, :rating, :upload_speed, :comfort, :plug_sockets, :busyness, :has_wifi)
   end
 
   def new_coffee_shop_params
@@ -141,7 +138,8 @@ class CoffeeShopsController < ApplicationController
       :air_conditioning,
       :serves_plant_milk,
       :wifi_restrictions,
-      :no_wifi_restrictions
+      :no_wifi_restrictions,
+      :has_wifi
     )
   end
 
