@@ -42,7 +42,7 @@ class CoffeeShopDecorator < Draper::Decorator
 
   def display_icons(attribute, icon_set = [])
     if has_attribute(attribute)
-      icon_set << h.content_tag( :i, nil, :class=>'fas fa-smile has-text-primary') * (icon_count_calculator(attribute))
+      icon_set << "#{h.content_tag( :i, nil, :class=>'fas fa-smile has-text-primary')}&nbsp;" * (icon_count_calculator(attribute))
       icon_set << h.content_tag( :i, nil, :class=>'far fa-smile') * (inverse_icon_count_calculator(attribute))
     end
     icon_set.join
