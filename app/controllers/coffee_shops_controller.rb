@@ -20,13 +20,13 @@ class CoffeeShopsController < ApplicationController
 
   def index
     @coffee_shops = apply_scopes(CoffeeShop).all
-    if !coffee_shops_params[:location].nil?
+    if !coffee_shops_params[:location].nil? && coffee_shops_params[:location] != ""
       @coffee_shops = @coffee_shops.near(coffee_shops_params[:location])
     end
+    
     @coffee_shops_params = coffee_shops_params
     @coffee_shops_boolean_params = coffee_shops_boolean_params
     @markers = []
-
     @coffee_shops.each do |coffee_shop|
       @markers << {
         lat: coffee_shop.latitude,
