@@ -1,9 +1,18 @@
 console.log('Hello world from application.js.erb');
 
+// Stimulus
+import { Application } from "stimulus"
+import { definitionsFromContext } from "stimulus/webpack-helpers"
+
+const application = Application.start()
+const context = require.context("./controllers", true, /\.js$/)
+application.load(definitionsFromContext(context))
+
+
 // import "bootstrap";
 import { venueAutofill } from "../components/venue_autofill.js.erb";
 import { runAutoComplete } from "../components/autocomplete.js";
-import { runMapBox } from "../components/mapbox.js";
+// import { runMapBox } from "../components/mapbox.js";
 import { navbarHamburger } from "../components/navbarHamburger.js";
 // import { venueAutofillTimeout } from "../components/venue_autofill_timeout.js.erb";
 
@@ -19,11 +28,12 @@ else {
 };
 
 // MapBox
-if (document.getElementById("map")){
-  runMapBox();
-}
+// if (document.getElementById("map")){
+//   runMapBox();
+// }
 
 // venueAutofillTimeout();
 
 // NavbarHamburger
 navbarHamburger();
+

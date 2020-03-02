@@ -1,0 +1,9 @@
+.c-rating-star--label {
+  height: fit-content;
+  width: fit-content;
+  background: red;
+  display: inline-block;
+  &:hover {
+    cursor: pointer;
+  }
+}
