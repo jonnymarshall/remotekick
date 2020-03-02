@@ -17,11 +17,7 @@
   </section>
   <div id="c-card__description" class="notification u-maxheight-170px">
     <h1 class="subtitle is-6"><%= coffee_shop.description %></p>
-    <i class="fas fa-star dark-gray"></i>
-    <i class="fas fa-star dark-gray"></i>
-    <i class="fas fa-star dark-gray"></i>
-    <i class="fas fa-star dark-gray"></i>
-    <i class="fas fa-star dark-gray"></i>
+    <%= raw coffee_shop.decorate.rating_stars("1x") %>
   </div>
   <% end %>
 </div>

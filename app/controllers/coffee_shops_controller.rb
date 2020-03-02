@@ -23,17 +23,12 @@ class CoffeeShopsController < ApplicationController
     if !coffee_shops_params[:location].nil? && coffee_shops_params[:location] != ""
       @coffee_shops = @coffee_shops.near(coffee_shops_params[:location])
     end
-    
+    if !coffee_shops_params[:order_by].nil?
+      order_coffee_shops_by_param(@coffee_shops, coffee_shops_params[:order_by])
+    end
     @coffee_shops_params = coffee_shops_params
     @coffee_shops_boolean_params = coffee_shops_boolean_params
-    @markers = []
-    @coffee_shops.each do |coffee_shop|
-      @markers << {
-        lat: coffee_shop.latitude,
-        lng: coffee_shop.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { coffee_shop: coffee_shop })
-      }
-    end
+    set_map_markers(@coffee_shops)
   end
 
   def show
@@ -112,7 +107,7 @@ class CoffeeShopsController < ApplicationController
   end
 
   def coffee_shops_params
-    params.permit(:location, :rating, :upload_speed, :comfort, :plug_sockets, :busyness, :has_wifi)
+    params.permit(:location, :rating, :upload_speed, :comfort, :plug_sockets, :busyness, :has_wifi, :order_by)
   end
 
   def new_coffee_shop_params
@@ -174,5 +169,26 @@ class CoffeeShopsController < ApplicationController
 
   def venue_search_params
     params.permit(:query)
+  end
+
+  def set_map_markers(coffee_shops)
+    @markers = []
+    coffee_shops.each do |coffee_shop|
+      @markers << {
+        lat: coffee_shop.latitude,
+        lng: coffee_shop.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { coffee_shop: coffee_shop })
+      }
+    end
+  end
+
+  def order_coffee_shops_by_param(coffee_shops, param, location = "NO LOCATION PARAM")
+    if param == "rating"
+      @coffee_shops = @coffee_shops.order("#{param} DESC NULLS LAST")
+    else raise
+    # if param == "distance"
+      # obj.distance_to(location)
+      # @coffee_shops = @coffee_shops.order("#{param} DESC NULLS LAST")
+    end
   end
 end
