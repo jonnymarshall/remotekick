@@ -23,7 +23,7 @@
                   <div class="field">
                     <div class="control">
                       <div class="select is-primary">
-                        <%= link_to 'Link', params.slice(:sort).merge(:order_by => "rating") %>
+                        <%= link_to 'Link', request.params.merge(:order_by => "rating") %>
                         <%= link_to 'Top rated', coffee_shops_path(:order_by => "rating") %>
                         <%= link_to 'Distance', coffee_shops_path(:order_by => "distance") %>
                         <%= link_to 'Wifi Speed', coffee_shops_path(:order_by => "wifi_speed") %>
