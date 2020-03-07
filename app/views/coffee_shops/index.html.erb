@@ -1,50 +1,27 @@
 <%= render 'index__info_bar' %>
-<section class="section">
+<section id="index__main-content" class="section">
   <div class="container">
     <div class="columns">
       <!-- FILTERS -->
       <%= render 'index__filters' %>
-      <div class="column has-text-centered">
+      <div id="index__map-container" class="column has-text-centered">
         <%= render 'index__map' %>
         <section class="section u-padding-lr-0px">
-          <div class="container">            
-
-            <nav class="level is-mobile">
-              <div class="level-left">
-                <div class="level-item has-text-left">
-                  <div>
-                    <p class="heading">Displaying</p>
-                    <p class="title is-5"><%= @coffee_shops.count(:all) %> listings</p>
-                  </div>
-                </div>
-              </div>
-              <div class="level-right">
-                <div class="level-item has-text-right">
-                  <div class="field">
-                    <div class="control">
-                      <div class="select is-primary">
-                        <select>
-                          <option>Top rated</option>
-                          <option>Distance</option>
-                          <option>Wifi Speed</option>
-                          <option>Price</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </nav>
-
-            <div class="columns is-multiline">
+          <div id="index__cards-container" class="container">
+            <%= render partial: "index__cards-info-bar", locals: { coffee_shops: @coffee_shops } %>
+            <div id="index__cards" class="columns is-multiline">
             <% @coffee_shops.each do |coffee_shop| %>
               <%= render partial: "index__cards", locals: { coffee_shop: coffee_shop } %>
             <% end %>
             </div>
+            <section id="index__cards-pagination" class="section">
+              <div class="container">
+                <%= render 'index__pagination' %>
+              </div>
+            </section>
           </div>
         </section>
       </div>
     </div>
   </div>
 </section>
-<%= render 'index__pagination' %>

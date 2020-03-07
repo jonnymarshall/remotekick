@@ -13,7 +13,7 @@ const navbarFilter = () => {document.addEventListener('DOMContentLoaded', () => 
       console.log("registered click")
 
       // Get the target from the "data-target" attribute
-      const indexFilters = document.getElementById("index-filters");
+      const indexFilters = document.getElementById("index__filters");
 
       // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
       indexFilters.classList.toggle('is-hidden-touch');
