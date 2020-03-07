@@ -3,6 +3,7 @@ const navbarFilter = () => {document.addEventListener('DOMContentLoaded', () => 
   console.log("Hello from navbarFilter")
   // Get "nnavbar-filter" element
   const navbarFilter = document.getElementById('navbar-filter-button');
+  const indexInfoBar = document.getElementById('index__info_bar')
 
   // Check if there are any navbar burgers
   if (navbarFilter) {
@@ -17,6 +18,7 @@ const navbarFilter = () => {document.addEventListener('DOMContentLoaded', () => 
 
       // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
       indexFilters.classList.toggle('is-hidden-touch');
+      indexInfoBar.classList.toggle('is-hidden-touch');
     });
   }
 });

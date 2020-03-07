@@ -15,7 +15,8 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
-@import "buttons/index";
+@import "buttons/buttons.index";
+@import "bulma_extensions/bulma_extensions.index";
 
 // External CSS Files
 @import "components/autocomplete";
