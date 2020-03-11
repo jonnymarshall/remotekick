@@ -5,7 +5,7 @@ class CoffeeShopsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   # @coffee_shop should be called as coffee_shop for decorated instance in views
   decorates_assigned :coffee_shop
-  # has_scope :location
+  has_scope :location
   has_scope :rating
   has_scope :upload_speed
   has_scope :serves_plant_milk, type: :boolean
@@ -183,15 +183,9 @@ class CoffeeShopsController < ApplicationController
   end
 
   def order_coffee_shops_by_param(coffee_shops, param)
-    if param == "rating"
-      # raise
-      @coffee_shops = @coffee_shops.order("#{param} DESC NULLS LAST")
-      # @coffee_shops = @coffee_shops.order(rating: :desc)
-      # byebug
-    else raise
-    # if param == "distance"
-      # obj.distance_to(location)
-      # @coffee_shops = @coffee_shops.order("#{param} DESC NULLS LAST")
+    case param
+    when "rating"
+      @coffee_shops = @coffee_shops.reorder("#{param} DESC NULLS LAST")
     end
   end
 end
