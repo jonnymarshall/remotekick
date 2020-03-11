@@ -1,9 +1,9 @@
-<nav id="index__cards-info-bar" class="level is-mobile">
+<nav class="level is-mobile">
   <div class="level-left">
     <div class="level-item has-text-left">
       <div>
         <p class="heading">Displaying</p>
-        <p class="title is-5"><%= coffee_shops.count(:all) %> listings</p>
+        <p class="title is-5"><%= @coffee_shops.count(:all) %> listings</p>
       </div>
     </div>
   </div>
@@ -12,11 +12,11 @@
       <div class="field">
         <div class="control">
           <div class="select is-primary">
-            <select>
-              <option>Top rated</option>
-              <option>Distance</option>
-              <option>Wifi Speed</option>
-              <option>Price</option>
+            <select name="Order by">
+              <option><%= link_to 'Top rated', request.params.merge(:order_by => "rating") %></option>
+              <option><%= link_to 'Distance', request.params.merge(:order_by => "distance") %></option>
+              <option><%= link_to 'Wifi Speed', coffee_shops_path(:order_by => "upload_speed") %></option>
+              <option><%= link_to 'Price', coffee_shops_path(:order_by => "price") %></option>
             </select>
           </div>
         </div>
