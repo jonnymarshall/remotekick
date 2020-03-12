@@ -1,5 +1,14 @@
 console.log('Hello world from application.js.erb');
 
+// Stimulus
+import { Application } from "stimulus"
+import { definitionsFromContext } from "stimulus/webpack-helpers"
+
+const application = Application.start()
+const context = require.context("./controllers", true, /\.js$/)
+application.load(definitionsFromContext(context))
+
+
 // import "bootstrap";
 import { venueAutofill } from "../components/venue_autofill.js.erb";
 import { runAutoComplete } from "../components/autocomplete.js";
@@ -29,5 +38,3 @@ if (document.getElementById("map")){
 
 // NavbarHamburger
 navbarHamburger();
-// navbarFilter
-navbarFilter();
