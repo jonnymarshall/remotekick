@@ -16,9 +16,9 @@ class CoffeeShopDecorator < Draper::Decorator
     end
   end
 
-  def rating_stars
+  def rating_stars(size)
     unless object.rating.nil?
-      h.content_tag( :i, nil, :class=>'fas fa-2x fas fa-star') * (icon_count_calculator("rating"))
+      h.content_tag( :i, nil, :class=>"fas fa-#{size} fas fa-star") * (icon_count_calculator("rating"))
     end
   end
   

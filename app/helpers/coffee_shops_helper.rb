@@ -20,7 +20,7 @@ module CoffeeShopsHelper
   end
 
   def total_listings_count(location)
-    full_results_for_location(location).count(:all)
+    location && location.length > 0 ? full_results_for_location(location).count(:all) : CoffeeShop.all.count(:all)
   end
 
   def distance_options
@@ -53,11 +53,11 @@ module CoffeeShopsHelper
     end
   end
 
-  def full_results_for_location(location)
-    CoffeeShop.near("#{location}")
-  end
-
   def calculate_average_wifi_speed(wifi_speeds)
     (wifi_speeds.sum / wifi_speeds.length).round(2)
+  end
+
+  def full_results_for_location(location)
+    CoffeeShop.near("#{location}")
   end
 end
