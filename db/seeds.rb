@@ -16,11 +16,11 @@ require_relative "./user_seeds/user_seeds.rb"
 create_user_seeds
 
 # ----------COFFEE SHOP SEEDS----------
-CHIANG MAI
+# CHIANG MAI
 create_chiang_mai_coffee_shops
 create_chiang_mai_coffee_shop_reviews
 
-MELBOURE
+# MELBOURE
 create_melbourne_coffee_shops(melbourne_coffee_shop_attributes)
 create_melbourne_coffee_shop_reviews(melbourne_coffee_shop_attributes, melbourne_coffee_shop_review_attributes)
 
