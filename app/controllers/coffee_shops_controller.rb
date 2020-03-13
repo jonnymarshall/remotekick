@@ -93,6 +93,7 @@ class CoffeeShopsController < ApplicationController
   def venue_search
     search = venue_search_params[:query]
     location = "melbourne"
+    # FourSquare.api_call(location, search)
     url = foursquare_api(location, search)
     response = open(url).read
     @response_json = JSON.parse(response)
@@ -151,6 +152,7 @@ class CoffeeShopsController < ApplicationController
     baseApiUrl = 'https://api.mapbox.com';
   end
 
+  # Move this to foursquare.rb module
   def foursquare_api(location, search)
     url_root = "https://api.foursquare.com/v2/venues/"
     url_root_search = "#{url_root}search?"
