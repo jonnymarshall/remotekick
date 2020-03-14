@@ -20,19 +20,32 @@ export default class extends Controller {
     return inputs
   }
 
+  iconStateChange = (inputs) => {
+    for (var key of Object.keys(inputs)) {
+      this.iconTargets.forEach((el) => {
+        if (el.parentElement.getAttribute("for").slice(0,-2) == key) {
+          el.classList.remove("has-text-primary")
+          if (el.parentElement.getAttribute("for").slice(-1) <= inputs[key]) {
+            el.classList.add("has-text-primary")
+          }
+        }
+      })  
+    }
+  }
+
   connect() {
     console.log("Connected")
-    // log initial input checked state
-    console.log(this.checkedInputState())
+
+    this.checkedInputState().forEach((filter) => {
+      this.iconStateChange(filter)
+    })
   }
 
   disconnect() {
     console.log("Disconnected:")
   }
 
-  // Logic for selecting and deselecting rating stars up to current selected value
   selecticons(event) {
-    this.checkedInputState()
     this.filterTypeClicked = event.currentTarget.getAttribute("for").slice(0,-2)
     this.valueClicked = event.currentTarget.getAttribute("for").slice(-1)
 
