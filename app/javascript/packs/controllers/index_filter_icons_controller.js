@@ -2,50 +2,68 @@ import { Controller } from "stimulus"
 
 export default class extends Controller {
 
-  static targets = ["star", "smilie"]
+  static targets = ["icon", "input"]
+
+  // Hash of filter values.
+  // Initialised by getCheckedInputs() on page load
+  // Updated with setFilterValue() when label is clicked
+  filterValues = {
+    rating: null,
+    plug_sockets: null,
+    comfort: null,
+    busyness: null
+  }
+
+  // Updates filterValues when a label is clicked
+  setFilterValue = (filterType, value, self) => {
+    self.filterValues[filterType] = value
+  }
+
+  // Checks for which icons should be styled based on input checked state on page load
+  getCheckedInputs = () => {
+    let self = this
+    this.inputTargets.forEach(el => {
+      if (el.getAttribute("checked")) {
+        self.setFilterValue(el.name, el.value, self)
+      }
+    })
+  }
+
+  // Removes active styling of all icons
+  resetIcons = () => {
+    this.iconTargets.forEach((el) => {
+      el.classList.remove("has-text-primary")
+    })
+  }
+
+  // Styles icons based on filterValues
+  iconStateChange = () => {
+    this.resetIcons()
+    for (var key of Object.keys(this.filterValues)) {
+      this.iconTargets.forEach((el) => {
+        if (el.parentElement.getAttribute("for").slice(0,-2) == key) {
+          if ((this.filterValues[key] != null) && (el.parentElement.getAttribute("for").slice(-1) <= this.filterValues[key])) {
+            el.classList.add("has-text-primary")
+          }
+        }
+      })
+    }
+  }
 
   connect() {
     console.log("Connected")
+    this.getCheckedInputs()
+    this.iconStateChange()
   }
+
   disconnect() {
     console.log("Disconnected:")
   }
 
-  // Logic for selecting and deselecting rating stars up to current selected value
-  selectstars(event) {
-  // Event triggered on label click
-    // Gets value of hidden input element
-    let valueClicked = event.currentTarget.previousElementSibling.value
-
-    // Removes active class from all stars and adds it on stars whose index <= value clicked
-    this.starTargets.forEach((el, index) => {
-      el.classList.remove("has-text-primary")
-      if (index <= valueClicked) {
-        el.classList.add("has-text-primary")
-      }
-    })
+  selecticons(event) {
+    let filterTypeClicked = event.currentTarget.getAttribute("for").slice(0,-2)
+    let valueClicked = event.currentTarget.getAttribute("for").slice(-1)
+    this.setFilterValue(filterTypeClicked, valueClicked, this)
+    this.iconStateChange()
   }
-
-  // Logic for selecting and deselecting smilie icons up to current selected value
-  selectsmilies(event) {
-  // Event triggered on label click
-    // Gets laber "for" attribute (full ID of target input element)
-    let targetInputId = event.currentTarget.getAttribute("for")
-    // Removes the paired value (_val) to get the filter type
-    let filterType = targetInputId.slice(0,-2)
-    // Gets value of hidden input element
-    let valueClicked = event.currentTarget.previousElementSibling.value
-
-    // Removes active class from all smilies and adds it on smilies whose value <= value clicked
-    this.smilieTargets.forEach((el) => {
-      if (el.getAttribute("for") == filterType) {
-        el.classList.remove("has-text-primary")
-        if (el.getAttribute("value") <= valueClicked) {
-          el.classList.add("has-text-primary")
-        }
-      }
-    })
-
-  }
-
 }
