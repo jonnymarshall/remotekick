@@ -4,41 +4,56 @@ export default class extends Controller {
 
   static targets = ["icon", "input"]
 
-  // Filter type and value from click event
-  filterTypeClicked
-  valueClicked
-
-  checkedInputState = () => {
-    const inputs = []
-    this.inputTargets.forEach((el, index) => {
-      if (el.getAttribute("checked")) {
-        let filterValuePair = {};
-        filterValuePair[el.name] = el.value;
-        inputs.push(filterValuePair);
-      }
-    })
-    return inputs
+  // Hash of filter values.
+  // Initialised by getCheckedInputs() on page load
+  // Updated with setFilterValue() when label is clicked
+  filterValues = {
+    rating: null,
+    plug_sockets: null,
+    comfort: null,
+    busyness: null
   }
 
-  iconStateChange = (inputs) => {
-    for (var key of Object.keys(inputs)) {
+  // Updates filterValues when a label is clicked
+  setFilterValue = (filterType, value, self) => {
+    self.filterValues[filterType] = value
+  }
+
+  // Checks for which icons should be styled based on input checked state on page load
+  getCheckedInputs = () => {
+    let self = this
+    this.inputTargets.forEach(el => {
+      if (el.getAttribute("checked")) {
+        self.setFilterValue(el.name, el.value, self)
+      }
+    })
+  }
+
+  // Removes active styling of all icons
+  resetIcons = () => {
+    this.iconTargets.forEach((el) => {
+      el.classList.remove("has-text-primary")
+    })
+  }
+
+  // Styles icons based on filterValues
+  iconStateChange = () => {
+    this.resetIcons()
+    for (var key of Object.keys(this.filterValues)) {
       this.iconTargets.forEach((el) => {
         if (el.parentElement.getAttribute("for").slice(0,-2) == key) {
-          el.classList.remove("has-text-primary")
-          if (el.parentElement.getAttribute("for").slice(-1) <= inputs[key]) {
+          if ((this.filterValues[key] != null) && (el.parentElement.getAttribute("for").slice(-1) <= this.filterValues[key])) {
             el.classList.add("has-text-primary")
           }
         }
-      })  
+      })
     }
   }
 
   connect() {
     console.log("Connected")
-
-    this.checkedInputState().forEach((filter) => {
-      this.iconStateChange(filter)
-    })
+    this.getCheckedInputs()
+    this.iconStateChange()
   }
 
   disconnect() {
@@ -46,17 +61,9 @@ export default class extends Controller {
   }
 
   selecticons(event) {
-    this.filterTypeClicked = event.currentTarget.getAttribute("for").slice(0,-2)
-    this.valueClicked = event.currentTarget.getAttribute("for").slice(-1)
-
-    // Removes active class from all stars and adds it on stars whose index <= value clicked
-    this.iconTargets.forEach((el, index) => {
-      if (el.parentElement.getAttribute("for").slice(0,-2) == this.filterTypeClicked) {
-        el.classList.remove("has-text-primary")
-        if (el.parentElement.getAttribute("for").slice(-1) <= this.valueClicked) {
-          el.classList.add("has-text-primary")
-        }
-      }
-    })
+    let filterTypeClicked = event.currentTarget.getAttribute("for").slice(0,-2)
+    let valueClicked = event.currentTarget.getAttribute("for").slice(-1)
+    this.setFilterValue(filterTypeClicked, valueClicked, this)
+    this.iconStateChange()
   }
 }
