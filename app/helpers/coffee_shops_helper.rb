@@ -30,14 +30,23 @@ module CoffeeShopsHelper
   def rating_options(rating_param, value)
     icon_element = content_tag( :i, nil, :class=>'fas fa-2x fas fa-star')
     span_element = content_tag( :span, icon_element, :class=>'icon is-medium has-text-light', :data => { :target => 'index-filter-icons.icon' })
-    label = label_tag( "#{rating_param}_#{value}", span_element, :class=>'c-rating-star--label', :data => { :action => 'click->index-filter-icons#selecticons' })
+    label = label_tag( "#{rating_param}_#{value}", span_element, :class=>'c-rating-star--label', :data => { :action => 'click->index-filter-icons#selectIcons' })
   end
 
   def feature_rating_options(feature_param, value)
     smile_icon = smile_type(value)
     icon_element = content_tag( :i, nil, :class=>"fas fa-2x fas fa-#{smile_icon}")
     span_element = content_tag( :span, icon_element, :class=>'icon is-medium has-text-light', :for => "#{feature_param}", :value => "#{value}", :data => { :target => 'index-filter-icons.icon' })
-    label_tag( "#{feature_param}_#{value}", span_element, :class=>'c-rating-star--label', :data => { :action => 'click->index-filter-icons#selecticons'})
+    label_tag( "#{feature_param}_#{value}", span_element, :class=>'c-rating-star--label', :data => { :action => 'click->index-filter-icons#selectIcons'})
+  end
+
+  def order_by_options
+    options_for_select([
+      ["Top rated", { :data => { :url => "#{url_for(request.params.merge(:order_by => "rating"))}", :target => 'index-cards-ordering.orderByOption', :selected => "#{params[:order_by] == "rating"}"}}],
+      ["Distance", { :data => { :url => "#{url_for(request.params.merge(:order_by => "distance"))}", :target => 'index-cards-ordering.orderByOption', :selected => "#{params[:order_by] == "distance"}"}}],
+      ["Wifi Speed", { :data => { :url => "#{url_for(request.params.merge(:order_by => "wifi_speed"))}", :target => 'index-cards-ordering.orderByOption', :selected => "#{params[:order_by] == "wifi_speed"}"}}],
+      ["Price", { :data => { :url => "#{url_for(request.params.merge(:order_by => "price"))}", :target => 'index-cards-ordering.orderByOption', :selected => "#{params[:order_by] == "price"}"}}]
+    ])
   end
 
   private

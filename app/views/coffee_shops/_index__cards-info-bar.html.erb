@@ -13,13 +13,8 @@
       <div class="field">
         <div class="control">
           <div class="select is-primary" data-controller="index-cards-ordering">
-            <select name="Order by" data-action="change->index-cards-ordering#url">
-              <%= options_for_select([
-              ["Top rated", { :data => { :url => "#{url_for(request.params.merge(:order_by => "rating"))}", :target => 'index-cards-ordering.ordertype', :selected => "#{params[:order_by] == "rating"}"}}],
-              ["Distance", { :data => { :url => "#{url_for(request.params.merge(:order_by => "distance"))}", :target => 'index-cards-ordering.ordertype', :selected => "#{params[:order_by] == "distance"}"}}],
-              ["Wifi Speed", { :data => { :url => "#{url_for(request.params.merge(:order_by => "wifi_speed"))}", :target => 'index-cards-ordering.ordertype', :selected => "#{params[:order_by] == "wifi_speed"}"}}],
-              ["Price", { :data => { :url => "#{url_for(request.params.merge(:order_by => "price"))}", :target => 'index-cards-ordering.ordertype', :selected => "#{params[:order_by] == "price"}"}}]
-              ]) %>
+            <select name="Order by" data-action="change->index-cards-ordering#goToUrl">
+              <%= order_by_options %>
             </select>
           </div>
         </div>

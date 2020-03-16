@@ -2,6 +2,8 @@ import { Controller } from "stimulus"
 
 export default class extends Controller {
 
+  controllerName = "index_filter_icons_controller"
+
   static targets = ["icon", "input"]
 
   // Hash of filter values.
@@ -51,16 +53,16 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log("Connected")
+    console.log(`${this.controllerName} connected.`)
     this.getCheckedInputs()
     this.iconStateChange()
   }
 
   disconnect() {
-    console.log("Disconnected:")
+    console.log(`${this.controllerName} disconnected.`)
   }
 
-  selecticons(event) {
+  selectIcons(event) {
     let filterTypeClicked = event.currentTarget.getAttribute("for").slice(0,-2)
     let valueClicked = event.currentTarget.getAttribute("for").slice(-1)
     this.setFilterValue(filterTypeClicked, valueClicked, this)
