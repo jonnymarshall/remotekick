@@ -7,10 +7,10 @@ require_relative "./city_specific_seeds/chiang_mai_seeds.rb"
 require_relative "./user_seeds/user_seeds.rb"
 
 # ----------CLEAN DB----------
-# puts 'Cleaning database...'
-# Review.destroy_all
-# CoffeeShop.destroy_all
-# User.destroy_all
+puts 'Cleaning database...'
+Review.destroy_all
+CoffeeShop.destroy_all
+User.destroy_all
 
 # ----------USER SEEDS----------
 create_user_seeds
