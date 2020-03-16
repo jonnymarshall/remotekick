@@ -5,7 +5,14 @@ class CoffeeShopsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   # @coffee_shop should be called as coffee_shop for decorated instance in views
   decorates_assigned :coffee_shop
-  has_scope [:location, :rating, :upload_speed, :no_wifi_restrictions, :comfort, :busyness, :plug_sockets, :has_wifi]
+  has_scope :location, if: :location_given
+  has_scope :rating
+  has_scope :upload_speed
+  has_scope :no_wifi_restrictions
+  has_scope :comfort
+  has_scope :busyness
+  has_scope :plug_sockets
+  has_scope :has_wifi
   # has_scope :serves_plant_milk, type: :boolean
   # has_scope :serves_food, type: :boolean
   # has_scope :serves_smoothies, type: :boolean
@@ -13,10 +20,7 @@ class CoffeeShopsController < ApplicationController
 
   def index
     @coffee_shops = apply_scopes(CoffeeShop).all
-    if !coffee_shops_params[:location].nil? && coffee_shops_params[:location] != ""
-      @coffee_shops = @coffee_shops.near(coffee_shops_params[:location])
-    end
-    if !coffee_shops_params[:order_by].nil?
+    if coffee_shops_params[:order_by]
       order_coffee_shops_by_param(@coffee_shops, coffee_shops_params[:order_by])
     end
     @coffee_shops_params = coffee_shops_params
@@ -180,5 +184,9 @@ class CoffeeShopsController < ApplicationController
     when "rating"
       @coffee_shops = @coffee_shops.reorder("#{param} DESC NULLS LAST")
     end
+  end
+
+  def location_given
+    coffee_shops_params[:location] && coffee_shops_params[:location] != ""
   end
 end
