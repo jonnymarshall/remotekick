@@ -94,7 +94,7 @@ class CoffeeShopsController < ApplicationController
   def venue_search
     search = venue_search_params[:query]
     location = "melbourne"
-    url = Foursquare.api_call(location, search)
+    url = api_call(location, search)
     response = open(url).read
     @response_json = JSON.parse(response)
     render json: @response_json
