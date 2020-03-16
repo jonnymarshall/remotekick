@@ -1,3 +1,4 @@
+
 <nav class="level is-mobile">
   <div class="level-left">
     <div class="level-item has-text-left">
@@ -11,12 +12,9 @@
     <div class="level-item has-text-right">
       <div class="field">
         <div class="control">
-          <div class="select is-primary">
-            <select name="Order by">
-              <option><%= link_to 'Top rated', request.params.merge(:order_by => "rating") %></option>
-              <option><%= link_to 'Distance', request.params.merge(:order_by => "distance") %></option>
-              <option><%= link_to 'Wifi Speed', coffee_shops_path(:order_by => "upload_speed") %></option>
-              <option><%= link_to 'Price', coffee_shops_path(:order_by => "price") %></option>
+          <div class="select is-primary" data-controller="index-cards-ordering">
+            <select name="Order by" data-action="change->index-cards-ordering#goToUrl">
+              <%= order_by_options %>
             </select>
           </div>
         </div>
