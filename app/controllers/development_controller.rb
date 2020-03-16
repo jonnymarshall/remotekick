@@ -15,4 +15,7 @@ class DevelopmentController < ApplicationController
 
   def development_reviews_new
   end
+
+  def development_slider
+  end
 end

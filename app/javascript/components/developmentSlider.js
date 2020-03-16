@@ -1,4 +1,4 @@
-developmentSlider = () => {
+const developmentSlider = () => {
 
 	var parent = document.querySelector("#rangeSlider");
 	if(!parent) return;
@@ -42,3 +42,5 @@ developmentSlider = () => {
 	});
 
 };
+
+export {developmentSlider}
