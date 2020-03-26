@@ -42,7 +42,6 @@ const runMapBox = () => {
         .addTo(map);
     });
   };
-  // debugger
 
   // markers.forEach((marker) => {
 
