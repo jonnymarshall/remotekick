@@ -14,6 +14,11 @@ module CoffeeShopsHelper
         wifi_speeds << coffee_shop.upload_speed if !coffee_shop.upload_speed.nil?
       end
       wifi_speeds.empty? ? "No wifi speed data" : "#{calculate_average_wifi_speed(wifi_speeds)} Mbps"
+    elsif location.nil? || location == "Everywhere"
+      CoffeeShop.all.each do |coffee_shop|
+        wifi_speeds << coffee_shop.upload_speed if !coffee_shop.upload_speed.nil?
+      end
+      wifi_speeds.empty? ? "No wifi speed data" : "#{calculate_average_wifi_speed(wifi_speeds)} Mbps"
     else
       "Unknown"
     end
@@ -24,7 +29,14 @@ module CoffeeShopsHelper
   end
 
   def distance_options
-    options_for_select([['1 Kilometer', 1], ['3 Kilometers', 3], ['5 Kilometers', 5]], ['10 Kilometers', 10])
+    # byebug
+    options_for_select([
+      ["Distance", 0, { :selected => "#{!params[:distance]}"}],
+      ["1 Kilometer", 1, { :selected => "#{params[:distance] == 1}"}],
+      ["3 Kilometers", 3, { :selected => "#{params[:distance] == 3}"}],
+      ["5 Kilometers", 5, { :selected => "#{params[:distance] == 5}"}],
+      ["10 Kilometers", 10, { :selected => "false"}]
+    ])
   end
 
   def rating_options(rating_param, value)
@@ -42,15 +54,19 @@ module CoffeeShopsHelper
 
   def order_by_options
     options_for_select([
-      ["Top rated", { :data => { :url => "#{url_for(request.params.merge(:order_by => "rating"))}", :target => 'index-cards-ordering.orderByOption', :selected => "#{params[:order_by] == "rating"}"}}],
       ["Distance", { :data => { :url => "#{url_for(request.params.merge(:order_by => "distance"))}", :target => 'index-cards-ordering.orderByOption', :selected => "#{params[:order_by] == "distance"}"}}],
+      ["Top rated", { :data => { :url => "#{url_for(request.params.merge(:order_by => "rating"))}", :target => 'index-cards-ordering.orderByOption', :selected => "#{params[:order_by] == "rating"}"}}],
       ["Wifi Speed", { :data => { :url => "#{url_for(request.params.merge(:order_by => "wifi_speed"))}", :target => 'index-cards-ordering.orderByOption', :selected => "#{params[:order_by] == "wifi_speed"}"}}],
       ["Price", { :data => { :url => "#{url_for(request.params.merge(:order_by => "price"))}", :target => 'index-cards-ordering.orderByOption', :selected => "#{params[:order_by] == "price"}"}}]
     ])
   end
 
  def highest_upload_speed(coffee_shops)
-  coffee_shops.reorder("upload_speed DESC NULLS LAST").first.upload_speed.ceil
+  if coffee_shops.length > 0
+    coffee_shops.reorder("upload_speed DESC NULLS LAST").first.upload_speed.ceil
+  else
+    0
+  end
  end
 
   private

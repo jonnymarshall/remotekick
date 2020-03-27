@@ -12,7 +12,11 @@ class CoffeeShop < ApplicationRecord
   # after_validation :geocode, if: :will_save_change_to_address?
   reverse_geocoded_by :latitude, :longitude
   after_validation :reverse_geocode
-  scope :location, -> address_search { near(address_search) }
+  # scope :location, -> location { near(location) }
+  # scope :by_location_and_distance, lambda { |params| near(params["location"], params["distance"]) }
+  # scope :distance, -> (location, distance) { near(location, distance) }
+  # scope :distance, -> params["location"], distance { near(params["location"], distance) }
+  scope :by_location_and_distance, -> location, distance { near(location, distance) }
   scope :rating, -> number { where("rating >= ?", number) }
   scope :upload_speed, -> number { where("upload_speed >= ?", number) }
   scope :serves_plant_milk, -> { where(serves_plant_milk: true) }
@@ -44,6 +48,11 @@ class CoffeeShop < ApplicationRecord
   end
 
   private
+
+
+  def location_and_distance(loation, distance)
+    byebug
+  end
 
   def recalculate_value(param_name, value)
     # assign existing value based on a dynamic active record query for param_name
