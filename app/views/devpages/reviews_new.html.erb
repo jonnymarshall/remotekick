@@ -1,42 +1,120 @@
 <section class="section">
-  <div class="container has-text-centered">
-    <h1 class="title">Leave a review for X</h1>
-    <div class="field">
-      <label class="label">Criteria</label>
-        <label class="radio">
-          <input type="radio" name="answer">
-          <a class="button is-primary is-outlined is-large">
-            <span class="icon is-medium has-text-light">
-              <i class="fas fa-2x fas fa-frown"></i>
+  <div class="container">
+    <div class="columns">
+      <div class="column is-paddingless"></div>
+      <div class="column is-two-fifths">
+        <h1 class="title">Leave a review for X</h1>
+          <form class="form-group col-xs-6" action="/coffee_shops" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+
+          <!-- FILTER > RATING -->
+          <div class="field">
+            <label class="label">Rating</label>
+            <div class="control">
+                <input type="radio" name="rating" id="rating_0" value="0" class="is-hidden" data-target="index-filter-icons.input">
+                <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="rating_0"><span class="icon is-medium has-text-light" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-star"></i></span></label>
+                <input type="radio" name="rating" id="rating_1" value="1" class="is-hidden" data-target="index-filter-icons.input">
+                <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="rating_1"><span class="icon is-medium has-text-light" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-star"></i></span></label>
+                <input type="radio" name="rating" id="rating_2" value="2" class="is-hidden" data-target="index-filter-icons.input">
+                <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="rating_2"><span class="icon is-medium has-text-light" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-star"></i></span></label>
+                <input type="radio" name="rating" id="rating_3" value="3" class="is-hidden" data-target="index-filter-icons.input">
+                <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="rating_3"><span class="icon is-medium has-text-light" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-star"></i></span></label>
+                <input type="radio" name="rating" id="rating_4" value="4" class="is-hidden" data-target="index-filter-icons.input">
+                <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="rating_4"><span class="icon is-medium has-text-light" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-star"></i></span></label>
+            </div>
+          </div>
+    
+          <!-- FILTER > CONTENT -->
+          <div class="field">
+            <label class="label">Review content</label>
+            <p class="control has-icons-left">
+              <input placeholder="How was your experience with X?" class="input" type="text" name="content" id="content">
+              <span class="icon is-small is-left">
+                <i class="fas fa-comment"></i>
+              </span>
+            </p>
+          </div>
+
+          <!-- FILTER > WIFI SPEED -->
+          <div class="field">
+            <label class="label">Wifi Speed</label>
+            <p class="control has-icons-left">
+              <input placeholder="Please enter speed (Mbps)" class="input" type="number" name="wifi_speed" id="wifi_speed">
+              <span class="icon is-small is-left">
+                <i class="fas fa-wifi"></i>
+              </span>
+            </p>
+          </div>
+
+          <!-- FILTER > HAS WIFI -->
+          <div class="field">
+            <label class="checkbox">
+              <input name="has_wifi" type="hidden" value="0"><input type="checkbox" value="1" name="has_wifi" id="has_wifi">
+              This venue does not have wifi
+            </label>
+          </div>
+      
+          <!-- FILTER > PLUG SOCKETS -->
+          <div class="field">
+            <label class="label">Plug sockets</label>
+            <div class="control">
+              <input type="radio" name="plug_sockets" id="plug_sockets_0" value="0" class="is-hidden" data-target="index-filter-icons.input">
+              <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="plug_sockets_0"><span class="icon is-medium has-text-light" for="plug_sockets" value="0" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-frown"></i></span></label>
+              <input type="radio" name="plug_sockets" id="plug_sockets_1" value="1" class="is-hidden" data-target="index-filter-icons.input">
+              <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="plug_sockets_1"><span class="icon is-medium has-text-light" for="plug_sockets" value="1" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-meh"></i></span></label>
+              <input type="radio" name="plug_sockets" id="plug_sockets_2" value="2" class="is-hidden" data-target="index-filter-icons.input">
+              <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="plug_sockets_2"><span class="icon is-medium has-text-light" for="plug_sockets" value="2" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-smile"></i></span></label>
+            </div>
+          </div>
+    
+          <!-- FILTER > COMFORT -->
+          <div class="field">
+            <label class="label">Comfort</label>
+            <div class="control">
+              <input type="radio" name="comfort" id="comfort_0" value="0" class="is-hidden" data-target="index-filter-icons.input">
+              <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="comfort_0"><span class="icon is-medium has-text-light" for="comfort" value="0" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-frown"></i></span></label>
+              <input type="radio" name="comfort" id="comfort_1" value="1" class="is-hidden" data-target="index-filter-icons.input">
+              <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="comfort_1"><span class="icon is-medium has-text-light" for="comfort" value="1" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-meh"></i></span></label>
+              <input type="radio" name="comfort" id="comfort_2" value="2" class="is-hidden" data-target="index-filter-icons.input">
+              <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="comfort_2"><span class="icon is-medium has-text-light" for="comfort" value="2" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-smile"></i></span></label>
+            </div>
+          </div>
+    
+          <!-- FILTER > BUSYNESS -->
+          <div class="field">
+            <label class="label">Busyness</label>
+            <div class="control">
+              <input type="radio" name="busyness" id="busyness_0" value="0" class="is-hidden" data-target="index-filter-icons.input">
+              <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="busyness_0"><span class="icon is-medium has-text-light" for="busyness" value="0" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-frown"></i></span></label>
+              <input type="radio" name="busyness" id="busyness_1" value="1" class="is-hidden" data-target="index-filter-icons.input">
+              <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="busyness_1"><span class="icon is-medium has-text-light" for="busyness" value="1" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-meh"></i></span></label>
+              <input type="radio" name="busyness" id="busyness_2" value="2" class="is-hidden" data-target="index-filter-icons.input">
+              <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="busyness_2"><span class="icon is-medium has-text-light" for="busyness" value="2" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-smile"></i></span></label>
+            </div>
+          </div>
+        
+          <label class="label">Please select appropriate tags</label>
+          <div class="tags">
+            <span class="tag">
+              Serves Food
+              <button class="delete is-small"></button>
             </span>
-          </a>
-        </label>
-        <label class="radio">
-          <input type="radio" name="answer">
-          <a class="button is-primary is-outlined is-large">
-            <span class="icon is-medium has-text-light">
-              <i class="fas fa-2x fas fa-meh"></i>
+            <span class="tag">
+              Open late
+              <button class="delete is-small"></button>
             </span>
-          </a>
-        </label>
-        <label class="radio">
-          <input type="radio" name="answer">
-          <a class="button is-primary is-outlined is-large">
-            <span class="icon is-medium has-text-light">
-              <i class="fas fa-2x fas fa-smile"></i>
-            </span>
-          </a>
-        </label>
+          </div>
+    
+          <div class="field is-grouped">
+            <p class="control">
+              <input type="submit" name="commit"class="button is-primary">
+            </p>
+            <p class="control">
+              <a class="button is-light" href="/">Cancel</a>
+            </p>
+          </div>
+        </form>
       </div>
-      <button class="button is-primary">Submit</button>
-      <button class="button is-light">Cancel</button>
-      <!-- <div class="field is-grouped">
-        <div class="control">
-          <button class="button is-link">Submit</button>
-        </div>
-        <div class="control">
-          <button class="button is-link is-light">Cancel</button>
-        </div> -->
-      </div>
+      <div class="column is-paddingless"></div>
     </div>
-  </section>
+  </div>
+</section>

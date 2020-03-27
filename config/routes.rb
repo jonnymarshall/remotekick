@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # DEVELOPMENT
   resources :devpages, only: :show
-
+  
   get 'coffee_shops/new/venue_search', to: 'coffee_shops#venue_search'
   get 'coffee_shops/autocomplete_response', to: 'coffee_shops#autocomplete_response'
 

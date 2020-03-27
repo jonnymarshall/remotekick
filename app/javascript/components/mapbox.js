@@ -26,6 +26,14 @@ const runMapBox = () => {
 
   const addMarkersToMap = (map, markers) => {
     markers.forEach((marker) => {
+      if (
+        marker.lng < -90 ||
+        marker.lng > 90 ||
+        marker.lat < -90 ||
+        marker.lat > 90
+      ) {
+        console.log(marker)
+      }
       const popup = new mapboxgl.Popup().setHTML(marker.infoWindow); // add this
 
       new mapboxgl.Marker()
@@ -34,7 +42,6 @@ const runMapBox = () => {
         .addTo(map);
     });
   };
-  // debugger
 
   // markers.forEach((marker) => {
 

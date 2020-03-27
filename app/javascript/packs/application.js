@@ -14,7 +14,8 @@ import { venueAutofill } from "../components/venue_autofill.js.erb";
 import { runAutoComplete } from "../components/autocomplete.js";
 import { runMapBox } from "../components/mapbox.js";
 import { navbarHamburger } from "../components/navbarHamburger.js";
-import { navbarFilter } from "../components/navbarFilter.js";
+// import { navbarFilter } from "../components/navbarFilter.js";
+import { developmentSlider } from "../components/developmentSlider.js";
 
 // import { venueAutofillTimeout } from "../components/venue_autofill_timeout.js.erb";
 
@@ -38,3 +39,6 @@ if (document.getElementById("map")){
 
 // NavbarHamburger
 navbarHamburger();
+
+// developmentSlider
+developmentSlider();
