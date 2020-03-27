@@ -40,6 +40,10 @@ module CoffeeShopsHelper
     label_tag( "#{feature_param}_#{value}", span_element, :class=>'c-rating-star--label', :data => { :action => 'click->index-filter-icons#selecticons'})
   end
 
+ def highest_upload_speed(coffee_shops)
+  coffee_shops.reorder("upload_speed DESC NULLS LAST").first.upload_speed.ceil
+ end
+
   private
 
   def smile_type(value)
