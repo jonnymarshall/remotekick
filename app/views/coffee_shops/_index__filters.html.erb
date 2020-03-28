@@ -39,14 +39,14 @@
       <div class="filter level-filter level-req">
         <div id="rangeSlider" class="range-slider">
           <label class="label">Wifi Speed</label>
-
+          
           <div class="number-group">
-            <%= number_field_tag :upload_speed, 0, in: 0..highest_upload_speed(@coffee_shops), class: 'number-input' %> to
+            <%= number_field_tag :upload_speed, params[:upload_speed], in: 0..highest_upload_speed(@coffee_shops), class: 'number-input' %> to
             <%= number_field_tag :upload_speed, highest_upload_speed(@coffee_shops), in: 0..highest_upload_speed(@coffee_shops), class: 'number-input' %> Mbps
           </div>
 
           <div class="range-group">
-            <%= range_field_tag :upload_speed, 0, in: 0..highest_upload_speed(@coffee_shops), class: 'range-input' %>
+            <%= range_field_tag :upload_speed, params[:upload_speed], in: 0..highest_upload_speed(@coffee_shops), class: 'range-input' %>
           </div>
         </div>
       </div>

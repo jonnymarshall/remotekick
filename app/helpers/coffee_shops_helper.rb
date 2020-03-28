@@ -60,13 +60,21 @@ module CoffeeShopsHelper
     ])
   end
 
- def highest_upload_speed(coffee_shops)
-  if coffee_shops.length > 0
-    coffee_shops.reorder("upload_speed DESC NULLS LAST").first.upload_speed.ceil
-  else
-    0
+  def highest_upload_speed(coffee_shops)
+    if coffee_shops.length > 0
+      coffee_shops.reorder("upload_speed DESC NULLS LAST").first.upload_speed.ceil
+    else
+      0
+    end
   end
- end
+
+  def lowest_upload_speed(coffee_shops)
+    if coffee_shops.length > 0
+      coffee_shops.reorder("upload_speed ASC NULLS LAST").first.upload_speed.ceil - 1
+    else
+      0
+    end
+  end
 
   private
 
