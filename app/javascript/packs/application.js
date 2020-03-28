@@ -15,7 +15,6 @@ import { runAutoComplete } from "../components/autocomplete.js";
 import { runMapBox } from "../components/mapbox.js";
 import { navbarHamburger } from "../components/navbarHamburger.js";
 // import { navbarFilter } from "../components/navbarFilter.js";
-import { developmentSlider } from "../components/developmentSlider.js";
 
 // import { venueAutofillTimeout } from "../components/venue_autofill_timeout.js.erb";
 
