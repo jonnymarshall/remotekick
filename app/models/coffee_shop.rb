@@ -12,11 +12,7 @@ class CoffeeShop < ApplicationRecord
   # after_validation :geocode, if: :will_save_change_to_address?
   reverse_geocoded_by :latitude, :longitude
   after_validation :reverse_geocode
-  # scope :location, -> location { near(location) }
-  # scope :by_location_and_distance, lambda { |params| near(params["location"], params["distance"]) }
-  # scope :distance, -> (location, distance) { near(location, distance) }
-  # scope :distance, -> params["location"], distance { near(params["location"], distance) }
-  scope :by_location_and_distance, -> location, distance { near(location, distance) }
+  scope :location, -> location { near(location) }
   scope :rating, -> number { where("rating >= ?", number) }
   scope :upload_speed, -> number { where("upload_speed >= ?", number) }
   scope :serves_plant_milk, -> { where(serves_plant_milk: true) }

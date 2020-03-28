@@ -12,8 +12,8 @@
   <!-- FILTER > DISTANCE -->
   <div class="field">
     <div class="control is-expanded has-icons-left">
-      <div class="select is-primary is-fullwidth" data-controller="index-cards-ordering">
-        <select name="distance" data-action="change->index-cards-ordering#goToUrl">
+      <div class="select is-primary is-fullwidth">
+        <select name="distance" data-controller="set-selected-option">
           <%= distance_options %>
         </select>
       </div>
