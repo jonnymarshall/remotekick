@@ -6,7 +6,7 @@ class CoffeeShopsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   # @coffee_shop should be called as coffee_shop for decorated instance in views
   decorates_assigned :coffee_shop
-  has_scope :location, if: :location_given
+  has_scope :location, if: :location_given? && !:distance_given?
   has_scope :rating
   has_scope :upload_speed
   has_scope :no_wifi_restrictions
@@ -23,6 +23,9 @@ class CoffeeShopsController < ApplicationController
     @coffee_shops = apply_scopes(CoffeeShop).all
     if coffee_shops_params[:order_by]
       order_coffee_shops_by_param(@coffee_shops, coffee_shops_params[:order_by])
+    end
+    if location_given? && distance_given?
+      @coffee_shops = @coffee_shops.near(coffee_shops_params[:location], coffee_shops_params[:distance])
     end
     @coffee_shops_params = coffee_shops_params
     @coffee_shops_boolean_params = coffee_shops_boolean_params
@@ -104,7 +107,17 @@ class CoffeeShopsController < ApplicationController
   end
 
   def coffee_shops_params
-    params.permit(:location, :rating, :upload_speed, :comfort, :plug_sockets, :busyness, :has_wifi, :order_by)
+    params.permit(
+      :location,
+      :rating,
+      :upload_speed,
+      :comfort,
+      :plug_sockets,
+      :busyness,
+      :has_wifi,
+      :order_by,
+      :distance
+    )
   end
 
   def new_coffee_shop_params
@@ -170,7 +183,11 @@ class CoffeeShopsController < ApplicationController
     end
   end
 
-  def location_given
-    coffee_shops_params[:location] && coffee_shops_params[:location] != ""
+  def location_given?
+    coffee_shops_params[:location] && coffee_shops_params[:location] != "" && coffee_shops_params[:location] != "Everywhere"
+  end
+
+  def distance_given?
+    coffee_shops_params[:distance] && coffee_shops_params[:distance].to_i > 0
   end
 end
