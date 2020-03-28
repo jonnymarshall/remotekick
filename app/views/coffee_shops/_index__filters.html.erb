@@ -37,16 +37,16 @@
   <div class="field">
     <div class="control">
       <div class="filter level-filter level-req">
-        <div id="rangeSlider" class="range-slider">
+        <div id="rangeSlider" class="range-slider" data-controller="range-slider">
           <label class="label">Wifi Speed</label>
           
           <div class="number-group">
-            <%= number_field_tag :upload_speed, params[:upload_speed], in: 0..highest_upload_speed(@coffee_shops), class: 'number-input' %> to
-            <%= number_field_tag :upload_speed, highest_upload_speed(@coffee_shops), in: 0..highest_upload_speed(@coffee_shops), class: 'number-input' %> Mbps
+            <%= number_field_tag :upload_speed, params[:upload_speed], in: 0..highest_upload_speed(@coffee_shops), class: 'number-input', :data => { :target => 'range-slider.number', :action => 'range-slider#numberHandler' } %> to
+            <%= number_field_tag :upload_speed, highest_upload_speed(@coffee_shops), in: 0..highest_upload_speed(@coffee_shops), class: 'number-input', :disabled => true, :data => { :target => 'range-slider.number', :action => 'range-slider#numberHandler' } %> Mbps
           </div>
 
           <div class="range-group">
-            <%= range_field_tag :upload_speed, params[:upload_speed], in: 0..highest_upload_speed(@coffee_shops), class: 'range-input' %>
+            <%= range_field_tag :upload_speed, params[:upload_speed], in: 0..highest_upload_speed(@coffee_shops), class: 'range-input', :data => { :target => 'range-slider.range', :action => 'range-slider#sliderHandler' } %>
           </div>
         </div>
       </div>

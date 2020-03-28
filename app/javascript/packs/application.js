@@ -39,6 +39,3 @@ if (document.getElementById("map")){
 
 // NavbarHamburger
 navbarHamburger();
-
-// developmentSlider
-developmentSlider();
