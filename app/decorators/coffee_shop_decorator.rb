@@ -23,7 +23,7 @@ class CoffeeShopDecorator < Draper::Decorator
   end
   
   def reviews_info_text
-    if has_attribute("reviews")
+    if has_attribute?("reviews")
       "Based on #{object.reviews.count} reviews."
     else
       "No reviews yet."
@@ -31,8 +31,8 @@ class CoffeeShopDecorator < Draper::Decorator
   end
 
   def wifi_speed
-    if has_attribute("upload_speed")
-      h.content_tag( :strong, "#{object.download_speed.round(0)} Mbps")
+    if has_attribute?("upload_speed")
+      h.content_tag( :strong, "#{object.upload_speed.round(0)} Mbps")
     elsif object.has_wifi || object.has_wifi.nil?
       "Unknown"
     else !object.has_wifi
@@ -41,16 +41,18 @@ class CoffeeShopDecorator < Draper::Decorator
   end
 
   def display_icons(attribute, icon_set = [])
-    if has_attribute(attribute)
+    if has_attribute?(attribute)
       icon_set << "#{h.content_tag( :i, nil, :class=>'fas fa-smile has-text-primary')}&nbsp;" * (icon_count_calculator(attribute))
       icon_set << h.content_tag( :i, nil, :class=>'far fa-smile') * (inverse_icon_count_calculator(attribute))
+      icon_set.join
+    else
+      "Unknown"
     end
-    icon_set.join
   end
 
   private
 
-  def has_attribute(attribute)
+  def has_attribute?(attribute)
     !object.send(attribute).nil?
   end
 
