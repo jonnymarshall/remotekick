@@ -8,7 +8,6 @@
     "babel-loader": "^8.0.6",
     "bulma": "^0.8.0",
     "core-js": "3",
-    "flickity": "^2.2.1",
     "jquery": "^3.4.1",
     "mapbox-gl": "^1.6.0",
     "popper.js": "^1.15.0",

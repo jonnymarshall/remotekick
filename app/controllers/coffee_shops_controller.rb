@@ -153,10 +153,6 @@ class CoffeeShopsController < ApplicationController
     params.require(:coffee_shop).permit(opening_hour: [:day, :open, :close])
   end
 
-  def reverse_checkbox_value(value)
-    value.to_i.positive? ? 0 : 1
-  end
-
   def mapbox_api
     baseApiUrl = 'https://api.mapbox.com';
   end

@@ -4,22 +4,22 @@
       <div class="column is-paddingless"></div>
       <div class="column is-two-fifths">
         <h1 class="title">Leave a review for X</h1>
-          <form class="form-group col-xs-6" action="/coffee_shops" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+          <form class="form-group col-xs-6" action="/coffee_shops" data-controller="index-filter-icons" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
 
           <!-- FILTER > RATING -->
           <div class="field">
             <label class="label">Rating</label>
             <div class="control">
                 <input type="radio" name="rating" id="rating_0" value="0" class="is-hidden" data-target="index-filter-icons.input">
-                <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="rating_0"><span class="icon is-medium has-text-light" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-star"></i></span></label>
+                <label class="c-rating-star--label" data-action="click->index-filter-icons#selectIcons" for="rating_0"><span class="icon is-medium has-text-light" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-star"></i></span></label>
                 <input type="radio" name="rating" id="rating_1" value="1" class="is-hidden" data-target="index-filter-icons.input">
-                <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="rating_1"><span class="icon is-medium has-text-light" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-star"></i></span></label>
+                <label class="c-rating-star--label" data-action="click->index-filter-icons#selectIcons" for="rating_1"><span class="icon is-medium has-text-light" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-star"></i></span></label>
                 <input type="radio" name="rating" id="rating_2" value="2" class="is-hidden" data-target="index-filter-icons.input">
-                <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="rating_2"><span class="icon is-medium has-text-light" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-star"></i></span></label>
+                <label class="c-rating-star--label" data-action="click->index-filter-icons#selectIcons" for="rating_2"><span class="icon is-medium has-text-light" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-star"></i></span></label>
                 <input type="radio" name="rating" id="rating_3" value="3" class="is-hidden" data-target="index-filter-icons.input">
-                <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="rating_3"><span class="icon is-medium has-text-light" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-star"></i></span></label>
+                <label class="c-rating-star--label" data-action="click->index-filter-icons#selectIcons" for="rating_3"><span class="icon is-medium has-text-light" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-star"></i></span></label>
                 <input type="radio" name="rating" id="rating_4" value="4" class="is-hidden" data-target="index-filter-icons.input">
-                <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="rating_4"><span class="icon is-medium has-text-light" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-star"></i></span></label>
+                <label class="c-rating-star--label" data-action="click->index-filter-icons#selectIcons" for="rating_4"><span class="icon is-medium has-text-light" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-star"></i></span></label>
             </div>
           </div>
     
@@ -27,10 +27,7 @@
           <div class="field">
             <label class="label">Review content</label>
             <p class="control has-icons-left">
-              <input placeholder="How was your experience with X?" class="input" type="text" name="content" id="content">
-              <span class="icon is-small is-left">
-                <i class="fas fa-comment"></i>
-              </span>
+              <textarea class="textarea" placeholder="How was your experience?"></textarea>
             </p>
           </div>
 
@@ -58,11 +55,11 @@
             <label class="label">Plug sockets</label>
             <div class="control">
               <input type="radio" name="plug_sockets" id="plug_sockets_0" value="0" class="is-hidden" data-target="index-filter-icons.input">
-              <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="plug_sockets_0"><span class="icon is-medium has-text-light" for="plug_sockets" value="0" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-frown"></i></span></label>
+              <label class="c-rating-star--label" data-action="click->index-filter-icons#selectIcons" for="plug_sockets_0"><span class="icon is-medium has-text-light" for="plug_sockets" value="0" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-frown"></i></span></label>
               <input type="radio" name="plug_sockets" id="plug_sockets_1" value="1" class="is-hidden" data-target="index-filter-icons.input">
-              <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="plug_sockets_1"><span class="icon is-medium has-text-light" for="plug_sockets" value="1" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-meh"></i></span></label>
+              <label class="c-rating-star--label" data-action="click->index-filter-icons#selectIcons" for="plug_sockets_1"><span class="icon is-medium has-text-light" for="plug_sockets" value="1" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-meh"></i></span></label>
               <input type="radio" name="plug_sockets" id="plug_sockets_2" value="2" class="is-hidden" data-target="index-filter-icons.input">
-              <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="plug_sockets_2"><span class="icon is-medium has-text-light" for="plug_sockets" value="2" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-smile"></i></span></label>
+              <label class="c-rating-star--label" data-action="click->index-filter-icons#selectIcons" for="plug_sockets_2"><span class="icon is-medium has-text-light" for="plug_sockets" value="2" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-smile"></i></span></label>
             </div>
           </div>
     
@@ -71,11 +68,11 @@
             <label class="label">Comfort</label>
             <div class="control">
               <input type="radio" name="comfort" id="comfort_0" value="0" class="is-hidden" data-target="index-filter-icons.input">
-              <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="comfort_0"><span class="icon is-medium has-text-light" for="comfort" value="0" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-frown"></i></span></label>
+              <label class="c-rating-star--label" data-action="click->index-filter-icons#selectIcons" for="comfort_0"><span class="icon is-medium has-text-light" for="comfort" value="0" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-frown"></i></span></label>
               <input type="radio" name="comfort" id="comfort_1" value="1" class="is-hidden" data-target="index-filter-icons.input">
-              <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="comfort_1"><span class="icon is-medium has-text-light" for="comfort" value="1" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-meh"></i></span></label>
+              <label class="c-rating-star--label" data-action="click->index-filter-icons#selectIcons" for="comfort_1"><span class="icon is-medium has-text-light" for="comfort" value="1" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-meh"></i></span></label>
               <input type="radio" name="comfort" id="comfort_2" value="2" class="is-hidden" data-target="index-filter-icons.input">
-              <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="comfort_2"><span class="icon is-medium has-text-light" for="comfort" value="2" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-smile"></i></span></label>
+              <label class="c-rating-star--label" data-action="click->index-filter-icons#selectIcons" for="comfort_2"><span class="icon is-medium has-text-light" for="comfort" value="2" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-smile"></i></span></label>
             </div>
           </div>
     
@@ -84,11 +81,11 @@
             <label class="label">Busyness</label>
             <div class="control">
               <input type="radio" name="busyness" id="busyness_0" value="0" class="is-hidden" data-target="index-filter-icons.input">
-              <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="busyness_0"><span class="icon is-medium has-text-light" for="busyness" value="0" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-frown"></i></span></label>
+              <label class="c-rating-star--label" data-action="click->index-filter-icons#selectIcons" for="busyness_0"><span class="icon is-medium has-text-light" for="busyness" value="0" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-frown"></i></span></label>
               <input type="radio" name="busyness" id="busyness_1" value="1" class="is-hidden" data-target="index-filter-icons.input">
-              <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="busyness_1"><span class="icon is-medium has-text-light" for="busyness" value="1" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-meh"></i></span></label>
+              <label class="c-rating-star--label" data-action="click->index-filter-icons#selectIcons" for="busyness_1"><span class="icon is-medium has-text-light" for="busyness" value="1" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-meh"></i></span></label>
               <input type="radio" name="busyness" id="busyness_2" value="2" class="is-hidden" data-target="index-filter-icons.input">
-              <label class="c-rating-star--label" data-action="click->index-filter-icons#selecticons" for="busyness_2"><span class="icon is-medium has-text-light" for="busyness" value="2" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-smile"></i></span></label>
+              <label class="c-rating-star--label" data-action="click->index-filter-icons#selectIcons" for="busyness_2"><span class="icon is-medium has-text-light" for="busyness" value="2" data-target="index-filter-icons.icon"><i class="fas fa-2x fas fa-smile"></i></span></label>
             </div>
           </div>
         
