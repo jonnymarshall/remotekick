@@ -38,13 +38,13 @@ class CoffeeShop < ApplicationRecord
       serves_plant_milk: update_boolean_value("serves_plant_milk", review.serves_plant_milk),
       serves_food: update_boolean_value("serves_food", review.serves_food),
       serves_smoothies: update_boolean_value("serves_smoothies", review.serves_smoothies),
-      air_conditioning: update_boolean_value("air_conditioning", review.air_conditioning)
+      air_conditioning: update_boolean_value("air_conditioning", review.air_conditioning),
+      has_wifi: update_boolean_value("has_wifi", review.has_wifi)
     }
     update(updated_values)
   end
 
   private
-
 
   def location_and_distance(loation, distance)
     byebug

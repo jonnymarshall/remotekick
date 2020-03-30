@@ -9,6 +9,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review = current_user.reviews.new(review_params)
+    @review.has_wifi = reverse_checkbox_value(review_has_wifi_param[:has_wifi])
     @review.coffee_shop = @coffee_shop
     unless review_photo_params[:review_photo][:photo] == nil
       @review_photo = @review.review_photos.new(photo: review_photo_params[:review_photo][:photo])
@@ -19,6 +20,10 @@ class ReviewsController < ApplicationController
   end
 
   private
+
+  def reverse_checkbox_value(value)
+    value.to_i.positive? ? false : true
+  end
 
   def review_params
     params.require(:review).permit(
@@ -35,6 +40,13 @@ class ReviewsController < ApplicationController
       :air_conditioning
     )
   end
+
+  def review_has_wifi_param
+    params.require(:review).permit(
+      :has_wifi
+    )
+  end
+
 
   def review_photo_params
     params.require(:review).permit(review_photo: [:photo])
