@@ -76,6 +76,10 @@ module CoffeeShopsHelper
     end
   end
 
+  def wifi_restrictions_options
+    [['Wifi Restrictions', 0], ['1 Hour', 1], ['2 Hours', 2], ['3 Hours', 3], ['4+ Hours', 4]]
+  end
+
   private
 
   def smile_type(value)

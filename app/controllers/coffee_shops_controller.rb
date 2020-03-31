@@ -40,12 +40,14 @@ class CoffeeShopsController < ApplicationController
   def new
     @venue_search_path = venue_search_new_coffee_shop_path
     @coffee_shop = CoffeeShop.new
-    @opening_hours = OpeningHour.new
-    @opening_hours = []
-    7.times do
-      @opening_hours << OpeningHour.new
-    end
-    @weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+
+    @coffee_shops = CoffeeShop.all
+    # @opening_hours = OpeningHour.new
+    # @opening_hours = []
+    # 7.times do
+    #   @opening_hours << OpeningHour.new
+    # end
+    # @weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
   end
 
   def create
@@ -134,6 +136,7 @@ class CoffeeShopsController < ApplicationController
         :air_conditioning,
         :serves_plant_milk,
         :wifi_restrictions,
+        :has_wifi,
         :longitude,
         :latitude,
         :foursquare_id

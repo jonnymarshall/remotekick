@@ -6,17 +6,19 @@
         <div class="column is-two-fifths">
           <h1 class="title">Add a new venue</h1>
           <div class="field">
+            <label class="label">Location</label>
             <p class="control has-icons-left">
-              <%= field.text_field :location, class: "input", placeholder: "Location", :data => { :target => 'venue-autofill.location' } %>
+              <%= field.text_field :location, class: "input", placeholder: "Search for a location...", :data => { :target => 'venue-autofill.location' } %>
               <span class="icon is-small is-left">
                 <i class="fas fa-map-marker-alt"></i>
               </span>
             </p>
           </div>
           <div class="field">
+            <label class="label">Name</label>
             <div class="is-hidden" data-target="venue-autofill.path" data-url="<%= @venue_search_path %>"></div>
             <p class="control has-icons-left has-icons-right">
-              <%= field.text_field :name, autofocus: true, class: "input", id: 'venueNameInput', placeholder: "Search for a venue", :data => { :target => 'venue-autofill.input' } %>
+              <%= field.text_field :name, autofocus: true, class: "input", id: 'venueNameInput', placeholder: "What is the name of the venue?", :data => { :target => 'venue-autofill.input' } %>
               <span class="icon is-small is-left">
                 <i class="fas fa-store-alt"></i>
               </span>
@@ -26,36 +28,39 @@
 
           </div>
           <div class="field">
+            <label class="label">Description</label>
             <p class="control has-icons-left">
-              <%= field.text_field :description, class: "input", placeholder: "Description", :data => { :target => 'venue-autofill.description' } %>
+              <%= field.text_field :description, class: "input", placeholder: "e.g. Café/Bar/Coworking Space", :data => { :target => 'venue-autofill.description' } %>
               <span class="icon is-small is-left">
                 <i class="fas fa-info-circle"></i>
               </span>
             </p>
           </div>
           <div class="field">
+            <label class="label">Address</label>
             <p class="control has-icons-left">
-              <%= field.text_field :address, class: "input", placeholder: "Address", :data => { :target => 'venue-autofill.address' } %>
+              <%= field.text_field :address, class: "input", placeholder: "What's the address?", :data => { :target => 'venue-autofill.address' } %>
               <span class="icon is-small is-left">
                 <i class="fas fa-city"></i>
               </span>
             </p>
           </div>
           <div class="field">
+            <label class="label">Wifi</label>
             <div class="control">
               <label class="checkbox">
-                <%= field.check_box :serves_food  %>
-                Serves food
+                <%= field.check_box :has_wifi  %>
+                This venue has WiFi
               </label>
             </div>
           </div>
           <div class="field">
-            <label class="label">Wifi restrictions</label>
             <div class="control is-expanded has-icons-left">
               <div class="select is-fullwidth">
-                <select>
-                  <%= options_for_select([['1 Hour', 1], ['2 Hours', 2], ['3 Hours', 3]], ['4 Hours', 4]) %>
-                </select>
+                <!-- <select name="wifi_restrictions">
+                  <%= wifi_restrictions_options %>
+                </select> -->
+                <%= field.select(:wifi_restrictions, wifi_restrictions_options) -%>
               </div>
               <div class="icon is-small is-left">
                 <i class="fas fa-stopwatch"></i>
@@ -64,22 +69,22 @@
           </div>
 
 
-          <div id="opening-hours">
-            <%= field.label :opening_hours %>
-            <% @opening_hours.each_with_index do |opening_hour, i| %>
+          <div id="opening-hours" class="is-hidden">
+            <%#= field.label :opening_hours %>
+            <%# @opening_hours.each_with_index do |opening_hour, i| %>
               <div class="form-row">
                 <div class="form-group col-md-6" style="margin-top:15px;">
-                  <%= field. fields_for 'opening_hour[]', opening_hour do |f| %>
-                    <%= field.label :day, "#{@weekdays[i]}" %>
-                    <%= field.hidden_field :day, value: "#{i}" %><br />
-                    <%= field.label :opens %>
-                    <%= field.text_field :open, value: "00:00:00" %>
-                    <%= field.label :closes %>
-                    <%= field.text_field :close, value: "00:00:00" %>
-                  <% end %>
+                  <%#= field. fields_for 'opening_hour[]', opening_hour do |f| %>
+                    <%#= field.label :day, "#{@weekdays[i]}" %>
+                    <%#= field.hidden_field :day, value: "#{i}" %><br />
+                    <%#= field.label :opens %>
+                    <%#= field.text_field :open, value: "00:00:00" %>
+                    <%#= field.label :closes %>
+                    <%#= field.text_field :close, value: "00:00:00" %>
+                  <%# end %>
                 </div>
               </div>
-            <% end %>
+            <%# end %>
           </div>
 
           
