@@ -10,17 +10,11 @@ application.load(definitionsFromContext(context))
 
 
 // import "bootstrap";
-import { venueAutofill } from "../components/venue_autofill.js.erb";
 import { runAutoComplete } from "../components/autocomplete.js";
 import { runMapBox } from "../components/mapbox.js";
 import { navbarHamburger } from "../components/navbarHamburger.js";
 // import { navbarFilter } from "../components/navbarFilter.js";
 
-// import { venueAutofillTimeout } from "../components/venue_autofill_timeout.js.erb";
-
-if (document.getElementById("venueNameInput")){
-  venueAutofill();
-}
 
 if(document.querySelector("#autoComplete")) {
   runAutoComplete();
@@ -33,8 +27,6 @@ else {
 if (document.getElementById("map")){
   runMapBox();
 }
-
-// venueAutofillTimeout();
 
 // NavbarHamburger
 navbarHamburger();

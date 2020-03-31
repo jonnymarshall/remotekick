@@ -40,12 +40,14 @@ class CoffeeShopsController < ApplicationController
   def new
     @venue_search_path = venue_search_new_coffee_shop_path
     @coffee_shop = CoffeeShop.new
-    @opening_hours = OpeningHour.new
-    @opening_hours = []
-    7.times do
-      @opening_hours << OpeningHour.new
-    end
-    @weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+
+    @coffee_shops = CoffeeShop.all
+    # @opening_hours = OpeningHour.new
+    # @opening_hours = []
+    # 7.times do
+    #   @opening_hours << OpeningHour.new
+    # end
+    # @weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
   end
 
   def create
@@ -92,15 +94,19 @@ class CoffeeShopsController < ApplicationController
   # end
 
   def venue_search
+    location = venue_search_params[:location]
     search = venue_search_params[:query]
-    location = "melbourne"
-    url = api_call(location, search)
+    url = api_call(search, location)
     response = open(url).read
     @response_json = JSON.parse(response)
     render json: @response_json
   end
 
   private
+
+  def location_given?
+    venue_search_params[:location] ? true : false
+  end
 
   def set_coffee_shop
     @coffee_shop = CoffeeShop.find(params[:id])
@@ -130,6 +136,7 @@ class CoffeeShopsController < ApplicationController
         :air_conditioning,
         :serves_plant_milk,
         :wifi_restrictions,
+        :has_wifi,
         :longitude,
         :latitude,
         :foursquare_id
@@ -158,7 +165,7 @@ class CoffeeShopsController < ApplicationController
   end
 
   def venue_search_params
-    params.permit(:query)
+    params.permit(:query, :location)
   end
 
   def set_map_markers(coffee_shops)
@@ -181,6 +188,10 @@ class CoffeeShopsController < ApplicationController
 
   def location_given?
     coffee_shops_params[:location] && coffee_shops_params[:location] != "" && coffee_shops_params[:location] != "Everywhere"
+  end
+
+  def query_given?
+    coffee_shops_params[:location] && coffee_shops_params[:location] != ""
   end
 
   def distance_given?
