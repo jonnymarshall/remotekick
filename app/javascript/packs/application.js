@@ -10,15 +10,11 @@ application.load(definitionsFromContext(context))
 
 
 // import "bootstrap";
-import { venueAutofill } from "../components/venue_autofill.js";
 import { runAutoComplete } from "../components/autocomplete.js";
 import { runMapBox } from "../components/mapbox.js";
 import { navbarHamburger } from "../components/navbarHamburger.js";
 // import { navbarFilter } from "../components/navbarFilter.js";
 
-if (document.getElementById("venueNameInput")){
-  venueAutofill();
-}
 
 if(document.querySelector("#autoComplete")) {
   runAutoComplete();
