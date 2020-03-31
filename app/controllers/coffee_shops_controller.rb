@@ -92,10 +92,8 @@ class CoffeeShopsController < ApplicationController
   # end
 
   def venue_search
-    search = "starbucks"
-    location = "melbourne"
-    location = venue_search_params[:location] if location_given?
-    search = venue_search_params[:query] if query_given?
+    location = venue_search_params[:location]
+    search = venue_search_params[:query]
     url = api_call(search, location)
     response = open(url).read
     @response_json = JSON.parse(response)
