@@ -12,7 +12,7 @@
   <!-- FILTER > DISTANCE -->
   <div class="field">
     <div class="control is-expanded has-icons-left">
-      <div class="select is-primary is-fullwidth">
+      <div class="select is-fullwidth">
         <select name="distance" data-controller="set-selected-option">
           <%= distance_options %>
         </select>
@@ -41,12 +41,12 @@
           <label class="label">Wifi Speed</label>
           
           <div class="number-group">
-            <%= number_field_tag :upload_speed, params[:upload_speed], in: 0..highest_upload_speed(@coffee_shops), class: 'number-input', :data => { :target => 'range-slider.number', :action => 'range-slider#numberHandler' } %> to
+            <%= number_field_tag :upload_speed, selected_upload_speed(@coffee_shops, @coffee_shops_params[:upload_speed]), in: 0..highest_upload_speed(@coffee_shops), class: 'number-input', :data => { :target => 'range-slider.number', :action => 'range-slider#numberHandler' } %> to
             <%= number_field_tag :upload_speed, highest_upload_speed(@coffee_shops), in: 0..highest_upload_speed(@coffee_shops), class: 'number-input', :disabled => true, :data => { :target => 'range-slider.number', :action => 'range-slider#numberHandler' } %> Mbps
           </div>
 
           <div class="range-group">
-            <%= range_field_tag :upload_speed, params[:upload_speed], in: 0..highest_upload_speed(@coffee_shops), class: 'range-input', :data => { :target => 'range-slider.range', :action => 'range-slider#sliderHandler' } %>
+            <%= range_field_tag :upload_speed, selected_upload_speed(@coffee_shops, @coffee_shops_params[:upload_speed]), in: 0..highest_upload_speed(@coffee_shops), class: 'range-input', :data => { :target => 'range-slider.range', :action => 'range-slider#sliderHandler' } %>
           </div>
         </div>
       </div>
