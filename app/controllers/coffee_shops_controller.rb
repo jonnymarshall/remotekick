@@ -92,15 +92,21 @@ class CoffeeShopsController < ApplicationController
   # end
 
   def venue_search
-    search = venue_search_params[:query]
-    location = venue_search_params[:location]
-    url = api_call(location, search)
+    search = "starbucks"
+    location = "melbourne"
+    location = venue_search_params[:location] if location_given?
+    search = venue_search_params[:query] if query_given?
+    url = api_call(search, location)
     response = open(url).read
     @response_json = JSON.parse(response)
     render json: @response_json
   end
 
   private
+
+  def location_given?
+    venue_search_params[:location] ? true : false
+  end
 
   def set_coffee_shop
     @coffee_shop = CoffeeShop.find(params[:id])
@@ -181,6 +187,10 @@ class CoffeeShopsController < ApplicationController
 
   def location_given?
     coffee_shops_params[:location] && coffee_shops_params[:location] != "" && coffee_shops_params[:location] != "Everywhere"
+  end
+
+  def query_given?
+    coffee_shops_params[:location] && coffee_shops_params[:location] != ""
   end
 
   def distance_given?

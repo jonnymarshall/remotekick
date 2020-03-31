@@ -1,5 +1,5 @@
 module Foursquare
-  def api_call(location, search)
+  def api_call(search, location)
     url_root = "https://api.foursquare.com/v2/venues/"
     url_root_search = "#{url_root}search?"
     credentials = "&client_id=#{ENV["FOURSQUARE_CLIENT_ID"]}&client_secret=#{ENV["FOURSQUARE_CLIENT_SECRET"]}"
