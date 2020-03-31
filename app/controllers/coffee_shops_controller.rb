@@ -93,7 +93,7 @@ class CoffeeShopsController < ApplicationController
 
   def venue_search
     search = venue_search_params[:query]
-    location = "melbourne"
+    location = venue_search_params[:location]
     url = api_call(location, search)
     response = open(url).read
     @response_json = JSON.parse(response)
@@ -158,7 +158,7 @@ class CoffeeShopsController < ApplicationController
   end
 
   def venue_search_params
-    params.permit(:query)
+    params.permit(:query, :location)
   end
 
   def set_map_markers(coffee_shops)

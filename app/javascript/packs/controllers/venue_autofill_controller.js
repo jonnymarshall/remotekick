@@ -4,12 +4,13 @@ export default class extends Controller {
 
   controllerName = "venue_autofill_controller"
 
-  static targets = ["input", "path", "results", "test", "description", "address"]
+  static targets = ["location", "input", "path", "results", "test", "description", "address"]
 
   searchQuery = "";
   url = this.pathTargets[0].dataset.url
   results = null
   selectedVenue = null
+  location = null
 
   searchQueryHandler() {
   let self = this
@@ -26,6 +27,7 @@ export default class extends Controller {
   connect() {
     console.log(`${this.controllerName} connected.`)
     this.searchQueryHandler()
+    this.locationHandler()
   }
 
   disconnect() {
@@ -36,6 +38,25 @@ export default class extends Controller {
     this.resultsTargets[0].innerHTML = "";
   }
   
+  locationHandler() {
+    let self = this
+
+    // Capitalizes first letter of each word in string
+    const toTitleCase = (str) => {
+      return str.replace(/\w\S*/g, function(txt){
+          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      });
+    }
+
+    // Event listener for location field
+    this.locationTargets[0].addEventListener("keyup", function(e) {
+      // Sets location to value of location field for ajax request
+      self.location = e.target.value;
+      // Capitalizes text in location field
+      e.target.value = toTitleCase(e.target.value)
+    })
+  }
+
   selectionHandler() {
     let self = this
 
@@ -52,6 +73,7 @@ export default class extends Controller {
         self.inputTargets[0].value = self.searchQuery;
         // Hide the venue results list
         self.resultsTargets[0].classList.add("is-hidden");
+        // Populates address and description fields
         self.addressTargets[0].value = this.selectedVenue.location.address
         self.descriptionTargets[0].value = this.selectedVenue.categories[0].name
       })
@@ -80,7 +102,7 @@ export default class extends Controller {
 
   async executeAjaxRequest() {
     let self = this
-    await fetch(`${self.url}?utf8=✓&query=${self.searchQuery}`)
+    await fetch(`${self.url}?utf8=✓&query=${self.searchQuery}&location=${self.location}`)
       .then((response) => response.json())
       .then((data) => {
         console.log('Success:', data);
