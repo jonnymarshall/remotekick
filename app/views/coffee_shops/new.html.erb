@@ -1,11 +1,11 @@
 <%= form_with model: @coffee_shop, local: true, method: :post do |field| %>
-<section class="section">
+<section class="section" data-controller="venue-autofill">
     <div class="container">
       <div class="columns">
         <div class="column is-paddingless"></div>
         <div class="column is-two-fifths">
           <h1 class="title">Add a new venue</h1>
-          <div class="field" data-controller="venue-autofill">
+          <div class="field">
             <div class="is-hidden" data-target="venue-autofill.path" data-url="<%= @venue_search_path %>"></div>
             <p class="control has-icons-left has-icons-right">
               <%= field.text_field :name, autofocus: true, class: "input", id: 'venueNameInput', placeholder: "Search for a venue", :data => { :target => 'venue-autofill.input' } %>
@@ -15,27 +15,11 @@
             </p>
             <div data-target="venue-autofill.results">
             </div>
-            
-            <p class="control has-icons-left has-icons-right">
-              <span class="input" type="text">Yoi
-              <span class="icon is-small is-left">
-                <i class="fas fa-store-alt"></i>
-              </span>
-            </p>
-            <p class="control has-icons-left has-icons-right">
-              <span class="input dropdown-hover" type="text">Yoi
-              <span class="icon is-small is-left has-text-white">
-                <i class="fas fa-store-alt"></i>
-              </span>
-            </p>
-            <!-- <div id="myDropdown" class="dropdown-content">
-            </div> -->
-            
 
           </div>
           <div class="field">
             <p class="control has-icons-left">
-              <%= field.text_field :description, class: "input", id: 'description', placeholder: "Description" %>
+              <%= field.text_field :description, class: "input", placeholder: "Description", :data => { :target => 'venue-autofill.description' } %>
               <span class="icon is-small is-left">
                 <i class="fas fa-info-circle"></i>
               </span>
@@ -43,7 +27,7 @@
           </div>
           <div class="field">
             <p class="control has-icons-left">
-              <%= field.text_field :address, class: "input", id: 'address', placeholder: "Address" %>
+              <%= field.text_field :address, class: "input", placeholder: "Address", :data => { :target => 'venue-autofill.address' } %>
               <span class="icon is-small is-left">
                 <i class="fas fa-city"></i>
               </span>
