@@ -6,7 +6,7 @@ class CoffeeShopsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   # @coffee_shop should be called as coffee_shop for decorated instance in views
   decorates_assigned :coffee_shop
-  has_scope :location, if: :location_given? && !:distance_given?
+  # has_scope :location, if: :location_given? && !:distance_given?
   has_scope :rating
   has_scope :upload_speed
   has_scope :no_wifi_restrictions
@@ -104,10 +104,6 @@ class CoffeeShopsController < ApplicationController
 
   private
 
-  def location_given?
-    venue_search_params[:location] ? true : false
-  end
-
   def set_coffee_shop
     @coffee_shop = CoffeeShop.find(params[:id])
   end
@@ -122,7 +118,8 @@ class CoffeeShopsController < ApplicationController
       :busyness,
       :has_wifi,
       :order_by,
-      :distance
+      :distance,
+      :no_wifi_restrictions
     )
   end
 

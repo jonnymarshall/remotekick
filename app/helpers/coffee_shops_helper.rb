@@ -76,6 +76,14 @@ module CoffeeShopsHelper
     end
   end
 
+  def selected_upload_speed(coffee_shops, params_upload_speed)
+    if coffee_shops.length > 0 && params_upload_speed
+      params_upload_speed
+    else
+      0
+    end
+  end
+
   def wifi_restrictions_options
     [['Wifi Restrictions', 0], ['1 Hour', 1], ['2 Hours', 2], ['3 Hours', 3], ['4+ Hours', 4]]
   end
