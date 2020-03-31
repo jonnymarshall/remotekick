@@ -4,7 +4,18 @@ export default class extends Controller {
 
   controllerName = "venue_autofill_controller"
 
-  static targets = ["location", "input", "path", "results", "test", "description", "address"]
+  static targets = [
+    "location",
+    "input",
+    "path",
+    "results",
+    "test",
+    "description",
+    "address",
+    "longitude",
+    "latitude",
+    "fourSquareId"
+  ]
 
   searchQuery = "";
   url = this.pathTargets[0].dataset.url
@@ -35,9 +46,22 @@ export default class extends Controller {
   }
 
   resultsHandler() {
+    let self = this
     this.clearResults();
     this.generateResults();
-    this.selectionHandler();
+    let resultItems = document.querySelectorAll("[data-target='resultItem']")
+    resultItems.forEach((resultItem) => {
+      // Hover
+      resultItem.addEventListener("mouseover", (e) => {
+        self.hoverHandler(e)
+      });
+      // Select
+      resultItem.addEventListener("click", (e) => {
+        self.setQueryParams(resultItem)
+        self.clearResults()
+        self.setInputValues()
+      })
+    });
   }
 
   clearResults() {
@@ -77,25 +101,10 @@ export default class extends Controller {
     return formattedAddress.slice(0, -2)
   }
 
-  selectionHandler() {
-    let self = this
-
-    let resultItems = document.querySelectorAll("[data-target='resultItem']")
-    resultItems.forEach((resultItem) => {
-      resultItem.addEventListener("click", (e) => {
-        self.setQueryParams(resultItem)
-        self.clearResults()
-        self.setInputValues()
-      })
-      resultItem.addEventListener("mouseover", (e) => {
-        self.hoverHandler(e)
-      });
-    });
-  }
 
   hoverHandler(e) {
     let prevSelection = document.querySelector(".is-primary");
-    if (prevSelection) {
+    if ((prevSelection) && (prevSelection.getAttribute("data-target") == "resultItem")) {
       prevSelection.classList.remove("is-primary");
     }
     e.target.classList.add("is-primary");
@@ -113,8 +122,11 @@ export default class extends Controller {
   // Populate the input field with the venue name
   setInputValues() {
     self.inputTargets[0].value = self.searchQuery;
-    self.addressTargets[0].value = self.addressFormatter(self.selectedVenue)
-    self.descriptionTargets[0].value = this.selectedVenue.categories[0].name
+    self.addressTargets[0].value = self.addressFormatter(self.selectedVenue);
+    self.descriptionTargets[0].value = this.selectedVenue.categories[0].name;
+    self.longitudeTargets[0].value = this.selectedVenue.location.lng;
+    self.latitudeTargets[0].value = this.selectedVenue.location.lat;
+    self.fourSquareIdTargets[0].value = this.selectedVenue.id;
   }
 
   generateResults() {

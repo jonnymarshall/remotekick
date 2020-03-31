@@ -83,9 +83,9 @@
           </div>
 
           
-          <%= field.hidden_field :longitude, id: 'longitude' %>
-          <%= field.hidden_field :latitude, id: 'latitude' %>
-          <%= field.hidden_field :foursquare_id, id: 'fourSquareId' %>
+          <%= field.hidden_field :longitude, :data => { :target => 'venue-autofill.longitude' } %>
+          <%= field.hidden_field :latitude, :data => { :target => 'venue-autofill.latitude' } %>
+          <%= field.hidden_field :foursquare_id, :data => { :target => 'venue-autofill.fourSquareId' } %>
           <div class="field is-grouped">
             <p class="control">
               <%= field.submit "Submit new listing", class: "button is-primary" %>
