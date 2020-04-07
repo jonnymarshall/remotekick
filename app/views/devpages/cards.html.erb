@@ -1,0 +1,23 @@
+<div id="c-card" class="column is-one-third has-text-centered">
+  <%= link_to coffee_shop_path(@coffee_shop), data: { id: "#{@coffee_shop.id}"} do %>
+  <section id="c-card__image" class="hero is-primary" style="<%= @coffee_shop.decorate.gradient %>, <%= @coffee_shop.decorate.hero_image_url %>">
+    <div class="hero-body u-maxheight-170px">
+      <div class="container">
+        <h1 class="title is-6">
+          <%= @coffee_shop.name %>
+        </h1>
+        <h1 class="subtitle is-6">
+          Venue type
+        </h1>
+        <h1 class="subtitle is-6">
+          Wifi Info
+        </h1>
+      </div>
+    </div>
+  </section>
+  <div id="c-card__description" class="notification u-maxheight-170px">
+    <h1 class="subtitle is-6"><%= @coffee_shop.description %></p>
+    <%= raw @coffee_shop.decorate.rating_stars("1x") %>
+  </div>
+  <% end %>
+</div>
