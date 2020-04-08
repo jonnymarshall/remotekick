@@ -16,9 +16,13 @@ class CoffeeShopDecorator < Draper::Decorator
     end
   end
 
-  def rounded_rating
+  def rounded_rating(icon_set = [])
     if has_attribute?("rating")
-      object.rating.round(2)
+      icon_element = h.content_tag( :i, nil, :class=>'fas fa-star')
+      span_element = h.content_tag( :span, icon_element, :class=>"star-icon is-small has-text-primary")
+      icon_set << span_element
+      icon_set << object.rating.round(2)
+      icon_set.join
     else
       "No ratings yet."
     end
