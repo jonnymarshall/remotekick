@@ -14,8 +14,6 @@ class VenuesController < ApplicationController
   has_scope :busyness
   has_scope :plug_sockets
   has_scope :has_wifi
-  # has_scope :serves_food, type: :boolean
-  # has_scope :serves_smoothies, type: :boolean
   # has_scope :air_conditioning, type: :boolean
 
   def index
@@ -128,9 +126,7 @@ class VenuesController < ApplicationController
         :description,
         :address,
         :serves_food,
-        # :serves_smoothies,
         :air_conditioning,
-        # :serves_plant_milk,
         :wifi_restrictions,
         :has_wifi,
         :longitude,
@@ -142,9 +138,7 @@ class VenuesController < ApplicationController
   def venues_boolean_params
     params.permit(
       :serves_food,
-      # :serves_smoothies,
       :air_conditioning,
-      # :serves_plant_milk,
       :wifi_restrictions,
       :no_wifi_restrictions,
       :has_wifi

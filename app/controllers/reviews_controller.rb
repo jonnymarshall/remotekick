@@ -34,9 +34,7 @@ class ReviewsController < ApplicationController
       :busyness,
       :upload_speed,
       :download_speed,
-      :serves_plant_milk,
       :serves_food,
-      :serves_smoothies,
       :air_conditioning
     )
   end

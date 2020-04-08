@@ -15,7 +15,6 @@ class Venue < ApplicationRecord
   scope :rating, -> number { where("rating >= ?", number) }
   scope :upload_speed, -> number { where("upload_speed >= ?", number) if number > "0" }
   scope :serves_food, -> { where(serves_food: true) }
-  # scope :serves_smoothies, -> { where(serves_smoothies: true) }
   scope :air_conditioning, -> { where(air_conditioning: true) }
   scope :comfort, -> number { where("comfort >= ?", number) }
   scope :busyness, -> number { where("busyness >= ?", number) }
@@ -34,7 +33,6 @@ class Venue < ApplicationRecord
       download_speed: recalculate_value("download_speed", review.download_speed),
       ping: recalculate_value("ping", review.ping),
       serves_food: update_boolean_value("serves_food", review.serves_food),
-      # serves_smoothies: update_boolean_value("serves_smoothies", review.serves_smoothies),
       air_conditioning: update_boolean_value("air_conditioning", review.air_conditioning),
       has_wifi: update_boolean_value("has_wifi", review.has_wifi)
     }
