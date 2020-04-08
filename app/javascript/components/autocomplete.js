@@ -15,7 +15,7 @@ const runAutoComplete = () => {
 
   // Generate the HTML item to assign to resultItem
   function generateResultItem(data){
-    const urlStart = `<a href="coffee_shops?utf8=%E2%9C%93&location=`
+    const urlStart = `<a href="venues?utf8=%E2%9C%93&location=`
     const urlEnd = `&commit=Search"`
     const idTag = data.index
     const generatedURl = `${urlStart}${data.value.name}${urlEnd} id="${idTag}">${data.match}</a>`;
@@ -98,7 +98,7 @@ const runAutoComplete = () => {
       selectedItem.click();
       // Get request onClick
       // const Http = new XMLHttpRequest();
-      // const url=`/coffee_shops?utf8=✓&address=${selection}&commit=Search`;
+      // const url=`/venues?utf8=✓&address=${selection}&commit=Search`;
       // Http.open("GET", url);
       // Http.send();
 

@@ -1,0 +1,126 @@
+<div id="index__filters" class="column is-one-third is-hidden-touch" data-controller="index-filter-icons">
+  <%= form_with url: venues_path, local: true, method: :get do |form| %>
+  <!-- FILTER > LOCATION -->
+  <div class="field">
+    <p class="control has-icons-left">
+      <%= form.text_field :location, value: "#{searched_location(@venues_params[:location])}", class: "input" %>
+      <span class="icon is-small is-left">
+        <i class="fas fa-city"></i>
+      </span>
+    </p>
+  </div>
+  <!-- FILTER > DISTANCE -->
+  <div class="field">
+    <div class="control is-expanded has-icons-left">
+      <div class="select is-fullwidth">
+        <select name="distance" data-controller="set-selected-option">
+          <%= distance_options %>
+        </select>
+      </div>
+      <div class="icon is-small is-left">
+        <i class="fas fa-map-marker-alt"></i>
+      </div>
+    </div>
+  </div>
+  <!-- FILTER > RATING -->
+  <div class="field">
+    <label class="label">Rating</label>
+    <div class="control">
+      <% 5.times do | val | %>
+        <%= radio_button_tag(:rating, "#{val}", @venues_params[:rating] == "#{val}", class: "is-hidden", :data => { :target => 'index-filter-icons.input' })%>
+        <%= rating_options(:rating, val) %>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- FILTER > WIFI SPEED -->
+  <div class="field">
+    <div class="control">
+      <div class="filter level-filter level-req">
+        <div id="rangeSlider" class="range-slider" data-controller="range-slider">
+          <label class="label">Wifi Speed</label>
+          
+          <div class="number-group">
+            <%= number_field_tag :upload_speed, selected_upload_speed(@venues, @venues_params[:upload_speed]), in: 0..highest_upload_speed(@venues), class: 'number-input', :data => { :target => 'range-slider.number', :action => 'range-slider#numberHandler' } %> to
+            <%= number_field_tag :upload_speed, highest_upload_speed(@venues), in: 0..highest_upload_speed(@venues), class: 'number-input', :disabled => true, :data => { :target => 'range-slider.number', :action => 'range-slider#numberHandler' } %> Mbps
+          </div>
+
+          <div class="range-group">
+            <%= range_field_tag :upload_speed, selected_upload_speed(@venues, @venues_params[:upload_speed]), in: 0..highest_upload_speed(@venues), class: 'range-input', :data => { :target => 'range-slider.range', :action => 'range-slider#sliderHandler' } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILTER > PLUG SOCKETS -->
+  <div class="field">
+    <label class="label">Plug sockets</label>
+    <div class="control">
+    <% 3.times do |val| %>
+      <%= radio_button_tag(:plug_sockets, "#{val}", @venues_params[:plug_sockets] == "#{val}", class: "is-hidden", :data => { :target => 'index-filter-icons.input' }) %>
+      <%= feature_rating_options(:plug_sockets, val) %>
+    <% end %>
+    </div>
+  </div>
+
+  <!-- FILTER > COMFORT -->
+  <div class="field">
+    <label class="label">Comfort</label>
+    <div class="control">
+    <% 3.times do |val| %>
+      <%= radio_button_tag(:comfort, "#{val}", @venues_params[:comfort] == "#{val}", class: "is-hidden", :data => { :target => 'index-filter-icons.input' }) %>
+      <%= feature_rating_options(:comfort, val) %>
+    <% end %>
+    </div>
+  </div>
+
+  <!-- FILTER > BUSYNESS -->
+  <div class="field">
+    <label class="label">Busyness</label>
+    <div class="control">
+    <% 3.times do |val| %>
+      <%= radio_button_tag(:busyness, "#{val}", @venues_params[:busyness] == "#{val}", class: "is-hidden", :data => { :target => 'index-filter-icons.input' }) %>
+      <%= feature_rating_options(:busyness, val) %>
+    <% end %>
+    </div>
+  </div>
+
+  <label class="label">Tags</label>
+  <div class="tags">
+    <span class="tag">
+      Serves Food
+      <button class="delete is-small"></button>
+    </span>
+    <span class="tag">
+      Open late
+      <button class="delete is-small"></button>
+    </span>
+  </div>
+
+  <!-- FILTER > HAS WIFI -->
+  <div class="field">
+    <label class="checkbox">
+      <%= form.check_box :has_wifi, checked: @venues_boolean_params[:has_wifi] == "1" %>
+      Only show results with wifi
+    </label>
+  </div>
+
+  <!-- FILTER > WIFI RESTRICTIONS -->
+  <div class="field">
+    <label class="checkbox">
+      <%= form.check_box :no_wifi_restrictions, checked: @venues_boolean_params[:no_wifi_restrictions] == "1" %>
+      Filter out results with wifi restrictions
+    </label>
+  </div>
+
+  <div class="field is-grouped">
+    <p class="control">
+      <%= form.submit "Search", class: "button is-primary" %>
+    </p>
+    <p class="control">
+      <%= link_to "Clear all", venues_path, :class => "button is-light" %>
+    </p>
+  </div>
+  <% end %>
+</div>
