@@ -66,6 +66,14 @@ class VenueDecorator < Draper::Decorator
     end
   end
 
+  
+  def category_tag
+    if has_attribute?("category")
+      tag = h.content_tag( :span, object.category, :class=>'tag is-dark')
+      h.content_tag( :div, tag, :class=>'level-item')
+    end
+  end
+
   private
 
   def has_attribute?(attribute)

@@ -37,8 +37,7 @@ class VenuesController < ApplicationController
   def new
     @venue_search_path = venue_search_new_venue_path
     @venue = Venue.new
-
-    @venues = Venue.all
+    # @venues = Venue.all
     # @opening_hours = OpeningHour.new
     # @opening_hours = []
     # 7.times do
@@ -124,6 +123,7 @@ class VenuesController < ApplicationController
       params.require(:venue).permit(
         :name,
         :description,
+        :category,
         :address,
         :serves_food,
         :air_conditioning,
