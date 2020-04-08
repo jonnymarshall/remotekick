@@ -16,6 +16,18 @@ class CoffeeShopDecorator < Draper::Decorator
     end
   end
 
+  def rounded_rating
+    if has_attribute?("rating")
+      object.rating.round(2)
+    else
+      "No ratings yet."
+    end
+  end
+
+  def review_count
+    "(#{coffee_shop.reviews.count})" if has_any?("reviews")
+  end
+
   def rating_stars(size)
     unless object.rating.nil?
       h.content_tag( :i, nil, :class=>"fas fa-#{size} fas fa-star") * (icon_count_calculator("rating"))
@@ -54,6 +66,10 @@ class CoffeeShopDecorator < Draper::Decorator
 
   def has_attribute?(attribute)
     !object.send(attribute).nil?
+  end
+
+  def has_any?(relation)
+    !object.send(relation).empty?
   end
 
   def icon_count_calculator(attribute)
