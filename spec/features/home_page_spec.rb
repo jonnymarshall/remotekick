@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-feature 'Correct pages are displayed' do
+RSpec.describe 'Homepage' do
 
-  scenario 'homepage loads' do
+  it 'loads content' do
     visit ('/')
     expect(page).to have_content('Remote working. On caffeine.')
   end

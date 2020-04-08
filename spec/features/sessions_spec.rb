@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-describe "the signin process", type: :feature do
+RSpec.describe "the signin process", type: :feature do
   before :each do
     User.new(email: 'user@example.com', password: 'password')
   end
 
-  it "signs me in" do
+  it "signs a user up" do
     visit '/users/sign_up'
     within("#sign_up_form") do
       fill_in 'user[email]', with: 'test@gmail.com'
@@ -15,5 +15,15 @@ describe "the signin process", type: :feature do
     click_button 'Sign up'
     expect(page).to have_content 'Welcome'
   end
+
+  # it "logs a user in" do
+  #   visit '/users/sign_in'
+  #   within("#log_in_form") do
+  #     fill_in 'user[email]', with: 'jonny@remotekick.com'
+  #     fill_in 'user[password]', with: 'coffee'
+  #   end
+  #   click_button 'Log in'
+  #   expect(page).to have_content 'Signed in successfully'
+  # end
 end
 
