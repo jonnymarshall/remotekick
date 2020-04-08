@@ -1,73 +1,62 @@
-<div id="c-card" class="column is-one-third has-text-centered">
+<div class="column is-one-third">
   <%= link_to coffee_shop_path(coffee_shop), data: { id: "#{coffee_shop.id}"} do %>
-  <section id="c-card__image" class="hero is-primary" style="<%= coffee_shop.decorate.gradient %>, <%= coffee_shop.decorate.hero_image_url %>">
-    <div class="hero-body u-maxheight-170px">
-      <div class="container">
-        <h1 class="title is-6">
-          <%= coffee_shop.name %>
-        </h1>
-        <h1 class="subtitle is-6">
-          Venue type
-        </h1>
-        <h1 class="subtitle is-6">
-          Wifi Info
-        </h1>
-      </div>
-    </div>
-  </section>
-  <div id="c-card__description" class="notification u-maxheight-170px">
-    <h1 class="subtitle is-6"><%= coffee_shop.description %></p>
-    <%= raw coffee_shop.decorate.rating_stars("1x") %>
-  </div>
-  <% end %>
-</div>
-<!-- 
-  <div class="index-card margin-right-xl margin-bottom-xl" id="<%="#{"coffeeshopid"}" %>">
-    <div class="card-photo-section relative-element" style="background-color:#F1F1F1;">
-      <div class="cards-photo-gradient absolute-element"></div>
-        <div class="card-photo-overlay absolute-element padding-left-right padding-top-bottom">
-          <div class="d-flex justify-content-between">
-            <div>
-              <h6>
-                <i class="fa fa-wifi text-primary" aria-hidden="true"></i>
-                  <strong>Wifi speed unknown</strong>
-              </h6>
+    <div class="c-card has-box-shadow" id="<%="#{coffee_shop.id}" %>">
+      <div class="image" style="<%= coffee_shop.decorate.gradient %>, <%= coffee_shop.decorate.hero_image_url %>">
+          <div class="breaker"></div>
+          <nav class="level is-mobile">
+            <!-- Left side -->
+            <div class="level-left">
+              <p class="level-item">
+                <span class="icon is-large has-text-primary">
+                  <i class="fas fa-2x fa-wifi"></i>
+                </span>
+                
+              </p>
+              <h1 class="is-size-6 has-text-weight-bold has-text-white has-text-shadow">18 Mbps</h1>
             </div>
-            <div class="d-flex justify-content-between">
-              <i class="fas fa-map-marker-alt padding-right-sm"></i>
-              <p>X kilometers away</p>
+            <!-- Right side -->
+            <div class="level-right">
+              <p class="level-item">
+                <span class="icon is-medium has-text-primary">
+                  <i class="fas fa-lg fa-map-marker-alt"></i>
+                </span>
+              </p>
+              <p class="has-text-weight-bold has-text-white has-text-shadow">X km</p>
+            </div>
+          </nav>
+      </div>
+      <div class="info">
+        <nav class="level is-mobile is-marginless u-padding-b-5px">
+          <!-- Left side -->
+          <div class="level-left">
+            <div class="level-item">
+              <span class="tag is-dark">Category</span>
             </div>
           </div>
+        
+          <!-- Right side -->
+          <div class="level-right">
+            <p class="level-item">
+              <span class="icon is-medium has-text-dark">
+                <i class="dollar-icon fas fa-lg fa-dollar-sign"></i>
+                <i class="dollar-icon fas fa-lg fa-dollar-sign"></i>
+                <i class="dollar-icon fas fa-lg fa-dollar-sign"></i>
+              </span>
+            </p>
+            <p class="level-item">
+              <span class="star-icon is-small has-text-primary">
+                <i class="fas fa-star"></i>
+              </span> <%= coffee_shop.decorate.rounded_rating %> <%= coffee_shop.decorate.review_count %>
+            </p>
+          </div>
+        </nav>
+        <div class="content is-small">
+          <h4><%= coffee_shop.name %> (Max 26 chars)</h6>
+          <p><%= coffee_shop.description %> (Max 68 chars)</p>
         </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
-          <%= image_tag ("petr-sevcovic-594807-unsplash.jpg"), :class => "card-photo" %>
-      </div>
-    <div class="row no-gutters">
-      <div class="col">
-        <div class="padding-top padding-left-right">
-          <h6><strong>Name</strong></h6>
-        </div>
-      </div>
-    </div>
-    <div class="row no-gutters">
-      <div class="col">
-        <div class="card-description padding-top-bottom-sm padding-left-right">
-          <p>Desc</p>
-        </div>
-      </div>
-    </div>
-    <div class="divider"></div>
-    <div class="d-flex padding-left-right justify-content-between align-items-center">
-      <h5><i class="fas fa-dollar-sign dark-gray"></i></h5>
-      <div class="d-flex padding-top-bottom-sm align-items-end">
-        <div class="padding-right-sm">
-          <i class="fas fa-star dark-gray"></i>
-          <i class="fas fa-star dark-gray"></i>
-          <i class="fas fa-star dark-gray"></i>
-          <i class="fas fa-star dark-gray"></i>
-          <i class="fas fa-star dark-gray"></i>
-        </div>
-        <p>CoffeeShop.reviews.count???</p>
-      </div>
-    </div>
-  </div> -->
+<%#= raw coffee_shop.decorate.rating_stars("1x") %>
