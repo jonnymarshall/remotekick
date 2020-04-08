@@ -1,13 +1,13 @@
-def create_chiang_mai_coffee_shops
+def create_chiang_mai_venues
   puts 'Creating chiang mai coffee shops...'
-  coffee_shop_attributes = [
+  venue_attributes = [
     {
       name: 'CAMP @ Maya',
       description:  '24H coworking space on the 5th floor of MAYA shopping center',
       user: User.first,
-      serves_plant_milk: false,
+      # serves_plant_milk: false,
       serves_food: false,
-      serves_smoothies: true,
+      # serves_smoothies: true,
       air_conditioning: true,
       has_wifi: true,
       wifi_restrictions: 2,
@@ -18,9 +18,9 @@ def create_chiang_mai_coffee_shops
       name: "Ab'Petite Café",
       description:  'Cosy little independent café',
       user: User.first,
-      serves_plant_milk: false,
+      # serves_plant_milk: false,
       serves_food: true,
-      serves_smoothies: true,
+      # serves_smoothies: true,
       air_conditioning: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -31,9 +31,9 @@ def create_chiang_mai_coffee_shops
       name: "My Secret Cafe In Town",
       description:  'Cute and quiet café in the middle of old town',
       user: User.first,
-      serves_plant_milk: true,
+      # serves_plant_milk: true,
       serves_food: true,
-      serves_smoothies: true,
+      # serves_smoothies: true,
       air_conditioning: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -44,9 +44,9 @@ def create_chiang_mai_coffee_shops
       name: "The Barn Eatery And Design",
       description:  'Light, rustic and airy café',
       user: User.first,
-      serves_plant_milk: true,
+      # serves_plant_milk: true,
       serves_food: true,
-      serves_smoothies: false,
+      # serves_smoothies: false,
       air_conditioning: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -57,9 +57,9 @@ def create_chiang_mai_coffee_shops
       name: "Cottontree",
       description:  'Bright, airy café behind MAYA shopping center',
       user: User.first,
-      serves_plant_milk: true,
+      # serves_plant_milk: true,
       serves_food: true,
-      serves_smoothies: false,
+      # serves_smoothies: false,
       air_conditioning: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -70,9 +70,9 @@ def create_chiang_mai_coffee_shops
       name: "Ombra Caffe",
       description:  'Cafe and popular coworking spot',
       user: User.first,
-      serves_plant_milk: false,
+      # serves_plant_milk: false,
       serves_food: true,
-      serves_smoothies: true,
+      # serves_smoothies: true,
       air_conditioning: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -83,9 +83,9 @@ def create_chiang_mai_coffee_shops
       name: "SS1254372",
       description:  'Cosy cafe with a homely feel',
       user: User.first,
-      serves_plant_milk: true,
+      # serves_plant_milk: true,
       serves_food: true,
-      serves_smoothies: true,
+      # serves_smoothies: true,
       air_conditioning: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -96,9 +96,9 @@ def create_chiang_mai_coffee_shops
       name: "Wake Up",
       description:  '24H cafe in the popular Nimman area',
       user: User.first,
-      serves_plant_milk: false,
+      # serves_plant_milk: false,
       serves_food: false,
-      serves_smoothies: false,
+      # serves_smoothies: false,
       air_conditioning: true,
       has_wifi: true,
       wifi_restrictions: 4,
@@ -109,9 +109,9 @@ def create_chiang_mai_coffee_shops
       name: "Nine One Coffee",
       description:  'Small coffee shop in the popular Nimman area',
       user: User.first,
-      serves_plant_milk: false,
+      # serves_plant_milk: false,
       serves_food: false,
-      serves_smoothies: false,
+      # serves_smoothies: false,
       air_conditioning: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -122,9 +122,9 @@ def create_chiang_mai_coffee_shops
       name: "Wawee Bistro",
       description:  'Coffee chain serving food',
       user: User.first,
-      serves_plant_milk: false,
+      # serves_plant_milk: false,
       serves_food: true,
-      serves_smoothies: false,
+      # serves_smoothies: false,
       air_conditioning: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -135,9 +135,9 @@ def create_chiang_mai_coffee_shops
       name: "Wawee Coffee",
       description:  'Popular coffee chain',
       user: User.first,
-      serves_plant_milk: false,
+      # serves_plant_milk: false,
       serves_food: false,
-      serves_smoothies: false,
+      # serves_smoothies: false,
       air_conditioning: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -148,9 +148,9 @@ def create_chiang_mai_coffee_shops
       name: "Artisan Café",
       description:  'Coffee shop popular with digital nomads',
       user: User.first,
-      serves_plant_milk: true,
+      # serves_plant_milk: true,
       serves_food: true,
-      serves_smoothies: true,
+      # serves_smoothies: true,
       air_conditioning: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -161,9 +161,9 @@ def create_chiang_mai_coffee_shops
       name: "ADDICT CAFE",
       description:  'Small, cosy and relaxed cafe in Nimman',
       user: User.first,
-      serves_plant_milk: false,
+      # serves_plant_milk: false,
       serves_food: false,
-      serves_smoothies: false,
+      # serves_smoothies: false,
       air_conditioning: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -174,9 +174,9 @@ def create_chiang_mai_coffee_shops
       name: "Thesis Coffee",
       description:  'Large cafe and popular coworking space',
       user: User.first,
-      serves_plant_milk: false,
+      # serves_plant_milk: false,
       serves_food: true,
-      serves_smoothies: true,
+      # serves_smoothies: true,
       air_conditioning: true,
       has_wifi: true,
       wifi_restrictions: 3,
@@ -187,9 +187,9 @@ def create_chiang_mai_coffee_shops
       name: "Only Coffee",
       description:  'Large cafe and popular coworking space',
       user: User.first,
-      serves_plant_milk: true,
+      # serves_plant_milk: true,
       serves_food: true,
-      serves_smoothies: false,
+      # serves_smoothies: false,
       air_conditioning: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -200,9 +200,9 @@ def create_chiang_mai_coffee_shops
       name: "Annista Cafe",
       description:  'Large cafe and popular coworking space',
       user: User.first,
-      serves_plant_milk: false,
+      # serves_plant_milk: false,
       serves_food: true,
-      serves_smoothies: true,
+      # serves_smoothies: true,
       air_conditioning: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -210,13 +210,13 @@ def create_chiang_mai_coffee_shops
       longitude: 98.959728
     }
   ]
-  CoffeeShop.create!(coffee_shop_attributes)
+  Venue.create!(venue_attributes)
 
-  puts "Created #{CoffeeShop.count} coffee shops..."
+  puts "Created #{Venue.count} coffee shops..."
 end
 
 
-def create_chiang_mai_coffee_shop_reviews
+def create_chiang_mai_venue_reviews
   puts "Creating Jonny's chiang mai coffee shop reviews..."
   review_attributes = [{
     # Camp@MAYA
@@ -368,22 +368,22 @@ def create_chiang_mai_coffee_shop_reviews
 
   x = 0
 
-  CoffeeShop.all.each do |coffee_shop|
+  Venue.all.each do |venue|
     review = Review.new(review_attributes[x])
-    review.coffee_shop = coffee_shop
+    review.venue = venue
     review.save
     x += 1
   end
 
   puts "Created #{Review.count} reviews..."
 
-  puts "Creating 10 additional reviews for coffee shop with ID: #{CoffeeShop.first.id}"
+  puts "Creating 10 additional reviews for coffee shop with ID: #{Venue.first.id}"
 
   10.times do
     review = Review.new(review_attributes.sample)
-    review.coffee_shop = CoffeeShop.first
+    review.venue = Venue.first
     review.save
   end
 
-  puts "Created 10 additional reviews for coffee shop with ID: #{CoffeeShop.first.id}"
+  puts "Created 10 additional reviews for coffee shop with ID: #{Venue.first.id}"
 end

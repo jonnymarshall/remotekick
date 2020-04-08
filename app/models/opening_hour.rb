@@ -1,4 +1,4 @@
 class OpeningHour < ApplicationRecord
-  belongs_to :opening_hour_set
+  belongs_to :venue
   enum day: [:monday, :tuesday, :wednesday, :thursday, :friday]
 end

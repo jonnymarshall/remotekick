@@ -10,6 +10,7 @@ export default class extends Controller {
     "path",
     "results",
     "test",
+    "category",
     "description",
     "address",
     "longitude",
@@ -123,7 +124,8 @@ export default class extends Controller {
   setInputValues() {
     self.inputTargets[0].value = self.searchQuery;
     self.addressTargets[0].value = self.addressFormatter(self.selectedVenue);
-    self.descriptionTargets[0].value = this.selectedVenue.categories[0].name;
+    self.categoryTargets[0].value = this.selectedVenue.categories[0].name;
+    // self.descriptionTargets[0].value = this.selectedVenue.categories[0].name;
     self.longitudeTargets[0].value = this.selectedVenue.location.lng;
     self.latitudeTargets[0].value = this.selectedVenue.location.lat;
     self.fourSquareIdTargets[0].value = this.selectedVenue.id;

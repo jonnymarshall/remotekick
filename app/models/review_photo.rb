@@ -8,8 +8,8 @@ class ReviewPhoto < ApplicationRecord
   # private
 
   # def set_as_cover_photo_if_blank
-  #   unless this_instance.review.coffee_shop.cover_photo
-  #     this_instance.review.coffee_shop.cover_photo = this_instance
+  #   unless this_instance.review.venue.cover_photo
+  #     this_instance.review.venue.cover_photo = this_instance
   #   end
   # end
 

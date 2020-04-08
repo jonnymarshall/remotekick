@@ -8,8 +8,8 @@
     <div class="columns">
       <div class="column is-paddingless"></div>
       <div class="column is-two-fifths">
-        <h1 class="title">Leave a review for <%= @coffee_shop.name %></h1>
-        <%= form_with model: [@coffee_shop, @review], local: true, method: :post, class: "form-group col-xs-6", :data => { :controller => 'index-filter-icons' } do |review| %>
+        <h1 class="title">Leave a review for <%= @venue.name %></h1>
+        <%= form_with model: [@venue, @review], local: true, method: :post, class: "form-group col-xs-6", :data => { :controller => 'index-filter-icons' } do |review| %>
           <!-- FILTER > RATING -->
           <div class="field">
             <label class="label">Rating</label>
@@ -25,7 +25,7 @@
           <div class="field">
             <label class="label">Review content</label>
             <p class="control has-icons-left">
-              <%= review.text_area :content, required:true, class: "textarea", placeholder: "#{@coffee_shop.name} was #{@descriptives.sample}!" %>
+              <%= review.text_area :content, required:true, class: "textarea", placeholder: "#{@venue.name} was #{@descriptives.sample}!" %>
             </p>
           </div>
 

@@ -2,12 +2,12 @@ Rails.application.routes.draw do
   # DEVELOPMENT
   resources :devpages, only: :show
   
-  get 'coffee_shops/new/venue_search', to: 'coffee_shops#venue_search'
-  get 'coffee_shops/autocomplete_response', to: 'coffee_shops#autocomplete_response'
+  get 'venues/new/venue_search', to: 'venues#venue_search'
+  get 'venues/autocomplete_response', to: 'venues#autocomplete_response'
 
   devise_for :users
   root to: 'pages#home'
-  resources :coffee_shops, only: [:index, :show, :new, :create] do
+  resources :venues, only: [:index, :show, :new, :create] do
     resources :reviews, only: [:index, :create, :new]
     get 'venue_search', on: :new
   end

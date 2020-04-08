@@ -1,10 +1,10 @@
-def melbourne_coffee_shop_attributes
+def melbourne_venue_attributes
   [
     {
       name: 'Mr Tulk',
       description:  'Light fare and coffee in a high-ceilinged, roomy cafe in the State Library, attracting uni students.',
       user: User.first,
-      serves_plant_milk: true,
+      # serves_plant_milk: true,
       serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -30,7 +30,7 @@ def melbourne_coffee_shop_attributes
       name: "Naughty Boy Cafe",
       description:  'Café',
       user: User.first,
-      serves_plant_milk: true,
+      # serves_plant_milk: true,
       serves_food: true,
       air_conditioning: true,
       wifi_restrictions: 0,
@@ -48,7 +48,7 @@ def melbourne_coffee_shop_attributes
       name: "Everyday Coffee",
       description:  'Café',
       user: User.first,
-      serves_plant_milk: true,
+      # serves_plant_milk: true,
       serves_food: true,
       air_conditioning: false,
       has_wifi: true,
@@ -60,7 +60,7 @@ def melbourne_coffee_shop_attributes
       name: "Fourth Chapter",
       description:  'Cafe',
       user: User.first,
-      serves_plant_milk: true,
+      # serves_plant_milk: true,
       has_wifi: true,
       wifi_restrictions: 0,
       latitude: -37.8527938,
@@ -77,7 +77,7 @@ def melbourne_coffee_shop_attributes
     {
       name: "Avist Cafe",
       user: User.first,
-      serves_plant_milk: true,
+      # serves_plant_milk: true,
       serves_food: true,
       air_conditioning: false,
       has_wifi: true,
@@ -89,7 +89,7 @@ def melbourne_coffee_shop_attributes
       name: "Auction Rooms",
       description:  'Buzzing, rustic-chic cafe with a sunny courtyard, for coffee of the day and inventive breakfasts.',
       user: User.first,
-      serves_plant_milk: false,
+      # serves_plant_milk: false,
       serves_food: true,
       air_conditioning: true,
       has_wifi: true,
@@ -100,7 +100,7 @@ def melbourne_coffee_shop_attributes
   ]
 end
 
-def melbourne_coffee_shop_review_attributes
+def melbourne_venue_review_attributes
   [
     {
     # Mr Tulk
@@ -225,33 +225,33 @@ def melbourne_coffee_shop_review_attributes
   ]
 end
 
-def create_melbourne_coffee_shops(melbourne_coffee_shop_attributes)
+def create_melbourne_venues(melbourne_venue_attributes)
   puts 'Creating melbourne coffee shops...'
-  CoffeeShop.create!(melbourne_coffee_shop_attributes)
-  puts "Created #{CoffeeShop.count} coffee shops..."
+  Venue.create!(melbourne_venue_attributes)
+  puts "Created #{Venue.count} coffee shops..."
 end
 
-def create_melbourne_coffee_shop_reviews(melbourne_coffee_shop_attributes, melbourne_coffee_shop_review_attributes)
+def create_melbourne_venue_reviews(melbourne_venue_attributes, melbourne_venue_review_attributes)
   puts 'Applying Jonnys reviews to melbourne coffee shops'
 
   x = 0
 
-  melbourne_coffee_shop_attributes.each do |coffee_shop|
-    review = Review.new(melbourne_coffee_shop_review_attributes[x])
-    review.coffee_shop = CoffeeShop.where(name: coffee_shop[:name])[0]
+  melbourne_venue_attributes.each do |venue|
+    review = Review.new(melbourne_venue_review_attributes[x])
+    review.venue = Venue.where(name: venue[:name])[0]
     review.save
     x += 1
   end
 
   puts "Created #{Review.count} reviews..."
 
-  puts "Creating 10 additional reviews for Mr Tulk, with ID: #{CoffeeShop.where(name: "Mr Tulk").first.id}"
+  puts "Creating 10 additional reviews for Mr Tulk, with ID: #{Venue.where(name: "Mr Tulk").first.id}"
 
   10.times do
-    review = Review.new(melbourne_coffee_shop_review_attributes.sample)
-    review.coffee_shop = CoffeeShop.where(name: "Mr Tulk").first
+    review = Review.new(melbourne_venue_review_attributes.sample)
+    review.venue = Venue.where(name: "Mr Tulk").first
     review.save
   end
 
-  puts "Created 10 additional reviews for Mr Tulk, with ID: #{CoffeeShop.where(name: "Mr Tulk").first.id}"
+  puts "Created 10 additional reviews for Mr Tulk, with ID: #{Venue.where(name: "Mr Tulk").first.id}"
 end
