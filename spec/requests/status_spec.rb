@@ -13,6 +13,16 @@ RSpec.describe 'Status Requests' do
     expect(response.status).to eql(200)
   end
 
+  it '/venues/new responds with 302 when not signed in' do
+    get('/venues/new')
+    expect(response.status).to eql(302)
+  end
+
+  # it '/venues/new responds with 200 when signed in' do
+  #   get('/venues/new')
+  #   expect(response.status).to eql(200)
+  # end
+
   it '/users/sign_in responds with 200' do
     get('/users/sign_in')
     expect(response.status).to eql(200)

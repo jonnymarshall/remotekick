@@ -61,7 +61,7 @@ module VenuesHelper
   end
 
   def highest_upload_speed(venues)
-    if venues.length > 0
+    if venues.length > 0 && at_least_one_value_exists(venues, "upload_speed")
       venues.reorder("upload_speed DESC NULLS LAST").first.upload_speed.ceil
     else
       0
@@ -99,6 +99,10 @@ module VenuesHelper
     when 2
       "smile"
     end
+  end
+
+  def at_least_one_value_exists(venues, attribute)
+    venues.any? {|venue| venue.send(attribute).is_a?(Integer)}
   end
 
   def calculate_average_wifi_speed(wifi_speeds)

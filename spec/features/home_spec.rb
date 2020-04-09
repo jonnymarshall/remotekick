@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Homepage' do
+RSpec.describe 'Home features' do
 
   it 'loads content' do
     visit ('/')
