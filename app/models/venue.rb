@@ -6,6 +6,7 @@ class Venue < ApplicationRecord
   has_many :opening_hours
 
   validates :foursquare_id, uniqueness: true, allow_blank: true
+  validates :name, presence: true
 
   # geocoded_by :address
   # after_validation :geocode, if: :will_save_change_to_address?
