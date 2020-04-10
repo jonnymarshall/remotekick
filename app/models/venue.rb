@@ -6,7 +6,9 @@ class Venue < ApplicationRecord
   has_many :opening_hours
 
   validates :foursquare_id, uniqueness: true, allow_blank: true
-
+  validates :name, presence: true, length: { maximum: 26 }
+  validates :description, length: { maximum: 68 }, allow_blank: true
+  
   # geocoded_by :address
   # after_validation :geocode, if: :will_save_change_to_address?
   reverse_geocoded_by :latitude, :longitude

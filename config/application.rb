@@ -23,5 +23,12 @@ module RemoteKick
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    # FACTORIES
+    # This will cause factory_bot_rails to automatically load factories in custom/factories.rb and custom/factories/*.rb.
+    config.factory_bot.definition_file_paths = ["spec/factories"]
+    # You can also disable automatic factory definition loading entirely by using an empty array:
+    # config.factory_bot.definition_file_paths = []
+
   end
 end
