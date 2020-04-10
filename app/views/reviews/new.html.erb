@@ -92,11 +92,29 @@
               <button class="delete is-small"></button>
             </span>
           </div>
-
-          <%= review.simple_fields_for @review_photo do |review_photo| %>
-            <%= review_photo.input :photo_cache, as: :hidden %>
-            <%= review_photo.input :photo %>
-          <% end %>
+          <div class="field" data-controller="photo-upload">
+            <label class="label">Photos</label>
+            
+              
+              <!-- <input class="file-input" type="file" name="resume"> -->
+              <div class="file has-name is-boxed">
+                <label class="file-label">
+                  <%= review.fields_for @review_photo do |review_photo| %>
+                    <%#= review_photo.file_field :photo_cache, as: :hidden %>
+                    <%= review_photo.file_field :photo, class: "file-input", data: { action: "photo-upload#doThis", target: "photo-upload.photoUploadInput" } %>
+                  <% end %>
+                  <span class="file-cta">
+                    <span class="file-icon">
+                      <i class="fas fa-upload"></i>
+                    </span>
+                    <span class="file-label">
+                      Upload a photo...
+                    </span>
+                  </span>
+                  <span class="file-name is-hidden" data-target="photo-upload.fileName"></span>
+                </label>
+              </div>
+          </div>
     
           <div class="field is-grouped">
             <p class="control">

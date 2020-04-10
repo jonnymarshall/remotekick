@@ -9,8 +9,8 @@ class VenueDecorator < Draper::Decorator
   end
 
   def hero_image_url
-    if object.review_photos.first
-      "url('http://res.cloudinary.com/jmarsh5/#{object.review_photos.first[:photo]}') center / cover;"
+    if object.review_photos.last
+      "url('http://res.cloudinary.com/jmarsh5/#{object.review_photos.last[:photo]}') center / cover;"
     else
       "url('https://images.unsplash.com/photo-1521017432531-fbd92d768814?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80') center / cover;"
     end
