@@ -102,7 +102,7 @@ module VenuesHelper
   end
 
   def at_least_one_value_exists(venues, attribute)
-    venues.any? {|venue| venue.send(attribute).is_a?(Integer)}
+    venues.any? {|venue| venue.send(attribute).is_a?(Float)}
   end
 
   def calculate_average_wifi_speed(wifi_speeds)
