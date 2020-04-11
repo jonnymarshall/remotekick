@@ -13,7 +13,7 @@ class Venue < ApplicationRecord
   # after_validation :geocode, if: :will_save_change_to_address?
   reverse_geocoded_by :latitude, :longitude
   after_validation :reverse_geocode
-  # scope :location, -> location { near(location) }
+  scope :location, -> location { near(location) }
   scope :rating, -> number { where("rating >= ?", number) }
   scope :upload_speed, -> number { where("upload_speed >= ?", number) if number > "0" }
   scope :serves_food, -> { where(serves_food: true) }
@@ -42,10 +42,6 @@ class Venue < ApplicationRecord
   end
 
   private
-
-  def location_and_distance(loation, distance)
-    byebug
-  end
 
   def recalculate_value(param_name, value)
     # assign existing value based on a dynamic active record query for param_name

@@ -6,7 +6,7 @@ class VenuesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   # @venue should be called as venue for decorated instance in views
   decorates_assigned :venue
-  # has_scope :location, if: :location_given? && !:distance_given?
+  has_scope :location, if: :location_given?
   has_scope :rating
   has_scope :upload_speed
   has_scope :no_wifi_restrictions
