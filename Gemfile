@@ -30,7 +30,6 @@ gem 'draper'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
-  gem 'rspec-rails'
 end
 
 group :development, :test do
@@ -44,7 +43,3 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'capybara'
 end
-
-# group :test do
-#   gem 'capybara'
-# end

@@ -3,6 +3,7 @@ class Venue < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :review_photos, through: :reviews
   has_one :cover_photo, dependent: :destroy
+  has_and_belongs_to_many :categories
   has_many :opening_hours
 
   validates :foursquare_id, uniqueness: true, allow_blank: true

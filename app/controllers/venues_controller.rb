@@ -37,6 +37,7 @@ class VenuesController < ApplicationController
   def new
     @venue_search_path = venue_search_new_venue_path
     @venue = Venue.new
+
     # @venues = Venue.all
     # @opening_hours = OpeningHour.new
     # @opening_hours = []
@@ -50,21 +51,8 @@ class VenuesController < ApplicationController
     # create new venue and assign current user
     @venue = Venue.new(new_venue_params)
     @venue.user = current_user
+    # @venue.categories.create(category_params)
     @venue.save!
-
-    # create new opening_hour_set and assign venue
-    # @opening_hour_set = OpeningHourSet.new
-    # @opening_hour_set.venue = @venue
-    # @opening_hour_set.save!
-
-    # save all opening_hours and assign to opening_hour_set
-    # unless opening_hours_params.empty?
-    #   opening_hours_params[:opening_hour].each do |hours|
-    #     new_opening_hours = OpeningHour.new(hours)
-    #     new_opening_hours.opening_hour_set = @opening_hour_set
-    #     new_opening_hours.save!
-    #   end
-    # end
     redirect_to venue_path(@venue)
   end
 
