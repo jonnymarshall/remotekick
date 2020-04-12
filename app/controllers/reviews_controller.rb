@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
     @review = current_user.reviews.new(review_params)
     @review.has_wifi = reverse_checkbox_value(review_has_wifi_param[:has_wifi])
     @review.venue = @venue
-    unless review_photo_params[:review_photo][:photo] == nil
+    if review_photo_params[:review_photo].present?
       @review_photo = @review.review_photos.new(photo: review_photo_params[:review_photo][:photo])
       @review_photo.save!
     end
