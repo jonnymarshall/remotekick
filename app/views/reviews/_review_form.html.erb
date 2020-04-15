@@ -1,0 +1,127 @@
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-paddingless"></div>
+      <div class="column is-two-fifths">
+        <h1 class="title">Leave a review for <%= venue.name %></h1>
+        <%= form_with model: [venue, review], local: true, class: "form-group col-xs-6", :data => { :controller => 'icon-state' } do |review_form| %>
+          <!-- FILTER > RATING -->
+          <div class="field">
+            <label class="label">Rating</label>
+            <div class="control">
+              <% 5.times do | val | %>
+                <%= review_form.radio_button :rating, "#{val}", class: "is-hidden", :data => { :target => 'icon-state.input', :filterType => "rating" } %>
+                <%= rating_options(:review_rating, val) %>
+              <% end %>
+            </div>
+          </div>
+    
+          <!-- FILTER > CONTENT -->
+          <div class="field">
+            <label class="label">Review content</label>
+            <p class="control has-icons-left">
+              <%= review_form.text_area :content, required: true, class: "textarea", placeholder: "#{ review.content }" %>
+            </p>
+          </div>
+
+          <!-- FILTER > WIFI SPEED -->
+          <div class="field">
+            <label class="label">Wifi Speed</label>
+            <p class="control has-icons-left">
+              <%= review_form.number_field :upload_speed, value: "#{review.upload_speed}", class: "input", type: "number" %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-wifi"></i>
+              </span>
+            </p>
+          </div>
+
+          <!-- FILTER > HAS WIFI -->
+          <div class="field">
+            <label class="checkbox">
+              <%= review_form.check_box :has_wifi, value: "0" %>
+              This venue does not have wifi
+            </label>
+          </div>
+      
+          <!-- FILTER > PLUG SOCKETS -->
+          <div class="field">
+            <label class="label">Plug sockets</label>
+            <div class="control">
+              <% 3.times do |val| %>
+                <%= review_form.radio_button :plug_sockets, "#{val}", { checked: review.plug_sockets == val, class: "is-hidden", :data => { :target => 'icon-state.input', :filterType => "plug_sockets" }} %>
+                <%= feature_rating_options(:review_plug_sockets, val) %>
+              <% end %>
+            </div>
+          </div>
+    
+          <!-- FILTER > COMFORT -->
+          <div class="field">
+            <label class="label">Comfort</label>
+            <div class="control">
+              <% 3.times do |val| %>
+                <%= review_form.radio_button :comfort, "#{val}", { checked: review.comfort == val, class: "is-hidden", :data => { :target => 'icon-state.input', :filterType => "comfort" }} %>
+                <%= feature_rating_options(:review_comfort, val) %>
+              <% end %>
+            </div>
+          </div>
+    
+          <!-- FILTER > BUSYNESS -->
+          <div class="field">
+            <label class="label">Busyness</label>
+            <div class="control">
+              <% 3.times do |val| %>
+                <%= review_form.radio_button :busyness, "#{val}", { checked: review.busyness == val, class: "is-hidden", :data => { :target => 'icon-state.input', :filterType => "busyness" }} %>
+                <%= feature_rating_options(:review_busyness, val) %>
+              <% end %>
+            </div>
+          </div>
+        
+          <label class="label">Please select appropriate tags</label>
+          <div class="tags">
+            <span class="tag">
+              Serves Food
+              <button class="delete is-small"></button>
+            </span>
+            <span class="tag">
+              Open late
+              <button class="delete is-small"></button>
+            </span>
+          </div>
+          <div class="field" data-controller="photo-upload">
+            <label class="label">Photos</label>
+            
+              
+              <!-- <input class="file-input" type="file" name="resume"> -->
+              <div class="file has-name is-boxed">
+                <label class="file-label">
+                  <%#= review.fields_for review_photo do |review_photo| %>
+                    <%#= review_photo.file_field :photo_cache, as: :hidden %>
+                    <%#= review_photo.file_field :photo, class: "file-input", data: { action: "photo-upload#doThis", target: "photo-upload.photoUploadInput" } %>
+                  <%# end %>
+                  <span class="file-cta">
+                    <span class="file-icon">
+                      <i class="fas fa-upload"></i>
+                    </span>
+                    <span class="file-label">
+                      Upload a photo...
+                    </span>
+                  </span>
+                  <span class="file-name is-hidden" data-target="photo-upload.fileName"></span>
+                </label>
+              </div>
+          </div>
+    
+          <div class="field is-grouped">
+            <p class="control">
+              <%= review_form.submit "Submit review", class: "button is-primary" %>
+            </p>
+            <p class="control">
+              <a class="button is-light" href="/">Cancel</a>
+            </p>
+          </div>
+        <% end %>
+      </div>
+      <div class="column is-paddingless"></div>
+    </div>
+  </div>
+</section>

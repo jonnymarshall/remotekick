@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
-  before_action :assign_venue, only: [:show, :create, :new, :edit, :update, :destroy]
+  before_action :set_venue, only: [:show, :create, :new, :edit, :update, :destroy]
+  before_action :set_review, only: [:edit, :update]
 
   def new
     @review = current_user.reviews.new
@@ -16,6 +17,14 @@ class ReviewsController < ApplicationController
       @review_photo.save!
     end
     @review.save!
+    redirect_to venue_path(@venue)
+  end
+
+  def edit
+  end
+
+  def update
+    @review.update(review_params)
     redirect_to venue_path(@venue)
   end
 
@@ -50,11 +59,11 @@ class ReviewsController < ApplicationController
     params.require(:review).permit(review_photo: [:photo])
   end
 
-  def assign_venue
-    @venue = Venue.find(venue_params[:venue_id])
+  def set_venue
+    @venue = Venue.find(params[:venue_id])
   end
 
-  def venue_params
-    params.permit(:venue_id)
+  def set_review
+    @review = Review.find(params[:id])
   end
 end

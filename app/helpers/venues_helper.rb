@@ -40,15 +40,15 @@ module VenuesHelper
 
   def rating_options(rating_param, value)
     icon_element = content_tag( :i, nil, :class=>'fas fa-2x fas fa-star')
-    span_element = content_tag( :span, icon_element, :class=>'icon is-medium has-text-light', :data => { :target => 'index-filter-icons.icon' })
-    label = label_tag( "#{rating_param}_#{value}", span_element, :class=>'c-rating-star--label', :data => { :action => 'click->index-filter-icons#selectIcons' })
+    span_element = content_tag( :span, icon_element, :class=>'icon is-medium has-text-light', :data => { :target => 'icon-state.icon' })
+    label = label_tag( "#{rating_param}_#{value}", span_element, :class=>'c-rating-star--label', :data => { :action => 'click->icon-state#selectIcons' })
   end
 
   def feature_rating_options(feature_param, value)
     smile_icon = smile_type(value)
     icon_element = content_tag( :i, nil, :class=>"fas fa-2x fas fa-#{smile_icon}")
-    span_element = content_tag( :span, icon_element, :class=>'icon is-medium has-text-light', :for => "#{feature_param}", :value => "#{value}", :data => { :target => 'index-filter-icons.icon' })
-    label_tag( "#{feature_param}_#{value}", span_element, :class=>'c-rating-star--label', :data => { :action => 'click->index-filter-icons#selectIcons'})
+    span_element = content_tag( :span, icon_element, :class=>'icon is-medium has-text-light', :for => "#{feature_param}", :value => "#{value}", :data => { :target => 'icon-state.icon' })
+    label_tag( "#{feature_param}_#{value}", span_element, :class=>'c-rating-star--label', :data => { :action => 'click->icon-state#selectIcons'})
   end
 
   def order_by_options
