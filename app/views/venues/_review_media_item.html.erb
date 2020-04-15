@@ -1,0 +1,19 @@
+<article class="media">
+  <figure class="media-left">
+    <p class="image is-64x64">
+      <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
+    </p>
+  </figure>
+  <div class="media-content">
+    <div class="content">
+      <p>
+        <strong><%= review.user.first_name %></strong><br>
+        <span class="has-text-primary">
+          <%= raw review.rating_stars("1x") %>
+        </span><br>
+        <%= review.content %><br>
+      <small><%= link_to "Edit", edit_venue_review_path(venue, review) %> · <a>Like</a> · <a>Reply</a> · 3 hrs</small>
+      </p>
+    </div>
+  </div>
+</article>

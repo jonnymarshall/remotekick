@@ -3,6 +3,7 @@ class VenueDecorator < Draper::Decorator
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:
   #
+  include IconDisplay
 
   def gradient
     "background: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.6))"
@@ -32,11 +33,11 @@ class VenueDecorator < Draper::Decorator
     "(#{venue.reviews.count})" if has_any?("reviews")
   end
 
-  def rating_stars(size)
-    unless object.rating.nil?
-      h.content_tag( :i, nil, :class=>"fas fa-#{size} fas fa-star") * (icon_count_calculator("rating"))
-    end
-  end
+  # def rating_stars(size)
+  #   unless object.rating.nil?
+  #     h.content_tag( :i, nil, :class=>"fas fa-#{size} fas fa-star") * (icon_count_calculator("rating"))
+  #   end
+  # end
   
   def reviews_info_text
     if has_attribute?("reviews")
@@ -82,17 +83,5 @@ class VenueDecorator < Draper::Decorator
 
   def has_any?(relation)
     !object.send(relation).empty?
-  end
-
-  def icon_count_calculator(attribute)
-    object.send(attribute).round(0) + 1
-  end
-
-  def inverse_icon_count_calculator(attribute)
-    if attribute == "rating"
-      5 - icon_count_calculator(attribute)
-    else
-      3 - icon_count_calculator(attribute)
-    end
   end
 end
