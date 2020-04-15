@@ -12,8 +12,9 @@
           <%= raw review.rating_stars("1x") %>
         </span><br>
         <%= review.content %><br>
-      <small><%= link_to "Edit", edit_venue_review_path(venue, review) %> · <a>Like</a> · <a>Reply</a> · 3 hrs</small>
+      <small><%= link_to "Edit", edit_venue_review_path(venue, review) %> · <a>Like</a> · <a>Reply</a> · <%= review.when_reviewed %></small>
       </p>
     </div>
   </div>
 </article>
+

@@ -1,4 +1,4 @@
-<div id="index__filters" class="column is-one-third is-hidden-touch" data-controller="index-filter-icons">
+<div id="index__filters" class="column is-one-third is-hidden-touch" data-controller="icon-state">
   <%= form_with url: venues_path, local: true, method: :get do |form| %>
   <!-- FILTER > LOCATION -->
   <div class="field">
@@ -27,7 +27,7 @@
     <label class="label">Rating</label>
     <div class="control">
       <% 5.times do | val | %>
-        <%= radio_button_tag(:rating, "#{val}", @venues_params[:rating] == "#{val}", class: "is-hidden", :data => { :target => 'index-filter-icons.input' })%>
+        <%= radio_button_tag(:rating, "#{val}", @venues_params[:rating] == "#{val}", class: "is-hidden", :data => { :target => 'icon-state.input', :filterType => "rating" })%>
         <%= rating_options(:rating, val) %>
       <% end %>
     </div>
@@ -58,7 +58,7 @@
     <label class="label">Plug sockets</label>
     <div class="control">
     <% 3.times do |val| %>
-      <%= radio_button_tag(:plug_sockets, "#{val}", @venues_params[:plug_sockets] == "#{val}", class: "is-hidden", :data => { :target => 'index-filter-icons.input' }) %>
+      <%= radio_button_tag(:plug_sockets, "#{val}", @venues_params[:plug_sockets] == "#{val}", class: "is-hidden", :data => { :target => 'icon-state.input', :filterType => "plug_sockets" }) %>
       <%= feature_rating_options(:plug_sockets, val) %>
     <% end %>
     </div>
@@ -69,7 +69,7 @@
     <label class="label">Comfort</label>
     <div class="control">
     <% 3.times do |val| %>
-      <%= radio_button_tag(:comfort, "#{val}", @venues_params[:comfort] == "#{val}", class: "is-hidden", :data => { :target => 'index-filter-icons.input' }) %>
+      <%= radio_button_tag(:comfort, "#{val}", @venues_params[:comfort] == "#{val}", class: "is-hidden", :data => { :target => 'icon-state.input', :filterType => "comfort" }) %>
       <%= feature_rating_options(:comfort, val) %>
     <% end %>
     </div>
@@ -80,7 +80,7 @@
     <label class="label">Busyness</label>
     <div class="control">
     <% 3.times do |val| %>
-      <%= radio_button_tag(:busyness, "#{val}", @venues_params[:busyness] == "#{val}", class: "is-hidden", :data => { :target => 'index-filter-icons.input' }) %>
+      <%= radio_button_tag(:busyness, "#{val}", @venues_params[:busyness] == "#{val}", class: "is-hidden", :data => { :target => 'icon-state.input', :filterType => "busyness" }) %>
       <%= feature_rating_options(:busyness, val) %>
     <% end %>
     </div>

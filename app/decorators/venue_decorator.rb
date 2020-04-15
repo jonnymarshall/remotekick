@@ -32,12 +32,6 @@ class VenueDecorator < Draper::Decorator
   def review_count
     "(#{venue.reviews.count})" if has_any?("reviews")
   end
-
-  # def rating_stars(size)
-  #   unless object.rating.nil?
-  #     h.content_tag( :i, nil, :class=>"fas fa-#{size} fas fa-star") * (icon_count_calculator("rating"))
-  #   end
-  # end
   
   def reviews_info_text
     if has_attribute?("reviews")

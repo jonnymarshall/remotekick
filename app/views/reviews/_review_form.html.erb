@@ -4,13 +4,13 @@
       <div class="column is-paddingless"></div>
       <div class="column is-two-fifths">
         <h1 class="title">Leave a review for <%= venue.name %></h1>
-        <%= form_with model: [venue, review], local: true, class: "form-group col-xs-6", :data => { :controller => 'index-filter-icons' } do |review_form| %>
+        <%= form_with model: [venue, review], local: true, class: "form-group col-xs-6", :data => { :controller => 'icon-state' } do |review_form| %>
           <!-- FILTER > RATING -->
           <div class="field">
             <label class="label">Rating</label>
             <div class="control">
               <% 5.times do | val | %>
-                <%= review_form.radio_button :rating, "#{val}", class: "is-hidden", :data => { :target => 'index-filter-icons.input' } %>
+                <%= review_form.radio_button :rating, "#{val}", class: "is-hidden", :data => { :target => 'icon-state.input', :filterType => "rating" } %>
                 <%= rating_options(:review_rating, val) %>
               <% end %>
             </div>
@@ -20,7 +20,7 @@
           <div class="field">
             <label class="label">Review content</label>
             <p class="control has-icons-left">
-              <%= review_form.text_area :content, required: true, class: "textarea", placeholder: "#{ review.content }!" %>
+              <%= review_form.text_area :content, required: true, class: "textarea", placeholder: "#{ review.content }" %>
             </p>
           </div>
 
@@ -48,7 +48,7 @@
             <label class="label">Plug sockets</label>
             <div class="control">
               <% 3.times do |val| %>
-                <%= review_form.radio_button :plug_sockets, "#{val}", class: "is-hidden", :data => { :target => 'index-filter-icons.input' } %>
+                <%= review_form.radio_button :plug_sockets, "#{val}", { checked: review.plug_sockets == val, class: "is-hidden", :data => { :target => 'icon-state.input', :filterType => "plug_sockets" }} %>
                 <%= feature_rating_options(:review_plug_sockets, val) %>
               <% end %>
             </div>
@@ -59,7 +59,7 @@
             <label class="label">Comfort</label>
             <div class="control">
               <% 3.times do |val| %>
-                <%= review_form.radio_button :comfort, "#{val}", class: "is-hidden", :data => { :target => 'index-filter-icons.input' } %>
+                <%= review_form.radio_button :comfort, "#{val}", { checked: review.comfort == val, class: "is-hidden", :data => { :target => 'icon-state.input', :filterType => "comfort" }} %>
                 <%= feature_rating_options(:review_comfort, val) %>
               <% end %>
             </div>
@@ -70,7 +70,7 @@
             <label class="label">Busyness</label>
             <div class="control">
               <% 3.times do |val| %>
-              <%= review_form.radio_button :busyness, "#{val}", class: "is-hidden", :data => { :target => 'index-filter-icons.input' } %>
+                <%= review_form.radio_button :busyness, "#{val}", { checked: review.busyness == val, class: "is-hidden", :data => { :target => 'icon-state.input', :filterType => "busyness" }} %>
                 <%= feature_rating_options(:review_busyness, val) %>
               <% end %>
             </div>
