@@ -24,43 +24,58 @@ class Venue < ApplicationRecord
   scope :has_wifi, -> boolean { where("has_wifi = ?", boolean) if boolean == "1" }
   scope :no_wifi_restrictions, -> hours { where("wifi_restrictions < ?", hours) if hours > "0" }
 
-  def merge_review_values(review)
-    # run the update method on coffee shops to reflect new rating values
-  updated_values = {
-      rating: recalculate_value("rating", review.rating),
-      plug_sockets: recalculate_value("plug_sockets", review.plug_sockets),
-      comfort: recalculate_value("comfort", review.comfort),
-      busyness: recalculate_value("busyness", review.busyness),
-      upload_speed: recalculate_value("upload_speed", review.upload_speed),
-      download_speed: recalculate_value("download_speed", review.download_speed),
-      ping: recalculate_value("ping", review.ping),
-      serves_food: update_boolean_value("serves_food", review.serves_food),
-      air_conditioning: update_boolean_value("air_conditioning", review.air_conditioning),
-      has_wifi: update_boolean_value("has_wifi", review.has_wifi)
-    }
+  def update_values(
+      review,
+      attributes_to_average = [],
+      attribues_to_truth_check = [],
+      averaged_values = {},
+      truth_checked_values = {}
+    )
+    
+    self.reviews.reload
+
+    # Sort attributes into seperate arrays for averaging or truth checking
+    review.attributes.each do |k, val|
+      attributes_to_average << k if attr_is_averageable?(k) && val != nil
+      attribues_to_truth_check << [k,val] if attr_is_boolean?(k) && val != nil
+    end
+    
+    # Recalculate averages for all averageable values which were present in review
+    attributes_to_average.each do |attribute|
+      averaged_values[attribute] = calculate_average(attribute)
+    end
+
+    # Assign new true/false value if the value passes truth checking
+    attribues_to_truth_check.each do |boolean_key_value_pair|
+      k, val = boolean_key_value_pair[0], boolean_key_value_pair[1]
+      truth_checked_values[k] = val if val_truth_checked?(k, val)
+    end
+    
+    # Merge hashes of values to update
+    updated_values = averaged_values.merge(truth_checked_values)
+
+    # Update values
     update(updated_values)
   end
 
   private
 
-  def recalculate_value(param_name, value)
-    # assign existing value based on a dynamic active record query for param_name
-    venue_value = send(param_name)
-    # apply the rating as-is if no existing ratings, otherwise recalculate average if we have a value
-    if value && venue_value
-      (venue_value + value) / 2
-    elsif value && venue_value.nil?
-      value
-    else
-      venue_value
-    end
+  def attr_is_averageable?(k)
+    averageable_values = ["rating", "plug_sockets", "comfort", "busyness", "upload_speed", "download_speed", "ping"]
+    averageable_values.include?(k) ? true : false
   end
 
-  def update_boolean_value(param_name, value)
-    # assign existing value based on a dynamic active record query for param_name
-    venue_boolean_value = send(param_name)
-    # return the new value if one was given, otherwise return the existing value
-    value ? value : venue_boolean_value
+  def attr_is_boolean?(k)
+    boolean_values = ["serves_food", "air_conditioning", "has_wifi"]
+    boolean_values.include?(k) ? true : false
   end
 
+  def calculate_average(attribute)
+    total = self.reviews.map { |review| review.send(attribute) }.reduce(:+)
+    return total.to_f / self.reviews.count.to_f
+  end
+
+  def val_truth_checked?(attribute, value)
+    self.reviews.count == 1 || self.reviews[-2].send(attribute) == value ? true : false
+  end
 end
