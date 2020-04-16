@@ -17,7 +17,6 @@ FactoryBot.define do
     air_conditioning { [true, false].sample }
     serves_food { [true, false].sample }
     wifi_restrictions { rand(4) }
-    # user:
     # latitude
     # longitude
     # foursquare_id
