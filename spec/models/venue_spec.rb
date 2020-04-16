@@ -56,8 +56,8 @@ RSpec.describe Venue do
     end
 
     describe 'rating' do
-      let(:rev1) { create(:review, user: u, venue: ven, rating: 4) }
-      let(:rev2) { create(:review, user: u, venue: ven, rating: 1) }
+      let!(:rev1) { create(:review, user: u, venue: ven, rating: 4) }
+      let!(:rev2) { create(:review, user: u, venue: ven, rating: 1) }
       
       describe 'venue factories' do
         it 'must have valid data' do
