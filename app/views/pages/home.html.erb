@@ -13,7 +13,7 @@
           <%= form_with url: venues_path, local: true, method: :get, class: "form-group col-xs-6" do |form| %>
             <div class="field has-addons">
               <p class="control is-expanded">
-                <%= form.text_field :location, class: "input is-primary  is-rounded has-text-centered", placeholder: "Search for a city"  %>
+                <%= form.text_field :location, class: "input is-primary  is-rounded has-text-centered", placeholder: 'Search for a city - (e.g. "Melbourne" or "Chiang Mai")'  %>
                 <!-- <input type="text" class="input is-primary  is-rounded has-text-centered" placeholder="Search for a city"> -->
               </p>
               <p class="control">
