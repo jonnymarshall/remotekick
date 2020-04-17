@@ -15,7 +15,9 @@
             <%= render partial: "index__cards-info-bar", locals: { venues: @venues } %>
             <div id="index__cards" class="columns is-multiline">
             <% @venues.each do |venue| %>
-              <%= render partial: "index__cards", locals: { venue: venue } %>
+              <div class="column is-one-third">
+                <%= render partial: "index__cards", locals: { venue: venue } %>
+              </div>
             <% end %>
             </div>
             <section id="index__cards-pagination" class="section">
