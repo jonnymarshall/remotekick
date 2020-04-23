@@ -36,7 +36,6 @@ class VenuesController < ApplicationController
 
   def new
     @venue = Venue.new
-    # @venues = Venue.all
     # @opening_hours = OpeningHour.new
     # @opening_hours = []
     # 7.times do
