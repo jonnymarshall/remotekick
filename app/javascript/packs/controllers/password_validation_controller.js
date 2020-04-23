@@ -13,7 +13,6 @@ export default class extends Controller {
 
   connect() {
     console.log(`${this.controllerName} connected.`)
-    console.log(this.validationMessageTargets)
   }
 
   disconnect() {
