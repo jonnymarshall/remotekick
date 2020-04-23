@@ -55,7 +55,7 @@ module VenuesHelper
     options_for_select([
       ["Distance", { :data => { :url => "#{url_for(request.params.merge(:order_by => "distance"))}", :target => 'set-selected-option.option index-cards-ordering.option', :selected => "#{params[:order_by] == "distance"}"}}],
       ["Top rated", { :data => { :url => "#{url_for(request.params.merge(:order_by => "rating"))}", :target => 'set-selected-option.option index-cards-ordering.option', :selected => "#{params[:order_by] == "rating"}"}}],
-      ["Wifi Speed", { :data => { :url => "#{url_for(request.params.merge(:order_by => "wifi_speed"))}", :target => 'set-selected-option.option index-cards-ordering.option', :selected => "#{params[:order_by] == "wifi_speed"}"}}],
+      ["Wifi Speed", { :data => { :url => "#{url_for(request.params.merge(:order_by => "upload_speed"))}", :target => 'set-selected-option.option index-cards-ordering.option', :selected => "#{params[:order_by] == "upload_speed"}"}}],
       ["Price", { :data => { :url => "#{url_for(request.params.merge(:order_by => "price"))}", :target => 'set-selected-option.option index-cards-ordering.option', :selected => "#{params[:order_by] == "price"}"}}]
     ])
   end

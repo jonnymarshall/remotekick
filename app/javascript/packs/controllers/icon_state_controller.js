@@ -55,8 +55,6 @@ export default class extends Controller {
   connect() {
     console.log(`${this.controllerName} connected.`)
     this.getCheckedInputs()
-    console.log(this.iconTargets)
-    console.log(this.inputTargets)
     this.iconStateChange()
   }
 

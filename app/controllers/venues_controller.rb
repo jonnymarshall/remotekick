@@ -170,10 +170,7 @@ class VenuesController < ApplicationController
   end
 
   def order_venues_by_param(venues, param)
-    case param
-    when "rating"
-      @venues = @venues.reorder("#{param} DESC NULLS LAST")
-    end
+    @venues = @venues.reorder("#{param} DESC NULLS LAST")
   end
 
   def location_given?
