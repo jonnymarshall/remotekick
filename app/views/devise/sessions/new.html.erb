@@ -3,11 +3,11 @@
   <section class="section">
     <div class="container">
       <div class="columns">
-        <div class="column" id="log_in_form">
+        <div class="column" id="log_in_form" data-controller="password-validation">
           <h1 class="title">Log in</h1>
           <div class="field">
             <p class="control has-icons-left has-icons-right">
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input", placeholder: "Email" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input", placeholder: "Email", :data => { :target => 'password-validation.email', :action => 'password-validation#emailEntryValidation' } %>
               <span class="icon is-small is-left">
                 <i class="fas fa-envelope"></i>
               </span>
@@ -18,12 +18,15 @@
           </div>
           <div class="field">
             <p class="control has-icons-left">
-              <%= f.password_field :password, autocomplete: "current-password", class: "input", placeholder: "Password" %>
+              <%= f.password_field :password, autocomplete: "current-password", class: "input", placeholder: "Password", :data => { :target => 'password-validation.password', :action => 'password-validation#passwordEntryValidation' } %>
               <span class="icon is-small is-left">
                 <i class="fas fa-lock"></i>
               </span>
             </p>
           </div>
+          <p class="help is-danger is-hidden" data-target="password-validation.validationMessage"></p>
+          <p class="help is-danger is-hidden" data-target="password-validation.validationMessage"></p>
+          <p class="help is-danger is-hidden" data-target="password-validation.validationMessage"></p>
           <div class="field">
             <div class="control">
               <label class="checkbox">
