@@ -6,7 +6,7 @@ export default class extends Controller {
 
   static targets = ["email", "password", "passwordConfirm", "validationMessage"]
   
-  minimumPasswordLength = 5
+  minimumPasswordLength = 6
   enteredPassword = null
   enteredPasswordConfirmation = null
 
@@ -26,7 +26,7 @@ export default class extends Controller {
   passwordEntryValidation(e) {
     this.enteredPassword = e.target.value
     const showFailedPasswordValidationMessage = () => {
-      this.validationMessageTargets[0].innerHTML = "Password must be over 5 characters"
+      this.validationMessageTargets[0].innerHTML = `Password must be at least ${this.minimumPasswordLength} characters`
       this.validationMessageTargets[0].classList.remove("is-hidden")
     }
 
