@@ -12,7 +12,7 @@ export default class extends Controller {
 
   connect() {
     console.log(`${this.controllerName} connected.`)
-    console.log(this.pathTarget.dataset.url)
+    // this.executeAjaxRequest()
   }
 
   disconnect() {
@@ -21,10 +21,22 @@ export default class extends Controller {
 
   // Gets the data-url value from the selected option (embedded with url helper) & redirects
   goToUrl(event) {
+    self = this
     this.optionTargets.forEach(el => {
       if (el.value == event.target.value) {
-        window.location.assign(el.dataset.url);
+        console.log("got hereeeee")
+        // window.location.assign(el.dataset.url)
+        self.executeAjaxRequest(el.dataset.url)
       }
     })
+  }
+  
+  async executeAjaxRequest(url) {
+    console.log("url", url)
+    await fetch(url, { headers: { accept: "application/json" } })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Success:', data);
+      })
   }
 }

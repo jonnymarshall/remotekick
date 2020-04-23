@@ -14,6 +14,8 @@ class VenuesController < ApplicationController
   has_scope :busyness
   has_scope :plug_sockets
   has_scope :has_wifi
+  respond_to :html, :json
+
   # has_scope :air_conditioning, type: :boolean
 
   def index
@@ -26,7 +28,7 @@ class VenuesController < ApplicationController
     end
     @venues_params = venues_params
     @venues_boolean_params = venues_boolean_params
-    set_map_markers(@venues)
+    set_map_markers(@venues) 
   end
 
   def show
@@ -95,9 +97,6 @@ class VenuesController < ApplicationController
     @response_json = JSON.parse(response)
     render json: @response_json
   end
-  
-  def order_by
-  end
 
   private
 
@@ -116,7 +115,7 @@ class VenuesController < ApplicationController
       :has_wifi,
       :order_by,
       :distance,
-      :no_wifi_restrictions
+      :no_wifi_restrictions,
     )
   end
 
