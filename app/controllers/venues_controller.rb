@@ -35,7 +35,6 @@ class VenuesController < ApplicationController
   end
 
   def new
-    @venue_search_path = venue_search_new_venue_path
     @venue = Venue.new
     # @venues = Venue.all
     # @opening_hours = OpeningHour.new
@@ -96,6 +95,9 @@ class VenuesController < ApplicationController
     response = open(url).read
     @response_json = JSON.parse(response)
     render json: @response_json
+  end
+  
+  def order_by
   end
 
   private
