@@ -32,7 +32,7 @@ class VenuesController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: { venues: @venues } }
+      format.json { render json: { venues: @venues.select("id") } }
     end
   end
 

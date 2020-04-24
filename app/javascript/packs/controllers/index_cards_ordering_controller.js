@@ -6,7 +6,7 @@ export default class extends Controller {
 
   static targets = ["option", "card", "cardsList"]
 
-  orderedResults = null
+  orderedResultIds = null
   orderedHtmlEmelents = null
 
   // Gets the element which has data-selected="true" (boolean value is embedded based on params)
@@ -21,12 +21,12 @@ export default class extends Controller {
   }
 
   // Gets the data-url value from the selected option (embedded with url helper) & redirects
-  goToUrl(event) {
+  cardsReorderHandler(event) {
     self = this
     this.optionTargets.forEach(el => {
       if (el.value == event.target.value) {
         self.executeAjaxRequest(el.dataset.url).then(() => {
-          self.doSomething()
+          self.reorganiseCards()
         });
       }
     })
@@ -38,7 +38,7 @@ export default class extends Controller {
       .then((response) => response.json())
       .then((data) => {
         console.log('Success:', data);
-        self.orderedResults = data.venues
+        self.orderedResultIds = data.venues
       })
   }
 
@@ -70,15 +70,15 @@ export default class extends Controller {
     // newCardList.forEach((child) => this.fadeElement(child))
   }
 
-  doSomething() {
+  reorganiseCards() {
 
     const organiseOrder = (unsortedItems, sortedItems) => {
-      const itemMap = new Map(unsortedItems.map(item => [parseInt(item.children[0].dataset.id), item]));
+      const itemMap = new Map(unsortedItems.map(item => [parseInt(item.children[0].dataset.id), item]))
       return sortedItems.map(item => itemMap.get(item.id));
     };
 
     const cardList = Array.from(this.cardsListTarget.children)
-    this.orderedHtmlEmelents = organiseOrder(cardList, this.orderedResults)
+    this.orderedHtmlEmelents = organiseOrder(cardList, this.orderedResultIds)
 
     this.reorderCards(cardList)
   }
