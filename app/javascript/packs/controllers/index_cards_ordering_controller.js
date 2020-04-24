@@ -42,27 +42,27 @@ export default class extends Controller {
       })
   }
 
-  fadeElement(el) {
-    let fadeTarget = el
-    let fadeEffect = setInterval(function () {
-      if (!fadeTarget.style.opacity) {
-        console.log('!fadeTarget.style.opacity for', el)
-          fadeTarget.style.opacity = 1;
-      }
-      if (fadeTarget.style.opacity > 0) {
-          console.log('fadeTarget.style.opacity > 0 for', el)
-          fadeTarget.style.opacity -= 0.1;
-      } else {
-        console.log('hit else for', el)
-        clearInterval(fadeEffect);
-      }
-  }, 50);
-  }
+  // fadeElement(el) {
+  //   let fadeTarget = el
+  //   let fadeEffect = setInterval(function () {
+  //     if (!fadeTarget.style.opacity) {
+  //       console.log('!fadeTarget.style.opacity for', el)
+  //         fadeTarget.style.opacity = 1;
+  //     }
+  //     if (fadeTarget.style.opacity > 0) {
+  //         console.log('fadeTarget.style.opacity > 0 for', el)
+  //         fadeTarget.style.opacity -= 0.1;
+  //     } else {
+  //       console.log('hit else for', el)
+  //       clearInterval(fadeEffect);
+  //     }
+  //   }, 50);
+  // }
 
   reorderCards(cardList, orderedHtmlEmelents) {
     // cardList.forEach((child) => this.fadeElement(child))
     this.cardsListTarget.innerHTML = ""
-    
+
     this.orderedHtmlEmelents.forEach(el => {
       this.cardsListTarget.appendChild(el)
     })
@@ -71,23 +71,14 @@ export default class extends Controller {
   }
 
   doSomething() {
-    const organiseOrder = (orderedArray, unorderedArray) => {
-      const reorderedCardList =[];
 
-      orderedArray.forEach((orderedElement) => {
-        unorderedArray.forEach((unorderedElement) => {
-          let unorderedElementId = parseInt(unorderedElement.children[0].dataset.id)
-          let orderedElementId = orderedElement.id
-          if (unorderedElementId === orderedElementId) {
-            reorderedCardList.push(unorderedElement)
-          }
-        })
-      })
-      return reorderedCardList
-    }
+    const organiseOrder = (unsortedItems, sortedItems) => {
+      const itemMap = new Map(unsortedItems.map(item => [parseInt(item.children[0].dataset.id), item]));
+      return sortedItems.map(item => itemMap.get(item.id));
+    };
 
     const cardList = Array.from(this.cardsListTarget.children)
-    this.orderedHtmlEmelents = organiseOrder(this.orderedResults, cardList)
+    this.orderedHtmlEmelents = organiseOrder(cardList, this.orderedResults)
 
     this.reorderCards(cardList)
   }
