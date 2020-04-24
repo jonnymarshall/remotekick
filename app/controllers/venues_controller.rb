@@ -14,6 +14,7 @@ class VenuesController < ApplicationController
   has_scope :busyness
   has_scope :plug_sockets
   has_scope :has_wifi
+
   # has_scope :air_conditioning, type: :boolean
 
   def index
@@ -24,9 +25,15 @@ class VenuesController < ApplicationController
     if location_given? && distance_given?
       @venues = @venues.near(venues_params[:location], venues_params[:distance])
     end
-    @venues_params = venues_params
-    @venues_boolean_params = venues_boolean_params
-    set_map_markers(@venues)
+
+    unless request.xhr?
+      set_map_markers(@venues) unless params[:order_by]
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: { venues: @venues } }
+    end
   end
 
   def show
@@ -95,9 +102,6 @@ class VenuesController < ApplicationController
     @response_json = JSON.parse(response)
     render json: @response_json
   end
-  
-  def order_by
-  end
 
   private
 
@@ -116,7 +120,7 @@ class VenuesController < ApplicationController
       :has_wifi,
       :order_by,
       :distance,
-      :no_wifi_restrictions
+      :no_wifi_restrictions,
     )
   end
 

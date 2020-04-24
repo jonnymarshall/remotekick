@@ -19,7 +19,7 @@ export default class extends Controller {
   ]
 
   searchQuery = "";
-  url = this.pathTargets[0].dataset.url
+  url = this.pathTarget.dataset.url
   results = null
   selectedVenue = null
   location = null
@@ -137,7 +137,7 @@ export default class extends Controller {
       let venueLocation = self.locationValueAssigner(venue)
       this.resultsTargets[0].insertAdjacentHTML("afterbegin", `
         <p class="control has-icons-left has-icons-right">
-          <span id=${venue.id} class="input" data-target="resultItem" type="text">${venue.name}, ${venueLocation}
+          <span id=${venue.id} class="input u-pointer" data-target="resultItem" type="text">${venue.name}, ${venueLocation}
           <span class="icon is-small is-left">
             <i class="fas fa-store-alt"></i>
           </span>
@@ -158,11 +158,11 @@ export default class extends Controller {
   apiCallUrlGenerator() {
     // SearchQuery and Location given
     if ((this.searchQuery != null) && (this.location != null)){
-      return `${this.url}?utf8=✓&query=${this.searchQuery}&location=${this.location}`
+      return `${this.url}?query=${this.searchQuery}&location=${this.location}`
     }
     // SearchQuery only
     else if ((this.searchQuery != null) && (this.location == null)) {
-      return `${this.url}?utf8=✓&query=${this.searchQuery}`
+      return `${this.url}?query=${this.searchQuery}`
     }
     // No queries
     else {
