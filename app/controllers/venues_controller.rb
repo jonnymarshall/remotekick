@@ -26,8 +26,6 @@ class VenuesController < ApplicationController
     if location_given? && distance_given?
       @venues = @venues.near(venues_params[:location], venues_params[:distance])
     end
-    @venues_params = venues_params
-    @venues_boolean_params = venues_boolean_params
     set_map_markers(@venues) 
   end
 

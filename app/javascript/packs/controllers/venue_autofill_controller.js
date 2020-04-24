@@ -19,7 +19,7 @@ export default class extends Controller {
   ]
 
   searchQuery = "";
-  url = this.pathTargets[0].dataset.url
+  url = this.pathTarget.dataset.url
   results = null
   selectedVenue = null
   location = null
