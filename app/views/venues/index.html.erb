@@ -11,9 +11,9 @@
       <div id="index__map-container" class="column">
         <%= render 'index__map' %>
         <section class="section u-padding-lr-0px">
-          <div id="index__cards-container" class="container">
+          <div id="index__cards-container" class="container" data-controller="index-cards-ordering">
             <%= render partial: "index__cards-info-bar", locals: { venues: @venues } %>
-            <div id="index__cards" class="columns is-multiline">
+            <div id="index__cards" class="columns is-multiline" data-target="index-cards-ordering.cardsList">
             <% @venues.each do |venue| %>
               <div class="column is-one-third">
                 <%= render partial: "index__cards", locals: { venue: venue } %>

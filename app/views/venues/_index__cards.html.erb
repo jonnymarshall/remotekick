@@ -1,5 +1,5 @@
-<%= link_to venue_path(venue), data: { id: "#{venue.id}"} do %>
-  <div class="c-card has-box-shadow" id="<%="#{venue.id}" %>">
+<%= link_to venue_path(venue), data: { target: "index-cards-ordering.card", id: "#{venue.id}"} do %>
+  <div class="c-card has-box-shadow">
     <div class="image" style="<%= venue.decorate.gradient %>, <%= venue.decorate.hero_image_url %>">
         <div class="breaker"></div>
         <nav class="level is-mobile">
