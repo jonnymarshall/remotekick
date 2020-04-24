@@ -4,9 +4,7 @@ export default class extends Controller {
 
   controllerName = "index_cards_ordering_controller"
 
-  static targets = ["option", "path"]
-
-  url = this.pathTarget.dataset.url
+  static targets = ["option"]
 
   // Gets the element which has data-selected="true" (boolean value is embedded based on params)
 

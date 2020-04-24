@@ -158,11 +158,11 @@ export default class extends Controller {
   apiCallUrlGenerator() {
     // SearchQuery and Location given
     if ((this.searchQuery != null) && (this.location != null)){
-      return `${this.url}?utf8=✓&query=${this.searchQuery}&location=${this.location}`
+      return `${this.url}?query=${this.searchQuery}&location=${this.location}`
     }
     // SearchQuery only
     else if ((this.searchQuery != null) && (this.location == null)) {
-      return `${this.url}?utf8=✓&query=${this.searchQuery}`
+      return `${this.url}?query=${this.searchQuery}`
     }
     // No queries
     else {
@@ -178,6 +178,7 @@ export default class extends Controller {
       .then((response) => response.json())
       .then((data) => {
         console.log('Success:', data);
+        self.results = data
       })
   }
 }
