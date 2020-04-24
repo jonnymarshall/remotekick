@@ -137,7 +137,7 @@ export default class extends Controller {
       let venueLocation = self.locationValueAssigner(venue)
       this.resultsTargets[0].insertAdjacentHTML("afterbegin", `
         <p class="control has-icons-left has-icons-right">
-          <span id=${venue.id} class="input" data-target="resultItem" type="text">${venue.name}, ${venueLocation}
+          <span id=${venue.id} class="input u-pointer" data-target="resultItem" type="text">${venue.name}, ${venueLocation}
           <span class="icon is-small is-left">
             <i class="fas fa-store-alt"></i>
           </span>
