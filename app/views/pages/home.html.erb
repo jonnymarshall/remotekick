@@ -1,3 +1,4 @@
+
 <section class="hero  is-fullheight-with-navbar  hero-image">
   <div class="hero-body">
     <div class="container  has-text-centered">
@@ -13,7 +14,7 @@
           <%= form_with url: venues_path, local: true, method: :get, class: "form-group col-xs-6" do |form| %>
             <div class="field has-addons">
               <p class="control is-expanded">
-                <%= form.text_field :location, class: "input is-primary  is-rounded has-text-centered", placeholder: 'Search for a city - (e.g. "Melbourne" or "Chiang Mai")'  %>
+                <%= form.text_field :location, class: "input is-primary  is-rounded has-text-centered", placeholder: "Fina a great place to work from in #{request.location.city}" %>
                 <!-- <input type="text" class="input is-primary  is-rounded has-text-centered" placeholder="Search for a city"> -->
               </p>
               <p class="control">
