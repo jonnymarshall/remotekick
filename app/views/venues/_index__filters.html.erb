@@ -87,15 +87,13 @@
   </div>
 
   <label class="label">Tags</label>
-  <div class="tags">
-    <span class="tag">
+  <div class="tags" data-controller="tags">
+    <span class="tag u-pointer" data-action="click->tags#activateTag">
       Serves Food
-      <button class="delete is-small"></button>
     </span>
-    <span class="tag">
+    <div class="tag u-pointer" data-target="tags.tag" data-action="click->tags#activateTag">
       Open late
-      <button class="delete is-small"></button>
-    </span>
+    </div>
   </div>
 
   <!-- FILTER > HAS WIFI -->
