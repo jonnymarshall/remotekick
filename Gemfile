@@ -27,6 +27,7 @@ gem 'faker'
 gem 'jquery-rails'
 gem 'bulma-rails', '~> 0.8.0'
 gem 'draper'
+gem 'responders'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
