@@ -14,8 +14,8 @@ class VenuesController < ApplicationController
   has_scope :busyness
   has_scope :plug_sockets
   has_scope :has_wifi
-
   # has_scope :air_conditioning, type: :boolean
+  respond_to :html, :json
 
   def index
     @venues = apply_scopes(Venue).all
@@ -30,10 +30,7 @@ class VenuesController < ApplicationController
       set_map_markers(@venues) unless params[:order_by]
     end
 
-    respond_to do |format|
-      format.html
-      format.json { render json: { venues: @venues.select("id") } }
-    end
+    respond_with(@venues)
   end
 
   def show

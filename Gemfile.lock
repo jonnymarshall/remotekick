@@ -321,6 +321,7 @@ DEPENDENCIES
   puma
   rails (= 6.0.2.2)
   redis
+  responders
   rspec-rails
   sassc-rails
   simple_form

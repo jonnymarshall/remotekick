@@ -6,7 +6,7 @@ export default class extends Controller {
 
   static targets = ["option", "card", "cardsList"]
 
-  orderedResultIds = null
+  orderedVenues = null
   orderedHtmlEmelents = null
 
   // Gets the element which has data-selected="true" (boolean value is embedded based on params)
@@ -38,7 +38,7 @@ export default class extends Controller {
       .then((response) => response.json())
       .then((data) => {
         console.log('Success:', data);
-        self.orderedResultIds = data.venues
+        self.orderedVenues = data
       })
   }
 
@@ -71,14 +71,13 @@ export default class extends Controller {
   }
 
   reorganiseCards() {
-
     const organiseOrder = (unsortedItems, sortedItems) => {
       const itemMap = new Map(unsortedItems.map(item => [parseInt(item.children[0].dataset.id), item]))
       return sortedItems.map(item => itemMap.get(item.id));
     };
 
     const cardList = Array.from(this.cardsListTarget.children)
-    this.orderedHtmlEmelents = organiseOrder(cardList, this.orderedResultIds)
+    this.orderedHtmlEmelents = organiseOrder(cardList, this.orderedVenues)
 
     this.reorderCards(cardList)
   }
