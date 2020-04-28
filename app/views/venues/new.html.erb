@@ -16,7 +16,7 @@
           </div>
           <div class="field">
             <label class="label">Name</label>
-            <div class="is-hidden" data-target="venue-autofill.path" data-url="<%= venue_search_new_venue_path %>"></div>
+            <div class="is-hidden" data-target="venue-autofill.path" data-url=<%= "#{venue_search_new_venue_path}" %>></div>
             <p class="control has-icons-left has-icons-right">
               <%= field.text_field :name, autofocus: true, class: "input", id: 'venueNameInput', placeholder: "What is the name of the venue?", :data => { :target => 'venue-autofill.input' } %>
               <span class="icon is-small is-left">

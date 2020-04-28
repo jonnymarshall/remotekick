@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: 'users/sessions' }
   
   get 'venues/new/venue_search', to: 'venues#venue_search'
-  get 'venues/autocomplete_response', to: 'venues#autocomplete_response'
+  get '/location_search', to: 'pages#home'
 
   
   root to: 'pages#home'
