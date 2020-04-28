@@ -5,14 +5,21 @@
         <div class="column is-paddingless"></div>
         <div class="column is-two-fifths">
           <h1 class="title">Add a new venue</h1>
-          <div class="field">
+          <div class="field" data-controller="algolia-places">
             <label class="label">Location</label>
             <p class="control has-icons-left">
-              <%= field.text_field :location, class: "input", placeholder: "Search for a location...", :data => { :target => 'venue-autofill.location' } %>
+              <%= field.text_field :location,
+              class: "input", placeholder: "Search for a location...",
+              :data => {
+                :target => 'venue-autofill.location algolia-places.addressInput',
+                :action => 'keyup->algolia-places#changeHandler',
+                :request_path => location_search_path
+              } %>
               <span class="icon is-small is-left">
                 <i class="fas fa-map-marker-alt"></i>
               </span>
             </p>
+            <div data-target="algolia-places.resultsContainer"></div>
           </div>
           <div class="field">
             <label class="label">Name</label>

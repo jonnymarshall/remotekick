@@ -13,6 +13,7 @@ export default class extends Controller {
   connect() {
     console.log(`${this.controllerName} connected.`)
     this.baseURL = this.addressInputTarget.dataset.requestPath
+    console.log(this.resultsContainerTarget)
   }
 
   disconnect() {
@@ -36,7 +37,9 @@ export default class extends Controller {
       resultItem.addEventListener("click", (e) => {
         self.setLocation(resultItem)
         self.clearResults()
-        self.submitButtonTarget.click()
+        if (self.submitButtonTargets.length > 0) {
+          self.submitButtonTarget.click()
+        }
       })
     });
   }

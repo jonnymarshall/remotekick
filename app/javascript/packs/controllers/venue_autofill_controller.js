@@ -24,18 +24,6 @@ export default class extends Controller {
   selectedVenue = null
   location = null
 
-  searchQueryHandler() {
-  let self = this
-  this.inputTargets[0].addEventListener("keyup", function(e) {
-    self.searchQuery = e.target.value;
-    if ((self.location) && (self.location.length > 1)) {
-      self.executeAjaxRequest().then(() => {
-        self.resultsHandler();
-      });
-    }
-  })
-}
-
   connect() {
     console.log(`${this.controllerName} connected.`)
     this.searchQueryHandler()
@@ -44,6 +32,18 @@ export default class extends Controller {
 
   disconnect() {
     console.log(`${this.controllerName} disconnected.`)
+  }
+
+  searchQueryHandler() {
+    let self = this
+    this.inputTarget.addEventListener("keyup", function(e) {
+      self.searchQuery = e.target.value;
+      if ((self.location) && (self.location.length > 1)) {
+        self.executeAjaxRequest().then(() => {
+          self.resultsHandler();
+        });
+      }
+    })
   }
 
   resultsHandler() {
@@ -101,7 +101,6 @@ export default class extends Controller {
     });
     return formattedAddress.slice(0, -2)
   }
-
 
   hoverHandler(e) {
     let prevSelection = document.querySelector(".is-primary");
