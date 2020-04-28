@@ -71,12 +71,13 @@ class VenuesController < ApplicationController
   end
 
   def autocomplete_response
+    debugger
     # redirect_to: autocomplete_data...
     # @@data = File.read("/assets/data/autocomplete_data.json")
     # render :json => @@data
-    url = venues_autocomplete_path
-    response = open(url).read
-    @response_json = JSON.parse(response)
+    # url = venues_autocomplete_path
+    # response = open(url).read
+    # @response_json = JSON.parse(response)
   end
 
   # def edit          # GET /restaurants/:id/edit

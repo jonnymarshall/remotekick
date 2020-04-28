@@ -11,3 +11,11 @@
   -moz-box-shadow:    3px 3px 10px rgba(0,0,0,0.2);  /* Firefox 3.5 - 3.6 */
   box-shadow:         3px 3px 10px rgba(0,0,0,0.2);  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }
+
+.field + .bu-prev-element-margin-b-counter {
+  margin-top: -0.75rem;
+}
+
+.is-padding-2rem {
+  padding: 2rem
+}
