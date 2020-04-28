@@ -10,29 +10,24 @@
       </h2>
       <div class="columns">
         <div class="column is-paddingless"></div>
-        <div class="column is-two-fifths">
+        <div class="column is-two-fifths" data-controller="algolia-places">
           <%= form_with url: venues_path, local: true, method: :get, class: "form-group col-xs-6" do |form| %>
             <div class="field has-addons">
               <p class="control is-expanded">
-                <%= form.text_field :location, class: "input is-primary has-text-centered", placeholder: "Fina a great place to work from in #{request.location.city}", :data => { :controller => "algolia-places", :target => 'algolia-places.addressInput', :request_path => location_search_path, :action => 'keyup->algolia-places#makeRequest'  } %>
+                <%= form.text_field :location,
+                class: "input is-primary has-text-centered",
+                placeholder: "Fina a great place to work from in #{request.location.city}",
+                :data => {
+                  :target => 'algolia-places.addressInput',
+                  :request_path => location_search_path,
+                  :action => 'keyup->algolia-places#changeHandler',
+                } %>
               </p>
               <p class="control">
                 <%= form.submit "Search", class: "button is-primary", data: { disable_with: false } %>
               </p>
             </div>
-            <div class="bu-prev-element-margin-b-counter" data-target="venue-autofill.results">
-              <p class="control has-icons-left has-icons-right">
-                <span id="" class="input u-pointer" data-target="resultItem" type="text">City name, Country Nmae
-                <span class="icon is-small is-left">
-                  <i class="fas fa-city"></i>
-                </span>
-              </p>
-              <p class="control has-icons-left has-icons-right">
-                <span id="" class="input u-pointer" data-target="resultItem" type="text">London Borough of Lambeth, UK
-                <span class="icon is-small is-left">
-                  <i class="fas fa-city"></i>
-                </span>
-              </p>
+            <div class="bu-prev-element-margin-b-counter" data-target="algolia-places.resultsContainer">
             </div>
           <% end %>
         </div>

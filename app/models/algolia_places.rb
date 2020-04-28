@@ -12,7 +12,7 @@ class AlgoliaPlaces
       body: {
         'query' => query,
         'type' => 'city',
-        'hitsPerPage' => 10,
+        'hitsPerPage' => 5,
 
       }.to_json
     }

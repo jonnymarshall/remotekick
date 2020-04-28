@@ -9,6 +9,11 @@
   padding-bottom: 0px;
 }
 
+.u-padding-tb-30px {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
 .u-padding-b-5px {
   padding-bottom: 5px;
 }
@@ -21,4 +26,13 @@
 // Cursor
 .u-pointer {
   cursor: pointer;
+}
+
+.u-no-pointer-events {
+  pointer-events: none;
+}
+
+// Centering
+.u-top-auto {
+  top: auto !important;
 }
