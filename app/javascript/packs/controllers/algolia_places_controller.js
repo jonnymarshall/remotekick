@@ -4,7 +4,7 @@ export default class extends Controller {
 
   controllerName = "algolia_places_controller"
 
-  static targets = ["addressInput", "resultsContainer"]
+  static targets = ["addressInput", "resultsContainer", "submitButton"]
 
   baseURL = null
   searchQuery = null
@@ -12,7 +12,7 @@ export default class extends Controller {
 
   connect() {
     console.log(`${this.controllerName} connected.`)
-    console.log(this.resultsContainerTarget)
+    this.baseURL = this.addressInputTarget.dataset.requestPath
   }
 
   disconnect() {
@@ -21,7 +21,6 @@ export default class extends Controller {
 
   async changeHandler(e) {
     let self = this
-    this.baseURL = e.target.dataset.requestPath
     this.searchQuery = e.target.value
     await this.executeAjaxRequest()
     this.clearResults()
@@ -33,12 +32,12 @@ export default class extends Controller {
       resultItem.addEventListener("mouseover", (h) => {
         self.hoverHandler(h)
       });
-      // Select
-      // resultItem.addEventListener("click", (e) => {
-      //   self.setQueryParams(resultItem)
-      //   self.clearResults()
-      //   self.setInputValues()
-      // })
+      // Click
+      resultItem.addEventListener("click", (e) => {
+        self.setLocation(resultItem)
+        self.clearResults()
+        self.submitButtonTarget.click()
+      })
     });
   }
 
@@ -48,6 +47,10 @@ export default class extends Controller {
       prevSelection.classList.remove("is-primary");
     }
     h.target.classList.add("is-primary");
+  }
+
+  setLocation(resultItem) {
+    this.addressInputTarget.value = resultItem.innerText
   }
 
   async executeAjaxRequest() {
@@ -67,7 +70,6 @@ export default class extends Controller {
   }
 
   generateResults() {
-    // self = this
     const sanitizeCountry = (result) => {
       if (result.country.en) {
         return result.country.en
@@ -84,7 +86,12 @@ export default class extends Controller {
       }
     }
 
+    const sanitizeCountryCode = (result) => {
+      return result.country_code
+    }
+
     const sanitizeMatchedLocale = (result) => { 
+      console.log(sanitizeCountryCode(result))
       if (result._highlightResult.locale_names.en) {
         if (result._highlightResult.locale_names.en[0].matchedWords.length > 0) {
           return result._highlightResult.locale_names.en[0].value.replace("<em>", "<strong>").replace("</em>", "</strong>")

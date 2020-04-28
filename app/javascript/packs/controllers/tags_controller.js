@@ -8,7 +8,6 @@ export default class extends Controller {
 
   connect() {
     console.log(`${this.controllerName} connected.`)
-    console.log(this.tagTargets)
   }
 
   disconnect() {

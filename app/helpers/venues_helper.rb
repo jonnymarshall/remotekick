@@ -2,7 +2,7 @@ module VenuesHelper
 
   def searched_location(location)
     if location && location.length > 0
-      location.capitalize
+      location[0] == location[0].upcase ? location : location.capitalize
     else
       "Everywhere"
     end
