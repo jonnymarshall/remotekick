@@ -48,9 +48,11 @@
             </p>
           </div>
         <% end %>
-        <p class="control">
-          <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "button is-light is-danger" %>
-        </p>
+        <div class="field u-padding-t-10px">
+          <p class="control">
+            <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "button is-light is-danger" %>
+          </p>
+        </div>
       </div>
       <div class="column">
         <!-- Second column -->
