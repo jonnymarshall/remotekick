@@ -22,4 +22,8 @@ FactoryBot.define do
     # foursquare_id
     category { categories.sample }
   end
+
+  factory :no_wifi_venue do
+    has_wifi { false }
+  end
 end
