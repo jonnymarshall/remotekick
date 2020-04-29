@@ -1,7 +1,7 @@
 require 'rails_helper'
 # require_relative '../support/new_venue_form'
 
-RSpec.describe 'Show Venue', focus: true do
+RSpec.describe 'Show Venue' do
   let(:u) { create(:user) }
   let(:ven) { create(:venue, user: u) }
   

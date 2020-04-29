@@ -1,10 +1,10 @@
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <section class="section">
-    <div class="container">
-      <div class="columns">
-        <div class="column" id="edit_user_form">
-          <h1 class="title">Edit <%= resource_name.to_s.humanize %></h1>
+<%= render "devise/shared/error_messages", resource: resource %>
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column" id="edit_user_form">
+        <h1 class="title">Edit <%= resource_name.to_s.humanize %></h1>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
           <div class="field">
             <p class="control has-icons-left has-icons-right">
               <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
@@ -31,7 +31,7 @@
                 <i class="fas fa-lock"></i>
               </span>
             </p>
-          <p class="help is-danger">Password validation</p>
+            <p class="help is-danger">Password validation</p>
           </div>
           <div class="field">
             <p class="control has-icons-left">
@@ -44,18 +44,17 @@
           </div>
           <div class="field is-grouped">
             <p class="control">
-              <%= f.submit "Save changes", class: "button is-primary" %>
+              <%= f.submit "Save changes", class: "button is-primary", id: "save_account_changes" %>
             </p>
           </div>
-        </div>
-        <div class="column">
-          <!-- Second column -->
-        </div>
         <% end %>
+        <p class="control">
+          <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "button is-light is-danger" %>
+        </p>
       </div>
-      <p class="control">
-        <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "button is-light is-danger" %>
-      </p>
+      <div class="column">
+        <!-- Second column -->
+      </div>
     </div>
-  </section>
-
+  </div>
+</section>
