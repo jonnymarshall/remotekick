@@ -49,10 +49,13 @@ class VenuesController < ApplicationController
   end
 
   def create
-    # create new venue and assign current user
     @venue = Venue.new(new_venue_params)
     @venue.user = current_user
-    @venue.save!
+    if @venue.save
+      redirect_to venue_path(@venue)
+    else
+      render :new
+    end
 
     # create new opening_hour_set and assign venue
     # @opening_hour_set = OpeningHourSet.new
@@ -67,7 +70,6 @@ class VenuesController < ApplicationController
     #     new_opening_hours.save!
     #   end
     # end
-    redirect_to venue_path(@venue)
   end
 
   def autocomplete_response

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Venues', focus: true do
+RSpec.describe 'Venues' do
   let!(:u) { create(:user) }
   let!(:ven) { create(:venue, user: u) }
 

@@ -33,8 +33,9 @@ RSpec.describe "user sessions" do
       fill_in 'user[password_confirmation]', with: "new password"
       fill_in 'user[current_password]', with: u.password
     end
-    click_button 'Save changes'
-    expect(u.password).to eq('new password')
+    find_by_id('save_account_changes').click
+    u.reload
+    expect(u.valid_password?('new password')).to be true
     expect(page).to have_content 'Your account has been updated successfully'
   end
   
