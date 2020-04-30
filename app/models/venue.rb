@@ -7,7 +7,9 @@ class Venue < ApplicationRecord
 
   validates :foursquare_id, uniqueness: true, allow_blank: true
   validates :name, presence: true, length: { maximum: 26 }
+  validates_uniqueness_of :name, scope: :user_id
   validates :description, length: { maximum: 68 }, allow_blank: true
+  # validate :unique_name
   
   # geocoded_by :address
   # after_validation :geocode, if: :will_save_change_to_address?
@@ -78,4 +80,5 @@ class Venue < ApplicationRecord
   def val_truth_checked?(attribute, value)
     self.reviews.count == 1 || self.reviews[-2].send(attribute) == value ? true : false
   end
+
 end

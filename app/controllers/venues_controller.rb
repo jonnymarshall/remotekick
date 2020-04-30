@@ -1,9 +1,10 @@
 class VenuesController < ApplicationController
   include Foursquare
-  before_action :set_venue, only: [:edit, :show, :update, :destroy]
+  before_action :set_venue, only: [:show, :edit, :update, :destroy]
   before_action :venues_params, only: [:index]
   before_action :new_venue_params, only: [:create]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :validate_owner, only: [:edit, :update, :destroy]
   # @venue should be called as venue for decorated instance in views
   decorates_assigned :venue
   has_scope :location, if: :location_given?
@@ -72,27 +73,21 @@ class VenuesController < ApplicationController
     # end
   end
 
-  def autocomplete_response
-    debugger
-    # redirect_to: autocomplete_data...
-    # @@data = File.read("/assets/data/autocomplete_data.json")
-    # render :json => @@data
-    # url = venues_autocomplete_path
-    # response = open(url).read
-    # @response_json = JSON.parse(response)
+  def edit
   end
 
-  # def edit          # GET /restaurants/:id/edit
-  # end
+  def update
+    if @venue.update(new_venue_params)
+      redirect_to venue_path(@venue)
+    else
+      render :edit
+    end
+  end
 
-  # def update
-  #   @venue.update(venue_params)
-  # end
-
-  # def destroy
-  #   @venue.destroy
-  #   redirect_to venues_path
-  # end
+  def destroy
+    @venue.destroy
+    redirect_to venues_path
+  end
 
   def venue_search
     location = venue_search_params[:location]
@@ -188,5 +183,9 @@ class VenuesController < ApplicationController
 
   def distance_given?
     venues_params[:distance] && venues_params[:distance].to_i > 0
+  end
+  
+  def validate_owner
+    redirect_to venues_path if current_user != @venue.user
   end
 end

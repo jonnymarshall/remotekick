@@ -4,25 +4,18 @@ RSpec.describe Venue do
   let(:u) { create(:user) }
   let(:ven) { create(:venue, user: u) }
   
+  describe 'venue factories' do
+    it 'must have valid data' do
+      expect(ven).to be_valid
+      expect(u).to be_valid
+    end
+  end
+
   describe 'validations' do
 
-    describe 'venue factories' do
-      it 'must have valid data' do
-        expect(ven).to be_valid
-        expect(u).to be_valid
-      end
-    end
-
     describe 'name' do
-      it 'must be present' do
-        ven.name = nil
-        expect(ven).to_not be_valid
-      end
-
-      it 'must not be an empty string' do
-        ven.name = ""
-        expect(ven).to_not be_valid
-      end
+      it { should validate_presence_of(:name)}
+      it { should validate_uniqueness_of(:name).scoped_to(:user_id) }
 
       it 'must be under 27 characters' do
         ven.name = "X" * 26
@@ -49,10 +42,7 @@ RSpec.describe Venue do
     end
 
     describe 'user' do
-      it 'must be present' do
-        ven.user = nil
-        expect(ven).to_not be_valid
-      end
+      it { should belong_to(:user) }
     end
 
     describe 'rating' do
@@ -109,20 +99,17 @@ RSpec.describe Venue do
 
   describe 'scopes' do
 
-    # describe 'serves_food' do
+    describe 'serves_food' do
       
-    #   it 'returns an ActiveRecord::Relation of venues which serve food' do
-    #     serves_food = described_class.create(required_validations.merge(serves_food: true))
-    #     also_serves_food = described_class.create(required_validations.merge(serves_food: true))
-    #     does_not_serve_food = described_class.create(required_validations.merge(serves_food: false))
-    #     may_not_serve_food = described_class.create(required_validations.merge(serves_food: nil))
+      it 'returns an ActiveRecord::Relation of venues which serve food' do
+        serves_food = FactoryBot.create(:venue, user: u, serves_food: true)
+        also_serves_food = FactoryBot.create(:venue, user: FactoryBot.create(:user), serves_food: true)
+        does_not_serve_food = FactoryBot.create(:venue, user: FactoryBot.create(:user), serves_food: false)
+        may_not_serve_food = FactoryBot.create(:venue, user: FactoryBot.create(:user), serves_food: false)
         
-    #     expect(described_class.serves_food).to contain_exactly(
-    #       serves_food,
-    #       also_serves_food
-    #     )
-    #   end
-    # end
+        expect(Venue.serves_food).to eq([serves_food, also_serves_food])
+      end
+    end
 
   end
 end
