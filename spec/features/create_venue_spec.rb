@@ -1,36 +1,47 @@
 require 'rails_helper'
 require_relative '../support/new_venue_form'
+require_relative '../support/login_form'
 
 RSpec.describe 'Create Venue' do
-  let(:u) { create(:user) }
   let(:new_venue_form) { NewVenueForm.new }
 
-  def sign_in_user
-    visit new_user_session_path
-    within("#log_in_form") do
-      fill_in 'user[email]', with: u.email
-      fill_in 'user[password]', with: u.password
-    end
-    click_button 'Log in'
-  end
-
   describe 'adding a new venue' do
-    it 'requires sign in' do
-      new_venue_form.visit_page
-      expect(page).to have_current_path(new_user_session_path)
+
+    describe "guest user" do
+      it 'requires sign in' do
+        new_venue_form.visit_page
+        expect(page).to have_current_path(new_user_session_path)
+      end
     end
 
-   
-    it 'successfully adds a new venue' do
-      sign_in_user
-      new_venue_form.visit_page.fill_in_with.submit
-      expect(page).to have_content 'Test'
-    end
+    describe "authenticated user" do
+      let(:u) { create(:user) }
+      let(:login_form) { LoginForm.new }
 
-    it 'cannot create venue with invalid data' do
-      sign_in_user
-      new_venue_form.visit_page.submit
-      expect(page).to have_current_path(venues_path)
+      before do
+        login_form.visit_page(new_user_session_path).login_as(u)
+      end
+
+      it 'successfully adds a new venue' do
+        new_venue_form.visit_page.fill_in_with.submit
+
+        expect(ActionMailer::Base.deliveries.count.to eq(1))
+        expect(page).to have_content 'Test'
+      end
+
+      ## TEST ONLY
+      it 'sends an email', focus: true do
+        new_venue_form.visit_page.fill_in_with.submit
+
+        expect(ActionMailer::Base.deliveries.count).to eq(1)
+        expect(ActionMailer::Base.deliveries.last.to).to include(u.email)
+      end
+      ## TEST ONLY
+  
+      it 'cannot create venue with invalid data' do
+        new_venue_form.visit_page.submit
+        expect(page).to have_current_path(venues_path)
+      end
     end
   end
 end

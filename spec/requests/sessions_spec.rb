@@ -40,4 +40,3 @@ RSpec.describe "user sessions" do
   end
   
 end
-
