@@ -16,7 +16,7 @@
     </a>
   </div>
 
-  <div id="c-navbar-links" class="navbar-menu is-offscreen-left-mobile" data-target="mobile-menu.menu">
+  <div id="c-navbar-links" class="navbar-menu" data-target="mobile-menu.menu">
     <div class="navbar-end">
       <% if user_signed_in? %>
         <%= link_to "Add a new listing", new_venue_path, id: "new_venue_link", class: "navbar-item heading is-size-6-touch" %>

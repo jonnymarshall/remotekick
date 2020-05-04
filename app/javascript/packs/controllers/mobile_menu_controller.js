@@ -27,8 +27,6 @@ export default class extends Controller {
     self = this
     
     if (!this.menuToggleInProgress) {
-      this.toggleScreenLock()
-      document.body.scrollTo(0,0);
       this.menuToggleInProgress = true
       this.hamburgerTarget.classList.toggle('is-active');
 
@@ -51,10 +49,11 @@ export default class extends Controller {
       }
 
       if (!this.menuIsExpanded) {
+        this.toggleScreenLock()
+        document.body.scrollTo(0,0);
         toggleMenuActiveClass()
         setTimeout(toggleMenu, 10);
         setTimeout(this.menuToggleInProgress = false, this.menuTransitionDuration + 10);
-        setTimeout(this.toggleScreenLock, this.menuTransitionDuration + 10);
       } else {
         toggleMenu();
         setTimeout(toggleMenuActiveClass, this.menuTransitionDuration);
