@@ -11,7 +11,7 @@ application.load(definitionsFromContext(context))
 
 // import "bootstrap";
 import { runMapBox } from "../components/mapbox.js";
-import { navbarHamburger } from "../components/navbarHamburger.js";
+// import { navbarHamburger } from "../components/navbarHamburger.js";
 // import { navbarFilter } from "../components/navbarFilter.js";
 
 // MapBox
@@ -20,4 +20,4 @@ if (document.getElementById("map")){
 }
 
 // NavbarHamburger
-navbarHamburger();
+// navbarHamburger();
