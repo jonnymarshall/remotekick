@@ -6,9 +6,9 @@ class Venue < ApplicationRecord
   has_many :opening_hours
 
   validates :foursquare_id, uniqueness: true, allow_blank: true
-  validates :name, presence: true, length: { maximum: 26 }
+  # validates :name, presence: true, length: { maximum: 26 }
   validates_uniqueness_of :name, scope: :user_id
-  validates :description, length: { maximum: 68 }, allow_blank: true
+  # validates :description, length: { maximum: 68 }, allow_blank: true
   # validate :unique_name
   
   # geocoded_by :address

@@ -2,7 +2,7 @@ import { Controller } from "stimulus"
 
 export default class extends Controller {
 
-  controllerName = "mobile-menu"
+  controllerName = "mobile_menu_controller"
 
   static targets = ["hamburger", "menu"]
 
