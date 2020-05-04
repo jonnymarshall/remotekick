@@ -5,4 +5,17 @@
   .is-padding-small-mobile {
     padding: 1rem !important;
   }
+  .is-padding-small-tb-mobile {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+  .is-padding-small-tb-mobile {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+  .has-locked-scrolling-mobile {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+  }
 }

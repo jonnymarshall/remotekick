@@ -13,7 +13,6 @@ export default class extends Controller {
   connect() {
     console.log(`${this.controllerName} connected.`)
     this.baseURL = this.addressInputTarget.dataset.requestPath
-    console.log(this.resultsContainerTarget)
   }
 
   disconnect() {
