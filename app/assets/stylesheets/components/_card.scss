@@ -1,31 +1,64 @@
 .c-card  {
-  height: 350px;
   border-radius: 10px;
+  @media screen and (max-width: 1023px) {
+    display: flex;
+    width: 100%;
+    height: 170px;
+  }
   .image {
     padding: 8px;
-    height: 62%;
+    height: 170px;
     width: 100%;
     background-color: lightgrey;
     border-radius: 10px 10px 0px 0px;
     position: relative;
+    @media screen and (max-width: 1023px) {
+      height: 100%;
+      width: 40%;
+      border-radius: 5px 0px 0px 5px;
+    }
+    .wifi-distance-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
     .breaker {
       height: 80%;
     }
   }
   .info {
-    padding: 8px;
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     background-color: white;
-    height: 38%;
     width: 100%;
-    padding: 5px;
-    .dollar-icon {
-      padding-right: 8px;
+    @media screen and (max-width: 1023px) {
+      height: 100%;
+      width: 60%;
+      margin: 0px 0px 0px 5px;
     }
-    .star-icon {
-      padding-right: 5px;
+    .card-info-footer {
+      display: flex;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      @media screen and (max-width: 1023px) {
+        justify-content: flex-end;
+      }
     }
     .content {
       overflow-wrap: break-word;
+    }
+    p {
+      max-height: 72px;
+      overflow: scroll;
+      @media screen and (max-width: 1023px) {
+        max-height: 75px;
+      }
     }
   }
   .image-level {
