@@ -13,7 +13,7 @@ export default class extends Controller {
   connect() {
     console.log(`${this.controllerName} connected.`)
     document.body.classList.add('has-navbar-fixed-bottom')
-    document.body.classList.add('has-locked-scrolling-mobile')
+    document.body.classList.add('has-locked-scrolling-touch')
   }
 
   disconnect() {
@@ -29,9 +29,9 @@ export default class extends Controller {
   
   screenLockHandler(elementClicked) {
     if (elementClicked === "map") {
-      document.body.classList.add('has-locked-scrolling-mobile')
+      document.body.classList.add('has-locked-scrolling-touch')
     } else {
-      document.body.classList.remove('has-locked-scrolling-mobile')
+      document.body.classList.remove('has-locked-scrolling-touch')
     }
   }
 

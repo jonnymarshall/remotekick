@@ -1,47 +1,35 @@
 <%= link_to venue_path(venue), data: { target: "index-cards-ordering.card", id: "#{venue.id}"} do %>
-  <div class="c-card has-box-shadow">
+  <div class="c-card">
     <div class="image" style="<%= venue.decorate.gradient %>, <%= venue.decorate.hero_image_url %>">
-        <div class="breaker"></div>
-        <nav class="level is-mobile">
-          <!-- Left side -->
-          <div class="level-left">
-            <p class="level-item">
-              <span class="icon is-large has-text-primary">
-                <i class="fas fa-2x fa-wifi"></i>
-              </span>
-              
-            </p>
-            <h1 class="is-size-6 has-text-weight-bold has-text-white has-text-shadow"><%= venue.decorate.wifi_speed %></h1>
-          </div>
-          <!-- Right side -->
-          <div class="level-right">
-            <p class="level-item">
-              <span class="icon is-medium has-text-primary">
-                <i class="fas fa-lg fa-map-marker-alt"></i>
-              </span>
-            </p>
-            <p class="has-text-weight-bold has-text-white has-text-shadow">X km</p>
-          </div>
-        </nav>
-    </div>
-    <div class="info">
-      <nav class="level is-mobile is-marginless u-padding-b-5px">
-        <%= venue.decorate.category_tag %>
-        <p class="level-item">
-          <span class="icon is-medium has-text-dark">
-            <i class="dollar-icon fas fa-dollar-sign"></i>
-            <i class="dollar-icon fas fa-dollar-sign"></i>
-            <i class="dollar-icon fas fa-dollar-sign"></i>
+      <div class="wifi-distance-container">
+        <div class="wifi-block">
+          <span class="icon is-medium has-text-primary">
+            <i class="fas fa-lg fa-wifi"></i>
           </span>
-        </p>
-        <p class="level-item">
-          <%= raw venue.decorate.rounded_rating %> <%= venue.decorate.review_count %>
-        </p>
-      </nav>
+        <h1 class="is-size-6 is-size-7-touch has-text-white has-text-shadow"><%= venue.decorate.wifi_speed %></h1>
+        </div>
+        <div class="distance-block">
+          <span class="icon is-medium has-text-primary">
+            <i class="fas fa-lg fa-map-marker-alt"></i>
+          </span>
+          <h1 class="is-size-6 is-size-7-touch has-text-white has-text-shadow">X km</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="info">
       <div class="content is-small">
         <h4><%= venue.name %></h6>
         <p><%= venue.description %></p>
       </div>
+
+      <div class="card-info-footer">
+        <%= venue.decorate.category_tag %>
+        <div>
+          <%= raw venue.decorate.rounded_rating %> <%= venue.decorate.review_count %>
+        </div>
+      </div>
+    
     </div>
   </div>
 <% end %>
