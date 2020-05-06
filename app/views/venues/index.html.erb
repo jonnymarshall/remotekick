@@ -14,9 +14,9 @@
           <section class="section u-padding-lr-0px is-hidden-touch is-padding-small-tb-touch" data-target="mobile-index-navigation.venuesList">
             <div id="index__cards-container" class="container" data-controller="index-cards-ordering">
               <%= render partial: "index__cards-info-bar", locals: { venues: @venues } %>
-              <div id="index__cards" class="columns is-multiline" data-target="index-cards-ordering.cardsList">
+              <div id="index__cards" class="columns is-desktop is-multiline" data-target="index-cards-ordering.cardsList">
               <% @venues.each do |venue| %>
-                <div class="column is-one-third">
+                <div class="column is-one-third-desktop">
                   <%= render partial: "index__cards", locals: { venue: venue } %>
                 </div>
               <% end %>
