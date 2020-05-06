@@ -33,7 +33,7 @@
     margin-top: 6px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    overflow: hidden;
     background-color: white;
     width: 100%;
     @media screen and (max-width: 1023px) {
@@ -52,12 +52,19 @@
     }
     .content {
       overflow-wrap: break-word;
+      margin-bottom: 0.5rem !important;
+      @media screen and (max-width: 1023px) {
+        justify-content: space-between;
+      }
+      h4 {
+        margin-bottom: 0.5rem !important;
+      }
     }
     p {
-      max-height: 72px;
-      overflow: scroll;
+      max-height: 90px;
+      overflow: hidden;
       @media screen and (max-width: 1023px) {
-        max-height: 75px;
+        max-height: 90px;
       }
     }
   }
