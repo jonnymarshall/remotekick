@@ -1,5 +1,5 @@
 <% if resource.errors.any? %>
-  <div class="notification is-danger is-marginless" data-controller="notification-dismissal">
+  <div class="notification is-danger is-marginless is-radiusless" data-controller="notification-dismissal">
     <button class="delete" data-target="notification-dismissal.dismissButton" data-action="notification-dismissal#dismissNotification"></button>
     <!-- <h2> -->
       <%#= I18n.t("errors.messages.not_saved",
