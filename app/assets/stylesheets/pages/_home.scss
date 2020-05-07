@@ -1,3 +1,13 @@
 .hero-image {
   background: url('https://images.unsplash.com/photo-1521017432531-fbd92d768814?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80') center / cover;
 }
+
+// Responsive
+.hero-logo {
+  margin-bottom: 80px;
+  height: 80px;
+  @media screen and (max-width: 1023px) {
+    margin-bottom: 40px;
+    height: 60px;
+  }
+}
