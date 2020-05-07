@@ -1,7 +1,10 @@
 <nav id="navbar" class="navbar is-fixed-top" role="navigation" aria-label="main navigation" data-controller="mobile-menu">
   <div class="navbar-brand">
     <%= link_to root_path do %>
-      <%= image_tag "logo_250w.png", class: "navbar-item" %>
+      <div class="is-flex navbar-item u-h-100pc">
+        <%= image_tag "logo/1282_H_remotekick_DV_03_logo.png" %>
+        <%= image_tag "logo/1282_H_remotekick_DV_03_text.png" %>
+      </div>
     <% end %>
 
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="mobile-menu.hamburger" data-action="mobile-menu#doThisThing">

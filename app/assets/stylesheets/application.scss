@@ -1,14 +1,15 @@
-// Graphical variables
+// Config
 @import "config/fonts";
-// @import "config/colors";
-// @import "config/bootstrap_variables";
-// @import "config/custom_defaults";
+@import "config/colors";
+@import "config/custom_defaults";
+@import "config/bulma_variables";
 
-// External libraries
-// @import "bootstrap-sprockets";
-// @import "bootstrap";
-// @import "bootstrap/scss/bootstrap";
+// Bulma
 @import "bulma";
+@import "config/bulma_debug";
+@import "config/bulma_helpers";
+
+// Font Awesome
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
@@ -19,12 +20,6 @@
 
 // External CSS Files
 @import "components/radio_buttons";
-
-// Config
-@import "config/bulma_debug";
-@import "config/bulma_helpers";
-@import "config/bulma_variables";
-@import "config/custom_defaults";
 
 // Utilities
 @import "utilities/utilities";
