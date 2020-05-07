@@ -16,7 +16,7 @@
               <p class="control is-expanded">
                 <%= form.text_field :location,
                 class: "input is-primary has-text-centered",
-                placeholder: "Fina a great place to work from in #{request.location.city}",
+                placeholder: "Find a great place to work from in #{@location}",
                 :data => {
                   :target => 'algolia-places.addressInput',
                   :request_path => location_search_path,
