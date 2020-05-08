@@ -4,7 +4,7 @@ export default class extends Controller {
 
   controllerName = "algolia_places_controller"
 
-  static targets = ["addressInput", "resultsContainer", "submitButton", "centralContainer"]
+  static targets = ["addressInput", "resultsContainer", "submitButton"]
 
   baseURL = null
   searchQuery = null
@@ -23,11 +23,9 @@ export default class extends Controller {
     let self = this
     this.searchQuery = e.target.value
     await this.executeAjaxRequest()
-    this.adjustContentPlacement()
     this.clearResults()
     this.generateResults()
     let resultItems = document.querySelectorAll("[data-target='resultItem']")
-    this.adjustContentPlacement()
     resultItems.forEach((resultItem) => {
       // Click
       resultItem.addEventListener("click", (e) => {
@@ -118,13 +116,5 @@ export default class extends Controller {
         `);
       }
     });
-  }
-
-  adjustContentPlacement() {
-    if (!this.resultsContainerTarget.firstChild) {
-      this.centralContainerTarget.style.marginBottom = "0px";
-    } else {
-      this.centralContainerTarget.style.marginBottom = "250px";
-    }
   }
 }
