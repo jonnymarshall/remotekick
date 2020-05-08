@@ -50,6 +50,7 @@ export default class extends Controller {
 
   setLocation(resultItem) {
     this.addressInputTarget.value = resultItem.innerText
+    this.addressInputTarget.dataset.selectedVenue = resultItem.innerText
   }
 
   async executeAjaxRequest() {
@@ -107,12 +108,20 @@ export default class extends Controller {
     this.results.forEach((result) => {     
       if (sanitizeMatchedLocale(result)) {
         this.resultsContainerTarget.insertAdjacentHTML("afterbegin", `
-        <div class="control has-icons-left">
-          <span class="input u-pointer u-padding-tb-30px has-border-primary-on-hover" data-target="resultItem" type="text"><span class="u-no-pointer-events">${sanitizeMatchedLocale(result)}, ${sanitizeCountry(result)}</span>
-          <span class="icon is-small is-left u-top-auto">
-            <i class="fas fa-city"></i>
+        <div class="control has-icons-left" data-action="click->venue-autofill#clicky">
+          <span
+            class="input u-pointer u-padding-tb-30px has-border-primary-on-hover"
+            data-target="resultItem"
+            type="text"
+          >
+            <span class="u-no-pointer-events">
+              ${sanitizeMatchedLocale(result)}, ${sanitizeCountry(result)}
+            </span>
+            <span class="icon is-small is-left u-top-auto">
+              <i class="fas fa-city"></i>
+            </span>
           </span>
-        </span></div>
+        </div>
         `);
       }
     });

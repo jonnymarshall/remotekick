@@ -5,7 +5,7 @@ export default class extends Controller {
   controllerName = "venue_autofill_controller"
 
   static targets = [
-    "location",
+    "locationInput",
     "input",
     "path",
     "results",
@@ -18,7 +18,7 @@ export default class extends Controller {
     "fourSquareId"
   ]
 
-  searchQuery = "";
+  searchQuery = null;
   url = this.pathTarget.dataset.url
   results = null
   selectedVenue = null
@@ -26,24 +26,28 @@ export default class extends Controller {
 
   connect() {
     console.log(`${this.controllerName} connected.`)
-    this.searchQueryHandler()
-    this.locationHandler()
   }
 
   disconnect() {
     console.log(`${this.controllerName} disconnected.`)
   }
 
-  searchQueryHandler() {
-    let self = this
-    this.inputTarget.addEventListener("keyup", function(e) {
-      self.searchQuery = e.target.value;
-      if ((self.location) && (self.location.length > 1)) {
-        self.executeAjaxRequest().then(() => {
-          self.resultsHandler();
-        });
-      }
-    })
+  async locationInputHandler(e) {
+    e.target.value = this.toTitleCase(e.target.value)
+  }
+
+  async nameInputHandler(e) {
+    this.location = this.locationInputTarget.dataset.selectedVenue
+    console.log("this.location", this.location)
+    this.searchQuery = e.target.value;
+    if ((this.location) && (this.location.length > 1)) {
+      await this.executeAjaxRequest()
+      this.resultsHandler();
+    }
+  }
+
+  clicky() {
+    console.log("worked bro")
   }
 
   resultsHandler() {
@@ -63,23 +67,6 @@ export default class extends Controller {
 
   clearResults() {
     this.resultsTargets[0].innerHTML = "";
-  }
-  
-  locationHandler() {
-    let self = this
-    // Event listener for location field
-    this.locationTargets[0].addEventListener("keyup", function(e) {
-      // Sets location to value of location for ajax request
-      self.location = e.target.value;
-      // Capitalizes text in location field
-      e.target.value = self.toTitleCase(e.target.value)
-      // Trigger AJAX request only if a searchquery exists
-      if (self.searchQuery) {
-        self.executeAjaxRequest().then(() => {
-          self.resultsHandler();
-        });
-      }
-    })
   }
 
   // Capitalizes first letter of each word in string
@@ -131,12 +118,13 @@ export default class extends Controller {
     this.results.forEach((venue) => {
       let venueLocation = self.locationValueAssigner(venue)
       this.resultsTargets[0].insertAdjacentHTML("afterbegin", `
-        <div class="control has-icons-left has-icons-right">
-          <span id=${venue.id} class="input u-pointer has-border-primary-on-hover" data-target="resultItem" type="text">${venue.name}, ${venueLocation}
-          <span class="icon is-small is-left">
-            <i class="fas fa-store-alt"></i>
-          </div>
-        </p>
+        <div class="control has-icons-left">
+          <span id=${venue.id} class="input u-pointer u-padding-tb-30px has-border-primary-on-hover" data-target="resultItem" type="text"><span class="u-no-pointer-events">${venue.name}, ${venueLocation}</span>
+            <span class="icon is-small is-left u-top-auto">
+              <i class="fas fa-city"></i>
+            </span>
+          </span>
+        </div>
       `);
     });
   }
