@@ -32,10 +32,6 @@ export default class extends Controller {
     console.log(`${this.controllerName} disconnected.`)
   }
 
-  async locationInputHandler(e) {
-    e.target.value = this.toTitleCase(e.target.value)
-  }
-
   async nameInputHandler(e) {
     this.location = this.locationInputTarget.dataset.selectedVenue
     console.log("this.location", this.location)

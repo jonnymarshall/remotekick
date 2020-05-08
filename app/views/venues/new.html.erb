@@ -12,7 +12,7 @@
               class: "input", placeholder: "Search for a location...",
               :data => {
                 :target => 'venue-autofill.locationInput algolia-places.addressInput',
-                :action => 'keyup->algolia-places#changeHandler keyup->venue-autofill#locationInputHandler',
+                :action => 'keyup->algolia-places#changeHandler',
                 :request_path => location_search_path
               } %>
               <span class="icon is-small is-left">
