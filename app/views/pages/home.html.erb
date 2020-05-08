@@ -1,17 +1,17 @@
 
 <section class="hero is-fullheight-with-navbar hero-image">
   <div class="hero-body">
-    <div class="container  has-text-centered">
+    <div class="container has-text-centered u-transition-all-1s" data-controller="algolia-places" data-target="algolia-places.centralContainer">
       <%= image_tag "logo/1282_H_remotekick_DV_04.png", class: "hero-logo" %>
       <div class="columns">
         <div class="column is-paddingless"></div>
-        <div class="column is-two-fifths" data-controller="algolia-places">
-          <%= form_with url: venues_path, local: true, method: :get, class: "form-group col-xs-6" do |form| %>
+        <div class="column is-two-fifths">
+          <%= form_with url: venues_path, local: true, method: :get, class: "form-group col-xs-6 c-field-has-autocomplete-results" do |form| %>
             <div class="field has-addons">
               <p class="control is-expanded">
                 <%= form.text_field :location,
                 class: "input is-primary has-text-centered",
-                placeholder: "Find a great place to work from in #{@location}",
+                placeholder: "Find a great place to work from in #{request_location}",
                 :data => {
                   :target => 'algolia-places.addressInput',
                   :request_path => location_search_path,
@@ -22,7 +22,7 @@
                 <%= form.submit "Search", class: "button is-primary", data: { disable_with: false , target: "algolia-places.submitButton" } %>
               </p>
             </div>
-            <div class="bu-prev-element-margin-b-counter" data-target="algolia-places.resultsContainer">
+            <div class="bu-prev-element-margin-b-counter c-autocomplete-results-container" data-target="algolia-places.resultsContainer">
             </div>
           <% end %>
         </div>

@@ -52,10 +52,6 @@ export default class extends Controller {
     this.generateResults();
     let resultItems = document.querySelectorAll("[data-target='resultItem']")
     resultItems.forEach((resultItem) => {
-      // Hover
-      resultItem.addEventListener("mouseover", (e) => {
-        self.hoverHandler(e)
-      });
       // Select
       resultItem.addEventListener("click", (e) => {
         self.setQueryParams(resultItem)
@@ -135,11 +131,11 @@ export default class extends Controller {
     this.results.forEach((venue) => {
       let venueLocation = self.locationValueAssigner(venue)
       this.resultsTargets[0].insertAdjacentHTML("afterbegin", `
-        <p class="control has-icons-left has-icons-right">
-          <span id=${venue.id} class="input u-pointer" data-target="resultItem" type="text">${venue.name}, ${venueLocation}
+        <div class="control has-icons-left has-icons-right">
+          <span id=${venue.id} class="input u-pointer has-border-primary-on-hover" data-target="resultItem" type="text">${venue.name}, ${venueLocation}
           <span class="icon is-small is-left">
             <i class="fas fa-store-alt"></i>
-          </span>
+          </div>
         </p>
       `);
     });

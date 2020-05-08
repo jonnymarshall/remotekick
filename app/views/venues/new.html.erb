@@ -5,7 +5,7 @@
         <div class="column is-paddingless"></div>
         <div class="column is-two-fifths">
           <h1 class="title">Add a new venue</h1>
-          <div class="field" data-controller="algolia-places">
+          <div class="field c-field-has-autocomplete-results" data-controller="algolia-places">
             <label class="label">Location</label>
             <p class="control has-icons-left">
               <%= field.text_field :location,
@@ -19,9 +19,9 @@
                 <i class="fas fa-map-marker-alt"></i>
               </span>
             </p>
-            <div data-target="algolia-places.resultsContainer"></div>
+            <div class="c-autocomplete-results-container" data-target="algolia-places.resultsContainer"></div>
           </div>
-          <div class="field">
+          <div class="field c-field-has-autocomplete-results">
             <label class="label">Name</label>
             <div class="is-hidden" data-target="venue-autofill.path" data-url=<%= "#{venue_search_new_venue_path}" %>></div>
             <p class="control has-icons-left has-icons-right">
@@ -30,7 +30,7 @@
                 <i class="fas fa-store-alt"></i>
               </span>
             </p>
-            <div data-target="venue-autofill.results">
+            <div class="c-autocomplete-results-container" data-target="venue-autofill.results">
             </div>
 
           </div>
