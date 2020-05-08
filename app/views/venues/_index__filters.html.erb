@@ -1,13 +1,22 @@
 <div id="index__filters" class="column is-one-third is-hidden-touch" data-controller="icon-state" data-target="mobile-index-navigation.indexFilters">
   <%= form_with url: venues_path, local: true, method: :get do |form| %>
   <!-- FILTER > LOCATION -->
-  <div class="field">
+  <div class="field c-field-has-autocomplete-results" data-controller="algolia-places">
     <p class="control has-icons-left">
-      <%= form.text_field :location, value: "#{searched_location(params[:location])}", class: "input" %>
+      <%= form.text_field :location,
+      class: "input",
+      value: "#{searched_location(params[:location])}",
+      :data => {
+        :target => 'venue-autofill.location algolia-places.addressInput',
+        :action => 'keyup->algolia-places#changeHandler',
+        :request_path => location_search_path
+      }
+      %>
       <span class="icon is-small is-left">
         <i class="fas fa-city"></i>
       </span>
     </p>
+    <div class="c-autocomplete-results-container" data-target="algolia-places.resultsContainer"></div>
   </div>
   <!-- FILTER > DISTANCE -->
   <div class="field">
