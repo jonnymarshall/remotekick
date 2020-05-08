@@ -34,7 +34,6 @@ export default class extends Controller {
 
   async nameInputHandler(e) {
     this.location = this.locationInputTarget.dataset.selectedVenue
-    console.log("this.location", this.location)
     this.searchQuery = e.target.value;
     if ((this.location) && (this.location.length > 1)) {
       await this.executeAjaxRequest()
@@ -49,16 +48,18 @@ export default class extends Controller {
   resultsHandler() {
     let self = this
     this.clearResults();
-    this.generateResults();
-    let resultItems = document.querySelectorAll("[data-target='resultItem']")
-    resultItems.forEach((resultItem) => {
+    if (this.searchQuery.length > 1) {
+      this.generateResults();
+      let resultItems = document.querySelectorAll("[data-target='resultItem']")
+      resultItems.forEach((resultItem) => {
       // Select
-      resultItem.addEventListener("click", (e) => {
-        self.setQueryParams(resultItem)
-        self.clearResults()
-        self.setInputValues()
-      })
-    });
+        resultItem.addEventListener("click", (e) => {
+          self.setQueryParams(resultItem)
+          self.clearResults()
+          self.setInputValues()
+        })
+      });
+    }
   }
 
   clearResults() {
@@ -68,7 +69,7 @@ export default class extends Controller {
   // Capitalizes first letter of each word in string
   toTitleCase(str) {
     return str.replace(/\w\S*/g, function(txt){
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
   }
 

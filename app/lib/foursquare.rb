@@ -4,7 +4,7 @@ module Foursquare
     url_root_search = "#{url_root}search?"
     credentials = "&client_id=#{ENV["FOURSQUARE_CLIENT_ID"]}&client_secret=#{ENV["FOURSQUARE_CLIENT_SECRET"]}"
     versionDate = "&v=20190703"
-    limit = "&limit=10"
+    limit = "&limit=5"
     food_category_id = "4d4b7105d754a06374d81259"
     bar_category_id = "4bf58dd8d48988d116941735"
     hotel_category_id = "4bf58dd8d48988d1fa931735"
