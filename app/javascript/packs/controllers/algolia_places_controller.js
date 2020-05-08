@@ -25,13 +25,8 @@ export default class extends Controller {
     await this.executeAjaxRequest()
     this.clearResults()
     this.generateResults()
-
     let resultItems = document.querySelectorAll("[data-target='resultItem']")
     resultItems.forEach((resultItem) => {
-      // Hover
-      resultItem.addEventListener("mouseover", (h) => {
-        self.hoverHandler(h)
-      });
       // Click
       resultItem.addEventListener("click", (e) => {
         self.setLocation(resultItem)
@@ -44,6 +39,8 @@ export default class extends Controller {
   }
 
   hoverHandler(h) {
+    console.log("prevSelection", prevSelection)
+    console.log("target", h.target)
     let prevSelection = this.resultsContainerTarget.querySelector(".is-primary");
     if ((prevSelection)) {
       prevSelection.classList.remove("is-primary");
@@ -53,6 +50,7 @@ export default class extends Controller {
 
   setLocation(resultItem) {
     this.addressInputTarget.value = resultItem.innerText
+    this.addressInputTarget.dataset.selectedVenue = resultItem.innerText
   }
 
   async executeAjaxRequest() {
@@ -93,7 +91,6 @@ export default class extends Controller {
     }
 
     const sanitizeMatchedLocale = (result) => { 
-      console.log(sanitizeCountryCode(result))
       if (result._highlightResult.locale_names.en) {
         if (result._highlightResult.locale_names.en[0].matchedWords.length > 0) {
           return result._highlightResult.locale_names.en[0].value.replace("<em>", "<strong>").replace("</em>", "</strong>")
@@ -108,16 +105,23 @@ export default class extends Controller {
       }
     }
 
-
     this.results.forEach((result) => {     
       if (sanitizeMatchedLocale(result)) {
         this.resultsContainerTarget.insertAdjacentHTML("afterbegin", `
-        <p class="control has-icons-left has-icons-right">
-          <span id="" class="input u-pointer u-padding-tb-30px" data-target="resultItem" type="text"><span class="u-no-pointer-events">${sanitizeMatchedLocale(result)}, ${sanitizeCountry(result)}</span>
-          <span class="icon is-small is-left u-top-auto">
-            <i class="fas fa-city"></i>
+        <div class="control has-icons-left" data-action="click->venue-autofill#clicky">
+          <span
+            class="input u-pointer u-padding-tb-30px has-border-primary-on-hover"
+            data-target="resultItem"
+            type="text"
+          >
+            <span class="u-no-pointer-events">
+              ${sanitizeMatchedLocale(result)}, ${sanitizeCountry(result)}
+            </span>
+            <span class="icon is-small is-left u-top-auto">
+              <i class="fas fa-city"></i>
+            </span>
           </span>
-        </span></p>
+        </div>
         `);
       }
     });

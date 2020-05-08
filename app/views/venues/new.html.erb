@@ -5,13 +5,13 @@
         <div class="column is-paddingless"></div>
         <div class="column is-two-fifths">
           <h1 class="title">Add a new venue</h1>
-          <div class="field" data-controller="algolia-places">
+          <div class="field c-field-has-autocomplete-results" data-controller="algolia-places">
             <label class="label">Location</label>
             <p class="control has-icons-left">
               <%= field.text_field :location,
               class: "input", placeholder: "Search for a location...",
               :data => {
-                :target => 'venue-autofill.location algolia-places.addressInput',
+                :target => 'venue-autofill.locationInput algolia-places.addressInput',
                 :action => 'keyup->algolia-places#changeHandler',
                 :request_path => location_search_path
               } %>
@@ -19,18 +19,26 @@
                 <i class="fas fa-map-marker-alt"></i>
               </span>
             </p>
-            <div data-target="algolia-places.resultsContainer"></div>
+            <div class="c-autocomplete-results-container" data-target="algolia-places.resultsContainer"></div>
           </div>
-          <div class="field">
+          <div class="field c-field-has-autocomplete-results">
             <label class="label">Name</label>
             <div class="is-hidden" data-target="venue-autofill.path" data-url=<%= "#{venue_search_new_venue_path}" %>></div>
             <p class="control has-icons-left has-icons-right">
-              <%= field.text_field :name, autofocus: true, class: "input", id: 'venueNameInput', placeholder: "What is the name of the venue?", :data => { :target => 'venue-autofill.input' } %>
+              <%= field.text_field :name,
+                autofocus: true,
+                class: "input",
+                placeholder: "What is the name of the venue?",
+                :data => {
+                  :target => 'venue-autofill.input',
+                  :action => 'keyup->venue-autofill#nameInputHandler'
+                }
+              %>
               <span class="icon is-small is-left">
                 <i class="fas fa-store-alt"></i>
               </span>
             </p>
-            <div data-target="venue-autofill.results">
+            <div class="c-autocomplete-results-container" data-target="venue-autofill.results">
             </div>
 
           </div>

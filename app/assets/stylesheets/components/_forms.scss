@@ -1,0 +1,10 @@
+.c-field-has-autocomplete-results {
+  position: relative;
+  width: 100%;
+}
+
+.c-autocomplete-results-container {
+  position: absolute;
+  width: 100%;
+  z-index: 6;
+}
