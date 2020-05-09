@@ -2,14 +2,14 @@ class Venue < ApplicationRecord
   belongs_to :user
   has_many :reviews, dependent: :destroy
   has_many :review_photos, through: :reviews
+  belongs_to :owner, optional: true
   has_one :cover_photo, dependent: :destroy
   has_many :opening_hours
 
   validates :foursquare_id, uniqueness: true, allow_blank: true
-  # validates :name, presence: true, length: { maximum: 26 }
+  validates :name, presence: true
   validates_uniqueness_of :name, scope: :user_id
   # validates :description, length: { maximum: 68 }, allow_blank: true
-  # validate :unique_name
   
   # geocoded_by :address
   # after_validation :geocode, if: :will_save_change_to_address?
