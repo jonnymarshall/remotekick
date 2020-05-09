@@ -56,7 +56,7 @@ RSpec.describe Venue do
         end
       end
 
-      it 'must be an average of all reviews' do
+      it 'must be an average of all reviews', focus: true do
         expect(ven.reviews.count).to eql(2)
         expect(ven.reviews.first.rating + ven.reviews.last.rating).to eql(5)
         expect(ven.rating).to eql(2.5)
