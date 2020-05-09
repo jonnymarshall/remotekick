@@ -14,6 +14,7 @@ class Review < ApplicationRecord
   accepts_nested_attributes_for :review_photos
   after_create :update_venue_values
   after_update :update_venue_values
+  after_destroy :update_venue_values
 
   private
 

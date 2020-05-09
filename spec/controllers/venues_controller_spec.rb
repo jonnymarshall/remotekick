@@ -28,14 +28,14 @@ RSpec.describe VenuesController do
     describe "GET new" do
       it "redirects to login page" do
         get :new
-        expect(response).to redirect_to(new_user_session_url)
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
 
     describe "GET edit" do
       it "redirects to login page" do
         get :edit, params: { id: ven.id }
-        expect(response).to redirect_to(new_user_session_url)
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
 
@@ -43,7 +43,7 @@ RSpec.describe VenuesController do
       let(:valid_data) { FactoryBot.attributes_for(:venue) }
       it "redirects to login page" do
         post :create, params: { venue: valid_data }
-        expect(response).to redirect_to(new_user_session_url)
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
 
@@ -51,14 +51,14 @@ RSpec.describe VenuesController do
       let(:valid_data) { FactoryBot.attributes_for(:venue, name: "New name") }
       it "redirects to login page" do
         put :update, params: { id: ven.id, venue: valid_data }
-        expect(response).to redirect_to(new_user_session_url)
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
 
     describe "DELETE destroy" do
       it "redirects to login page" do
         delete :destroy, params: { id: ven.id }
-        expect(response).to redirect_to(new_user_session_url)
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
   end
@@ -82,6 +82,11 @@ RSpec.describe VenuesController do
   
       describe "PUT update" do
         let(:valid_data) { FactoryBot.attributes_for(:venue, name: "New name") }
+        it "does not update" do
+          put :update, params: { id: ven.id, venue: valid_data }
+          expect(ven.name).to eq("Some venue name")
+        end
+
         it "redirects to venues page" do
           put :update, params: { id: ven.id, venue: valid_data }
           expect(response).to redirect_to(venues_path)
@@ -89,6 +94,11 @@ RSpec.describe VenuesController do
       end
   
       describe "DELETE destroy" do
+        it "does not destroy" do
+          delete :destroy, params: { id: ven.id }
+          expect(ven).to exist
+        end
+
         it "redirects to venues page" do
           delete :destroy, params: { id: ven.id }
           expect(response).to redirect_to(venues_path)

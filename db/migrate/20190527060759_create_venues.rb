@@ -11,7 +11,7 @@ class CreateVenues < ActiveRecord::Migration[5.2]
       t.integer :price
       t.boolean :serves_food
       t.integer :plug_sockets
-      t.integer :quietness
+      t.integer :busyness
       t.integer :comfort
       t.boolean :air_conditioning
       t.integer :wifi_restrictions
