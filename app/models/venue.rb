@@ -33,8 +33,6 @@ class Venue < ApplicationRecord
       averaged_values = {},
       truth_checked_values = {}
     )
-    
-    self.reviews.reload
 
     # Sort attributes into seperate arrays for averaging or truth checking
     review.attributes.each do |k, val|
