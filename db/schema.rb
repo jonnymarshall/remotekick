@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2020_05_09_141313) do
-=======
 ActiveRecord::Schema.define(version: 2020_05_09_153534) do
->>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,7 +47,7 @@ ActiveRecord::Schema.define(version: 2020_05_09_153534) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "venue_id"
-    t.float "quietness"
+    t.float "busyness"
     t.float "comfort"
     t.float "plug_sockets"
     t.float "upload_speed"
