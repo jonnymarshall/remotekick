@@ -84,13 +84,13 @@
     </div>
   </div>
 
-  <!-- FILTER > BUSYNESS -->
+  <!-- FILTER > QUIETNESS -->
   <div class="field">
-    <label class="label">Busyness</label>
+    <label class="label">Quietness</label>
     <div class="control">
     <% 3.times do |val| %>
-      <%= radio_button_tag(:busyness, "#{val}", params[:busyness] == "#{val}", class: "is-hidden", :data => { :target => 'icon-state.input', :filterType => "busyness" }) %>
-      <%= feature_rating_options(:busyness, val) %>
+      <%= radio_button_tag(:quietness, "#{val}", params[:quietness] == "#{val}", class: "is-hidden", :data => { :target => 'icon-state.input', :filterType => "quietness" }) %>
+      <%= feature_rating_options(:quietness, val) %>
     <% end %>
     </div>
   </div>

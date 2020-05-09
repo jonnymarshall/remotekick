@@ -13,7 +13,7 @@ export default class extends Controller {
     rating: null,
     plug_sockets: null,
     comfort: null,
-    busyness: null
+    quietness: null
   }
 
   // Updates filterValues when a label is clicked

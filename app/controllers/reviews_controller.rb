@@ -40,7 +40,7 @@ class ReviewsController < ApplicationController
       :rating,
       :plug_sockets,
       :comfort,
-      :busyness,
+      :quietness,
       :upload_speed,
       :download_speed,
       :serves_food,

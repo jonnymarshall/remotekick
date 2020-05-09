@@ -21,7 +21,7 @@ class Venue < ApplicationRecord
   scope :serves_food, -> { where(serves_food: true) }
   scope :air_conditioning, -> { where(air_conditioning: true) }
   scope :comfort, -> number { where("comfort >= ?", number) }
-  scope :busyness, -> number { where("busyness >= ?", number) }
+  scope :quietness, -> number { where("quietness >= ?", number) }
   scope :plug_sockets, -> number { where("plug_sockets >= ?", number) }
   scope :has_wifi, -> boolean { where("has_wifi = ?", boolean) if boolean == "1" }
   scope :no_wifi_restrictions, -> hours { where("wifi_restrictions < ?", hours) if hours > "0" }
@@ -63,7 +63,7 @@ class Venue < ApplicationRecord
   private
 
   def attr_is_averageable?(k)
-    averageable_values = ["rating", "plug_sockets", "comfort", "busyness", "upload_speed", "download_speed", "ping"]
+    averageable_values = ["rating", "plug_sockets", "comfort", "quietness", "upload_speed", "download_speed", "ping"]
     averageable_values.include?(k) ? true : false
   end
 
