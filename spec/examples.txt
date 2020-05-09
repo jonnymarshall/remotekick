@@ -21,7 +21,7 @@ example_id                                                | status  | run_time  
 ./spec/controllers/venues_controller_spec.rb[1:2:2:2:3:2] | passed  | 0.04576 seconds |
 ./spec/features/create_venue_spec.rb[1:1:1:1]             | passed  | 0.04451 seconds |
 ./spec/features/create_venue_spec.rb[1:1:2:1]             | passed  | 0.40626 seconds |
-./spec/features/create_venue_spec.rb[1:1:2:2]             | failed  | 1.23 seconds    |
+./spec/features/create_venue_spec.rb[1:1:2:2]             | failed  | 13.32 seconds   |
 ./spec/features/create_venue_spec.rb[1:1:2:3]             | unknown |                 |
 ./spec/features/home_spec.rb[1:1]                         | passed  | 0.18939 seconds |
 ./spec/features/venue_page_spec.rb[1:1:1]                 | passed  | 0.04984 seconds |
@@ -34,7 +34,7 @@ example_id                                                | status  | run_time  
 ./spec/models/venue_spec.rb[1:2:2:2]                      | passed  | 0.43831 seconds |
 ./spec/models/venue_spec.rb[1:2:3:1]                      | passed  | 0.04627 seconds |
 ./spec/models/venue_spec.rb[1:2:4:1:1]                    | passed  | 0.05879 seconds |
-./spec/models/venue_spec.rb[1:2:4:2]                      | passed  | 0.03525 seconds |
+./spec/models/venue_spec.rb[1:2:4:2]                      | passed  | 0.05865 seconds |
 ./spec/models/venue_spec.rb[1:2:5:1:1]                    | passed  | 0.04035 seconds |
 ./spec/models/venue_spec.rb[1:2:5:2:1]                    | passed  | 0.08379 seconds |
 ./spec/models/venue_spec.rb[1:2:5:3:1:1]                  | passed  | 0.14367 seconds |

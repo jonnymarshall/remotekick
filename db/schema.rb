@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2020_05_09_141313) do
+=======
+ActiveRecord::Schema.define(version: 2020_05_09_153534) do
+>>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +101,7 @@ ActiveRecord::Schema.define(version: 2020_05_09_141313) do
     t.string "foursquare_id"
     t.boolean "has_wifi"
     t.string "category"
+    t.index ["latitude", "longitude"], name: "index_venues_on_latitude_and_longitude"
     t.index ["user_id"], name: "index_venues_on_user_id"
   end
 

@@ -73,8 +73,7 @@ class Venue < ApplicationRecord
   end
 
   def calculate_average(attribute)
-    total = self.reviews.map { |review| review.send(attribute) }.reduce(:+)
-    return total.to_f / self.reviews.count.to_f
+    self.reviews.average(attribute.to_sym)
   end
 
   def val_truth_checked?(attribute, value)
