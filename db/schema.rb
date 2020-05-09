@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_08_134831) do
+ActiveRecord::Schema.define(version: 2020_05_09_141313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2020_04_08_134831) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "venue_id"
-    t.float "busyness"
+    t.float "quietness"
     t.float "comfort"
     t.float "plug_sockets"
     t.float "upload_speed"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 2020_04_08_134831) do
     t.integer "price"
     t.boolean "serves_food"
     t.float "plug_sockets"
-    t.float "busyness"
+    t.float "quietness"
     t.float "comfort"
     t.boolean "air_conditioning"
     t.integer "wifi_restrictions"

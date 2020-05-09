@@ -12,7 +12,7 @@ class VenuesController < ApplicationController
   has_scope :upload_speed
   has_scope :no_wifi_restrictions
   has_scope :comfort
-  has_scope :busyness
+  has_scope :quietness
   has_scope :plug_sockets
   has_scope :has_wifi
   # has_scope :air_conditioning, type: :boolean
@@ -111,7 +111,7 @@ class VenuesController < ApplicationController
       :upload_speed,
       :comfort,
       :plug_sockets,
-      :busyness,
+      :quietness,
       :has_wifi,
       :order_by,
       :distance,

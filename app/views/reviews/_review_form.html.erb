@@ -65,13 +65,13 @@
             </div>
           </div>
     
-          <!-- FILTER > BUSYNESS -->
+          <!-- FILTER > QUIETNESS -->
           <div class="field">
-            <label class="label">Busyness</label>
+            <label class="label">Quietness</label>
             <div class="control">
               <% 3.times do |val| %>
-                <%= review_form.radio_button :busyness, "#{val}", { checked: review.busyness == val, class: "is-hidden", :data => { :target => 'icon-state.input', :filterType => "busyness" }} %>
-                <%= feature_rating_options(:review_busyness, val) %>
+                <%= review_form.radio_button :quietness, "#{val}", { checked: review.quietness == val, class: "is-hidden", :data => { :target => 'icon-state.input', :filterType => "quietness" }} %>
+                <%= feature_rating_options(:review_quietness, val) %>
               <% end %>
             </div>
           </div>
