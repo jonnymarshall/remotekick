@@ -5,7 +5,6 @@ class PagesController < ApplicationController
   # layout false, only: [:home]
   def home
     @current_page = "/"
-    request.location.city ? @location = request.location.city : @location = "..."
     algolia_response = AlgoliaPlaces.new(location_search_params[:query]).run_query
     respond_with(algolia_response)
   end
