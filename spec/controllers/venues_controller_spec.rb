@@ -63,51 +63,142 @@ RSpec.describe VenuesController do
     end
   end
 
-  describe "authenticated user" do
+  context "authenticated user" do
     let(:u) { create(:user) }
 
     before do
       sign_in u
     end
 
-    context "is not the owner of the venue" do
+    context "is not the owner of the venue"  do
       let!(:ven) { create(:venue, user: create(:user)) }
 
-      describe "GET edit" do
-        it "redirects to venues page" do
-          get :edit, params: { id: ven.id }
-          expect(response).to redirect_to(venues_path)
+      context "an owner exists for the venue" do
+        let!(:ven) { create(:venue, user: u, owner: create(:user)) }
+        
+        describe "GET edit" do
+          it "redirects to venues page" do
+            get :edit, params: { id: ven.id }
+            expect(response).to redirect_to(venues_path)
+          end
+        end
+    
+        describe "PUT update" do
+          let(:valid_data) { FactoryBot.attributes_for(:venue, name: "New name") }
+          it "does not update" do
+            put :update, params: { id: ven.id, venue: valid_data }
+            expect(ven.name).to eq("Some venue name")
+          end
+  
+          it "redirects to venues page" do
+            put :update, params: { id: ven.id, venue: valid_data }
+            expect(response).to redirect_to(venues_path)
+          end
+        end
+    
+        describe "DELETE destroy" do
+          it "does not destroy" do
+            delete :destroy, params: { id: ven.id }
+            expect(Venue.exists?(ven.id)).to eq true
+          end
+  
+          it "redirects to venues page" do
+            delete :destroy, params: { id: ven.id }
+            expect(response).to redirect_to(venues_path)
+          end
         end
       end
-  
-      describe "PUT update" do
-        let(:valid_data) { FactoryBot.attributes_for(:venue, name: "New name") }
-        it "does not update" do
-          put :update, params: { id: ven.id, venue: valid_data }
-          expect(ven.name).to eq("Some venue name")
+
+      context "an owner does not exist for the venue" do
+
+        context "the user is the user who added the venue" do
+          let!(:ven) { create(:venue, user: u) }
+
+          describe "GET edit" do
+    
+            it "renders :edit template" do
+              get :edit, params: { id: ven.id }
+              expect(response).to render_template(:edit)
+            end
+        
+            it "assigns the requested venue" do
+              get :edit, params: { id: ven.id }
+              expect(assigns(:venue)).to eq(ven)
+            end
+          end
+        
+          describe "PUT update" do
+            let(:valid_data) { FactoryBot.attributes_for(:venue, name: "New name") }
+            
+            describe "valid data" do
+              it "redirects to venues#show" do
+                put :update, params: { id: ven.id, venue: valid_data }
+                expect(response).to redirect_to(venue_path(assigns[:venue]))
+              end
+        
+              it "updates venue in database" do
+                put :update, params: { id: ven.id, venue: valid_data }
+                ven.reload
+                expect(ven.name).to eq("New name")
+              end
+            end
+          end
+    
+          describe "POST destroy" do
+            it "redirects to venues#index" do
+              delete :destroy, params: { id: ven.id }
+              expect(response).to redirect_to(venues_path)
+            end
+        
+            it "deletes venue from database" do
+              delete :destroy, params: { id: ven.id }
+              expect(Venue.exists?(ven.id)).to eq false
+            end
+          end
+
         end
 
-        it "redirects to venues page" do
-          put :update, params: { id: ven.id, venue: valid_data }
-          expect(response).to redirect_to(venues_path)
-        end
-      end
-  
-      describe "DELETE destroy" do
-        it "does not destroy" do
-          delete :destroy, params: { id: ven.id }
-          expect(ven).to exist
-        end
+        context "the user is not the user who added the venue" do
+          let!(:ven) { create(:venue, user: create(:user)) }
 
-        it "redirects to venues page" do
-          delete :destroy, params: { id: ven.id }
-          expect(response).to redirect_to(venues_path)
+          describe "GET edit" do
+            it "redirects to venues page" do
+              get :edit, params: { id: ven.id }
+              expect(response).to redirect_to(venues_path)
+            end
+          end
+      
+          describe "PUT update" do
+            let(:valid_data) { FactoryBot.attributes_for(:venue, name: "New name") }
+            it "does not update" do
+              put :update, params: { id: ven.id, venue: valid_data }
+              expect(ven.name).to eq("Some venue name")
+            end
+    
+            it "redirects to venues page" do
+              put :update, params: { id: ven.id, venue: valid_data }
+              expect(response).to redirect_to(venues_path)
+            end
+          end
+      
+          describe "DELETE destroy" do
+            it "does not destroy" do
+              delete :destroy, params: { id: ven.id }
+              expect(Venue.exists?(ven.id)).to eq true
+            end
+    
+            it "redirects to venues page" do
+              delete :destroy, params: { id: ven.id }
+              expect(response).to redirect_to(venues_path)
+            end
+          end
         end
+      
       end
     end
     
     context "is the owner of the venue" do
-      let!(:ven) { create(:venue, user: u) }
+      let!(:ven) { create(:venue, user: u, owner: u) }
       
       describe "GET edit" do
     
@@ -152,20 +243,20 @@ RSpec.describe VenuesController do
             expect(ven.description).not_to eq("New description")
           end
         end
-    
-        describe "POST destroy" do
-          it "redirects to venues#index" do
-            delete :destroy, params: { id: ven.id }
-            expect(response).to redirect_to(venues_path)
-          end
-      
-          it "deletes venue from database" do
-            delete :destroy, params: { id: ven.id }
-            expect(Venue.exists?(ven.id)).to eq false
-          end
+      end
+
+      describe "POST destroy" do
+        it "redirects to venues#index" do
+          delete :destroy, params: { id: ven.id }
+          expect(response).to redirect_to(venues_path)
         end
     
+        it "deletes venue from database" do
+          delete :destroy, params: { id: ven.id }
+          expect(Venue.exists?(ven.id)).to eq false
+        end
       end
+
     end
   end
 end

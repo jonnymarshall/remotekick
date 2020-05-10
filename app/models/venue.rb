@@ -2,7 +2,7 @@ class Venue < ApplicationRecord
   belongs_to :user
   has_many :reviews, dependent: :destroy
   has_many :review_photos, through: :reviews
-  belongs_to :owner, optional: true
+  belongs_to :owner, class_name: 'User', optional: true
   has_one :cover_photo, dependent: :destroy
   has_many :opening_hours
 
@@ -56,6 +56,10 @@ class Venue < ApplicationRecord
 
     # Update values
     update(updated_values)
+  end
+
+  def has_owner?
+    self.owner.present?
   end
 
   private
