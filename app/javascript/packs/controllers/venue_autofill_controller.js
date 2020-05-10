@@ -32,18 +32,33 @@ export default class extends Controller {
     console.log(`${this.controllerName} disconnected.`)
   }
 
-  async nameInputHandler(e) {
+  nameInputHandler(e) {
+    this.searchHandler(e)
+  }
+
+  searchHandler = this.debounce(async function(e) {
     this.location = this.locationInputTarget.dataset.selectedVenue
     this.searchQuery = e.target.value;
     if ((this.location) && (this.location.length > 1)) {
       await this.executeAjaxRequest()
-      this.resultsHandler();
+      this.resultsHandler()
     }
-  }
+  }, 250);
 
-  clicky() {
-    console.log("worked bro")
-  }
+  debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+      var context = this, args = arguments;
+      var later = function() {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
+  };
 
   resultsHandler() {
     let self = this

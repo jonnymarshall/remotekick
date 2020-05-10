@@ -20,6 +20,10 @@ export default class extends Controller {
   }
 
   async changeHandler(e) {
+    this.searchHandler(e)
+  }
+
+  searchHandler = this.debounce(async function(e) {
     let self = this
     this.searchQuery = e.target.value
     await this.executeAjaxRequest()
@@ -36,7 +40,22 @@ export default class extends Controller {
         }
       })
     });
-  }
+  }, 250);
+
+  debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+      var context = this, args = arguments;
+      var later = function() {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
+  };
 
   hoverHandler(h) {
     console.log("prevSelection", prevSelection)
@@ -108,7 +127,7 @@ export default class extends Controller {
     this.results.forEach((result) => {     
       if (sanitizeMatchedLocale(result)) {
         this.resultsContainerTarget.insertAdjacentHTML("afterbegin", `
-        <div class="control has-icons-left" data-action="click->venue-autofill#clicky">
+        <div class="control has-icons-left">
           <span
             class="input u-pointer u-padding-tb-30px has-border-primary-on-hover"
             data-target="resultItem"
