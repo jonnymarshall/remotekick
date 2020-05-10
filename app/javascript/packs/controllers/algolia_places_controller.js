@@ -127,7 +127,7 @@ export default class extends Controller {
     this.results.forEach((result) => {     
       if (sanitizeMatchedLocale(result)) {
         this.resultsContainerTarget.insertAdjacentHTML("afterbegin", `
-        <div class="control has-icons-left" data-action="click->venue-autofill#clicky">
+        <div class="control has-icons-left">
           <span
             class="input u-pointer u-padding-tb-30px has-border-primary-on-hover"
             data-target="resultItem"
