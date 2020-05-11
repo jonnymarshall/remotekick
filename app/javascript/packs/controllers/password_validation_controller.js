@@ -14,10 +14,17 @@ export default class extends Controller {
 
   connect() {
     console.log(`${this.controllerName} connected.`)
+    this.setInitialValues()
   }
 
   disconnect() {
     console.log(`${this.controllerName} disconnected.`)
+  }
+
+  setInitialValues() {
+    this.enteredEmail = this.emailTarget.value
+    this.enteredPassword = this.passwordTarget.value
+    this.enteredPasswordConfirmation = this.passwordConfirmTarget.value
   }
 
   // Key up event triggers
@@ -47,6 +54,27 @@ export default class extends Controller {
 
   // Validations
   checkValidations() {
+    // email
+    if (!!this.enteredEmail) {
+      if (!this.enteredEmail.includes("@")) {
+        this.validationMessages.push(this.validationMessage(
+          {
+            subject: "Email",
+            qualifier: "must be",
+            value: "valid"
+          })
+        )
+      }
+    } else {
+      this.validationMessages.push(this.validationMessage(
+        {
+          subject: "Email",
+          qualifier: "cannot be",
+          value: "blank"
+        })
+      )
+    }
+
     if (!!this.enteredPassword) {
       // passwordEntry
       if (this.enteredPassword.length < this.minimumPasswordLength) {
@@ -60,7 +88,7 @@ export default class extends Controller {
       }
 
       // passwordConfirmation
-      if (!this.enteredPasswordConfirmation) {
+      if (!!this.enteredPasswordConfirmation) {
         if (this.enteredPassword != this.enteredPasswordConfirmation) {
           this.validationMessages.push(this.validationMessage(
             {
@@ -81,27 +109,6 @@ export default class extends Controller {
           })
         )
       }
-    }
-
-    // email
-    if (!!this.enteredEmail) {
-      if (!this.enteredEmail.includes("@")) {
-        this.validationMessages.push(this.validationMessage(
-          {
-            subject: "Email",
-            qualifier: "must be",
-            value: "valid"
-          })
-        )
-      }
-    } else {
-      this.validationMessages.push(this.validationMessage(
-        {
-          subject: "Email",
-          qualifier: "cannot be",
-          value: "blank"
-        })
-      )
     }
   }
 
