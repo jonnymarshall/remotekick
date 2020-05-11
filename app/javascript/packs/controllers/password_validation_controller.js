@@ -4,12 +4,13 @@ export default class extends Controller {
 
   controllerName = "password_validation_controller"
 
-  static targets = ["email", "password", "passwordConfirm", "validationMessage"]
+  static targets = ["email", "password", "passwordConfirm", "validationMessageContainer"]
   
   minimumPasswordLength = 6
   enteredEmail = null
   enteredPassword = null
   enteredPasswordConfirmation = null
+  validationMessages = []
 
   connect() {
     console.log(`${this.controllerName} connected.`)
@@ -19,57 +20,88 @@ export default class extends Controller {
     console.log(`${this.controllerName} disconnected.`)
   }
 
-  passwordEntryValidation(e) {
-    this.enteredPassword = e.target.value
-    const showFailedPasswordValidationMessage = () => {
-      this.validationMessageTargets[0].innerHTML = `Password must be at least ${this.minimumPasswordLength} characters`
-      this.validationMessageTargets[0].classList.remove("is-hidden")
-    }
-
-    const hideFailedPasswordValidationMessage = () => {
-      this.validationMessageTargets[0].classList.add("is-hidden")
-    }
-
-    if (this.enteredPassword.length < this.minimumPasswordLength) {
-      showFailedPasswordValidationMessage()
-    } else {
-      hideFailedPasswordValidationMessage()
-    }
-  }
-
-  passwordConfirmationValidation(e) {
-    this.enteredPasswordConfirmation = e.target.value
-    const showFailedConfirmationValidationMessage = () => {
-      this.validationMessageTargets[1].innerHTML = "Passwords must match"
-      this.validationMessageTargets[1].classList.remove("is-hidden")
-    }
-
-    const hideFailedConfirmationValidationMessage = () => {
-      this.validationMessageTargets[1].classList.add("is-hidden")
-    }
-
-    if (this.enteredPasswordConfirmation.value != this.enteredPassword) {
-      showFailedConfirmationValidationMessage()
-    } else {
-      hideFailedConfirmationValidationMessage()
-    }
-  }
-
-  emailEntryValidation(e) {
+  // Key up event triggers
+  async emailEntryValidation(e) {
     this.enteredEmail = e.target.value
-    const showFailedEmailValidationMessage = () => {
-      this.validationMessageTargets[2].innerHTML = "Email must be valid"
-      this.validationMessageTargets[2].classList.remove("is-hidden")
+    this.enteredPasswordConfirmation = e.target.value
+    this.validationMessages = []
+    await this.checkValidations()
+    this.refreshValidationMessages()
+  }
+  
+  async passwordEntryValidation(e) {
+    this.enteredPassword = e.target.value
+    this.validationMessages = []
+    await this.checkValidations()
+    this.refreshValidationMessages()
+  }
+
+  async passwordConfirmationValidation(e) {
+    this.enteredPasswordConfirmation = e.target.value
+    this.validationMessages = []
+    await this.checkValidations()
+    this.refreshValidationMessages()
+  }
+
+  
+
+  // Validations
+  checkValidations() {
+    if (!!this.enteredPassword) {
+      // passwordEntry
+      if (this.enteredPassword.length < this.minimumPasswordLength) {
+        this.validationMessages.push(this.validationMessage(
+          {
+            subject: "Password",
+            qualifier: "must be at least",
+            value: `${this.minimumPasswordLength} characters`
+          })
+        )
+      }
+
+      // passwordConfirmation
+      if (this.enteredPassword != this.enteredPasswordConfirmation) {
+        this.validationMessages.push(this.validationMessage(
+          {
+            subject: "Passwords",
+            qualifier: "must",
+            value: "match"
+          })
+        )
+      }
     }
 
-    const hideEmailValidationMessage = () => {
-      this.validationMessageTargets[2].classList.add("is-hidden")
-    }
-
-    if (!this.enteredEmail.includes("@")) {
-      showFailedEmailValidationMessage()
+    // email
+    if (!!this.enteredEmail) {
+      if (!this.enteredEmail.includes("@")) {
+        this.validationMessages.push(this.validationMessage(
+          {
+            subject: "Email",
+            qualifier: "must be",
+            value: "valid"
+          })
+        )
+      }
     } else {
-      hideEmailValidationMessage()
+      this.validationMessages.push(this.validationMessage(
+        {
+          subject: "Email",
+          qualifier: "must be",
+          value: "provided"
+        })
+      )
     }
+  }
+
+  // HTML generators
+  validationMessage(message) {
+    return `<p class="help is-danger">
+      ${message.subject} ${message.qualifier} ${message.value}.
+    </p>`
+  }
+
+  refreshValidationMessages() {
+    this.validationMessageContainerTarget.innerHTML = ""
+    this.validationMessages.sort().forEach((message) => this.validationMessageContainerTarget.insertAdjacentHTML("afterbegin", message))
   }
 }
