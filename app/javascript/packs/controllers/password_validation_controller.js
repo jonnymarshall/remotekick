@@ -60,14 +60,16 @@ export default class extends Controller {
       }
 
       // passwordConfirmation
-      if (this.enteredPassword != this.enteredPasswordConfirmation) {
-        this.validationMessages.push(this.validationMessage(
-          {
-            subject: "Passwords",
-            qualifier: "must",
-            value: "match"
-          })
-        )
+      if (!this.enteredPasswordConfirmation) {
+        if (this.enteredPassword != this.enteredPasswordConfirmation) {
+          this.validationMessages.push(this.validationMessage(
+            {
+              subject: "Passwords",
+              qualifier: "must",
+              value: "match"
+            })
+          )
+        }
       }
     } else {
       if (this.enteredPassword != this.enteredPasswordConfirmation) {

@@ -2,12 +2,15 @@
 <section class="section">
   <div class="container">
     <div class="columns">
+      <div class="column">
+        <!-- First column -->
+      </div>
       <div class="column" id="edit_user_form" data-controller="password-validation">
         <h1 class="title">Edit <%= resource_name.to_s.humanize %></h1>
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
           <div class="field">
             <p class="control has-icons-left has-icons-right">
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input", :data => { :target => 'password-validation.email', :action => 'password-validation#emailEntryValidation' } %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input", :data => { :target => 'password-validation.email', :action => 'keyup->password-validation#emailEntryValidation' } %>
               <span class="icon is-small is-left">
                 <i class="fas fa-envelope"></i>
               </span>
@@ -18,7 +21,7 @@
           </div>
           <div class="field">
             <p class="control has-icons-left">
-              <%= f.password_field :password, autocomplete: "new-password", class: "input", placeholder: "New password", :data => { :target => 'password-validation.password', :action => 'password-validation#passwordEntryValidation' } %>
+              <%= f.password_field :password, autocomplete: "new-password", class: "input", placeholder: "New password", :data => { :target => 'password-validation.password', :action => 'keyup->password-validation#passwordEntryValidation' } %>
               <span class="icon is-small is-left">
                 <i class="fas fa-lock"></i>
               </span>
@@ -26,13 +29,11 @@
           </div>
           <div class="field">
             <p class="control has-icons-left">
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input", placeholder: "Confirm new password", :data => { :target => 'password-validation.passwordConfirm', :action => 'password-validation#passwordConfirmationValidation' } %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input", placeholder: "Confirm new password", :data => { :target => 'password-validation.passwordConfirm', :action => 'keyup->password-validation#passwordConfirmationValidation' } %>
               <span class="icon is-small is-left">
                 <i class="fas fa-lock"></i>
               </span>
             </p>
-            <p class="help is-danger is-hidden" data-target="password-validation.validationMessage"></p>
-            <!-- <p class="help is-danger">Password validation</p> -->
           </div>
           <div class="field">
             <p class="control has-icons-left">
@@ -41,8 +42,8 @@
                 <i class="fas fa-lock"></i>
               </span>
             </p>
-            <p class="help is-danger is-hidden" data-target="password-validation.validationMessage"></p>
-            <!-- <p class="help is-danger">We need your current password to confirm your changes.</p> -->
+            <div data-target="password-validation.validationMessageContainer">
+            </div>
           </div>
           <div class="field is-grouped">
             <p class="control">
