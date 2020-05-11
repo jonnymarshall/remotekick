@@ -24,13 +24,14 @@ export default class extends Controller {
   setInitialValues() {
     this.enteredEmail = this.emailTarget.value
     this.enteredPassword = this.passwordTarget.value
-    this.enteredPasswordConfirmation = this.passwordConfirmTarget.value
+    if (this.hasPasswordConfirmTarget) {
+      this.enteredPasswordConfirmation = this.passwordConfirmTarget.value
+    }
   }
 
   // Key up event triggers
   async emailEntryValidation(e) {
     this.enteredEmail = e.target.value
-    this.enteredPasswordConfirmation = e.target.value
     this.validationMessages = []
     await this.checkValidations()
     this.refreshValidationMessages()
