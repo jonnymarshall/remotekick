@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
-  before_action :assign_venue, only: [:show, :create, :new, :edit, :update, :destroy]
+  before_action :set_venue, only: [:show, :create, :new, :edit, :update, :destroy]
+  before_action :set_review, only: [:edit, :update]
 
   def new
     @review = current_user.reviews.new
@@ -11,11 +12,19 @@ class ReviewsController < ApplicationController
     @review = current_user.reviews.new(review_params)
     @review.has_wifi = reverse_checkbox_value(review_has_wifi_param[:has_wifi])
     @review.venue = @venue
-    unless review_photo_params[:review_photo][:photo] == nil
+    if review_photo_params[:review_photo].present?
       @review_photo = @review.review_photos.new(photo: review_photo_params[:review_photo][:photo])
       @review_photo.save!
     end
     @review.save!
+    redirect_to venue_path(@venue)
+  end
+
+  def edit
+  end
+
+  def update
+    @review.update(review_params)
     redirect_to venue_path(@venue)
   end
 
@@ -31,7 +40,7 @@ class ReviewsController < ApplicationController
       :rating,
       :plug_sockets,
       :comfort,
-      :busyness,
+      :quietness,
       :upload_speed,
       :download_speed,
       :serves_food,
@@ -50,11 +59,11 @@ class ReviewsController < ApplicationController
     params.require(:review).permit(review_photo: [:photo])
   end
 
-  def assign_venue
-    @venue = Venue.find(venue_params[:venue_id])
+  def set_venue
+    @venue = Venue.find(params[:venue_id])
   end
 
-  def venue_params
-    params.permit(:venue_id)
+  def set_review
+    @review = Review.find(params[:id])
   end
 end

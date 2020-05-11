@@ -1,13 +1,22 @@
-<div id="index__filters" class="column is-one-third is-hidden-touch" data-controller="index-filter-icons">
+<div id="index__filters" class="column is-one-third is-hidden-touch" data-controller="icon-state" data-target="mobile-index-navigation.indexFilters">
   <%= form_with url: venues_path, local: true, method: :get do |form| %>
   <!-- FILTER > LOCATION -->
-  <div class="field">
+  <div class="field c-field-has-autocomplete-results" data-controller="algolia-places">
     <p class="control has-icons-left">
-      <%= form.text_field :location, value: "#{searched_location(@venues_params[:location])}", class: "input" %>
+      <%= form.text_field :location,
+      class: "input",
+      value: "#{searched_location(params[:location])}",
+      :data => {
+        :target => 'venue-autofill.location algolia-places.addressInput',
+        :action => 'keyup->algolia-places#changeHandler',
+        :request_path => location_search_path
+      }
+      %>
       <span class="icon is-small is-left">
         <i class="fas fa-city"></i>
       </span>
     </p>
+    <div class="c-autocomplete-results-container" data-target="algolia-places.resultsContainer"></div>
   </div>
   <!-- FILTER > DISTANCE -->
   <div class="field">
@@ -27,7 +36,7 @@
     <label class="label">Rating</label>
     <div class="control">
       <% 5.times do | val | %>
-        <%= radio_button_tag(:rating, "#{val}", @venues_params[:rating] == "#{val}", class: "is-hidden", :data => { :target => 'index-filter-icons.input' })%>
+        <%= radio_button_tag(:rating, "#{val}", params[:rating] == "#{val}", class: "is-hidden", :data => { :target => 'icon-state.input', :filterType => "rating" })%>
         <%= rating_options(:rating, val) %>
       <% end %>
     </div>
@@ -41,12 +50,12 @@
           <label class="label">Wifi Speed</label>
           
           <div class="number-group">
-            <%= number_field_tag :upload_speed, selected_upload_speed(@venues, @venues_params[:upload_speed]), in: 0..highest_upload_speed(@venues), class: 'number-input', :data => { :target => 'range-slider.number', :action => 'range-slider#numberHandler' } %> to
+            <%= number_field_tag :upload_speed, selected_upload_speed(@venues, params[:upload_speed]), in: 0..highest_upload_speed(@venues), class: 'number-input', :data => { :target => 'range-slider.number', :action => 'range-slider#numberHandler' } %> to
             <%= number_field_tag :upload_speed, highest_upload_speed(@venues), in: 0..highest_upload_speed(@venues), class: 'number-input', :disabled => true, :data => { :target => 'range-slider.number', :action => 'range-slider#numberHandler' } %> Mbps
           </div>
 
           <div class="range-group">
-            <%= range_field_tag :upload_speed, selected_upload_speed(@venues, @venues_params[:upload_speed]), in: 0..highest_upload_speed(@venues), class: 'range-input', :data => { :target => 'range-slider.range', :action => 'range-slider#sliderHandler' } %>
+            <%= range_field_tag :upload_speed, selected_upload_speed(@venues, params[:upload_speed]), in: 0..highest_upload_speed(@venues), class: 'range-input', :data => { :target => 'range-slider.range', :action => 'range-slider#sliderHandler' } %>
           </div>
         </div>
       </div>
@@ -58,7 +67,7 @@
     <label class="label">Plug sockets</label>
     <div class="control">
     <% 3.times do |val| %>
-      <%= radio_button_tag(:plug_sockets, "#{val}", @venues_params[:plug_sockets] == "#{val}", class: "is-hidden", :data => { :target => 'index-filter-icons.input' }) %>
+      <%= radio_button_tag(:plug_sockets, "#{val}", params[:plug_sockets] == "#{val}", class: "is-hidden", :data => { :target => 'icon-state.input', :filterType => "plug_sockets" }) %>
       <%= feature_rating_options(:plug_sockets, val) %>
     <% end %>
     </div>
@@ -69,39 +78,37 @@
     <label class="label">Comfort</label>
     <div class="control">
     <% 3.times do |val| %>
-      <%= radio_button_tag(:comfort, "#{val}", @venues_params[:comfort] == "#{val}", class: "is-hidden", :data => { :target => 'index-filter-icons.input' }) %>
+      <%= radio_button_tag(:comfort, "#{val}", params[:comfort] == "#{val}", class: "is-hidden", :data => { :target => 'icon-state.input', :filterType => "comfort" }) %>
       <%= feature_rating_options(:comfort, val) %>
     <% end %>
     </div>
   </div>
 
-  <!-- FILTER > BUSYNESS -->
+  <!-- FILTER > QUIETNESS -->
   <div class="field">
-    <label class="label">Busyness</label>
+    <label class="label">Quietness</label>
     <div class="control">
     <% 3.times do |val| %>
-      <%= radio_button_tag(:busyness, "#{val}", @venues_params[:busyness] == "#{val}", class: "is-hidden", :data => { :target => 'index-filter-icons.input' }) %>
-      <%= feature_rating_options(:busyness, val) %>
+      <%= radio_button_tag(:quietness, "#{val}", params[:quietness] == "#{val}", class: "is-hidden", :data => { :target => 'icon-state.input', :filterType => "quietness" }) %>
+      <%= feature_rating_options(:quietness, val) %>
     <% end %>
     </div>
   </div>
 
   <label class="label">Tags</label>
-  <div class="tags">
-    <span class="tag">
+  <div class="tags" data-controller="tags">
+    <span class="tag u-pointer" data-action="click->tags#activateTag">
       Serves Food
-      <button class="delete is-small"></button>
     </span>
-    <span class="tag">
+    <div class="tag u-pointer" data-target="tags.tag" data-action="click->tags#activateTag">
       Open late
-      <button class="delete is-small"></button>
-    </span>
+    </div>
   </div>
 
   <!-- FILTER > HAS WIFI -->
   <div class="field">
     <label class="checkbox">
-      <%= form.check_box :has_wifi, checked: @venues_boolean_params[:has_wifi] == "1" %>
+      <%= form.check_box :has_wifi, checked: params[:has_wifi] == "1" %>
       Only show results with wifi
     </label>
   </div>
@@ -109,7 +116,7 @@
   <!-- FILTER > WIFI RESTRICTIONS -->
   <div class="field">
     <label class="checkbox">
-      <%= form.check_box :no_wifi_restrictions, checked: @venues_boolean_params[:no_wifi_restrictions] == "1" %>
+      <%= form.check_box :no_wifi_restrictions, checked: params[:no_wifi_restrictions] == "1" %>
       Filter out results with wifi restrictions
     </label>
   </div>

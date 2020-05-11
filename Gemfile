@@ -4,7 +4,7 @@ ruby '2.7.0'
 gem 'bootsnap', require: false
 gem 'devise'
 gem 'jbuilder', '~> 2.0'
-gem 'pg', '~> 0.21'
+gem 'pg'
 gem 'puma'
 gem 'rails', '6.0.2.2'
 gem 'redis'
@@ -27,6 +27,8 @@ gem 'faker'
 gem 'jquery-rails'
 gem 'bulma-rails', '~> 0.8.0'
 gem 'draper'
+gem 'responders'
+gem 'httparty'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
@@ -42,4 +44,9 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'capybara'
+end
+
+group :test do
+  gem 'rails-controller-testing'
+  gem 'shoulda-matchers'
 end

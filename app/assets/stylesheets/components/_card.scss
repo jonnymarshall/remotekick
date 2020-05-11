@@ -1,108 +1,93 @@
-.index-card {
-  width: 240px;
-  height: 305px;
+// Md styles only
+.mapboxgl-popup-close-button {
+  font-size: 20px;
+  color: $dark;
+}
+
+.map-card-container {
   background-color: white;
-  border-radius: 10px;
-  overflow: hidden;
-  p {
-    font-size: 12px;
-    color: dark-gray;
+  .distance-block {
+    display: none;
   }
-  h1, h2, h3, h4, h5, h6, strong {
-    color: dark-gray;
-  }
-  &:hover {
-    background: linear-gradient(#F7F7F7, #F1F1F1);
+  .info {
+    margin: 0;
+    padding: 5px;
+    .card-venue-name {
+      padding-right: 15px;
+    }
   }
 }
 
-.card-photo-section {
-  height: 180px;
-}
-
-.card-name {
-  height: 35px;
-}
-
-.border-radius {
-  border-radius: 10px;
-}
-
-.card-photo {
-  height: 100%;
-  width: 100%;
-}
-
-.card-photo-overlay {
-  bottom: 0;
-  width: 100%;
-  p, h1, h2, h3, h4, h5, h6, strong {
-    color: $white;
-  }
-}
-
-.cards-photo-gradient {
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0),rgba(0,0,0,0.9));
-}
-
-.card-description {
-  height: 40px;
-  line-height: 15px;
-}
-
-#map #c-card {
-  min-width: 300px;
-}
-
-
-#c-card__description {
-  height: 170px;
-  border-radius: 0px 0px 15px 15px;
-  &:hover {
-    background: linear-gradient(#E7E7E7, #F1F1F1);
-  }
-}
-
-#c-card__image {
-  border-radius: 15px 15px 0px 0px;
-}
-
-
-////@extend
-
-
+// Cards
 .c-card  {
-  height: 350px;
   border-radius: 10px;
+  @media screen and (max-width: 1023px) {
+    display: flex;
+    width: 100%;
+    height: 170px;
+  }
   .image {
     padding: 8px;
-    height: 62%;
+    height: 170px;
     width: 100%;
     background-color: lightgrey;
     border-radius: 10px 10px 0px 0px;
     position: relative;
+    @media screen and (max-width: 1023px) {
+      height: 100%;
+      width: 40%;
+      border-radius: 5px 0px 0px 5px;
+    }
+    .wifi-distance-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
     .breaker {
       height: 80%;
     }
   }
   .info {
-    padding: 8px;
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
     background-color: white;
-    height: 38%;
     width: 100%;
-    padding: 5px;
-    .dollar-icon {
-      padding-right: 8px;
+    @media screen and (max-width: 1023px) {
+      height: 100%;
+      width: 60%;
+      margin: 0px 0px 0px 5px;
+      justify-content: space-between;
     }
-    .star-icon {
-      padding-right: 5px;
+    .card-info-footer {
+      display: flex;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      @media screen and (max-width: 1023px) {
+        flex-direction: column;
+      }
     }
     .content {
       overflow-wrap: break-word;
+      margin-bottom: 0.5rem !important;
+      @media screen and (max-width: 1023px) {
+        justify-content: space-between;
+      }
+      h4 {
+        margin-bottom: 0.5rem !important;
+      }
+    }
+    p {
+      max-height: 90px;
+      overflow: hidden;
+      @media screen and (max-width: 1023px) {
+        max-height: 90px;
+      }
     }
   }
   .image-level {
@@ -114,6 +99,3 @@
     position: absolute;
   }
 }
-
-
-

@@ -32,7 +32,7 @@ const runMapBox = () => {
         marker.lat < -90 ||
         marker.lat > 90
       ) {
-        console.log(marker)
+        // console.log(marker)
       }
       const popup = new mapboxgl.Popup().setHTML(marker.infoWindow); // add this
 

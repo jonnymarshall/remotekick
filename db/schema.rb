@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_11_141411) do
+ActiveRecord::Schema.define(version: 2020_05_09_164250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2020_04_11_141411) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "venue_id"
-    t.float "busyness"
+    t.float "quietness"
     t.float "comfort"
     t.float "plug_sockets"
     t.float "upload_speed"
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 2020_04_11_141411) do
     t.integer "price"
     t.boolean "serves_food"
     t.float "plug_sockets"
-    t.float "busyness"
+    t.float "quietness"
     t.float "comfort"
     t.boolean "air_conditioning"
     t.integer "wifi_restrictions"
@@ -110,6 +110,9 @@ ActiveRecord::Schema.define(version: 2020_04_11_141411) do
     t.string "foursquare_id"
     t.boolean "has_wifi"
     t.string "category"
+    t.bigint "owner_id"
+    t.index ["latitude", "longitude"], name: "index_venues_on_latitude_and_longitude"
+    t.index ["owner_id"], name: "index_venues_on_owner_id"
     t.index ["user_id"], name: "index_venues_on_user_id"
   end
 
@@ -119,4 +122,5 @@ ActiveRecord::Schema.define(version: 2020_04_11_141411) do
   add_foreign_key "reviews", "users"
   add_foreign_key "reviews", "venues"
   add_foreign_key "venues", "users"
+  add_foreign_key "venues", "users", column: "owner_id"
 end

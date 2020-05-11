@@ -3,11 +3,14 @@
   <section class="section">
     <div class="container">
       <div class="columns">
-        <div class="column" id="log_in_form">
+      <div class="column">
+        <!-- First column -->
+      </div>
+        <div class="column" id="log_in_form" data-controller="password-validation">
           <h1 class="title">Log in</h1>
           <div class="field">
             <p class="control has-icons-left has-icons-right">
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input", placeholder: "Email" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input", placeholder: "Email", :data => { :target => 'password-validation.email', :action => 'keyup->password-validation#emailEntryValidation' } %>
               <span class="icon is-small is-left">
                 <i class="fas fa-envelope"></i>
               </span>
@@ -18,11 +21,13 @@
           </div>
           <div class="field">
             <p class="control has-icons-left">
-              <%= f.password_field :password, autocomplete: "current-password", class: "input", placeholder: "Password" %>
+              <%= f.password_field :password, autocomplete: "current-password", class: "input", placeholder: "Password", :data => { :target => 'password-validation.password', :action => 'keyup->password-validation#passwordEntryValidation' } %>
               <span class="icon is-small is-left">
                 <i class="fas fa-lock"></i>
               </span>
             </p>
+          </div>
+          <div data-target="password-validation.validationMessageContainer">
           </div>
           <div class="field">
             <div class="control">

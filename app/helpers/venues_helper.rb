@@ -2,7 +2,7 @@ module VenuesHelper
 
   def searched_location(location)
     if location && location.length > 0
-      location.capitalize
+      location[0] == location[0].upcase ? location : location.capitalize
     else
       "Everywhere"
     end
@@ -40,22 +40,22 @@ module VenuesHelper
 
   def rating_options(rating_param, value)
     icon_element = content_tag( :i, nil, :class=>'fas fa-2x fas fa-star')
-    span_element = content_tag( :span, icon_element, :class=>'icon is-medium has-text-light', :data => { :target => 'index-filter-icons.icon' })
-    label = label_tag( "#{rating_param}_#{value}", span_element, :class=>'c-rating-star--label', :data => { :action => 'click->index-filter-icons#selectIcons' })
+    span_element = content_tag( :span, icon_element, :class=>'icon is-medium has-text-light', :data => { :target => 'icon-state.icon' })
+    label = label_tag( "#{rating_param}_#{value}", span_element, :class=>'c-rating-star--label', :data => { :action => 'click->icon-state#selectIcons' })
   end
 
   def feature_rating_options(feature_param, value)
     smile_icon = smile_type(value)
     icon_element = content_tag( :i, nil, :class=>"fas fa-2x fas fa-#{smile_icon}")
-    span_element = content_tag( :span, icon_element, :class=>'icon is-medium has-text-light', :for => "#{feature_param}", :value => "#{value}", :data => { :target => 'index-filter-icons.icon' })
-    label_tag( "#{feature_param}_#{value}", span_element, :class=>'c-rating-star--label', :data => { :action => 'click->index-filter-icons#selectIcons'})
+    span_element = content_tag( :span, icon_element, :class=>'icon is-medium has-text-light', :for => "#{feature_param}", :value => "#{value}", :data => { :target => 'icon-state.icon' })
+    label_tag( "#{feature_param}_#{value}", span_element, :class=>'c-rating-star--label', :data => { :action => 'click->icon-state#selectIcons'})
   end
 
   def order_by_options
     options_for_select([
       ["Distance", { :data => { :url => "#{url_for(request.params.merge(:order_by => "distance"))}", :target => 'set-selected-option.option index-cards-ordering.option', :selected => "#{params[:order_by] == "distance"}"}}],
       ["Top rated", { :data => { :url => "#{url_for(request.params.merge(:order_by => "rating"))}", :target => 'set-selected-option.option index-cards-ordering.option', :selected => "#{params[:order_by] == "rating"}"}}],
-      ["Wifi Speed", { :data => { :url => "#{url_for(request.params.merge(:order_by => "wifi_speed"))}", :target => 'set-selected-option.option index-cards-ordering.option', :selected => "#{params[:order_by] == "wifi_speed"}"}}],
+      ["Wifi Speed", { :data => { :url => "#{url_for(request.params.merge(:order_by => "upload_speed"))}", :target => 'set-selected-option.option index-cards-ordering.option', :selected => "#{params[:order_by] == "upload_speed"}"}}],
       ["Price", { :data => { :url => "#{url_for(request.params.merge(:order_by => "price"))}", :target => 'set-selected-option.option index-cards-ordering.option', :selected => "#{params[:order_by] == "price"}"}}]
     ])
   end
@@ -102,7 +102,7 @@ module VenuesHelper
   end
 
   def at_least_one_value_exists(venues, attribute)
-    venues.any? {|venue| venue.send(attribute).is_a?(Integer)}
+    venues.any? {|venue| venue.send(attribute).is_a?(Float)}
   end
 
   def calculate_average_wifi_speed(wifi_speeds)

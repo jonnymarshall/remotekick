@@ -1,1 +1,14 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+RemoteKick is a platform that enables students, digital nomads and all types of remote workers to find the perfect cafe or coworking space.
+
+Technologies used:
+Ruby-on-Rails:
+--Devise
+--RSpec
+--ActiveRecord
+
+PostgreSQL
+
+Heroku
+
+Front end:
+Bulma CSS & Stimulus JS

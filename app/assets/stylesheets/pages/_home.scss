@@ -1,34 +1,13 @@
-// Specific CSS for your home-page
-.fullscreen {
-    width: 100vw;
-    height: 100vh;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-.home-bg {
-    background-image: asset-url('petr-sevcovic-594807-unsplash_1920X1280');
-    z-index: -1;
-    position: absolute;
-    top: 0px;
-}
-
-.search-container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  h1, p {
-    text-shadow: 0px 0px 15px black;
-  }
-  p {
-    padding-bottom: 20px;
-  }
-}
-
- /////@extend
-
- .hero-image {
+.hero-image {
   background: url('https://images.unsplash.com/photo-1521017432531-fbd92d768814?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80') center / cover;
- }
+}
+
+// Responsive
+.hero-logo {
+  margin-bottom: 80px;
+  height: 80px;
+  @media screen and (max-width: 1023px) {
+    margin-bottom: 40px;
+    height: 60px;
+  }
+}

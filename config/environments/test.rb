@@ -49,4 +49,7 @@ Rails.application.configure do
     config.factory_bot.definition_file_paths = ["spec/factories"]
     # You can also disable automatic factory definition loading entirely by using an empty array:
     # config.factory_bot.definition_file_paths = []
+
+  # FROM DEVISE INSTALLATION INSTRUCTIONS
+  config.action_mailer.default_url_options = { host: 'localhost', post: 3000}
 end

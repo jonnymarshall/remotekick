@@ -2,7 +2,7 @@ import { Controller } from "stimulus"
 
 export default class extends Controller {
 
-  controllerName = "index_filter_icons_controller"
+  controllerName = "icon_state_controller"
 
   static targets = ["icon", "input"]
 
@@ -13,7 +13,7 @@ export default class extends Controller {
     rating: null,
     plug_sockets: null,
     comfort: null,
-    busyness: null
+    quietness: null
   }
 
   // Updates filterValues when a label is clicked
@@ -26,7 +26,7 @@ export default class extends Controller {
     let self = this
     this.inputTargets.forEach(el => {
       if (el.getAttribute("checked")) {
-        self.setFilterValue(el.name, el.value, self)
+        self.setFilterValue(el.getAttribute('data-filterType'), el.value, self)
       }
     })
   }
@@ -43,8 +43,8 @@ export default class extends Controller {
     this.resetIcons()
     for (var key of Object.keys(this.filterValues)) {
       this.iconTargets.forEach((el) => {
-        if (el.parentElement.getAttribute("for").slice(0,-2) == key) {
-          if ((this.filterValues[key] != null) && (el.parentElement.getAttribute("for").slice(-1) <= this.filterValues[key])) {
+        if (el.parentElement.previousElementSibling.getAttribute('data-filterType') == key) {
+          if ((this.filterValues[key] != null) && (el.parentElement.previousElementSibling.value <= this.filterValues[key])) {
             el.classList.add("has-text-primary")
           }
         }
@@ -63,8 +63,8 @@ export default class extends Controller {
   }
 
   selectIcons(event) {
-    let filterTypeClicked = event.currentTarget.getAttribute("for").slice(0,-2)
-    let valueClicked = event.currentTarget.getAttribute("for").slice(-1)
+    let filterTypeClicked = event.currentTarget.previousElementSibling.getAttribute('data-filterType')
+    let valueClicked = event.currentTarget.previousElementSibling.value
     this.setFilterValue(filterTypeClicked, valueClicked, this)
     this.iconStateChange()
   }

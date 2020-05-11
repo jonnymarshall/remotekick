@@ -7,7 +7,11 @@ class User < ApplicationRecord
   has_many :venues
   has_many :reviews
 
-  validates :email, presence: true
+  validates :email, presence: true, uniqueness: true
   # validates :first_name, presence: true
   # validates :last_name, presence: true
+
+  def owned_venues
+    Venues.where(owner: self)
+  end
 end

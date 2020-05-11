@@ -3,11 +3,14 @@
   <section class="section">
     <div class="container">
       <div class="columns">
-        <div class="column" id="sign_up_form">
+        <div class="column">
+          <!-- First column -->
+        </div>
+        <div class="column" id="sign_up_form" data-controller="password-validation">
           <h1 class="title">Sign up</h1>
           <div class="field">
             <p class="control has-icons-left has-icons-right">
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input", placeholder: "Email" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input", placeholder: "Email", :data => { :target => 'password-validation.email', :action => 'keyup->password-validation#emailEntryValidation' } %>
               <span class="icon is-small is-left">
                 <i class="fas fa-envelope"></i>
               </span>
@@ -18,7 +21,7 @@
           </div>
           <div class="field">
             <p class="control has-icons-left">
-              <%= f.password_field :password, autocomplete: "new-password", class: "input", placeholder: "Password" %>
+              <%= f.password_field :password, autocomplete: "new-password", class: "input", placeholder: "Password", :data => { :target => 'password-validation.password', :action => 'keyup->password-validation#passwordEntryValidation' } %>
               <span class="icon is-small is-left">
                 <i class="fas fa-lock"></i>
               </span>
@@ -26,12 +29,13 @@
           </div>
           <div class="field">
             <p class="control has-icons-left">
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input", placeholder: "Confirm password" %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input", placeholder: "Confirm password", :data => { :target => 'password-validation.passwordConfirm', :action => 'keyup->password-validation#passwordConfirmationValidation' } %>
               <span class="icon is-small is-left">
                 <i class="fas fa-lock"></i>
               </span>
             </p>
-          <p class="help is-danger">Password validation</p>
+            <div data-target="password-validation.validationMessageContainer">
+            </div>
           </div>
           <div class="field is-grouped">
             <p class="control">

@@ -3,6 +3,7 @@ class VenueDecorator < Draper::Decorator
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:
   #
+  include IconDisplay
 
   def gradient
     "background: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.6))"
@@ -21,7 +22,7 @@ class VenueDecorator < Draper::Decorator
       icon_element = h.content_tag( :i, nil, :class=>'fas fa-star')
       span_element = h.content_tag( :span, icon_element, :class=>"star-icon is-small has-text-primary")
       icon_set << span_element
-      icon_set << object.rating.round(2)
+      icon_set << (object.rating + 1).round(1)
       icon_set.join
     else
       "No ratings yet."
@@ -30,12 +31,6 @@ class VenueDecorator < Draper::Decorator
 
   def review_count
     "(#{venue.reviews.count})" if has_any?("reviews")
-  end
-
-  def rating_stars(size)
-    unless object.rating.nil?
-      h.content_tag( :i, nil, :class=>"fas fa-#{size} fas fa-star") * (icon_count_calculator("rating"))
-    end
   end
   
   def reviews_info_text
@@ -59,7 +54,7 @@ class VenueDecorator < Draper::Decorator
   def display_icons(attribute, icon_set = [])
     if has_attribute?(attribute)
       icon_set << "#{h.content_tag( :i, nil, :class=>'fas fa-smile has-text-primary')}&nbsp;" * (icon_count_calculator(attribute))
-      icon_set << h.content_tag( :i, nil, :class=>'far fa-smile') * (inverse_icon_count_calculator(attribute))
+      icon_set << "#{h.content_tag( :i, nil, :class=>'fas fa-smile')}&nbsp;" * (inverse_icon_count_calculator(attribute))
       icon_set.join
     else
       "Unknown"
@@ -69,8 +64,11 @@ class VenueDecorator < Draper::Decorator
   
   def category_tag
     if has_attribute?("category")
-      tag = h.content_tag( :span, object.category, :class=>'tag is-dark')
-      h.content_tag( :div, tag, :class=>'level-item')
+      tag = h.content_tag( :span, object.category, :class=>'tag is-primary is-small-touch')
+      h.content_tag( :div, tag)
+    else
+      tag = h.content_tag( :span, "Unknown category", :class=>'tag is-primary is-small-touch')
+      h.content_tag( :div, tag)
     end
   end
 
@@ -82,17 +80,5 @@ class VenueDecorator < Draper::Decorator
 
   def has_any?(relation)
     !object.send(relation).empty?
-  end
-
-  def icon_count_calculator(attribute)
-    object.send(attribute).round(0) + 1
-  end
-
-  def inverse_icon_count_calculator(attribute)
-    if attribute == "rating"
-      5 - icon_count_calculator(attribute)
-    else
-      3 - icon_count_calculator(attribute)
-    end
   end
 end

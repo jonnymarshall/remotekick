@@ -11,16 +11,19 @@ FactoryBot.define do
     ping { rand(1000) }
     price { rand(2) }
     plug_sockets { rand(2) }
-    busyness { rand(2) }
+    quietness { rand(2) }
     comfort { rand(2) }
     has_wifi { [true, false].sample }
     air_conditioning { [true, false].sample }
     serves_food { [true, false].sample }
     wifi_restrictions { rand(4) }
-    # user:
     # latitude
     # longitude
     # foursquare_id
     category { categories.sample }
+  end
+
+  factory :no_wifi_venue do
+    has_wifi { false }
   end
 end

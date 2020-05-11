@@ -1,31 +1,51 @@
-<section id="index__info_bar" class="section is-padding-small-mobile">
-  <div class="container">
-    <%= render 'index__info_bar' %>
-  </div>
-</section>
-<section id="index__main-content" class="section is-padding-small-mobile">
-  <div class="container">
-    <div class="columns">
-      <!-- FILTERS -->
-      <%= render 'index__filters' %>
-      <div id="index__map-container" class="column">
-        <%= render 'index__map' %>
-        <section class="section u-padding-lr-0px">
-          <div id="index__cards-container" class="container">
-            <%= render partial: "index__cards-info-bar", locals: { venues: @venues } %>
-            <div id="index__cards" class="columns is-multiline">
-            <% @venues.each do |venue| %>
-              <%= render partial: "index__cards", locals: { venue: venue } %>
-            <% end %>
-            </div>
-            <section id="index__cards-pagination" class="section">
-              <div class="container">
-                <%= render 'index__pagination' %>
+<div id="index-page" data-controller="mobile-index-navigation">
+  <section id="index__info_bar" class="section is-padding-small-touch is-hidden-touch">
+    <div class="container">
+      <%= render 'index__info_bar' %>
+    </div>
+  </section>
+  <section id="index__main-content" class="section is-padding-small-touch">
+    <div class="container">
+      <div class="columns">
+        <!-- FILTERS -->
+        <%= render 'index__filters' %>
+        <div id="index__right_section" class="column" data-target="mobile-index-navigation.indexRightSection">
+          <%= render 'index__map', :data => { :target => 'mobile-index-navigation.map' } %>
+          <section class="section u-padding-lr-0px is-hidden-touch is-padding-small-tb-touch" data-target="mobile-index-navigation.venuesList">
+            <div id="index__cards-container" class="container" data-controller="index-cards-ordering">
+              <%= render partial: "index__cards-info-bar", locals: { venues: @venues } %>
+              <div id="index__cards" class="columns is-desktop is-multiline" data-target="index-cards-ordering.cardsList">
+              <% @venues.each do |venue| %>
+                <div class="column is-one-third-desktop">
+                  <%= render partial: "index__cards", locals: { venue: venue } %>
+                </div>
+              <% end %>
               </div>
-            </section>
-          </div>
-        </section>
+              <section id="index__cards-pagination" class="section">
+                <div class="container">
+                  <%= render 'index__pagination' %>
+                </div>
+              </section>
+            </div>
+          </section>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <nav class="navbar is-fixed-bottom is-hidden-desktop level is-mobile has-background-dark is-fixed-bottom is-marginless u-bottom-minus-1px">
+    <div class="level-item has-text-centered">
+      <div id="mobile-filters-button" class="level-item has-text-white has-text-centered" data-element="indexFilters" data-action="click->mobile-index-navigation#handleClick">
+        <i class="fas fa-sliders-h"></i>
+      </div>
+      <div data-element="map" data-action="click->mobile-index-navigation#handleClick">
+        <p class="heading has-text-white is-size-6">Map</p>
+      </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div data-element="venuesList" data-action="click->mobile-index-navigation#handleClick">
+        <p class="heading has-text-white is-size-6">List</p>
+      </div>
+    </div>
+  </nav>
+</div>

@@ -1,20 +1,22 @@
 class VenuesController < ApplicationController
   include Foursquare
-  before_action :set_venue, only: [:edit, :show, :update, :destroy]
+  before_action :set_venue, only: [:show, :edit, :update, :destroy]
   before_action :venues_params, only: [:index]
   before_action :new_venue_params, only: [:create]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :validate_owner, only: [:edit, :update, :destroy]
   # @venue should be called as venue for decorated instance in views
   decorates_assigned :venue
-  # has_scope :location, if: :location_given? && !:distance_given?
+  has_scope :location, if: :location_given?
   has_scope :rating
   has_scope :upload_speed
   has_scope :no_wifi_restrictions
   has_scope :comfort
-  has_scope :busyness
+  has_scope :quietness
   has_scope :plug_sockets
   has_scope :has_wifi
   # has_scope :air_conditioning, type: :boolean
+  respond_to :html, :json
 
   def index
     @venues = apply_scopes(Venue).all
@@ -24,9 +26,12 @@ class VenuesController < ApplicationController
     if location_given? && distance_given?
       @venues = @venues.near(venues_params[:location], venues_params[:distance])
     end
-    @venues_params = venues_params
-    @venues_boolean_params = venues_boolean_params
-    set_map_markers(@venues)
+
+    unless request.xhr?
+      set_map_markers(@venues) unless params[:order_by]
+    end
+
+    respond_with(@venues)
   end
 
   def show
@@ -35,10 +40,12 @@ class VenuesController < ApplicationController
   end
 
   def new
-    @venue_search_path = venue_search_new_venue_path
     @venue = Venue.new
+<<<<<<< HEAD
 
     # @venues = Venue.all
+=======
+>>>>>>> master
     # @opening_hours = OpeningHour.new
     # @opening_hours = []
     # 7.times do
@@ -48,34 +55,44 @@ class VenuesController < ApplicationController
   end
 
   def create
-    # create new venue and assign current user
     @venue = Venue.new(new_venue_params)
     @venue.user = current_user
-    # @venue.categories.create(category_params)
-    @venue.save!
-    redirect_to venue_path(@venue)
+    if @venue.save
+      redirect_to venue_path(@venue)
+    else
+      render :new
+    end
+
+    # create new opening_hour_set and assign venue
+    # @opening_hour_set = OpeningHourSet.new
+    # @opening_hour_set.venue = @venue
+    # @opening_hour_set.save!
+
+    # save all opening_hours and assign to opening_hour_set
+    # unless opening_hours_params.empty?
+    #   opening_hours_params[:opening_hour].each do |hours|
+    #     new_opening_hours = OpeningHour.new(hours)
+    #     new_opening_hours.opening_hour_set = @opening_hour_set
+    #     new_opening_hours.save!
+    #   end
+    # end
   end
 
-  def autocomplete_response
-    # redirect_to: autocomplete_data...
-    # @@data = File.read("/assets/data/autocomplete_data.json")
-    # render :json => @@data
-    url = venues_autocomplete_path
-    response = open(url).read
-    @response_json = JSON.parse(response)
+  def edit
   end
 
-  # def edit          # GET /restaurants/:id/edit
-  # end
+  def update
+    if @venue.update(new_venue_params)
+      redirect_to venue_path(@venue)
+    else
+      render :edit
+    end
+  end
 
-  # def update
-  #   @venue.update(venue_params)
-  # end
-
-  # def destroy
-  #   @venue.destroy
-  #   redirect_to venues_path
-  # end
+  def destroy
+    @venue.destroy
+    redirect_to venues_path
+  end
 
   def venue_search
     location = venue_search_params[:location]
@@ -99,11 +116,11 @@ class VenuesController < ApplicationController
       :upload_speed,
       :comfort,
       :plug_sockets,
-      :busyness,
+      :quietness,
       :has_wifi,
       :order_by,
       :distance,
-      :no_wifi_restrictions
+      :no_wifi_restrictions,
     )
   end
 
@@ -158,10 +175,7 @@ class VenuesController < ApplicationController
   end
 
   def order_venues_by_param(venues, param)
-    case param
-    when "rating"
-      @venues = @venues.reorder("#{param} DESC NULLS LAST")
-    end
+    @venues = @venues.reorder("#{param} DESC NULLS LAST")
   end
 
   def location_given?
@@ -174,5 +188,13 @@ class VenuesController < ApplicationController
 
   def distance_given?
     venues_params[:distance] && venues_params[:distance].to_i > 0
+  end
+  
+  def validate_owner
+    if @venue.has_owner? && @venue.owner != current_user
+      redirect_to venues_path
+    elsif !@venue.has_owner? && @venue.user != current_user
+      redirect_to venues_path
+    end
   end
 end
