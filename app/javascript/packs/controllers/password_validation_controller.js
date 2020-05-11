@@ -28,7 +28,7 @@ export default class extends Controller {
     await this.checkValidations()
     this.refreshValidationMessages()
   }
-  
+
   async passwordEntryValidation(e) {
     this.enteredPassword = e.target.value
     this.validationMessages = []
@@ -69,6 +69,16 @@ export default class extends Controller {
           })
         )
       }
+    } else {
+      if (this.enteredPassword != this.enteredPasswordConfirmation) {
+        this.validationMessages.push(this.validationMessage(
+          {
+            subject: "Password",
+            qualifier: "cannot",
+            value: "be blank"
+          })
+        )
+      }
     }
 
     // email
@@ -86,8 +96,8 @@ export default class extends Controller {
       this.validationMessages.push(this.validationMessage(
         {
           subject: "Email",
-          qualifier: "must be",
-          value: "provided"
+          qualifier: "cannot be",
+          value: "blank"
         })
       )
     }
