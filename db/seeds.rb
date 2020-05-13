@@ -4,6 +4,7 @@
 
 require_relative "./seeds/city_specific_seeds/melbourne_seeds.rb"
 require_relative "./seeds/city_specific_seeds/chiang_mai_seeds.rb"
+require_relative "./seeds/city_specific_seeds/canggu_seeds.rb"
 require_relative "./seeds/user_seeds/user_seeds.rb"
 require_relative "./seeds/city_seeds/city_seeds.rb"
 
@@ -18,9 +19,13 @@ puts 'Cleaning database...'
 # create_user_seeds
 
 # ----------CITY SEEDS----------
-create_city_seeds
+# create_city_seeds
 
 # ----------COFFEE SHOP SEEDS----------
+# CANGGU
+create_canggu_venues(canggu_venue_attributes)
+create_canggu_venue_reviews(canggu_venue_attributes, canggu_venue_review_attributes)
+
 # CHIANG MAI
 # create_chiang_mai_venues
 # create_chiang_mai_venue_reviews
