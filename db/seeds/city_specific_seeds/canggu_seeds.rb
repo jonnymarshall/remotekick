@@ -29,7 +29,17 @@ def canggu_venue_attributes
       wifi_restrictions: 0,
       latitude: -8.660134,
       longitude: 115.141088
-    }
+    },
+    # {
+    #   name: 'Peleton Supershop',
+    #   description:  'Tempat nongkrong berkonsep tempat terbuka dengan menu yg unik, tersedia playground untuk anak-anak.',
+    #   user: User.first,
+    #   serves_food: true,
+    #   has_wifi: true,
+    #   wifi_restrictions: 0,
+    #   latitude: -8.660134,
+    #   longitude: 115.141088
+    # }
   ]
 end
 
