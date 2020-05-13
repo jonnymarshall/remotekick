@@ -1,5 +1,6 @@
 class Venue < ApplicationRecord
   belongs_to :user
+  belongs_to :city, optional: true
   has_many :reviews, dependent: :destroy
   has_many :review_photos, through: :reviews
   belongs_to :owner, class_name: 'User', optional: true

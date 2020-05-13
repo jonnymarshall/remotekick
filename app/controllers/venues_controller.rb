@@ -20,6 +20,7 @@ class VenuesController < ApplicationController
 
   def index
     @venues = apply_scopes(Venue).all
+    redirect_to cities_path and return if !@venues.any?
     if venues_params[:order_by]
       order_venues_by_param(@venues, venues_params[:order_by])
     end

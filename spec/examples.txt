@@ -1,6 +1,7 @@
 example_id                                                    | status | run_time        |
 ------------------------------------------------------------- | ------ | --------------- |
-./spec/controllers/venues_controller_spec.rb[1:1:1:1]         | passed | 0.01734 seconds |
+./spec/controllers/venues_controller_spec.rb[1:1:1:1]         | passed | 0.05867 seconds |
+./spec/controllers/venues_controller_spec.rb[1:1:1:2]         | passed | 0.03051 seconds |
 ./spec/controllers/venues_controller_spec.rb[1:1:2:1]         | passed | 0.0191 seconds  |
 ./spec/controllers/venues_controller_spec.rb[1:1:2:2]         | passed | 0.01611 seconds |
 ./spec/controllers/venues_controller_spec.rb[1:1:3:1]         | passed | 0.01611 seconds |
@@ -37,6 +38,7 @@ example_id                                                    | status | run_tim
 ./spec/features/create_venue_spec.rb[1:1:2:2]                 | passed | 3.25 seconds    |
 ./spec/features/home_spec.rb[1:1]                             | passed | 0.19369 seconds |
 ./spec/features/venue_page_spec.rb[1:1:1]                     | passed | 0.03636 seconds |
+./spec/models/city_spec.rb[1:1:1]                             | passed | 0.02873 seconds |
 ./spec/models/user_spec.rb[1:1:1:1]                           | passed | 0.00864 seconds |
 ./spec/models/venue_spec.rb[1:1:1]                            | passed | 0.01954 seconds |
 ./spec/models/venue_spec.rb[1:2:1:1]                          | passed | 0.01888 seconds |

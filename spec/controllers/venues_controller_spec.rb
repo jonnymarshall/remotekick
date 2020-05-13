@@ -6,10 +6,18 @@ RSpec.describe VenuesController do
   let(:u) { create(:user) }
   let!(:ven) { create(:venue, user: create(:user)) }
 
-    describe "GET index" do
+    describe "GET index", focus: true do
       it "renders :index template" do
         get :index
         expect(assigns(:venues)).to match_array([ven])
+        expect(response).to render_template(:index)
+      end
+
+      it "redirects to cities#index if no venues are found" do
+        ven.destroy!
+        get :index
+        expect(assigns(:venues)).to match_array([])
+        expect(response).to redirect_to(cities_path)
       end
     end
   
