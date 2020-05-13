@@ -13,7 +13,7 @@ require_relative "./seeds/city_seeds/city_seeds.rb"
 # Review.destroy_all
 # Venue.destroy_all
 # User.destroy_all
-City.destroy_all
+# City.destroy_all
 
 # ----------USER SEEDS----------
 # create_user_seeds
