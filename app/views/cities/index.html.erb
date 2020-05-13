@@ -1,0 +1,43 @@
+<section class="section">
+  <div class="container has-text-centered">
+    <h1 class="title is-3">
+      Sorry, we couldn't find any results that location.<br>
+      Perhaps you can find your perfect workspace in one of these great cities?
+    </h1>
+    <%= link_to "Go back to search", root_path, class: "button is-primary" %>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-0 is-multiline">
+      <div class="column">
+        <figure class="image is-one-third is-3by2">
+          <%= link_to venues_path(:location => "Melbourne, Australia") do %>
+            <img src="https://www.telegraph.co.uk/content/dam/Travel/Destinations/Oceania/Australia/Melbourne/federation-sqaure-melbourne-guide-experiences-attractions-lead.jpg?imwidth=1400">
+          <% end %>
+        </figure>
+        <h1 class="title is-4">Melbourne</h1>
+        <h2 class="subtitle is-6">Australia</h2>
+      </div>
+      <div class="column">
+        <figure class="image is-one-third is-3by2">
+          <%= link_to venues_path(:location => "Chiang Mai, Thailand") do %>
+            <img src="https://www.tripsavvy.com/thmb/9ttJY80MD6nE7huPwPIcajEiGO4=/950x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/night-view-of-chiangmai-cityscape-with-doi-suthep--chiangmai--thailand--1039590704-5c65e90a46e0fb00015e784c.jpg">
+          <% end %>
+        </figure>
+        <h1 class="title is-4">Chiang Mai</h1>
+        <h2 class="subtitle is-6">Thailand</h2>
+      </div>
+      <div class="column">
+        <figure class="image is-one-third is-3by2">
+          <%= link_to venues_path(:location => "Canggu, Bali") do %>
+            <img src="https://www.tripsavvy.com/thmb/h8ftieucnwXX6mbLXUU6imnweNM=/950x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/GettyImages-163931116-5c2c01204cedfd000127e813.jpg">
+          <% end %>
+        </figure>
+        <h1 class="title is-4">Canggu</h1>
+        <h2 class="subtitle is-6">Bali</h2>
+      </div>
+    </div>
+  </div>
+</section>
