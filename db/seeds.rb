@@ -9,7 +9,7 @@ require_relative "./seeds/user_seeds/user_seeds.rb"
 require_relative "./seeds/city_seeds/city_seeds.rb"
 
 # ----------CLEAN DB----------
-puts 'Cleaning database...'
+# puts 'Cleaning database...'
 # Review.destroy_all
 # Venue.destroy_all
 # User.destroy_all
@@ -23,7 +23,7 @@ puts 'Cleaning database...'
 
 # ----------COFFEE SHOP SEEDS----------
 # CANGGU
-create_canggu_venues(canggu_venue_attributes)
+# create_canggu_venues(canggu_venue_attributes)
 create_canggu_venue_reviews(canggu_venue_attributes, canggu_venue_review_attributes)
 
 # CHIANG MAI

@@ -83,7 +83,7 @@ end
 def create_canggu_venue_reviews(canggu_venue_attributes, canggu_venue_review_attributes)
   puts 'Applying Jonnys reviews to canggu coffee shops'
 
-  canggu_venue_attributes.each do |venue, x|
+  canggu_venue_attributes.each_with_index do |venue, x|
     review = Review.new(canggu_venue_review_attributes[x])
     review.venue = Venue.where(name: venue[:name])[0]
     review.save
