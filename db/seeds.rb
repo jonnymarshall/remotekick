@@ -12,14 +12,14 @@ require_relative "./seeds/city_seeds/city_seeds.rb"
 puts 'Cleaning database...'
 Review.destroy_all
 Venue.destroy_all
-# City.destroy_all
-# User.destroy_all
+City.destroy_all
+User.destroy_all
 
 # ----------USER SEEDS----------
-# create_user_seeds
+create_user_seeds
 
 # ----------CITY SEEDS----------
-# create_city_seeds
+create_city_seeds
 
 # ----------COFFEE SHOP SEEDS----------
 

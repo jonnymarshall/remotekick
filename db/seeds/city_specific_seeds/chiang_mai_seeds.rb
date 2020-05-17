@@ -208,6 +208,50 @@ def create_chiang_mai_venues
       wifi_restrictions: 0,
       latitude: 18.803645,
       longitude: 98.959728
+    },
+    {
+      name: "Elephant Cafe & Coworking",
+      description:  'Coworking space',
+      user: User.first,
+      serves_food: false,
+      air_conditioning: true,
+      has_wifi: true,
+      wifi_restrictions: 0,
+      latitude: 18.807530,
+      longitude: 98.956444
+    },
+    {
+      name: "Bay's Cafe",
+      description:  'Cafe',
+      user: User.first,
+      serves_food: false,
+      air_conditioning: false,
+      has_wifi: true,
+      wifi_restrictions: 0,
+      latitude: 18.806312,
+      longitude: 98.961538
+    },
+    {
+      name: "Coffee Addict",
+      description: 'Cafe',
+      user: User.first,
+      serves_food: true,
+      air_conditioning: true,
+      has_wifi: true,
+      wifi_restrictions: 0,
+      latitude: 18.792457,
+      longitude: 98.978503
+    },
+    {
+      name: "Bird's Nest Cafe",
+      description:  'Restaurant',
+      user: User.first,
+      serves_food: true,
+      air_conditioning: false,
+      has_wifi: true,
+      wifi_restrictions: 0,
+      latitude: 18.793786,
+      longitude: 98.980329
     }
   ]
   Venue.create!(venue_attributes)
@@ -362,6 +406,102 @@ def create_chiang_mai_venue_reviews
       upload_speed: 16.5,
       ping: 81
     },
+    # Addict cafe
+    {
+      user: User.first,
+      content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
+      rating: 5,
+      plug_sockets: 2,
+      quietness: 2,
+      comfort: 2,
+      download_speed: 116.07,
+      upload_speed: 48.62,
+      ping: 1
+    },
+    # Thesis Coffee
+    {
+      user: User.first,
+      content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
+      rating: 2,
+      plug_sockets: 2,
+      quietness: 2,
+      comfort: 1,
+      download_speed: 10.3,
+      upload_speed: 5.27,
+      ping: 28
+    },
+    # Only Coffee
+    {
+      user: User.first,
+      content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
+      rating: 4,
+      plug_sockets: 1,
+      quietness: 2,
+      comfort: 0,
+      download_speed: 54.57,
+      upload_speed: 21.48,
+      ping: 15
+    },
+    # Annista
+    {
+      user: User.first,
+      content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
+      rating: 5,
+      plug_sockets: 2,
+      quietness: 2,
+      comfort: 2,
+      download_speed: 221.54,
+      upload_speed: 54.64,
+      ping: 8
+    },
+    # Elephant cafe
+    {
+      user: User.first,
+      content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
+      rating: 4,
+      plug_sockets: 2,
+      quietness: 2,
+      comfort: 2,
+      download_speed: 117.93,
+      upload_speed: 43.67,
+      ping: 16
+    },
+    # Bay's Cafe
+    {
+      user: User.first,
+      content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
+      rating: 5,
+      plug_sockets: 1,
+      quietness: 2,
+      comfort: 1,
+      download_speed: 14.07,
+      upload_speed: 3.56,
+      ping: 33
+    },
+    # Coffee Addict
+    {
+      user: User.first,
+      content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
+      rating: 4,
+      plug_sockets: 2,
+      quietness: 2,
+      comfort: 2,
+      download_speed: 125.58,
+      upload_speed: 38.23,
+      ping: 23
+    },
+    # Bird's Nest Cafe
+    {
+      user: User.first,
+      content: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.quote}",
+      rating: 3,
+      plug_sockets: 1,
+      quietness: 2,
+      comfort: 1,
+      download_speed: 107.27,
+      upload_speed: 42.58,
+      ping: 21
+    }
   ]
 
   puts 'Applying Jonnys reviews to chiang mai coffee shops'
