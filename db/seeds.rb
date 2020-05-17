@@ -9,30 +9,31 @@ require_relative "./seeds/user_seeds/user_seeds.rb"
 require_relative "./seeds/city_seeds/city_seeds.rb"
 
 # ----------CLEAN DB----------
-# puts 'Cleaning database...'
-# Review.destroy_all
-# Venue.destroy_all
-# User.destroy_all
-# City.destroy_all
+puts 'Cleaning database...'
+Review.destroy_all
+Venue.destroy_all
+City.destroy_all
+User.destroy_all
 
 # ----------USER SEEDS----------
-# create_user_seeds
+create_user_seeds
 
 # ----------CITY SEEDS----------
-# create_city_seeds
+create_city_seeds
 
 # ----------COFFEE SHOP SEEDS----------
+
+# CHIANG MAI
+create_chiang_mai_venues
+create_chiang_mai_venue_reviews
+
+# MELBOURE
+create_melbourne_venues(melbourne_venue_attributes)
+create_melbourne_venue_reviews(melbourne_venue_attributes, melbourne_venue_review_attributes)
+
 # CANGGU
 create_canggu_venues(canggu_venue_attributes)
 create_canggu_venue_reviews(canggu_venue_attributes, canggu_venue_review_attributes)
-
-# CHIANG MAI
-# create_chiang_mai_venues
-# create_chiang_mai_venue_reviews
-
-# MELBOURE
-# create_melbourne_venues(melbourne_venue_attributes)
-# create_melbourne_venue_reviews(melbourne_venue_attributes, melbourne_venue_review_attributes)
 
 #----------CLOUDINARY IMAGE SEEDS----------
 # url = "http://static.giantbomb.com/uploads/original/9/99864/2419866-nes_console_set.png"
