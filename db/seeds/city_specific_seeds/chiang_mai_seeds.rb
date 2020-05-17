@@ -368,11 +368,10 @@ def create_chiang_mai_venue_reviews
 
   x = 0
 
-  Venue.all.each do |venue|
+  Venue.all.each_with_index do |venue, x|
     review = Review.new(review_attributes[x])
     review.venue = venue
     review.save
-    x += 1
   end
 
   puts "Created #{Review.count} reviews..."
@@ -385,5 +384,5 @@ def create_chiang_mai_venue_reviews
     review.save
   end
 
-  puts "Created 10 additional reviews for coffee shop with ID: #{Venue.first.id}"
+  puts "Created 10 additional reviews for #{Venue.first.name} with ID: #{Venue.first.id}"
 end
