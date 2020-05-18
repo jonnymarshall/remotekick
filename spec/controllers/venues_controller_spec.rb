@@ -6,7 +6,7 @@ RSpec.describe VenuesController do
   let(:u) { create(:user) }
   let!(:ven) { create(:venue, user: create(:user)) }
 
-    describe "GET index", focus: true do
+    describe "GET index" do
       it "renders :index template" do
         get :index
         expect(assigns(:venues)).to match_array([ven])
