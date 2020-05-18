@@ -22,7 +22,6 @@ create_user_seeds
 create_city_seeds
 
 # ----------COFFEE SHOP SEEDS----------
-
 # CHIANG MAI
 create_chiang_mai_venues
 create_chiang_mai_venue_reviews

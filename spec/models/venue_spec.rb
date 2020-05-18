@@ -73,7 +73,7 @@ RSpec.describe Venue do
     end
 
     describe 'truthy/falsy values' do
-      let!(:rev1) { create(:review, user: u, venue: ven, content: "rev1", has_wifi: true) }
+      let!(:rev1) { create(:review, user: u, venue: ven, content: "rev1") }
 
       describe 'truthy/falsy value if only one review is given' do
         it 'truthy/falsy value from review is taken as truth' do
@@ -93,6 +93,12 @@ RSpec.describe Venue do
           let!(:rev3) { create(:review, user: u, venue: ven, content: "rev3", has_wifi: true) }
           it 'should update' do
             expect(ven.has_wifi).to be true
+          end
+        end
+
+        describe 'truthy/falsy venue values if last review is destroyed', focus: true do
+          it 'must not throw an error' do
+            rev1.destroy!
           end
         end
 

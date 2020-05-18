@@ -80,7 +80,11 @@ class Venue < ApplicationRecord
   end
 
   def val_truth_checked?(attribute, value)
-    self.reviews.count == 1 || self.reviews[-2].send(attribute) == value ? true : false
+    if self.reviews.count > 0
+      self.reviews.count == 1 || self.reviews[-2].send(attribute) == value ? true : false
+    else
+      nil
+    end
   end
 
 end
