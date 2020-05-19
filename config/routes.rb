@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   # DEVELOPMENT
   resources :devpages, only: :show
-  # devise_for :users
-  devise_for :users, controllers: { sessions: 'users/sessions' }
+  
+  devise_for :users, controllers: {
+    # sessions: 'users/sessions',
+    confirmations: 'confirmations'
+  }
   
   get 'venues/new/venue_search', to: 'venues#venue_search'
   get '/location_search', to: 'pages#home'
