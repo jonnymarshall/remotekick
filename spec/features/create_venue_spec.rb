@@ -27,14 +27,11 @@ RSpec.describe 'Create Venue' do
         expect(page).to have_content 'Test'
       end
 
-      ## TEST ONLY
-      # it 'sends an email' do
-      #   new_venue_form.visit_page.fill_in_with.submit
-
-      #   expect(ActionMailer::Base.deliveries.count).to eq(1)
-      #   expect(ActionMailer::Base.deliveries.last.to).to include(u.email)
-      # end
-      ## TEST ONLY
+      it 'sends an email' do
+        new_venue_form.visit_page.fill_in_with.submit
+        expect(ActionMailer::Base.deliveries.count).to eq(1)
+        expect(ActionMailer::Base.deliveries.last.to).to include(u.email)
+      end
   
       it 'cannot create venue with invalid data' do
         new_venue_form.visit_page.submit

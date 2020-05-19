@@ -55,6 +55,7 @@ class VenuesController < ApplicationController
     @venue = Venue.new(new_venue_params)
     @venue.user = current_user
     if @venue.save
+      VenueMailer.new_venue_listed(user: @venue.user).deliver_now
       redirect_to venue_path(@venue)
     else
       render :new
