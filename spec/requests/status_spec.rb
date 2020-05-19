@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Status Requests' do
   let(:u) { create(:user) }
+  let!(:ven) { create(:venue, user: u) }
 
   describe '200 status request' do
 
