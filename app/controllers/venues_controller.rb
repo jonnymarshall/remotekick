@@ -4,7 +4,7 @@ class VenuesController < ApplicationController
   before_action :venues_params, only: [:index]
   before_action :new_venue_params, only: [:create]
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :validate_owner, only: [:edit, :update, :destroy]
+  before_action :authorize_user, only: [:edit, :update, :destroy]
   # @venue should be called as venue for decorated instance in views
   decorates_assigned :venue
   has_scope :location, if: :location_given?
@@ -86,8 +86,7 @@ class VenuesController < ApplicationController
   end
 
   def destroy
-    @venue.destroy
-    redirect_to venues_path
+    redirect_to venues_path if @venue.destroy
   end
 
   def venue_search
@@ -186,11 +185,7 @@ class VenuesController < ApplicationController
     venues_params[:distance] && venues_params[:distance].to_i > 0
   end
   
-  def validate_owner
-    if @venue.has_owner? && @venue.owner != current_user
-      redirect_to venues_path
-    elsif !@venue.has_owner? && @venue.user != current_user
-      redirect_to venues_path
-    end
+  def authorize_user
+    authorize @venue
   end
 end

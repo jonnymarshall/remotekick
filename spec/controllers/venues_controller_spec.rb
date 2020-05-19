@@ -79,15 +79,14 @@ RSpec.describe VenuesController do
     end
 
     context "is not the owner of the venue"  do
-      let!(:ven) { create(:venue, user: create(:user)) }
 
       context "an owner exists for the venue" do
         let!(:ven) { create(:venue, user: u, owner: create(:user)) }
         
         describe "GET edit" do
-          it "redirects to venues page" do
+          it "redirects to show page" do
             get :edit, params: { id: ven.id }
-            expect(response).to redirect_to(venues_path)
+            expect(response).to redirect_to(venue_path(ven))
           end
         end
     
@@ -98,9 +97,9 @@ RSpec.describe VenuesController do
             expect(ven.name).to eq("Some venue name")
           end
   
-          it "redirects to venues page" do
+          it "redirects to show page" do
             put :update, params: { id: ven.id, venue: valid_data }
-            expect(response).to redirect_to(venues_path)
+            expect(response).to redirect_to(venue_path(ven))
           end
         end
     
@@ -110,16 +109,16 @@ RSpec.describe VenuesController do
             expect(Venue.exists?(ven.id)).to eq true
           end
   
-          it "redirects to venues page" do
+          it "redirects to show page" do
             delete :destroy, params: { id: ven.id }
-            expect(response).to redirect_to(venues_path)
+            expect(response).to redirect_to(venue_path(ven))
           end
         end
       end
 
       context "an owner does not exist for the venue" do
 
-        context "the user is the user who added the venue" do
+        context "the current user is the user who added the venue" do
           let!(:ven) { create(:venue, user: u) }
 
           describe "GET edit" do
@@ -166,13 +165,13 @@ RSpec.describe VenuesController do
 
         end
 
-        context "the user is not the user who added the venue" do
+        context "the current user is not the user who added the venue" do
           let!(:ven) { create(:venue, user: create(:user)) }
 
           describe "GET edit" do
-            it "redirects to venues page" do
+            it "redirects to show page" do
               get :edit, params: { id: ven.id }
-              expect(response).to redirect_to(venues_path)
+              expect(response).to redirect_to(venue_path(ven))
             end
           end
       
@@ -183,9 +182,9 @@ RSpec.describe VenuesController do
               expect(ven.name).to eq("Some venue name")
             end
     
-            it "redirects to venues page" do
+            it "redirects to show page" do
               put :update, params: { id: ven.id, venue: valid_data }
-              expect(response).to redirect_to(venues_path)
+              expect(response).to redirect_to(venue_path(ven))
             end
           end
       
@@ -195,9 +194,9 @@ RSpec.describe VenuesController do
               expect(Venue.exists?(ven.id)).to eq true
             end
     
-            it "redirects to venues page" do
+            it "redirects to show page" do
               delete :destroy, params: { id: ven.id }
-              expect(response).to redirect_to(venues_path)
+              expect(response).to redirect_to(venue_path(ven))
             end
           end
         end
