@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Status Requests' do
-  let(:u) { create(:user) }
 
   describe '200 status request' do
+    let(:u) { create(:user) }
+    let!(:ven) { create(:venue, user: u) }
 
     it 'Homepage responds with 200' do
       get('/')
@@ -36,5 +37,12 @@ RSpec.describe 'Status Requests' do
       expect(response.status).to eql(200)
     end
 
+  end
+
+  describe '302 status request' do
+    it '/venues responds with 302 if no venues' do
+      get('/venues')
+      expect(response.status).to eql(302)
+    end
   end
 end
