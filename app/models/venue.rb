@@ -59,10 +59,6 @@ class Venue < ApplicationRecord
     update(updated_values)
   end
 
-  def has_owner?
-    self.owner.present?
-  end
-
   private
 
   def attr_is_averageable?(k)
