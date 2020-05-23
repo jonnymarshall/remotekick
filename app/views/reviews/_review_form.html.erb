@@ -53,7 +53,7 @@
               <% end %>
             </div>
           </div>
-    
+     
           <!-- FILTER > COMFORT -->
           <div class="field">
             <label class="label">Comfort</label>
@@ -77,14 +77,12 @@
           </div>
         
           <label class="label">Please select appropriate tags</label>
-          <div class="tags">
-            <span class="tag">
+          <div class="tags"  data-controller="tags">
+            <span class="tag u-pointer" data-action="click->tags#activateTag">
               Serves Food
-              <button class="delete is-small"></button>
             </span>
-            <span class="tag">
+            <span class="tag u-pointer" data-action="click->tags#activateTag">
               Open late
-              <button class="delete is-small"></button>
             </span>
           </div>
           <div class="field" data-controller="photo-upload">
