@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.7.0'
+ruby '2.7.1'
 
 gem 'bootsnap', require: false
 gem 'devise'
@@ -29,6 +29,7 @@ gem 'bulma-rails', '~> 0.8.0'
 gem 'draper'
 gem 'responders'
 gem 'httparty'
+gem 'pundit'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

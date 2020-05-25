@@ -1,10 +1,11 @@
 class VenuesController < ApplicationController
   include Foursquare
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   before_action :set_venue, only: [:show, :edit, :update, :destroy]
   before_action :venues_params, only: [:index]
   before_action :new_venue_params, only: [:create]
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :validate_owner, only: [:edit, :update, :destroy]
+  before_action :authorize_user, only: [:edit, :update, :destroy]
   # @venue should be called as venue for decorated instance in views
   decorates_assigned :venue
   has_scope :location, if: :location_given?
@@ -20,6 +21,7 @@ class VenuesController < ApplicationController
 
   def index
     @venues = apply_scopes(Venue).all
+    redirect_to cities_path and return if !@venues.any?
     if venues_params[:order_by]
       order_venues_by_param(@venues, venues_params[:order_by])
     end
@@ -53,6 +55,7 @@ class VenuesController < ApplicationController
     @venue = Venue.new(new_venue_params)
     @venue.user = current_user
     if @venue.save
+      VenueMailer.new_venue_listed(user: @venue.user).deliver_now
       redirect_to venue_path(@venue)
     else
       render :new
@@ -85,8 +88,7 @@ class VenuesController < ApplicationController
   end
 
   def destroy
-    @venue.destroy
-    redirect_to venues_path
+    redirect_to venues_path if @venue.destroy
   end
 
   def venue_search
@@ -185,11 +187,15 @@ class VenuesController < ApplicationController
     venues_params[:distance] && venues_params[:distance].to_i > 0
   end
   
-  def validate_owner
-    if @venue.has_owner? && @venue.owner != current_user
-      redirect_to venues_path
-    elsif !@venue.has_owner? && @venue.user != current_user
-      redirect_to venues_path
-    end
+  def authorize_user
+    authorize @venue
+  end
+
+  def user_not_authorized(exception)
+    policy_name = exception.policy.class.to_s.underscore
+ 
+    flash[:error] = t "#{policy_name}.#{exception.query}", scope: "pundit", default: :default
+
+    redirect_to(venue_path(@venue))
   end
 end

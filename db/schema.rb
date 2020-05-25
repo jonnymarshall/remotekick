@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_09_164250) do
+ActiveRecord::Schema.define(version: 2020_05_19_144934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,10 @@ ActiveRecord::Schema.define(version: 2020_05_09_164250) do
     t.bigint "category_id"
     t.index ["category_id"], name: "index_categories_venues_on_category_id"
     t.index ["venue_id"], name: "index_categories_venues_on_venue_id"
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "cover_photos", force: :cascade do |t|
@@ -83,6 +87,10 @@ ActiveRecord::Schema.define(version: 2020_05_09_164250) do
     t.datetime "updated_at", null: false
     t.string "first_name"
     t.string "last_name"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -111,6 +119,8 @@ ActiveRecord::Schema.define(version: 2020_05_09_164250) do
     t.boolean "has_wifi"
     t.string "category"
     t.bigint "owner_id"
+    t.bigint "city_id"
+    t.index ["city_id"], name: "index_venues_on_city_id"
     t.index ["latitude", "longitude"], name: "index_venues_on_latitude_and_longitude"
     t.index ["owner_id"], name: "index_venues_on_owner_id"
     t.index ["user_id"], name: "index_venues_on_user_id"
@@ -121,6 +131,7 @@ ActiveRecord::Schema.define(version: 2020_05_09_164250) do
   add_foreign_key "review_photos", "reviews"
   add_foreign_key "reviews", "users"
   add_foreign_key "reviews", "venues"
+  add_foreign_key "venues", "cities"
   add_foreign_key "venues", "users"
   add_foreign_key "venues", "users", column: "owner_id"
 end

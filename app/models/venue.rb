@@ -1,5 +1,6 @@
 class Venue < ApplicationRecord
   belongs_to :user
+  belongs_to :city, optional: true
   has_many :reviews, dependent: :destroy
   has_many :review_photos, through: :reviews
   belongs_to :owner, class_name: 'User', optional: true
@@ -49,7 +50,7 @@ class Venue < ApplicationRecord
     # Assign new true/false value if the value passes truth checking
     attribues_to_truth_check.each do |boolean_key_value_pair|
       k, val = boolean_key_value_pair[0], boolean_key_value_pair[1]
-      truth_checked_values[k] = val if val_truth_checked?(k, val)
+      truth_checked_values[k] = truth_checked_val(k, val)
     end
     
     # Merge hashes of values to update
@@ -57,10 +58,6 @@ class Venue < ApplicationRecord
 
     # Update values
     update(updated_values)
-  end
-
-  def has_owner?
-    self.owner.present?
   end
 
   private
@@ -79,8 +76,13 @@ class Venue < ApplicationRecord
     self.reviews.average(attribute.to_sym)
   end
 
-  def val_truth_checked?(attribute, value)
-    self.reviews.count == 1 || self.reviews[-2].send(attribute) == value ? true : false
+  def truth_checked_val(attribute, value)
+    if self.reviews.count == 0
+      nil
+    elsif self.reviews.count == 1 || self.reviews[-2].send(attribute) == value
+      value
+    else
+      self.reviews[-2].send(attribute)
+    end
   end
-
 end
