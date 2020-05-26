@@ -6,7 +6,15 @@ def create_user_seeds
       last_name:  'Marshall',
       email: 'jonny@remotekick.com',
       password: "coffee",
+      admin: true
     },
+    {
+      first_name: 'John',
+      last_name:  'Doe',
+      email: 'johndoe@gmail.com',
+      password: "coffee",
+      admin: false
+    }
   ]
 
   User.create!(user_attributes)
