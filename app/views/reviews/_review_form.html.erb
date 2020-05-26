@@ -113,13 +113,15 @@
             <p class="control">
               <%= review_form.submit "Submit review", class: "button is-primary" %>
             </p>
-            <p class="control">
-              <%= link_to "Delete Review", venue_review_path(venue, review), method: :delete, class: "button is-danger" %>
-            </p>
-            <p class="control">
-              <%= link_to 'Cancel', :back, class: "button is-light" %>
-            </p>
+            <% if review.persisted? %>
+              <p class="control">
+                <%= link_to "Delete Review", venue_review_path(venue, review), method: :delete, class: "button is-danger" %>
+              </p>
+            <% end %>
           </div>
+          <p class="control">
+            <%= link_to 'Cancel', :back, class: "button is-light" %>
+          </p>
         <% end %>
       </div>
       <div class="column is-paddingless"></div>

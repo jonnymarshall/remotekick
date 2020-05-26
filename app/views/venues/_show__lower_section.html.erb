@@ -2,6 +2,7 @@
   <div class="container">
     <div class="columns">
       <div class="column">
+      <% if policy(@review).new?(@venue) %>
         <article class="media">
           <figure class="media-left">
             <p class="image is-64x64">
@@ -16,13 +17,19 @@
             </div>
             <div class="field">
               <p class="control">
-              <%= link_to new_venue_review_path(@venue) do %>
-                <button class="button">Post review</button>
-              <% end %>
+                <%= link_to new_venue_review_path(venue) do %>
+                  <button class="button c-venue-edit-button">
+                    <span class="icon">
+                      <i class="fas fa-comment-alt"></i>
+                    </span>
+                    <span>Post review</span>
+                  </button>
+                <% end %>
               </p>
             </div>
           </div>
         </article>
+        <% end %>
         <% @venue.reviews.order('updated_at DESC').each do |review| %>
           <%= render partial: "review_media_item", locals: { review: review.decorate } %>
         <% end %>

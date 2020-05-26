@@ -5,6 +5,10 @@ class ReviewPolicy < ApplicationPolicy
     @review = review
   end
 
+  def new?(venue)
+    true unless user_not_logged_in || existing_review_exists_for_user(venue)
+  end
+
   def edit?
     @review.user == @user
   end
@@ -22,4 +26,15 @@ class ReviewPolicy < ApplicationPolicy
       scope.all
     end
   end
+
+  private
+
+  def user_not_logged_in
+    @user.nil?
+  end
+
+  def existing_review_exists_for_user(venue)
+    venue.reviews.where(user: @user).any?
+  end
+
 end
