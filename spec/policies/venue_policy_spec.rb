@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe VenuePolicy, type: :policy, focus: true do
+RSpec.describe VenuePolicy, type: :policy do
   context "authenticated user" do
 
     let(:u) { create(:user) }

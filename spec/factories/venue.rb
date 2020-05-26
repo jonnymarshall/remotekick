@@ -20,7 +20,7 @@ FactoryBot.define do
     # latitude
     # longitude
     # foursquare_id
-    category { categories.sample }
+    # category { categories.sample }
   end
 
   factory :no_wifi_venue do
