@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   
   root to: 'pages#home'
   resources :venues do
-    resources :reviews, only: [:index, :create, :new, :edit, :update]
+    resources :reviews, only: [:index, :create, :new, :edit, :update, :destroy]
     get 'venue_search', on: :new
   end
 

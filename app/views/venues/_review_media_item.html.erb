@@ -15,6 +15,7 @@
       <small>
       <% if policy(review).update? %>
         <%= link_to "Edit", edit_venue_review_path(venue, review) %> · 
+        <%= link_to "Delete", venue_review_path(venue, review), method: :delete %> · 
       <% end %>
       <a>Like</a> · <a>Reply</a> · <%= review.when_reviewed %></small>
       </p>

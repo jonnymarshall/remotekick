@@ -114,7 +114,10 @@
               <%= review_form.submit "Submit review", class: "button is-primary" %>
             </p>
             <p class="control">
-              <a class="button is-light" href="/">Cancel</a>
+              <%= link_to "Delete Review", venue_review_path(venue, review), method: :delete, class: "button is-danger" %>
+            </p>
+            <p class="control">
+              <%= link_to 'Cancel', :back, class: "button is-light" %>
             </p>
           </div>
         <% end %>
