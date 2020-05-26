@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_venue, only: [:show, :create, :new, :edit, :update, :destroy]
-  before_action :set_review, only: [:edit, :update]
+  before_action :set_review, only: [:edit, :update, :destroy]
 
   def new
     @review = current_user.reviews.new
@@ -26,6 +26,10 @@ class ReviewsController < ApplicationController
   def update
     @review.update(review_params)
     redirect_to venue_path(@venue)
+  end
+
+  def destroy
+    redirect_to venue_path(@venue) if @review.destroy!
   end
 
   private
