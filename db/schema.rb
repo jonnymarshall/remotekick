@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_19_144934) do
+ActiveRecord::Schema.define(version: 2020_05_25_102604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,9 +117,10 @@ ActiveRecord::Schema.define(version: 2020_05_19_144934) do
     t.float "longitude"
     t.string "foursquare_id"
     t.boolean "has_wifi"
-    t.string "category"
     t.bigint "owner_id"
     t.bigint "city_id"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_venues_on_category_id"
     t.index ["city_id"], name: "index_venues_on_city_id"
     t.index ["latitude", "longitude"], name: "index_venues_on_latitude_and_longitude"
     t.index ["owner_id"], name: "index_venues_on_owner_id"
@@ -131,6 +132,7 @@ ActiveRecord::Schema.define(version: 2020_05_19_144934) do
   add_foreign_key "review_photos", "reviews"
   add_foreign_key "reviews", "users"
   add_foreign_key "reviews", "venues"
+  add_foreign_key "venues", "categories"
   add_foreign_key "venues", "cities"
   add_foreign_key "venues", "users"
   add_foreign_key "venues", "users", column: "owner_id"
