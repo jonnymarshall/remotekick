@@ -1,5 +1,15 @@
-<section class="hero is-medium is-bold" style="<%= venue.gradient %>, <%= venue.hero_image_url %>">
+<section id="c-venues-show-hero-section" class="hero is-medium is-bold" style="<%= venue.gradient %>, <%= venue.hero_image_url %>">
   <div class="hero-body">
+  <% if policy(venue).update? %>
+    <%= link_to edit_venue_path(venue) do %>
+      <button class="button c-venue-edit-button">
+        <span class="icon">
+          <i class="fas fa-edit"></i>
+        </span>
+        <span>Edit Details</span>
+      </button>
+    <% end %>
+  <% end %>
     <div class="container has-text-centered">
       <h1 class="title is-2 has-text-white has-text-shadow">
         <%= venue.name %>
