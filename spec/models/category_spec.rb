@@ -13,25 +13,21 @@ RSpec.describe Category, focus: true do
 
   describe 'validations' do
 
-    # describe 'name' do
-    #   it { should validate_uniqueness_of(:name) }
-    # end
+    describe 'name' do
+      it { should validate_uniqueness_of(:name) }
+    end
 
   end
 
   describe 'associations' do
-    it 'the category should belong to a venue' do
-      byebug
-      # ven.categories << cat
-      # ven.save!
-      # ven.should belong_to(cat)
+    it 'the category should belong to the venue' do
+      ven.categories << cat
+      expect(ven.categories).to eq([cat])
     end
 
     it 'the venue should belong to the category' do
-      #   ven << cat
-      #   ven.save!
-      #   cat.should belong_to(ven)
-      # end
+      ven.categories << cat
+      expect(cat.venues).to eq([ven])
     end
     
   end

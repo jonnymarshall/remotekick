@@ -39,9 +39,10 @@ example_id                                                    | status | run_tim
 ./spec/features/create_venue_spec.rb[1:1:2:3]                 | failed | 0.19435 seconds |
 ./spec/features/home_spec.rb[1:1]                             | passed | 0.18251 seconds |
 ./spec/features/venue_page_spec.rb[1:1:1]                     | failed | 0.00309 seconds |
-./spec/models/category_spec.rb[1:1:1]                         | passed | 0.00956 seconds |
-./spec/models/category_spec.rb[1:3:1]                         | passed | 3.58 seconds    |
-./spec/models/category_spec.rb[1:3:2]                         | passed | 0.00105 seconds |
+./spec/models/category_spec.rb[1:1:1]                         | passed | 0.00312 seconds |
+./spec/models/category_spec.rb[1:2:1:1]                       | passed | 0.16599 seconds |
+./spec/models/category_spec.rb[1:3:1]                         | passed | 0.04792 seconds |
+./spec/models/category_spec.rb[1:3:2]                         | passed | 0.01136 seconds |
 ./spec/models/city_spec.rb[1:1:1]                             | passed | 0.00595 seconds |
 ./spec/models/user_spec.rb[1:1:1:1]                           | passed | 0.00696 seconds |
 ./spec/models/venue_spec.rb[1:1:1]                            | failed | 0.00382 seconds |
