@@ -13,7 +13,6 @@ def create_user_seeds
       last_name:  'Doe',
       email: 'johndoe@gmail.com',
       password: "coffee",
-      admin: false
     }
   ]
 
