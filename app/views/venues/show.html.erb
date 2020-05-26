@@ -1,3 +1,14 @@
+<% if policy(venue).update? %>
+  <%= link_to(edit_venue_path(venue)) do %>
+    <button class="button">
+      <span class="icon">
+        <i class="fas fa-edit"></i>
+      </span>
+      <span>Edit Details</span>
+    </button>
+  <% end %>
+<% end %>
+
 <%= render 'show__hero_section' %>
 <%= render 'show__feature_bar' %>
 <%= render 'show__lower_section' %>
@@ -22,7 +33,6 @@
     # @venue.serves_smoothies ||
     # @venue.air_conditioning
     %>
-      <div class="divider"></div>
   <% end %>
 
     <!-- TOGGLES SECTION-->
@@ -37,6 +47,3 @@
       <p class="padding">Map</p>
     </div>
   </div>
-
-  <!--DIVIDING LINE-->
-  <div class="divider"></div>

@@ -62,14 +62,29 @@ class VenueDecorator < Draper::Decorator
   end
 
   
-  def category_tag
-    if has_attribute?("category")
-      tag = h.content_tag( :span, object.category, :class=>'tag is-primary is-small-touch')
+  def category_tags
+    if has_any?("categories")
+      tag = h.content_tag( :span, object.categories.first.name, :class=>'tag is-primary is-small-touch')
       h.content_tag( :div, tag)
     else
       tag = h.content_tag( :span, "Unknown category", :class=>'tag is-primary is-small-touch')
       h.content_tag( :div, tag)
     end
+  end
+
+  def edit_button
+    # h.link_to "Edit Venue", h.edit_venue_path(object), class: "button is-light"
+    # span_element = h.content_tag( :i, icon_element, class: "far fa-edit"), class: "icon has-text-info"
+    icon_element = h.content_tag( :i, nil, :class=>'fas fa-edit')
+    span_element = h.content_tag( :span, icon_element, :class=>"icon has-text-info")
+    button_element = h.content_tag( :div, span_element, :class=>"button is-light")
+    # button_element = h.content_tag "Edit Venue", h.edit_venue_path(object), class: "button is-light"
+    h.link_to(h.edit_venue_path(object)) do
+      button_element
+    end
+    # <span class="icon has-text-info">
+    #   <i class="far fa-edit"></i>
+    # </span>
   end
 
   private
