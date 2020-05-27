@@ -13,6 +13,31 @@ class ReviewDecorator < ApplicationDecorator
       "#{((Time.now - review.updated_at) / 1.day).round} days ago"
     end
   end
+
+  def form_heading
+    if object.persisted?
+      h.tag.h1 'Edit Review', class: "title"
+    else
+      h.tag.h1 'Add New Review', class: "title"
+    end
+  end
+
+  def form_submit_button(review_form)
+    if object.persisted?
+      review_form.submit "Update", class: "button is-primary"
+    else
+      review_form.submit "Submit", class: "button is-primary"
+    end
+  end
+
+  def form_delete_button(venue)
+    if object.persisted?
+      h.tag.p class: "control" do
+        h.link_to "Delete", h.venue_review_path(venue, object), method: :delete, class: "button is-danger"
+      end
+    end
+  end
+
 end
 
 

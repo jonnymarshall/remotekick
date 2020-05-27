@@ -3,7 +3,7 @@
     <div class="columns">
       <div class="column is-paddingless"></div>
       <div class="column is-two-fifths">
-        <h1 class="title">Leave a review for <%= venue.name %></h1>
+        <%= review.form_heading %>
         <%= form_with model: [venue, review], local: true, class: "form-group col-xs-6", :data => { :controller => 'icon-state' } do |review_form| %>
           <!-- FILTER > RATING -->
           <div class="field">
@@ -38,7 +38,7 @@
           <!-- FILTER > HAS WIFI -->
           <div class="field">
             <label class="checkbox">
-              <%= review_form.check_box :has_wifi, value: "0" %>
+              <%= review_form.check_box :has_wifi, { checked: !venue.has_wifi }, 0, 1 %>
               This venue does not have wifi
             </label>
           </div>
@@ -108,16 +108,12 @@
                 </label>
               </div>
           </div>
-    
+          
           <div class="field is-grouped">
             <p class="control">
-              <%= review_form.submit "Submit", class: "button is-primary" %>
+              <%= review.form_submit_button(review_form) %>
             </p>
-            <% if review.persisted? %>
-              <p class="control">
-                <%= link_to "Delete", venue_review_path(venue, review), method: :delete, class: "button is-danger" %>
-              </p>
-            <% end %>
+            <%= review.form_delete_button(venue) %>
             <p class="control">
               <%= link_to 'Cancel', :back, class: "button is-light" %>
             </p>

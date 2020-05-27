@@ -95,7 +95,7 @@
                   <!-- <select name="wifi_restrictions">
                     <%= wifi_restrictions_options %>
                   </select> -->
-                  <%= venue_form.select(:wifi_restrictions, wifi_restrictions_options) -%>
+                  <%= venue_form.select(:wifi_restrictions, wifi_restrictions_options) %>
                 </div>
                 <div class="icon is-small is-left">
                   <i class="fas fa-stopwatch"></i>
@@ -164,7 +164,7 @@
               <p class="control">
                 <%= venue.form_submit_button(venue_form) %>
               </p>
-                <%= venue.form_delete_button %>
+              <%= venue.form_delete_button %>
               <p class="control">
                 <%= link_to 'Cancel', :back, class: "button is-light" %>
               </p>

@@ -90,7 +90,7 @@ class VenueDecorator < Draper::Decorator
 
   def form_heading
     if object.persisted?
-      h.tag.h1 'Update Venue', class: "title"
+      h.tag.h1 'Edit Venue', class: "title"
     else
       h.tag.h1 'Add New Venue', class: "title"
     end

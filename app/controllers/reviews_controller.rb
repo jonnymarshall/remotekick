@@ -48,7 +48,8 @@ class ReviewsController < ApplicationController
       :upload_speed,
       :download_speed,
       :serves_food,
-      :air_conditioning
+      :air_conditioning,
+      :has_wifi
     )
   end
 
