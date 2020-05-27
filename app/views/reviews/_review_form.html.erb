@@ -28,7 +28,7 @@
           <div class="field">
             <label class="label">Wifi Speed</label>
             <p class="control has-icons-left">
-              <%= review_form.number_field :upload_speed, value: "#{review.upload_speed}", class: "input", type: "number" %>
+              <%= review_form.number_field :upload_speed, value: "#{review.upload_speed}", class: "input", type: "number", step: 0.1 %>
               <span class="icon is-small is-left">
                 <i class="fas fa-wifi"></i>
               </span>
@@ -111,17 +111,17 @@
     
           <div class="field is-grouped">
             <p class="control">
-              <%= review_form.submit "Submit review", class: "button is-primary" %>
+              <%= review_form.submit "Submit", class: "button is-primary" %>
             </p>
             <% if review.persisted? %>
               <p class="control">
-                <%= link_to "Delete Review", venue_review_path(venue, review), method: :delete, class: "button is-danger" %>
+                <%= link_to "Delete", venue_review_path(venue, review), method: :delete, class: "button is-danger" %>
               </p>
             <% end %>
+            <p class="control">
+              <%= link_to 'Cancel', :back, class: "button is-light" %>
+            </p>
           </div>
-          <p class="control">
-            <%= link_to 'Cancel', :back, class: "button is-light" %>
-          </p>
         <% end %>
       </div>
       <div class="column is-paddingless"></div>
