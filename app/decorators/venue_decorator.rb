@@ -72,6 +72,22 @@ class VenueDecorator < Draper::Decorator
     end
   end
 
+  def form_submit_button(venue_form)
+    if object.persisted?
+      venue_form.submit "Update Venue", class: "button is-primary"
+    else
+      venue_form.submit "Submit new listing", class: "button is-primary"
+    end
+  end
+
+  def form_heading
+    if object.persisted?
+      h.tag.h1 'Update Venue', class: "title"
+    else
+      h.tag.h1 'Add New Venue', class: "title"
+    end
+  end
+
   private
 
   def has_attribute?(attribute)

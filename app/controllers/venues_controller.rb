@@ -125,7 +125,6 @@ class VenuesController < ApplicationController
       params.require(:venue).permit(
         :name,
         :description,
-        :category,
         :address,
         :serves_food,
         :air_conditioning,
