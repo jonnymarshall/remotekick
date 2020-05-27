@@ -74,9 +74,17 @@ class VenueDecorator < Draper::Decorator
 
   def form_submit_button(venue_form)
     if object.persisted?
-      venue_form.submit "Update Venue", class: "button is-primary"
+      venue_form.submit "Update", class: "button is-primary"
     else
-      venue_form.submit "Submit new listing", class: "button is-primary"
+      venue_form.submit "Submit", class: "button is-primary"
+    end
+  end
+
+  def form_delete_button
+    if object.persisted?
+      h.tag.p class: "control" do
+        h.link_to "Delete", h.venue_path(object), method: :delete, class: "button is-danger"
+      end
     end
   end
 
