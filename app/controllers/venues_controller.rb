@@ -19,6 +19,9 @@ class VenuesController < ApplicationController
   # has_scope :air_conditioning, type: :boolean
   respond_to :html, :json
 
+  def autocomplete
+  end
+  
   def index
     @venues = apply_scopes(Venue).all
     redirect_to cities_path and return if !@venues.any?
