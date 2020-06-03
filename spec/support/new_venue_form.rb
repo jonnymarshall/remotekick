@@ -17,7 +17,7 @@ class NewVenueForm
   end
 
   def submit
-    click_on('Submit new listing')
+    click_on('Submit')
     self
   end
 end
