@@ -31,7 +31,7 @@
         </article>
         <% end %>
         <% @venue.reviews.order('updated_at DESC').each do |review| %>
-          <%= render partial: "review_media_item", locals: { review: review.decorate } %>
+          <%= render partial: "venues/show_partials/review_media_item", locals: { review: review.decorate } %>
         <% end %>
       </div>
       <div class="column">
