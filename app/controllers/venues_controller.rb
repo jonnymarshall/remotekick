@@ -18,9 +18,6 @@ class VenuesController < ApplicationController
   has_scope :has_wifi
   # has_scope :air_conditioning, type: :boolean
   respond_to :html, :json
-
-  def autocomplete
-  end
   
   def index
     @venues = apply_scopes(Venue).all
@@ -58,7 +55,7 @@ class VenuesController < ApplicationController
     @venue = Venue.new(new_venue_params)
     @venue.user = current_user
     if @venue.save
-      VenueMailer.new_venue_listed(user: @venue.user).deliver_now
+      VenueMailer.new_venue_listed(user: @venue.user, venue: @venue).deliver_now!
       redirect_to venue_path(@venue)
     else
       render :new

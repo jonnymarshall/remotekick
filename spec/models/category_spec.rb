@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Category, focus: true do
+RSpec.describe Category do
   let(:u) { create(:user) }
   let(:cat) { create(:category) }
   let(:ven) { create(:venue, user: u) }

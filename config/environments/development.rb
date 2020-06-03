@@ -65,7 +65,31 @@ Rails.application.configure do
   config.hosts << "248c75ce.ngrok.io"
 
   # ActionMailer
-  config.action_mailer.default_url_options = { host: "http://localhost:3000" }
+  # config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+
+  config.active_record.dump_schema_after_migration = false
+
+  # config.action_mailer.default_url_options = { host:'localhost', port: '3000' }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+
+    config.action_mailer.smtp_settings = {
+      :address              => "mail.privateemail.com",
+      :port                 => 587,
+      :user_name            => ENV['REMOTEKICK_EMAIL_USERNAME'],
+      :password             => ENV['REMOTEKICK_EMAIL_PASSWORD'],
+      :authentication       => :plain, #:login, :cram_md5
+      :enable_starttls_auto => true
+    }
+
+    # config.action_mailer.smtp_settings = {
+    #   :address              => "smtp.gmail.com",
+    #   :domain               => 'localhost:3000',
+    #   :port                 => 587,
+    #   :user_name            => "jonnymarshall5@gmail.com",
+    #   :password             => "eG.12.12.90/jm-ol",
+    #   :authentication       => "plain",
+    #   :enable_starttls_auto => true
+    # }
 end
