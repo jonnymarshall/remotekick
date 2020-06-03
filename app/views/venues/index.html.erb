@@ -1,27 +1,27 @@
 <div id="index-page" data-controller="mobile-index-navigation">
   <section id="index__info_bar" class="section is-padding-small-touch is-hidden-touch">
     <div class="container">
-      <%= render 'index__info_bar' %>
+      <%= render 'venues/index_partials/index__info_bar' %>
     </div>
   </section>
   <section id="index__main-content" class="section is-padding-small-touch">
     <div class="container">
       <div class="columns">
         <!-- FILTERS -->
-        <%= render 'index__filters' %>
+        <%= render 'venues/index_partials/index__filters' %>
         <div id="index__right_section" class="column" data-target="mobile-index-navigation.indexRightSection">
-          <%= render 'index__map', :data => { :target => 'mobile-index-navigation.map' } %>
+          <%= render 'venues/index_partials/index__map', :data => { :target => 'mobile-index-navigation.map' } %>
           <section class="section u-padding-lr-0px is-hidden-touch is-padding-small-tb-touch" data-target="mobile-index-navigation.venuesList">
             <div id="index__cards-container" class="container" data-controller="index-cards-ordering">
-              <%= render partial: "index__cards-info-bar", locals: { venues: @venues } %>
+              <%= render partial: "venues/index_partials/index__cards-info-bar", locals: { venues: @venues } %>
               <div id="index__cards" class="columns is-desktop is-multiline" data-target="index-cards-ordering.cardsList">
               <% @venues.each do |venue| %>
                 <div class="column is-one-third-desktop">
-                  <%= render partial: "index__cards", locals: { venue: venue } %>
+                  <%= render partial: "venues/index_partials/index__cards", locals: { venue: venue } %>
                 </div>
               <% end %>
               </div>
-              <!-- <section id="index__cards-pagination" class="section">
+              <!-- <section id="venues/index_partials/index__cards-pagination" class="section">
                 <div class="container">
                   <%#= render 'index__pagination' %>
                 </div>
