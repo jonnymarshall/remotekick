@@ -87,8 +87,8 @@ Rails.application.configure do
     #   :address              => "smtp.gmail.com",
     #   :domain               => 'localhost:3000',
     #   :port                 => 587,
-    #   :user_name            => "jonnymarshall5@gmail.com",
-    #   :password             => "eG.12.12.90/jm-ol",
+    #   :user_name            => ENV['REMOTEKICK_EMAIL_USERNAME'],
+    #   :password             => ENV['REMOTEKICK_EMAIL_PASSWORD'],
     #   :authentication       => "plain",
     #   :enable_starttls_auto => true
     # }
