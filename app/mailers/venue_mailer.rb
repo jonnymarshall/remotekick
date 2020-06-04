@@ -4,7 +4,6 @@ class VenueMailer < ApplicationMailer
     @venue = venue
     mail(
       to: user.email,
-      subject: "Thanks for adding #{venue.name} on Remotekick",
-      body: "some body")
+      subject: "Thanks for adding #{venue.name} on Remotekick")
   end
 end
