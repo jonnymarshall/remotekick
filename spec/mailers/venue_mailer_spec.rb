@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe VenueMailer, type: :mailer do
   
-  describe 'new_venue_listed', focus: true do
+  describe 'new_venue_listed' do
     let(:u) { create(:user) }
     let(:ven) { create(:venue, user: u) }
     let(:mail) { described_class.new_venue_listed(user: u, venue: ven).deliver_now }

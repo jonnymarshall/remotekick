@@ -23,12 +23,12 @@ RSpec.describe VenuesController do
   
     describe "GET show" do
       it "renders :show template" do
-        get :show, params: { id: ven.id }
+        get :show, params: { id: ven.to_param }
         expect(response).to render_template(:show)
       end
   
       it "assigns venue to @venue" do
-        get :show, params: { id: ven.id }
+        get :show, params: { id: ven.to_param }
         expect(assigns(:venue)).to eq(ven)
       end
     end
