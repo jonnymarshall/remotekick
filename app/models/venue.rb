@@ -61,7 +61,7 @@ class Venue < ApplicationRecord
   end
 
   def to_param
-    "#{id}-#{name.parameterize}"
+    "#{to_global_id.to_param}-#{name.parameterize}"
   end
 
   private

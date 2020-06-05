@@ -103,7 +103,7 @@ class VenuesController < ApplicationController
   private
 
   def set_venue
-    @venue = Venue.find(params[:id])
+    @venue = GlobalID::Locator.locate(params[:id].split("-").first)
   end
 
   def venues_params
