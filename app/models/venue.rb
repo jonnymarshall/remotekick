@@ -60,6 +60,10 @@ class Venue < ApplicationRecord
     update(updated_values)
   end
 
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
+
   private
 
   def attr_is_averageable?(k)
