@@ -20,7 +20,7 @@ RSpec.describe VenueMailer, type: :mailer do
     end
 
     it 'assigns venue' do
-      expect(mail.body).to include(ven.name)
+      expect(mail.html_part.body.decoded).to include(ven.name)
     end
   end
 
