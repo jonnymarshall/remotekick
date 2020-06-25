@@ -60,9 +60,9 @@ class Venue < ApplicationRecord
     update(updated_values)
   end
 
-  def to_param
-    "#{to_global_id.to_param}-#{name.parameterize}"
-  end
+  # def to_param
+  #   "#{to_global_id.to_param}-#{name.parameterize}"
+  # end
 
   private
 
