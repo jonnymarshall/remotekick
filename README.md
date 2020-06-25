@@ -12,7 +12,3 @@ Heroku
 
 Front end:
 Bulma CSS & Stimulus JS
-
-This app uses mailcatcher. This gem causes conflict in the gemfile so it does not exist there and will not install with bundle.
-
-Please run 'gem install mailcatcher' to install this gem.
