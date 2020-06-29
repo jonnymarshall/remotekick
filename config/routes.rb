@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   
   devise_for :users, controllers: {
     # sessions: 'users/sessions',
-    confirmations: 'confirmations'
+    confirmations: 'users/confirmations',
+    # registrations: 'users/registrations'
   }
   
   get 'venues/new/venue_search', to: 'venues#venue_search'
