@@ -12,10 +12,7 @@
             <p class="control has-icons-left has-icons-right">
               <%= f.text_field :first_name, autofocus: true, class: "input", placeholder: "John" %>
               <span class="icon is-small is-left">
-                <i class="fas fa-envelope"></i>
-              </span>
-              <span class="icon is-small is-right">
-                <i class="fas fa-check"></i>
+                <i class="fas fa-user"></i>
               </span>
             </p>
           </div>
@@ -23,10 +20,7 @@
             <p class="control has-icons-left has-icons-right">
               <%= f.text_field :last_name, autofocus: true, class: "input", placeholder: "Doe" %>
               <span class="icon is-small is-left">
-                <i class="fas fa-envelope"></i>
-              </span>
-              <span class="icon is-small is-right">
-                <i class="fas fa-check"></i>
+                <i class="fas fa-user"></i>
               </span>
             </p>
           </div>
@@ -42,20 +36,6 @@
             </p>
           </div>
           <div class="field">
-            <p class="control has-icons-left">
-              <%= f.password_field :password, autocomplete: "new-password", class: "input", placeholder: "Password", :data => { :target => 'password-validation.password', :action => 'keyup->password-validation#passwordEntryValidation' } %>
-              <span class="icon is-small is-left">
-                <i class="fas fa-lock"></i>
-              </span>
-            </p>
-          </div>
-          <div class="field">
-            <p class="control has-icons-left">
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input", placeholder: "Confirm password", :data => { :target => 'password-validation.passwordConfirm', :action => 'keyup->password-validation#passwordConfirmationValidation' } %>
-              <span class="icon is-small is-left">
-                <i class="fas fa-lock"></i>
-              </span>
-            </p>
             <div data-target="password-validation.validationMessageContainer">
             </div>
           </div>

@@ -1,24 +1,75 @@
-<h2>Change your password</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
-
-  <%= f.input :reset_password_token, as: :hidden %>
-  <%= f.full_error :reset_password_token %>
-
-  <div class="form-inputs">
-    <%= f.input :password,
-                label: "New password",
-                required: true,
-                autofocus: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation, label: "Confirm your new password", required: true %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<section class="section">
+  <div class="container">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+      <%= f.hidden_field :reset_password_token %>
+      <%= f.hidden_field :reset_password_token %>
+      <div class="columns">
+        <div class="column">
+          <!-- First column -->
+        </div>
+        <div class="column" id="sign_up_form" data-controller="password-validation">
+          <h1 class="title">Set Your Password</h1>
+          <div class="field">
+            <p class="control has-icons-left has-icons-right">
+              <%= f.password_field :password,
+              label: "Set password",
+              required: true,
+              autofocus: true,
+              autocomplete: "new-password",
+              class: "input",
+              placeholder: "Password",
+              :data => {
+                :target => 'password-validation.password',
+                :action => 'keyup->password-validation#passwordEntryValidation'
+              }
+              %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+              <span class="icon is-small is-right">
+                <i class="fas fa-check"></i>
+              </span>
+            </p>
+          </div>
+          <div class="field">
+            <p class="control has-icons-left has-icons-right">
+              <%= f.password_field :password_confirmation,
+              label: "Confirm your password",
+              required: true,
+              class: "input",
+              placeholder: "Confirm Password",
+              autocomplete: "new-password",
+              :data => {
+                :target => 'password-validation.passwordConfirm',
+                :action => 'keyup->password-validation#passwordConfirmationValidation'
+              }
+            %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+              <span class="icon is-small is-right">
+                <i class="fas fa-check"></i>
+              </span>
+            </p>
+          </div>
+          <div class="field">
+            <div data-target="password-validation.validationMessageContainer">
+            </div>
+          </div>
+          <div class="field is-grouped">
+            <div class="form-actions">
+              <%= f.submit "Set my password", class: "button is-primary" %>
+            </div>
+            <p class="control">
+              <%= link_to "Back", :back, class: "button is-light is-light" %>
+            </p>
+          </div>
+        </div>
+        <div class="column">
+          <!-- Second column -->
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </section>
+  <%= render "devise/shared/links" %>

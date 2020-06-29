@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable #, :confirmable
+         :recoverable, :rememberable, :validatable, :confirmable
 
   has_many :venues
   has_many :reviews
@@ -14,4 +14,10 @@ class User < ApplicationRecord
   def owned_venues
     Venues.where(owner: self)
   end
+
+  protected
+    def password_required?
+      confirmed? ? super : false
+    end
+    
 end
