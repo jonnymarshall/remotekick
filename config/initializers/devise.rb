@@ -18,7 +18,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'donotreply@remotekick.com'
+  config.mailer_sender = 'remotekick <team@remotekick.com>'
 
   # Configure the class responsible to send e-mails.
   config.mailer = 'UserMailer'
