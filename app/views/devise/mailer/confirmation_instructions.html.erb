@@ -1,5 +1,18 @@
-<p>Welcome <%= @email %>!</p>
+<section class="section email">
+  <div class="container has-text-centered">
+    <%= link_to @root_path do %>
+      <div class="logo is-flex">
+        <%= image_tag "logo_250w.png" %>
+      </div>
+    <% end %>
+    
+    <h1 class="title is-4">Welcome <%= @fist_name %>!</h1>
+    <br>
 
-<p>You can confirm your account email through the link below:</p>
+    <h2 class="subtitle is 6">
+      You can confirm your account on remotekick by clicking the link below:
+    </h2>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+    <%= link_to "Confirm my account", confirmation_url(@resource, confirmation_token: @token), class: "button is-medium is-primary is-fullwidth" %>
+  </div>
+</section>

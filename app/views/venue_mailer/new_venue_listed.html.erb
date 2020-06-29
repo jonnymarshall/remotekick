@@ -1,6 +1,6 @@
 <section class="section email">
   <div class="container has-text-centered">
-    <%= link_to @root_path do %>
+    <%#= link_to @root_path do %>
       <div class="logo is-flex">
         <%= image_tag "logo_250w.png" %>
       </div>
@@ -20,7 +20,6 @@
       Feel free to share this link with your friends and colleagues, and help to get <%= @venue.name %> noticed as a fantastic place to kick back and do some work!
       <br><br>
       If you haven't already, why not be the first to <%= link_to "leave a review", @new_review_path %>?
-    
     </h2>
 
     <%= link_to "Go to listing", @venue_url, class: "button is-medium is-primary is-fullwidth" %>
