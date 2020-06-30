@@ -58,7 +58,7 @@ class VenuesController < ApplicationController
       VenueMailer.new_venue_listed(user: @venue.user, venue: @venue).deliver_now!
       redirect_to venue_path(@venue)
     else
-      render :new
+      render :new, flash[:error] = @venue.errors.messages
     end
 
     # create new opening_hour_set and assign venue

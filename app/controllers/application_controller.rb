@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :store_current_location, :unless => :devise_controller?
-
+  add_flash_types :success, :error
 
   def default_url_options
     { host: ENV["DOMAIN"] || "localhost:3000" }

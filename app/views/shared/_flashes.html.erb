@@ -1,17 +1,37 @@
-<% if notice %>
-  <div id="error_explanation" class="notification is-danger is-marginless is-radiusless" data-controller="notification-dismissal">
-  <button class="delete" data-target="notification-dismissal.dismissButton" data-action="notification-dismissal#dismissNotification"></button>
-  <ul>
-    <li><%= notice %></li>
-  </ul>
-</div>
-<% end %>
-<% if alert %>
-  <div id="error_explanation" class="notification is-danger is-marginless is-radiusless" data-controller="notification-dismissal">
-  <button class="delete" data-target="notification-dismissal.dismissButton" data-action="notification-dismissal#dismissNotification"></button>
-  <ul>
-    <li><%= alert %></li>
-  </ul>
-</div>
-<% end %>
+<% flash.each do |key, value| %>
+  <% if key === "notice" %>
+    <div class="notification is-info is-marginless is-radiusless flash" data-controller="notification-dismissal">
+      <button class="delete" data-target="notification-dismissal.dismissButton" data-action="notification-dismissal#dismissNotification"></button>
+      <ul>
+        <li><%= value %></li>
+      </ul>
+    </div>
+  <% end %>
 
+  <% if key == "alert" %>
+    <div class="notification is-warning is-marginless is-radiusless flash" data-controller="notification-dismissal">
+      <button class="delete" data-target="notification-dismissal.dismissButton" data-action="notification-dismissal#dismissNotification"></button>
+      <ul>
+        <li><%= value %></li>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if key == "success" %>
+    <div class="notification is-success is-marginless is-radiusless flash" data-controller="notification-dismissal">
+      <button class="delete" data-target="notification-dismissal.dismissButton" data-action="notification-dismissal#dismissNotification"></button>
+      <ul>
+        <li><%= value %></li>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if key == "error" %>
+    <div class="notification is-danger is-radiusless flash" data-controller="notification-dismissal">
+      <button class="delete" data-target="notification-dismissal.dismissButton" data-action="notification-dismissal#dismissNotification"></button>
+      <ul>
+        <li><%= value %></li>
+      </ul>
+    </div>
+  <% end %>
+<% end %>
