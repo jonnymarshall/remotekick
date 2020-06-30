@@ -1,5 +1,9 @@
 .flash {
-  margin: 10px 0px 0px !important;
+  border-top: 1px solid white;
+  margin-bottom: 0px !important;
+  :nth-child(1) {
+    margin-top: 10px !important;
+  }
 }
 
 .home-flash {
