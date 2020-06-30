@@ -1,7 +1,7 @@
 <% flash.each do |key, value| %>
   <% if key === "notice" %>
-    <div class="notification is-info is-marginless is-radiusless flash" data-controller="notification-dismissal">
-      <button class="delete" data-target="notification-dismissal.dismissButton" data-action="notification-dismissal#dismissNotification"></button>
+    <div class="notification is-info is-marginless is-radiusless <%= @current_page == "/" ? "home-flash" : "flash" %>" data-controller="notification-dismissal">
+      <button class="delete" data-action="notification-dismissal#dismissNotification"></button>
       <ul>
         <li><%= value %></li>
       </ul>
@@ -9,8 +9,8 @@
   <% end %>
 
   <% if key == "alert" %>
-    <div class="notification is-warning is-marginless is-radiusless flash" data-controller="notification-dismissal">
-      <button class="delete" data-target="notification-dismissal.dismissButton" data-action="notification-dismissal#dismissNotification"></button>
+    <div class="notification is-warning is-marginless is-radiusless <%= @current_page == "/" ? "home-flash" : "flash" %>" data-controller="notification-dismissal">
+      <button class="delete" data-action="notification-dismissal#dismissNotification"></button>
       <ul>
         <li><%= value %></li>
       </ul>
@@ -18,8 +18,8 @@
   <% end %>
 
   <% if key == "success" %>
-    <div class="notification is-success is-marginless is-radiusless flash" data-controller="notification-dismissal">
-      <button class="delete" data-target="notification-dismissal.dismissButton" data-action="notification-dismissal#dismissNotification"></button>
+    <div class="notification is-success is-marginless is-radiusless <%= @current_page == "/" ? "home-flash" : "flash" %>" data-controller="notification-dismissal">
+      <button class="delete" data-action="notification-dismissal#dismissNotification"></button>
       <ul>
         <li><%= value %></li>
       </ul>
@@ -27,8 +27,8 @@
   <% end %>
 
   <% if key == "error" %>
-    <div class="notification is-danger is-radiusless flash" data-controller="notification-dismissal">
-      <button class="delete" data-target="notification-dismissal.dismissButton" data-action="notification-dismissal#dismissNotification"></button>
+    <div class="notification is-danger is-radiusless <%= @current_page == "/" ? "home-flash" : "flash" %>" data-controller="notification-dismissal">
+      <button class="delete" data-action="notification-dismissal#dismissNotification"></button>
       <ul>
         <li><%= value %></li>
       </ul>

@@ -4,12 +4,8 @@ export default class extends Controller {
 
   controllerName = "notification_dismissal_controller"
 
-  static targets = ["dismissButton"]
-
   connect() {
     console.log(`${this.controllerName} connected.`)
-    console.log(this.dismissButtonTargets)
-
   }
 
   disconnect() {
