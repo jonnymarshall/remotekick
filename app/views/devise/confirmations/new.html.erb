@@ -1,20 +1,40 @@
-<h2>Resend confirmation instructions</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
-  <%= f.full_error :confirmation_token %>
-
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
+<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <!-- First column -->
+        </div>
+        <div class="column" id="sign_up_form" data-controller="password-validation">
+          <h1 class="title">Resend confirmation instructions</h1>
+          <div class="field">
+            <p class="control has-icons-left has-icons-right">
+              <%= f.email_field :email,
                 autofocus: true,
+                autocomplete: "email",
+                placeholder: "Email",
+                class: "input",
                 value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
-                input_html: { autocomplete: "email" } %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Resend confirmation instructions" %>
-  </div>
+                :data => {
+                  :target => 'password-validation.email',
+                  :action => 'keyup->password-validation#emailEntryValidation'
+                }
+              %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+            </p>
+          </div>
+          <div class="field is-grouped">
+            <p class="control">
+              <%= f.submit "Resend confirmation instructions", class: "button is-primary" %>
+            </p>
+          </div>
+        </div>
+        <div class="column">
+          <!-- Second column -->
+        </div>
+      </div>
+    </div>
+  </section>
 <% end %>
-
-<%= render "devise/shared/links" %>

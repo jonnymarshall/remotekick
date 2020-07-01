@@ -9,7 +9,12 @@ class UserMailer < Devise::Mailer
   layout 'mailer'
 
   def confirmation_instructions(record, token, opts={})
-    headers["Custom-header"] = "Bar"
+    @root_path = root_path
+    @fist_name = record[:first_name]
+    super
+  end
+
+  def reset_password_instructions(record, token, opts={})
     @root_path = root_path
     @fist_name = record[:first_name]
     super
