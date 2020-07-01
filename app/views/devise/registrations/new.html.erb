@@ -34,16 +34,16 @@
               </span>
             </p>
           </div>
-          <div class="field">
-            <div data-target="password-validation.validationMessageContainer">
-            </div>
+          <div data-target="password-validation.validationMessageContainer">
           </div>
-          <div class="field is-grouped">
+          <div class="field">
             <p class="control">
               <%= f.submit "Sign up", class: "button is-primary" %>
             </p>
+          </div>
+          <div class="field">
             <p class="control">
-              <%= link_to "Back", :back, class: "button is-light is-light" %>
+              <%= link_to "Didn't receive confirmation email?", new_confirmation_path(resource_name), class: "button is-warning" %><br />
             </p>
           </div>
         </div>
