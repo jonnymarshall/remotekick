@@ -100,7 +100,7 @@ Rails.application.configure do
     config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
     config.action_mailer.show_previews = true
     config.action_mailer.default_url_options = { :host => ENV['DOMAIN'] }
-    config.action_mailer.asset_host = ENV['DOMAIN']
+    config.action_mailer.asset_host = "http://#{ENV['DOMAIN']}"
   
     config.action_mailer.smtp_settings = {
       :address              => "mail.privateemail.com",
