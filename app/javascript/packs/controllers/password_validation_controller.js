@@ -11,6 +11,7 @@ export default class extends Controller {
   enteredPassword = null
   enteredPasswordConfirmation = null
   validationMessages = []
+  fieldsToValidate = []
 
   connect() {
     console.log(`${this.controllerName} connected.`)
@@ -22,32 +23,33 @@ export default class extends Controller {
   }
 
   setInitialValues() {
-    this.enteredEmail = this.emailTarget.value
-    this.enteredPassword = this.passwordTarget.value
+    if (this.hasEmailTarget) {
+      this.enteredEmail = this.emailTarget.value
+      this.fieldsToValidate.push("email")
+    }
+    if (this.hasPasswordTarget) {
+      this.enteredPassword  = this.passwordTarget.value
+      this.fieldsToValidate.push("password")
+    }
     if (this.hasPasswordConfirmTarget) {
       this.enteredPasswordConfirmation = this.passwordConfirmTarget.value
+      this.fieldsToValidate.push("passwordConfirm")
     }
   }
 
   // Key up event triggers
   async emailEntryValidation(e) {
     this.enteredEmail = e.target.value
-    this.validationMessages = []
-    await this.checkValidations()
     this.refreshValidationMessages()
   }
 
   async passwordEntryValidation(e) {
     this.enteredPassword = e.target.value
-    this.validationMessages = []
-    await this.checkValidations()
     this.refreshValidationMessages()
   }
 
   async passwordConfirmationValidation(e) {
     this.enteredPasswordConfirmation = e.target.value
-    this.validationMessages = []
-    await this.checkValidations()
     this.refreshValidationMessages()
   }
 
@@ -55,62 +57,68 @@ export default class extends Controller {
 
   // Validations
   checkValidations() {
-    // email
-    if (!!this.enteredEmail) {
-      if (!this.enteredEmail.includes("@")) {
-        this.validationMessages.push(this.validationMessage(
-          {
-            subject: "Email",
-            qualifier: "must be",
-            value: "valid"
-          })
-        )
-      }
-    } else {
-      this.validationMessages.push(this.validationMessage(
-        {
-          subject: "Email",
-          qualifier: "cannot be",
-          value: "blank"
-        })
-      )
-    }
-
-    if (!!this.enteredPassword) {
-      // passwordEntry
-      if (this.enteredPassword.length < this.minimumPasswordLength) {
-        this.validationMessages.push(this.validationMessage(
-          {
-            subject: "Password",
-            qualifier: "must be at least",
-            value: `${this.minimumPasswordLength} characters`
-          })
-        )
-      }
-
-      // passwordConfirmation
-      if (!!this.enteredPasswordConfirmation) {
-        if (this.enteredPassword != this.enteredPasswordConfirmation) {
+    this.fieldsToValidate.forEach((field) => {
+      if (field == "email") {
+        if (!!this.enteredEmail) {
+          if (!this.enteredEmail.includes("@")) {
+            this.validationMessages.push(this.validationMessage(
+              {
+                subject: "Email",
+                qualifier: "must be",
+                value: "valid"
+              })
+            )
+          }
+        } else {
           this.validationMessages.push(this.validationMessage(
             {
-              subject: "Passwords",
-              qualifier: "must",
-              value: "match"
+              subject: "Email",
+              qualifier: "cannot be",
+              value: "blank"
             })
           )
         }
       }
-    } else {
-      if (this.enteredPassword != this.enteredPasswordConfirmation) {
-        this.validationMessages.push(this.validationMessage(
-          {
-            subject: "Password",
-            qualifier: "cannot",
-            value: "be blank"
-          })
-        )
+      
+      if (field == "password") {
+        if (!!this.enteredPassword) {
+          // passwordEntry
+          if (this.enteredPassword.length < this.minimumPasswordLength) {
+            this.validationMessages.push(this.validationMessage(
+              {
+                subject: "Password",
+                qualifier: "must be at least",
+                value: `${this.minimumPasswordLength} characters`
+              })
+            )
+          }
+        }
       }
-    }
+
+      if (field == "passwordConfirm") {
+        if (!!this.enteredPasswordConfirmation) {
+          if (this.enteredPassword != this.enteredPasswordConfirmation) {
+            this.validationMessages.push(this.validationMessage(
+              {
+                subject: "Passwords",
+                qualifier: "must",
+                value: "match"
+              })
+            )
+          }
+        } else {
+          if (this.enteredPassword != this.enteredPasswordConfirmation) {
+            this.validationMessages.push(this.validationMessage(
+              {
+                subject: "Password",
+                qualifier: "cannot",
+                value: "be blank"
+              })
+            )
+          }
+        }
+      }
+    })
   }
 
   // HTML generators
@@ -120,7 +128,9 @@ export default class extends Controller {
     </p>`
   }
 
-  refreshValidationMessages() {
+  async refreshValidationMessages() {
+    this.validationMessages = []
+    await this.checkValidations()
     this.validationMessageContainerTarget.innerHTML = ""
     this.validationMessages.sort().forEach((message) => this.validationMessageContainerTarget.insertAdjacentHTML("afterbegin", message))
   }
