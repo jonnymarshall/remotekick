@@ -56,9 +56,10 @@ class VenuesController < ApplicationController
     @venue.user = current_user
     if @venue.save
       VenueMailer.new_venue_listed(user: @venue.user, venue: @venue).deliver_now!
+      flash[:success] = "Thank you, #{@venue.name} was successfully listed."
       redirect_to venue_path(@venue)
     else
-      render :new
+      render :new, flash[:error] = @venue.errors.messages
     end
 
     # create new opening_hour_set and assign venue
