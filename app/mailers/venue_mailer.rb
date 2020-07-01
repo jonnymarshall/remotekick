@@ -31,6 +31,6 @@ class VenueMailer < ApplicationMailer
     @root_path = root_url
     @venue_url = url_for venue
     @edit_venue_url = edit_venue_url(venue)
-    @new_venue_review_path = new_venue_review_url(venue)
+    @new_venue_review_url = new_venue_review_url(venue)
   end
 end
