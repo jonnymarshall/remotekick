@@ -1,5 +1,4 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  require "mini_magick"
   
   protected
 
