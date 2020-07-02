@@ -1,14 +1,36 @@
 <%= render "devise/shared/error_messages", resource: resource %>
 <section class="section">
   <div class="container">
-    <div class="columns">
-      <div class="column">
-        <!-- First column -->
-      </div>
-      <div class="column" id="edit_user_form" data-controller="password-validation">
-        <h1 class="title">Edit <%= resource_name.to_s.humanize %></h1>
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <h1 class="title">Account Settings</h1>
+    <%= form_for(resource, as: resource_name, id: "edit_user_form", url: registration_path(resource_name)) do |f| %>
+      <div class="columns">
+        <div class="column is-4">
+          <figure class="image is-square">
+          <% if @user.avatar.present? %>
+            <%= image_tag url_for(@user.avatar), class: "c-user-avatar-large" %>
+          <% end %>
+          </figure>
+          <div class="field u-margin-t-10px" data-controller="photo-upload">
+            <div class="file has-name is-boxed is-primary is-small is-centered">
+              <label class="file-label">
+                <%= f.file_field :avatar, class: "file-input", placeholder: "John", data: { action: "photo-upload#doThis", target: "photo-upload.photoUploadInput" } %>
+                <span class="file-cta">
+                  <span class="file-icon">
+                    <i class="fas fa-upload"></i>
+                  </span>
+                  <span class="file-label">
+                     <%= @user.decorate.photo_upload_text %> 
+                  </span>
+                </span>
+                <span class="file-name is-hidden" data-target="photo-upload.fileName"></span>
+              </label>
+            </div>
+          </div>
+          
+        </div>
+        <div class="column" data-controller="password-validation">
           <div class="field">
+            <%= f.label :first_name, class: "label" %>
             <p class="control has-icons-left">
               <%= f.text_field :first_name, autofocus: true, class: "input", placeholder: "John" %>
               <span class="icon is-small is-left">
@@ -17,6 +39,7 @@
             </p>
           </div>
           <div class="field">
+            <%= f.label :last_name, class: "label" %>
             <p class="control has-icons-left">
               <%= f.text_field :last_name, autofocus: true, class: "input", placeholder: "Doe" %>
               <span class="icon is-small is-left">
@@ -25,6 +48,7 @@
             </p>
           </div>
           <div class="field">
+            <%= f.label :email, class: "label" %>
             <p class="control has-icons-left has-icons-right">
               <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input", :data => { :target => 'password-validation.email', :action => 'keyup->password-validation#emailEntryValidation' } %>
               <span class="icon is-small is-left">
@@ -33,6 +57,7 @@
             </p>
           </div>
           <div class="field">
+            <%= f.label :new_password, class: "label" %>
             <p class="control has-icons-left">
               <%= f.password_field :password, autocomplete: "new-password", class: "input", placeholder: "New password", :data => { :target => 'password-validation.password', :action => 'keyup->password-validation#passwordEntryValidation' } %>
               <span class="icon is-small is-left">
@@ -41,6 +66,7 @@
             </p>
           </div>
           <div class="field">
+            <%= f.label :new_password_confirmation, class: "label" %>
             <p class="control has-icons-left">
               <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input", placeholder: "Confirm new password", :data => { :target => 'password-validation.passwordConfirm', :action => 'keyup->password-validation#passwordConfirmationValidation' } %>
               <span class="icon is-small is-left">
@@ -49,6 +75,7 @@
             </p>
           </div>
           <div class="field">
+            <%= f.label :current_password, class: "label" %>
             <p class="control has-icons-left">
               <%= f.password_field :current_password, autocomplete: "current-password", class: "input", placeholder: "Current password" %>
               <span class="icon is-small is-left">
@@ -58,21 +85,18 @@
             <div data-target="password-validation.validationMessageContainer">
             </div>
           </div>
-          <div class="field is-grouped">
-            <p class="control">
-              <%= f.submit "Save changes", class: "button is-primary", id: "save_account_changes" %>
-            </p>
-          </div>
-        <% end %>
-        <div class="field u-padding-t-10px">
-          <p class="control">
-            <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "button is-light is-danger" %>
-          </p>
         </div>
       </div>
-      <div class="column">
-        <!-- Second column -->
+      <div class="field is-pulled-right">
+        <p class="control">
+          <%= f.submit "Save changes", class: "button is-primary", id: "save_account_changes" %>
+        </p>
       </div>
+    <% end %>
+    <div class="field is-pulled-right u-margin-r-10px">
+      <p class="control">
+        <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "button is-light is-danger" %>
+      </p>
     </div>
   </div>
 </section>

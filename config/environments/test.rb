@@ -44,6 +44,8 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
+  config.active_storage.service = :test
+
   # FACTORIES
     # This will cause factory_bot_rails to automatically load factories in custom/factories.rb and custom/factories/*.rb.
     config.factory_bot.definition_file_paths = ["spec/factories"]

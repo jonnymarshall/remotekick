@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :venues
   has_many :reviews
+  has_one_attached :avatar
 
   validates :email, presence: true, uniqueness: true
   validates :first_name, presence: true
