@@ -1,5 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-
+  require "mini_magick"
+  
   protected
 
   def update_resource(resource, params)

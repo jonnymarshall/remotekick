@@ -32,6 +32,7 @@ gem 'pundit'
 gem 'rails_admin', '~> 2.0'
 gem 'premailer-rails'
 gem "aws-sdk-s3", require: false
+gem 'mini_magick', '~> 4.10', '>= 4.10.1'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
