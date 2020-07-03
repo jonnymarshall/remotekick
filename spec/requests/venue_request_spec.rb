@@ -7,7 +7,7 @@ RSpec.describe 'Venues' do
   describe 'index' do 
    it 'lists all the coffee shops when no params are given' do
      visit('/venues')
-     expect(page).to have_content("Some name")
+     expect(page).to have_content(ven.name)
    end
  
   end

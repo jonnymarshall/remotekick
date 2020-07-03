@@ -59,7 +59,8 @@ class VenuesController < ApplicationController
       flash[:success] = "Thank you, #{@venue.name} was successfully listed."
       redirect_to venue_path(@venue)
     else
-      render :new, flash[:error] = @venue.errors.messages
+      flash[:error] = @venue.errors.messages
+      render :new
     end
 
     # create new opening_hour_set and assign venue

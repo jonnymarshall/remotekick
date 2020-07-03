@@ -16,7 +16,10 @@ City.destroy_all
 User.destroy_all
 
 # ----------USER SEEDS----------
+# Devise::Mailer.perform_deliveries = false
 create_user_seeds
+# Devise::Mailer.perform_deliveries = false
+
 
 # ----------CITY SEEDS----------
 create_city_seeds
