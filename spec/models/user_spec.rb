@@ -15,7 +15,7 @@ RSpec.describe User do
 
   end
 
-  describe '#set_reset_password_token', focus: true do
+  describe '#set_reset_password_token' do
     it 'returns the plaintext token' do
       potential_token = subject.send(:set_reset_password_token)
       potential_token_digest = Devise.token_generator.digest(subject, :reset_password_token, potential_token)

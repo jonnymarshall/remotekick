@@ -1,6 +1,7 @@
 FactoryBot.define do
 
   categories = ["Coffee Shop", "Bar", "Library", "Coworking Space"]
+  
   factory :venue do
     name { "Some venue name" }
     description { "Some venue description" }
@@ -21,9 +22,5 @@ FactoryBot.define do
     # longitude
     # foursquare_id
     # category { categories.sample }
-  end
-
-  factory :no_wifi_venue do
-    has_wifi { false }
   end
 end

@@ -30,6 +30,7 @@ RSpec.describe 'Create Venue' do
       it 'cannot create venue with invalid data' do
         new_venue_form.visit_page.submit
         expect(page).to have_current_path(venues_path)
+        # expect(flash[:error]).to eq "Buying our stuff failed :-("
       end
     end
   end
