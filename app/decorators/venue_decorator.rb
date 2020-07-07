@@ -53,9 +53,7 @@ class VenueDecorator < Draper::Decorator
 
   def display_icons(attribute, icon_set = [])
     if has_attribute?(attribute)
-      icon_set << "#{h.content_tag( :i, nil, :class=>'fas fa-smile has-text-primary')}&nbsp;" * (icon_count_calculator(attribute))
-      icon_set << "#{h.content_tag( :i, nil, :class=>'fas fa-smile')}&nbsp;" * (inverse_icon_count_calculator(attribute))
-      icon_set.join
+      h.content_tag( :progress, nil, value: object.send(attribute).round(0) + 1, max: 5, :class=>'progress is-primary')
     else
       "Unknown"
     end

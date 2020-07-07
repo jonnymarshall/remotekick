@@ -11,11 +11,11 @@ module IconDisplay
     object.send(attribute).round(0) + 1
   end
 
-  def inverse_icon_count_calculator(attribute)
-    if attribute == "rating"
-      5 - icon_count_calculator(attribute)
-    else
-      3 - icon_count_calculator(attribute)
-    end
-  end
+  # def inverse_icon_count_calculator(attribute)
+  #   if attribute == "rating"
+  #     5 - icon_count_calculator(attribute)
+  #   else
+  #     3 - icon_count_calculator(attribute)
+  #   end
+  # end
 end
