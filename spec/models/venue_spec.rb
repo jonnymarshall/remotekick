@@ -43,6 +43,9 @@ RSpec.describe Venue do
     describe 'user' do
       it { should belong_to(:user) }
     end
+  end
+
+  describe 'data integrity' do
 
     describe 'rating' do
       let!(:rev1) { create(:review, user: u, venue: ven, rating: 4) }
@@ -72,7 +75,7 @@ RSpec.describe Venue do
       end
     end
 
-    describe 'truthy/falsy values' do
+    describe 'has_wifi', focus: true do
       let!(:rev1) { create(:review, user: u, venue: ven, content: "rev1") }
 
       describe 'truthy/falsy value if only one review is given' do
@@ -90,27 +93,55 @@ RSpec.describe Venue do
         end
 
         describe 'truthy/falsy venue values if the last two review values are the same' do
-          let!(:rev3) { create(:review, user: u, venue: ven, content: "rev3", has_wifi: true) }
+          let!(:rev3) { create(:review, user: u, venue: ven, content: "rev3", has_wifi: false) }
           it 'should update' do
-            expect(ven.has_wifi).to be true
+            expect(ven.has_wifi).to be false
           end
         end
 
       end
     end
+
+    # describe 'feature_set' do
+    #   let!(:rev1) { create(:review, user: u, venue: ven, content: "rev1") }
+
+    #   describe 'truthy/falsy value if only one review is given' do
+    #     it 'accepts truthy/falsy value from review as truth' do
+    #       expect(ven.feature_set.serves_food).to be true
+    #     end
+    #   end
+
+    #   describe 'updating truthy/falsy values if the last two review values are not the same' do
+    #     let!(:rev2) { create(:review, user: u, venue: ven, content: "rev2", has_wifi: false) }
+    #     describe 'truthy/falsy venue values' do
+    #       it 'should not update' do
+    #         expect(ven.has_wifi).to be true
+    #       end
+    #     end
+
+    #     describe 'truthy/falsy venue values if the last two review values are the same' do
+    #       let!(:rev3) { create(:review, user: u, venue: ven, content: "rev3", has_wifi: true) }
+    #       it 'should update' do
+    #         expect(ven.has_wifi).to be true
+    #       end
+    #     end
+
+    #   end
+    # end
+    
   end
 
   describe 'scopes' do
 
-    describe 'serves_food' do
+    describe 'has_wifi' do
       
       it 'returns an ActiveRecord::Relation of venues which serve food' do
-        serves_food = FactoryBot.create(:venue, user: u, serves_food: true)
-        also_serves_food = FactoryBot.create(:venue, user: FactoryBot.create(:user), serves_food: true)
-        does_not_serve_food = FactoryBot.create(:venue, user: FactoryBot.create(:user), serves_food: false)
-        may_not_serve_food = FactoryBot.create(:venue, user: FactoryBot.create(:user), serves_food: false)
+        has_wifi = FactoryBot.create(:venue, user: u, has_wifi: true)
+        also_has_wifi = FactoryBot.create(:venue, user: FactoryBot.create(:user), has_wifi: true)
+        does_not_have_wifi = FactoryBot.create(:venue, user: FactoryBot.create(:user), has_wifi: false)
+        also_does_not_have_wifi = FactoryBot.create(:venue, user: FactoryBot.create(:user), has_wifi: false)
         
-        expect(Venue.serves_food).to eq([serves_food, also_serves_food])
+        expect(Venue.has_wifi).to eq([has_wifi, also_has_wifi])
       end
     end
 

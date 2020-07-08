@@ -7,6 +7,7 @@ class Venue < ApplicationRecord
   has_one :cover_photo, dependent: :destroy
   has_and_belongs_to_many :categories
   has_many :opening_hours
+  has_one :feature_set
 
   validates :foursquare_id, uniqueness: true, allow_blank: true
   validates :name, presence: true
@@ -25,7 +26,8 @@ class Venue < ApplicationRecord
   scope :comfort, -> number { where("comfort >= ?", number) }
   scope :quietness, -> number { where("quietness >= ?", number) }
   scope :plug_sockets, -> number { where("plug_sockets >= ?", number) }
-  scope :has_wifi, -> boolean { where("has_wifi = ?", boolean) if boolean == "1" }
+  scope :has_wifi, -> { where(has_wifi: true) }
+  # scope :has_wifi, -> boolean { where("has_wifi = ?", boolean) if boolean == "1" }
   scope :no_wifi_restrictions, -> hours { where("wifi_restrictions < ?", hours) if hours > "0" }
 
   def update_values(
@@ -81,11 +83,14 @@ class Venue < ApplicationRecord
   end
 
   def truth_checked_val(attribute, value)
+    # self.reviews.reload
     if self.reviews.count == 0
       nil
+    # executes if there is only one review, or the last review value matches current
     elsif self.reviews.count == 1 || self.reviews[-2].send(attribute) == value
       value
     else
+      # returns the previous value if it does not match the curent
       self.reviews[-2].send(attribute)
     end
   end

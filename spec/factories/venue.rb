@@ -15,8 +15,6 @@ FactoryBot.define do
     quietness { rand(2) }
     comfort { rand(2) }
     has_wifi { [true, false].sample }
-    air_conditioning { [true, false].sample }
-    serves_food { [true, false].sample }
     wifi_restrictions { rand(4) }
     # latitude
     # longitude
