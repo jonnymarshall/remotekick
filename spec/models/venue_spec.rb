@@ -92,7 +92,7 @@ RSpec.describe Venue do
           end
         end
 
-        describe 'truthy/falsy venue values if the last two review values are the same', focus: true do
+        describe 'truthy/falsy venue values if the last two review values are the same' do
           let!(:rev1) { create(:review, user: u, venue: ven, has_wifi: true) }
           let!(:rev2) { create(:review, user: u, venue: ven, has_wifi: false) }
           let!(:rev3) { create(:review, user: u, venue: ven, has_wifi: false) }

@@ -8,6 +8,7 @@ class Venue < ApplicationRecord
   has_and_belongs_to_many :categories
   has_many :opening_hours
   has_one :feature_set
+  has_one :address, dependent: :destroy
 
   validates :foursquare_id, uniqueness: true, allow_blank: true
   validates :name, presence: true
@@ -59,6 +60,7 @@ class Venue < ApplicationRecord
     updated_values = averaged_values.merge(truth_checked_values)
 
     # Update values
+    # byebug
     update(updated_values)
   end
 

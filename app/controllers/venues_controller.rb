@@ -165,8 +165,8 @@ class VenuesController < ApplicationController
     @markers = []
     venues.each do |venue|
       @markers << {
-        lat: venue.latitude,
-        lng: venue.longitude,
+        lat: venue.address.latitude,
+        lng: venue.address.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { venue: venue })
       }
     end

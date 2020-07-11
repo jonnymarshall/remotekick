@@ -5,7 +5,6 @@ FactoryBot.define do
   factory :venue do
     name { "Some venue name" }
     description { "Some venue description" }
-    address { "18 Towngate, Highburton, Huddersfield" }
     rating { rand(4) }
     upload_speed { rand(1000) }
     download_speed { rand(1000) }
@@ -16,8 +15,6 @@ FactoryBot.define do
     comfort { rand(2) }
     has_wifi { [true, false].sample }
     wifi_restrictions { rand(4) }
-    # latitude
-    # longitude
     # foursquare_id
     # category { categories.sample }
   end
