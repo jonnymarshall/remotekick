@@ -15,8 +15,7 @@ class VenuesController < ApplicationController
   has_scope :comfort
   has_scope :quietness
   has_scope :plug_sockets
-  has_scope :has_wifi
-  # has_scope :air_conditioning, type: :boolean
+  has_scope :has_wifi, type: :boolean
   respond_to :html, :json
   
   def index

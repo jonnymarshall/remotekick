@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_02_123055) do
+ActiveRecord::Schema.define(version: 2020_07_08_131518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,15 @@ ActiveRecord::Schema.define(version: 2020_07_02_123055) do
     t.datetime "updated_at", null: false
     t.bigint "venue_id"
     t.index ["venue_id"], name: "index_cover_photos_on_venue_id"
+  end
+
+  create_table "feature_sets", force: :cascade do |t|
+    t.bigint "venue_id"
+    t.boolean "air_conditioning"
+    t.boolean "serves_food"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["venue_id"], name: "index_feature_sets_on_venue_id"
   end
 
   create_table "opening_hours", force: :cascade do |t|
@@ -126,11 +135,9 @@ ActiveRecord::Schema.define(version: 2020_07_02_123055) do
     t.float "download_speed"
     t.float "ping"
     t.integer "price"
-    t.boolean "serves_food"
     t.float "plug_sockets"
     t.float "quietness"
     t.float "comfort"
-    t.boolean "air_conditioning"
     t.integer "wifi_restrictions"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

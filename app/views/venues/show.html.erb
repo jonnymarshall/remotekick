@@ -2,37 +2,29 @@
 <%= render 'venues/show_partials/show__feature_bar' %>
 <%= render 'venues/show_partials/show__lower_section' %>
 
-  <!--DIVIDING LINE -->
-  <div class="divider"></div>
+<!--DIVIDING LINE -->
+<div class="divider"></div>
 
-  <!-- FEATURES SECTION-->
-  <div class="row">
-    <% if @venue.serves_food %>
-      <div class="col">
-        <p class="padding">Serves food</p>
-      </div>
-    <% end %>
-  </div>
-
-  <!--DIVIDING LINE (ONLY DISPLAY IF COFFEE SHOP FEATURES EXIST) -->
-  <% if
-    @venue.serves_food
-    # ||
-    # @venue.serves_plant_milk ||
-    # @venue.serves_smoothies ||
-    # @venue.air_conditioning
-    %>
+<!-- FEATURES SECTION-->
+<% if @venue.feature_set.present? %>
+  <% if @venue.feature_set.air_conditioning %>
+    <h6>Has air conditioning</h6>
   <% end %>
+  <% if @venue.feature_set.serves_food %>
+    <% raise %>
+    <h6>Serves Food</h6>
+  <% end %>
+<% end %>
 
-    <!-- TOGGLES SECTION-->
-  <div class="row">
-    <div class="col-lg-2">
-      <p class="padding">Reviews</p>
-    </div>
-    <div class="col-lg-2">
-      <p class="padding">Photos</p>
-    </div>
-    <div class="col-lg-2">
-      <p class="padding">Map</p>
-    </div>
+<!-- TOGGLES SECTION-->
+<div class="row">
+  <div class="col-lg-2">
+    <p class="padding">Reviews</p>
   </div>
+  <div class="col-lg-2">
+    <p class="padding">Photos</p>
+  </div>
+  <div class="col-lg-2">
+    <p class="padding">Map</p>
+  </div>
+</div>
