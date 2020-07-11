@@ -84,7 +84,6 @@ class Venue < ApplicationRecord
 
   def truth_checked_val(attribute, value)
     # self.reviews.reload
-    byebug
     if self.reviews.count == 0
       nil
     # executes if there is only one review, or the last review value matches current
