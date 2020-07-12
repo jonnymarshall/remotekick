@@ -11,6 +11,10 @@ require_relative "./seeds/city_seeds/city_seeds.rb"
 # ----------CLEAN DB----------
 puts 'Cleaning database...'
 
+puts 'Cleaning reviews...'
+Review.destroy_all
+puts 'Cleaned reviews...'
+
 puts 'Cleaning venues...'
 Venue.destroy_all
 puts 'Cleaned venues...'

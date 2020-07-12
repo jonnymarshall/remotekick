@@ -12,7 +12,7 @@ class Review < ApplicationRecord
   validates_numericality_of :ping, greater_than_or_equal_to: 0, less_than_or_equal_to: 1000, allow_blank: true
   # validates_uniqueness_of :user_id, :scope => :venue_id
   accepts_nested_attributes_for :review_photos
-  after_commit :update_venue_values, on: [:create, :update, :destroy]
+  after_commit :update_venue_values, on: [:create, :update, :destroy] if venue
 
   private
 
