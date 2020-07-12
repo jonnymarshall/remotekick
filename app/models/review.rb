@@ -17,6 +17,7 @@ class Review < ApplicationRecord
   private
 
   def update_venue_values
+    venue.reload
     venue.update_values(self)
   end
 end
