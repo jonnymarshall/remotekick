@@ -76,15 +76,14 @@ RSpec.describe Venue do
     end
 
     describe 'has_wifi' do
+      let!(:rev1) { create(:review, user: u, venue: ven, content: "rev1") }
       describe 'truthy/falsy value if only one review is given' do
-        let!(:rev1) { create(:review, user: u, venue: ven, content: "rev1") }
         it 'accepts truthy/falsy value from review as truth' do
           expect(ven.has_wifi).to be true
         end
       end
 
       describe 'updating truthy/falsy values if the last two review values are not the same' do
-        let!(:rev1) { create(:review, user: u, venue: ven, content: "rev1") }
         let!(:rev2) { create(:review, user: u, venue: ven, content: "rev2", has_wifi: false) }
         describe 'truthy/falsy venue values' do
           it 'should not update' do
@@ -92,9 +91,7 @@ RSpec.describe Venue do
           end
         end
 
-        describe 'truthy/falsy venue values if the last two review values are the same', focus: true do
-          let!(:rev1) { create(:review, user: u, venue: ven, has_wifi: true) }
-          let!(:rev2) { create(:review, user: u, venue: ven, has_wifi: false) }
+        describe 'truthy/falsy venue values if the last two review values are the same' do
           let!(:rev3) { create(:review, user: u, venue: ven, has_wifi: false) }
           it 'should update' do
             expect(ven.has_wifi).to be false
