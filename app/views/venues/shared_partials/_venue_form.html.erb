@@ -1,177 +1,182 @@
 <%= form_with model: @venue, local: true do |venue_form| %>
   <section class="section" data-controller="venue-autofill">
-      <div class="container">
-        <div class="columns">
-          <div class="column is-paddingless"></div>
-          <div class="column is-two-fifths">
-          <%= venue.form_heading %>
-            <div class="field c-field-has-autocomplete-results" data-controller="algolia-places">
-              <label class="label">Location</label>
-              <p class="control has-icons-left">
-                <%= venue_form.text_field :location,
-                class: "input", value: "#{venue.address}", placeholder: "Search for a location...",
-                :data => {
-                  :target => 'venue-autofill.locationInput algolia-places.addressInput',
-                  :action => 'keyup->algolia-places#changeHandler',
-                  :request_path => location_search_path
-                } %>
-                <span class="icon is-small is-left">
-                  <i class="fas fa-map-marker-alt"></i>
-                </span>
-              </p>
-              <div class="c-autocomplete-results-container" data-target="algolia-places.resultsContainer"></div>
-            </div>
-            <div class="field c-field-has-autocomplete-results">
-              <label class="label">Name</label>
-              <div class="is-hidden" data-target="venue-autofill.path" data-url=<%= "#{venue_search_new_venue_path}" %>></div>
-              <p class="control has-icons-left has-icons-right">
-                <%= venue_form.text_field :name,
-                  autofocus: true,
-                  class: "input",
-                  placeholder: "What is the name of the venue?",
-                  :data => {
-                    :target => 'venue-autofill.input',
-                    :action => 'keyup->venue-autofill#nameInputHandler'
-                  }
-                %>
-                <span class="icon is-small is-left">
-                  <i class="fas fa-store-alt"></i>
-                </span>
-              </p>
-              <div class="c-autocomplete-results-container" data-target="venue-autofill.results">
-              </div>
-  
-            </div>
-            <div class="field">
-              <label class="label">Category</label>
-              <p class="control has-icons-left">
-                <%= venue_form.text_field :category,
-                  class: "input",
-                  value: "#{venue.categories.first.try(:name)}",
-                  placeholder: "e.g. Café/Bar/Coworking Space",
-                  :data => {
-                    :target => 'venue-autofill.category'
-                  } %>
-                <span class="icon is-small is-left">
-                  <i class="fas fa-info-circle"></i>
-                </span>
-              </p>
-            </div>
-            <div class="field">
-              <label class="label">Description</label>
-              <p class="control has-icons-left">
-                <%= venue_form.text_field :description,
+    <div class="container">
+      <div class="columns">
+        <div class="column is-paddingless"></div>
+        <div class="column is-two-fifths">
+        <%= venue.form_heading %>
+          <div class="field c-field-has-autocomplete-results" data-controller="algolia-places">
+            <label class="label">Location</label>
+            <p class="control has-icons-left">
+              <%= venue_form.text_field :location,
+              class: "input", value: "#{venue.address}", placeholder: "Search for a location...",
+              :data => {
+                :target => 'venue-autofill.locationInput algolia-places.addressInput',
+                :action => 'keyup->algolia-places#changeHandler',
+                :request_path => location_search_path
+              } %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-map-marker-alt"></i>
+              </span>
+            </p>
+            <div class="c-autocomplete-results-container" data-target="algolia-places.resultsContainer"></div>
+          </div>
+          <div class="field c-field-has-autocomplete-results">
+            <label class="label">Name</label>
+            <div class="is-hidden" data-target="venue-autofill.path" data-url=<%= "#{venue_search_new_venue_path}" %>></div>
+            <p class="control has-icons-left has-icons-right">
+              <%= venue_form.text_field :name,
+                autofocus: true,
                 class: "input",
+                placeholder: "What is the name of the venue?",
+                :data => {
+                  :target => 'venue-autofill.input',
+                  :action => 'keyup->venue-autofill#nameInputHandler'
+                }
+              %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-store-alt"></i>
+              </span>
+            </p>
+            <div class="c-autocomplete-results-container" data-target="venue-autofill.results">
+            </div>
+
+          </div>
+          <div class="field">
+            <label class="label">Category</label>
+            <p class="control has-icons-left">
+              <%= venue_form.text_field :category,
+                class: "input",
+                value: "#{venue.categories.first.try(:name)}",
                 placeholder: "e.g. Café/Bar/Coworking Space",
                 :data => {
-                  :target => 'venue-autofill.description'
+                  :target => 'venue-autofill.category'
                 } %>
-                <span class="icon is-small is-left">
-                  <i class="fas fa-info-circle"></i>
-                </span>
-              </p>
-            </div>
-            <div class="field">
-              <label class="label">Address</label>
-              <p class="control has-icons-left">
-                <%= venue_form.text_field :address, class: "input", placeholder: "What's the address?", :data => { :target => 'venue-autofill.address' } %>
-                <span class="icon is-small is-left">
-                  <i class="fas fa-city"></i>
-                </span>
-              </p>
-            </div>
-            <div class="field">
-              <label class="label">Wifi</label>
-              <div class="control">
-                <label class="checkbox">
-                  <%= venue_form.check_box :has_wifi  %>
-                  This venue has WiFi
-                </label>
-              </div>
-            </div>
-            <div class="field">
-              <div class="control is-expanded has-icons-left">
-                <div class="select is-fullwidth">
-                  <!-- <select name="wifi_restrictions">
-                    <%= wifi_restrictions_options %>
-                  </select> -->
-                  <%= venue_form.select(:wifi_restrictions, wifi_restrictions_options) %>
-                </div>
-                <div class="icon is-small is-left">
-                  <i class="fas fa-stopwatch"></i>
-                </div>
-              </div>
-            </div>
-
-            <!-- FILTER > TAGS -->
-            <label class="label">Please select appropriate tags</label>
-            <div class="tags"  data-controller="tags">
-              <span class="tag u-pointer" data-action="click->tags#activateTag">
-                Serves Food
+              <span class="icon is-small is-left">
+                <i class="fas fa-info-circle"></i>
               </span>
-              <span class="tag u-pointer" data-action="click->tags#activateTag">
-                Open late
+            </p>
+          </div>
+          <div class="field">
+            <label class="label">Description</label>
+            <p class="control has-icons-left">
+              <%= venue_form.text_field :description,
+              class: "input",
+              placeholder: "e.g. Café/Bar/Coworking Space",
+              :data => {
+                :target => 'venue-autofill.description'
+              } %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-info-circle"></i>
               </span>
-            </div>
-
-            <!-- FILTER > PHOTO -->
-            <div class="field" data-controller="photo-upload">
-              <label class="label">Photos</label>
-              <!-- <input class="file-input" type="file" name="resume"> -->
-              <div class="file has-name is-boxed">
-                <label class="file-label">
-                  <%#= review.fields_for review_photo do |review_photo| %>
-                    <%#= review_photo.file_field :photo_cache, as: :hidden %>
-                    <%#= review_photo.file_field :photo, class: "file-input", data: { action: "photo-upload#doThis", target: "photo-upload.photoUploadInput" } %>
-                  <%# end %>
-                  <span class="file-cta">
-                    <span class="file-icon">
-                      <i class="fas fa-upload"></i>
-                    </span>
-                    <span class="file-label">
-                      Upload a photo...
-                    </span>
-                  </span>
-                  <span class="file-name is-hidden" data-target="photo-upload.fileName"></span>
-                </label>
-              </div>
-            </div>
-  
-  
-            <div id="opening-hours" class="is-hidden">
-              <%#= venue_form.label :opening_hours %>
-              <%# @opening_hours.each_with_index do |opening_hour, i| %>
-                <div class="form-row">
-                  <div class="form-group col-md-6" style="margin-top:15px;">
-                    <%#= venue_form. fields_for 'opening_hour[]', opening_hour do |f| %>
-                      <%#= venue_form.label :day, "#{@weekdays[i]}" %>
-                      <%#= venue_form.hidden_field :day, value: "#{i}" %><br />
-                      <%#= venue_form.label :opens %>
-                      <%#= venue_form.text_field :open, value: "00:00:00" %>
-                      <%#= venue_form.label :closes %>
-                      <%#= venue_form.text_field :close, value: "00:00:00" %>
-                    <%# end %>
-                  </div>
-                </div>
-              <%# end %>
-            </div>
-            
-            <%= venue_form.hidden_field :longitude, :data => { :target => 'venue-autofill.longitude' } %>
-            <%= venue_form.hidden_field :latitude, :data => { :target => 'venue-autofill.latitude' } %>
-            <%= venue_form.hidden_field :foursquare_id, :data => { :target => 'venue-autofill.fourSquareId' } %>
-
-            <div class="field is-grouped">
-              <p class="control">
-                <%= venue.form_submit_button(venue_form) %>
-              </p>
-              <%= venue.form_delete_button %>
-              <p class="control">
-                <%= link_to 'Cancel', :back, class: "button is-light" %>
-              </p>
+            </p>
+          </div>
+          <div class="field">
+            <label class="label">Address</label>
+            <p class="control has-icons-left">
+              <%= venue_form.text_field :address, class: "input", placeholder: "What's the address?", :data => { :target => 'venue-autofill.address' } %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-city"></i>
+              </span>
+            </p>
+          </div>
+          <div class="field">
+            <label class="label">Wifi</label>
+            <div class="control">
+              <label class="checkbox">
+                <%= venue_form.check_box :has_wifi  %>
+                This venue has WiFi
+              </label>
             </div>
           </div>
-          <div class="column is-paddingless"></div>
+          <div class="field">
+            <div class="control is-expanded has-icons-left">
+              <div class="select is-fullwidth">
+                <!-- <select name="wifi_restrictions">
+                  <%= wifi_restrictions_options %>
+                </select> -->
+                <%= venue_form.select(:wifi_restrictions, wifi_restrictions_options) %>
+              </div>
+              <div class="icon is-small is-left">
+                <i class="fas fa-stopwatch"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- FILTER > TAGS -->
+          <label class="label">Please select appropriate tags</label>
+          <div class="tags"  data-controller="tags">
+            <span class="tag u-pointer" data-action="click->tags#activateTag">
+              Serves Food
+            </span>
+            <span class="tag u-pointer" data-action="click->tags#activateTag">
+              Open late
+            </span>
+          </div>
+
+          <!-- FILTER > PHOTO -->
+          <div class="field" data-controller="photo-upload">
+            <label class="label">Photos</label>
+            <!-- <input class="file-input" type="file" name="resume"> -->
+            <div class="file has-name is-boxed">
+              <label class="file-label">
+                <%#= review.fields_for review_photo do |review_photo| %>
+                  <%#= review_photo.file_field :photo_cache, as: :hidden %>
+                  <%#= review_photo.file_field :photo, class: "file-input", data: { action: "photo-upload#doThis", target: "photo-upload.photoUploadInput" } %>
+                <%# end %>
+                <span class="file-cta">
+                  <span class="file-icon">
+                    <i class="fas fa-upload"></i>
+                  </span>
+                  <span class="file-label">
+                    Upload a photo...
+                  </span>
+                </span>
+                <span class="file-name is-hidden" data-target="photo-upload.fileName"></span>
+              </label>
+            </div>
+          </div>
+
+
+          <div id="opening-hours" class="is-hidden">
+            <%#= venue_form.label :opening_hours %>
+            <%# @opening_hours.each_with_index do |opening_hour, i| %>
+              <div class="form-row">
+                <div class="form-group col-md-6" style="margin-top:15px;">
+                  <%#= venue_form. fields_for 'opening_hour[]', opening_hour do |f| %>
+                    <%#= venue_form.label :day, "#{@weekdays[i]}" %>
+                    <%#= venue_form.hidden_field :day, value: "#{i}" %><br />
+                    <%#= venue_form.label :opens %>
+                    <%#= venue_form.text_field :open, value: "00:00:00" %>
+                    <%#= venue_form.label :closes %>
+                    <%#= venue_form.text_field :close, value: "00:00:00" %>
+                  <%# end %>
+                </div>
+              </div>
+            <%# end %>
+          </div>
+          
+          <!-- HIDDEN FIELDS -->
+          <%= venue_form.fields_for :address, Address.new do |address_form| %>
+            <%= address_form.hidden_field :longitude, :data => { :target => 'venue-autofill.longitude' } %>
+            <%= address_form.hidden_field :latitude, :data => { :target => 'venue-autofill.latitude' } %>
+          <% end %>
+          <%#= venue_form.hidden_field :longitude, :data => { :target => 'venue-autofill.longitude' } %>
+          <%#= venue_form.hidden_field :latitude, :data => { :target => 'venue-autofill.latitude' } %>
+          <%= venue_form.hidden_field :foursquare_id, :data => { :target => 'venue-autofill.fourSquareId' } %>
+
+          <div class="field is-grouped">
+            <p class="control">
+              <%= venue.form_submit_button(venue_form) %>
+            </p>
+            <%= venue.form_delete_button %>
+            <p class="control">
+              <%= link_to 'Cancel', :back, class: "button is-light" %>
+            </p>
+          </div>
         </div>
+        <div class="column is-paddingless"></div>
       </div>
-    </section>
-    <% end %>
+    </div>
+  </section>
+<% end %>

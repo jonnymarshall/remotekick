@@ -594,7 +594,7 @@ def create_chiang_mai_addresses
   puts 'Associating addresses to chiang mai coffee shops'
 
   Venue.all.each_with_index do |venue, x|
-    address = Addres.new(address_attributes[x])
+    address = Address.new(address_attributes[x])
     address.venue = venue
     address.save
   end

@@ -9,9 +9,8 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = current_user.reviews.new(review_params)
+    @review = @venue.reviews.new(review_params.merge(user: current_user))
     @review.has_wifi = reverse_checkbox_value(review_has_wifi_param[:has_wifi])
-    @review.venue = @venue
     if review_photo_params[:review_photo].present?
       @review_photo = @review.review_photos.new(photo: review_photo_params[:review_photo][:photo])
       @review_photo.save!

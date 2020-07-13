@@ -9,6 +9,7 @@ class Venue < ApplicationRecord
   has_many :opening_hours
   has_one :feature_set
   has_one :address, dependent: :destroy
+  accepts_nested_attributes_for :address
 
   validates :foursquare_id, uniqueness: true, allow_blank: true
   validates :name, presence: true

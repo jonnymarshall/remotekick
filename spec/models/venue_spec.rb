@@ -92,11 +92,6 @@ RSpec.describe Venue do
         end
 
         describe 'truthy/falsy venue values if the last two review values are the same' do
-<<<<<<< HEAD
-          let!(:rev1) { create(:review, user: u, venue: ven, has_wifi: true) }
-          let!(:rev2) { create(:review, user: u, venue: ven, has_wifi: false) }
-=======
->>>>>>> master
           let!(:rev3) { create(:review, user: u, venue: ven, has_wifi: false) }
           it 'should update' do
             expect(ven.has_wifi).to be false

@@ -41,6 +41,7 @@ create_city_seeds
 # CHIANG MAI
 create_chiang_mai_venues
 create_chiang_mai_venue_reviews
+create_chiang_mai_addresses
 
 # MELBOURE
 # create_melbourne_venues(melbourne_venue_attributes)

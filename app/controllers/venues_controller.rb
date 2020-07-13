@@ -52,13 +52,15 @@ class VenuesController < ApplicationController
 
   def create
     @venue = Venue.new(new_venue_params)
+    @address = Address.new(new_venue_address_params.merge(venue: @venue))
     @venue.user = current_user
-    if @venue.save
+    if @venue.save && @address.save
       VenueMailer.new_venue_listed(user: @venue.user, venue: @venue).deliver_now!
       flash[:success] = "Thank you, #{@venue.name} was successfully listed."
       redirect_to venue_path(@venue)
     else
       flash[:error] = @venue.errors.messages
+      flash[:error] = @address.errors.messages
       render :new
     end
 
@@ -124,18 +126,25 @@ class VenuesController < ApplicationController
   end
 
   def new_venue_params
-      params.require(:venue).permit(
-        :name,
-        :description,
-        :address,
-        :serves_food,
-        :air_conditioning,
-        :wifi_restrictions,
-        :has_wifi,
-        :longitude,
-        :latitude,
-        :foursquare_id
-      )
+    params.require(:venue).permit(
+      :name,
+      :description,
+      :serves_food,
+      :air_conditioning,
+      :wifi_restrictions,
+      :has_wifi,
+      # :longitude,
+      # :latitude,
+      :foursquare_id
+    )
+  end
+
+  def new_venue_address_params
+    params.require(:venue).require(:address_attributes).permit(
+      :address,
+      :longitude,
+      :latitude,
+    )
   end
 
   def venues_boolean_params

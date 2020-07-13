@@ -116,13 +116,14 @@ export default class extends Controller {
 
   // Populate the input field with the venue name
   setInputValues() {
-    self.inputTargets[0].value = self.searchQuery;
-    self.addressTargets[0].value = self.addressFormatter(self.selectedVenue);
-    self.categoryTargets[0].value = this.selectedVenue.categories[0].name;
+    self.inputTarget.value = self.searchQuery;
+    self.addressTarget.value = self.addressFormatter(self.selectedVenue);
+    self.categoryTarget.value = this.selectedVenue.categories[0].name;
     // self.descriptionTargets[0].value = this.selectedVenue.categories[0].name;
-    self.longitudeTargets[0].value = this.selectedVenue.location.lng;
-    self.latitudeTargets[0].value = this.selectedVenue.location.lat;
-    self.fourSquareIdTargets[0].value = this.selectedVenue.id;
+    debugger
+    self.longitudeTarget.value = this.selectedVenue.location.lng;
+    self.latitudeTarget.value = this.selectedVenue.location.lat;
+    self.fourSquareIdTarget.value = this.selectedVenue.id;
   }
 
   generateResults() {

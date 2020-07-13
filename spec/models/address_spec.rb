@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Address, type: :model, focus: true do
+RSpec.describe Address, type: :model do
   let(:user) { create(:user) }
   let(:venue) { create(:venue, user: user) }
   let(:z) { create(:address, venue: venue) }
