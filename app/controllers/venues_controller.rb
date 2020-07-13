@@ -59,8 +59,8 @@ class VenuesController < ApplicationController
       flash[:success] = "Thank you, #{@venue.name} was successfully listed."
       redirect_to venue_path(@venue)
     else
-      flash[:error] = @venue.errors.messages
-      flash[:error] = @address.errors.messages
+      flash[:error] = @venue.errors.messages.merge(@address.errors.messages)
+      # flash[:error] = 
       render :new
     end
 

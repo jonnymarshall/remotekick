@@ -120,7 +120,6 @@ export default class extends Controller {
     self.addressTarget.value = self.addressFormatter(self.selectedVenue);
     self.categoryTarget.value = this.selectedVenue.categories[0].name;
     // self.descriptionTargets[0].value = this.selectedVenue.categories[0].name;
-    debugger
     self.longitudeTarget.value = this.selectedVenue.location.lng;
     self.latitudeTarget.value = this.selectedVenue.location.lat;
     self.fourSquareIdTarget.value = this.selectedVenue.id;

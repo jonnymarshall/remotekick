@@ -9,7 +9,7 @@
             <label class="label">Location</label>
             <p class="control has-icons-left">
               <%= venue_form.text_field :location,
-              class: "input", value: "#{venue.address}", placeholder: "Search for a location...",
+              class: "input", value: "#{venue.address.city}", placeholder: "Search for a location...",
               :data => {
                 :target => 'venue-autofill.locationInput algolia-places.addressInput',
                 :action => 'keyup->algolia-places#changeHandler',
@@ -74,7 +74,7 @@
           <div class="field">
             <label class="label">Address</label>
             <p class="control has-icons-left">
-              <%= venue_form.text_field :address, class: "input", placeholder: "What's the address?", :data => { :target => 'venue-autofill.address' } %>
+              <%= venue_form.text_field :address, class: "input", value: "#{venue.address.address}", placeholder: "What's the address?", :data => { :target => 'venue-autofill.address' } %>
               <span class="icon is-small is-left">
                 <i class="fas fa-city"></i>
               </span>
