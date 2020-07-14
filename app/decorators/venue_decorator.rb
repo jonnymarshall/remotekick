@@ -94,6 +94,10 @@ class VenueDecorator < Draper::Decorator
     end
   end
 
+  def venue_city
+    object.address.address if object.try(:address)
+  end
+
   private
 
   def has_attribute?(attribute)
