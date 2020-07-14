@@ -5,6 +5,7 @@ RSpec.describe VenuesController do
   describe "guest user" do
   let(:u) { create(:user) }
   let!(:ven) { create(:venue, user: create(:user)) }
+  let!(:address) { create(:address, venue: ven) }
 
     describe "GET index" do
       it "renders :index template" do

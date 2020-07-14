@@ -5,6 +5,7 @@ RSpec.describe 'Status Requests' do
   describe '200 status request' do
     let(:u) { create(:user) }
     let!(:ven) { create(:venue, user: u) }
+    let!(:address) { create(:address, venue: ven) }
 
     it 'Homepage responds with 200' do
       get('/')

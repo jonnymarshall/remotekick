@@ -10,9 +10,7 @@ def create_chiang_mai_venues
       # serves_smoothies: true,
       # air_conditioning: true,
       has_wifi: true,
-      wifi_restrictions: 2,
-      latitude: 18.80117127010728,
-      longitude: 98.96564847010727
+      wifi_restrictions: 2
     },
     {
       name: "Ab'Petite Café",
@@ -23,9 +21,7 @@ def create_chiang_mai_venues
       # serves_smoothies: true,
       # air_conditioning: true,
       has_wifi: true,
-      wifi_restrictions: 0,
-      latitude: 18.805657,
-      longitude: 98.983306
+      wifi_restrictions: 0
     },
     {
       name: "My Secret Cafe In Town",
@@ -36,9 +32,7 @@ def create_chiang_mai_venues
       # serves_smoothies: true,
       # air_conditioning: true,
       has_wifi: true,
-      wifi_restrictions: 0,
-      latitude: 18.788347,
-      longitude: 98.983274
+      wifi_restrictions: 0
     },
     {
       name: "The Barn Eatery And Design",
@@ -49,9 +43,7 @@ def create_chiang_mai_venues
       # serves_smoothies: false,
       # air_conditioning: true,
       has_wifi: true,
-      wifi_restrictions: 0,
-      latitude: 18.787627,
-      longitude: 98.966519
+      wifi_restrictions: 0
     },
     {
       name: "Cottontree",
@@ -62,9 +54,7 @@ def create_chiang_mai_venues
       # serves_smoothies: false,
       # air_conditioning: true,
       has_wifi: true,
-      wifi_restrictions: 0,
-      latitude: 18.804544,
-      longitude: 98.967806
+      wifi_restrictions: 0
     },
     {
       name: "Ombra Caffe",
@@ -75,9 +65,7 @@ def create_chiang_mai_venues
       # serves_smoothies: true,
       # air_conditioning: true,
       has_wifi: true,
-      wifi_restrictions: 0,
-      latitude: 18.800055,
-      longitude: 98.974610
+      wifi_restrictions: 0
     },
     {
       name: "SS1254372",
@@ -88,9 +76,7 @@ def create_chiang_mai_venues
       # serves_smoothies: true,
       # air_conditioning: true,
       has_wifi: true,
-      wifi_restrictions: 0,
-      latitude: 18.795085,
-      longitude: 98.968436
+      wifi_restrictions: 0
     },
     {
       name: "Wake Up",
@@ -101,9 +87,7 @@ def create_chiang_mai_venues
       # serves_smoothies: false,
       # air_conditioning: true,
       has_wifi: true,
-      wifi_restrictions: 4,
-      latitude: 18.795085,
-      longitude: 98.968436
+      wifi_restrictions: 4
     },
     {
       name: "Nine One Coffee",
@@ -114,9 +98,7 @@ def create_chiang_mai_venues
       # serves_smoothies: false,
       # air_conditioning: true,
       has_wifi: true,
-      wifi_restrictions: 0,
-      latitude: 18.795085,
-      longitude: 98.966974
+      wifi_restrictions: 0
     },
     {
       name: "Wawee Bistro",
@@ -127,9 +109,7 @@ def create_chiang_mai_venues
       # serves_smoothies: false,
       # air_conditioning: true,
       has_wifi: true,
-      wifi_restrictions: 0,
-      latitude: 18.789085,
-      longitude: 98.990607
+      wifi_restrictions: 0
     },
     {
       name: "Wawee Coffee",
@@ -140,9 +120,7 @@ def create_chiang_mai_venues
       # serves_smoothies: false,
       # air_conditioning: true,
       has_wifi: true,
-      wifi_restrictions: 0,
-      latitude: 18.789689,
-      longitude: 99.002409
+      wifi_restrictions: 0
     },
     {
       name: "Artisan Café",
@@ -153,9 +131,7 @@ def create_chiang_mai_venues
       # serves_smoothies: true,
       # air_conditioning: true,
       has_wifi: true,
-      wifi_restrictions: 0,
-      latitude: 18.776090,
-      longitude: 98.982000
+      wifi_restrictions: 0
     },
     {
       name: "ADDICT CAFE",
@@ -166,9 +142,7 @@ def create_chiang_mai_venues
       # serves_smoothies: false,
       # air_conditioning: true,
       has_wifi: true,
-      wifi_restrictions: 0,
-      latitude: 18.800859,
-      longitude: 98.967540
+      wifi_restrictions: 0
     },
     {
       name: "Thesis Coffee",
@@ -179,9 +153,7 @@ def create_chiang_mai_venues
       # serves_smoothies: true,
       # air_conditioning: true,
       has_wifi: true,
-      wifi_restrictions: 3,
-      latitude: 18.807239,
-      longitude: 98.957395
+      wifi_restrictions: 3
     },
     {
       name: "Only Coffee",
@@ -192,9 +164,7 @@ def create_chiang_mai_venues
       # serves_smoothies: false,
       # air_conditioning: true,
       has_wifi: true,
-      wifi_restrictions: 0,
-      latitude: 18.798354,
-      longitude: 98.965053
+      wifi_restrictions: 0
     },
     {
       name: "Annista Cafe",
@@ -205,9 +175,7 @@ def create_chiang_mai_venues
       # serves_smoothies: true,
       # air_conditioning: true,
       has_wifi: true,
-      wifi_restrictions: 0,
-      latitude: 18.803645,
-      longitude: 98.959728
+      wifi_restrictions: 0
     },
     {
       name: "Elephant Cafe & Coworking",
@@ -216,9 +184,7 @@ def create_chiang_mai_venues
       # serves_food: false,
       # air_conditioning: true,
       has_wifi: true,
-      wifi_restrictions: 0,
-      latitude: 18.807530,
-      longitude: 98.956444
+      wifi_restrictions: 0
     },
     {
       name: "Bay's Cafe",
@@ -227,9 +193,7 @@ def create_chiang_mai_venues
       # serves_food: false,
       # air_conditioning: false,
       has_wifi: true,
-      wifi_restrictions: 0,
-      latitude: 18.806312,
-      longitude: 98.961538
+      wifi_restrictions: 0
     },
     {
       name: "Coffee Addict",
@@ -238,9 +202,7 @@ def create_chiang_mai_venues
       # serves_food: true,
       # air_conditioning: true,
       has_wifi: true,
-      wifi_restrictions: 0,
-      latitude: 18.792457,
-      longitude: 98.978503
+      wifi_restrictions: 0
     },
     {
       name: "Bird's Nest Cafe",
@@ -249,9 +211,7 @@ def create_chiang_mai_venues
       # serves_food: true,
       # air_conditioning: false,
       has_wifi: true,
-      wifi_restrictions: 0,
-      latitude: 18.793786,
-      longitude: 98.980329
+      wifi_restrictions: 0
     }
   ]
   Venue.create!(venue_attributes)
@@ -525,4 +485,119 @@ def create_chiang_mai_venue_reviews
   end
 
   puts "Created 10 additional reviews for #{Venue.first.name} with ID: #{Venue.first.id}"
+end
+
+def create_chiang_mai_addresses
+  puts "Creating Jonny's chiang mai coffee shop addresses..."
+  address_attributes = [{
+    # Camp@MAYA
+      latitude: 18.80117127010728,
+      longitude: 98.96564847010727
+    },
+    # Ab'Petite Café
+    {
+      latitude: 18.805657,
+      longitude: 98.983306
+    },
+    {
+      # My Secret Cafe In Town
+      latitude: 18.788347,
+      longitude: 98.983274
+    },
+    # The Barn Eatery And Design
+    {
+      latitude: 18.787627,
+      longitude: 98.966519
+    },
+    # Cottontree
+    {
+      latitude: 18.804544,
+      longitude: 98.967806
+    },
+    # Ombra Caffe
+    {
+      latitude: 18.800055,
+      longitude: 98.974610
+    },
+    # SS1254372
+    {
+      latitude: 18.795085,
+      longitude: 98.968436
+    },
+    # Wake Up
+    {
+      latitude: 18.795085,
+      longitude: 98.968436
+    },
+    # Nine One Coffee
+    {
+      latitude: 18.795085,
+      longitude: 98.966974
+    },
+    # Wawee Bistro
+    {
+      latitude: 18.789085,
+      longitude: 98.990607
+    },
+    # Wawee coffee
+    {
+      latitude: 18.789689,
+      longitude: 99.002409
+    },
+    # Artisan cafe
+    {
+      latitude: 18.776090,
+      longitude: 98.982000
+    },
+    # Addict cafe
+    {
+      latitude: 18.800859,
+      longitude: 98.967540
+    },
+    # Thesis Coffee
+    {
+      latitude: 18.807239,
+      longitude: 98.957395
+    },
+    # Only Coffee
+    {
+      latitude: 18.798354,
+      longitude: 98.965053
+    },
+    # Annista
+    {
+      latitude: 18.803645,
+      longitude: 98.959728
+    },
+    # Elephant cafe
+    {
+      latitude: 18.807530,
+      longitude: 98.956444
+    },
+    # Bay's Cafe
+    {
+      latitude: 18.806312,
+      longitude: 98.961538
+    },
+    # Coffee Addict
+    {
+      latitude: 18.792457,
+      longitude: 98.978503
+    },
+    # Bird's Nest Cafe
+    {
+      latitude: 18.793786,
+      longitude: 98.980329
+    }
+  ]
+
+  puts 'Associating addresses to chiang mai coffee shops'
+
+  Venue.all.each_with_index do |venue, x|
+    address = Address.new(address_attributes[x])
+    address.venue = venue
+    address.save
+  end
+
+  puts "Created #{Address.count} addresses..."
 end
