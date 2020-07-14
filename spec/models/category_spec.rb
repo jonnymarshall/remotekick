@@ -1,13 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Category do
-  let(:u) { create(:user) }
-  let(:cat) { create(:category) }
-  let(:ven) { create(:venue, user: u) }
+  let(:category) { create(:category) }
     
   describe 'category factories' do
     it 'must have valid data' do
-      expect(cat).to be_valid
+      expect(category).to be_valid
     end
   end
 
@@ -20,16 +18,7 @@ RSpec.describe Category do
   end
 
   describe 'associations' do
-    it 'the category should belong to the venue' do
-      ven.categories << cat
-      expect(ven.categories).to eq([cat])
-    end
-
-    it 'the venue should belong to the category' do
-      ven.categories << cat
-      expect(cat.venues).to eq([ven])
-    end
-    
+    it { should have_and_belong_to_many(:venues) }
   end
 
 end

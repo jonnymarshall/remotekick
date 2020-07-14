@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Venue do
+RSpec.describe City do
   let(:city) { create(:city) }
   let(:u) { create(:user) }
   let(:ven) { create(:venue, user: u) }
@@ -11,21 +11,8 @@ RSpec.describe Venue do
     end
   end
 
-  # describe 'validations' do
-
-    # describe 'name' do
-      # it { should validate_uniqueness_of(:name).scoped_to(:country) }
-    # end
-
-    # describe 'lng lat' do
-      # it 'should have lng lat' do
-      # end
-    # end
-
-    # describe 'venues' do
-    #   it { should have_many(:venues) }
-    # end
-
-  # end
+  describe 'validations' do
+    # it { should validate_uniqueness_of(:name).scoped_to(:country) }
+  end
 
 end
