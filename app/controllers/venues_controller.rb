@@ -53,7 +53,6 @@ class VenuesController < ApplicationController
   def create
     @venue = Venue.new(new_venue_params)
     @address = Address.new(new_venue_address_params.merge(venue: @venue))
-    byebug
     @venue.user = current_user
     if @venue.save && @address.save
       VenueMailer.new_venue_listed(user: @venue.user, venue: @venue).deliver_now!

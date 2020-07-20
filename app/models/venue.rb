@@ -16,10 +16,6 @@ class Venue < ApplicationRecord
   validates_uniqueness_of :name, scope: :user_id
   # validates :description, length: { maximum: 68 }, allow_blank: true
   
-  # geocoded_by :address
-  # after_validation :geocode, if: :will_save_change_to_address?
-  reverse_geocoded_by :latitude, :longitude
-  after_validation :reverse_geocode
   scope :location, -> location { near(location) }
   scope :rating, -> number { where("rating >= ?", number) }
   scope :upload_speed, -> number { where("upload_speed >= ?", number) if number > "0" }
