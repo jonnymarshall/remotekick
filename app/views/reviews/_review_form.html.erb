@@ -94,7 +94,7 @@
                 <label class="file-label">
                   <%#= review.fields_for review_photo do |review_photo| %>
                     <%#= review_photo.file_field :photo_cache, as: :hidden %>
-                    <%#= review_photo.file_field :photo, class: "file-input", data: { action: "photo-upload#doThis", target: "photo-upload.photoUploadInput" } %>
+                    <%#= review_photo.file_field :photo, class: "file-input", data: { action: "photo-upload#handleChange", target: "photo-upload.photoUploadInput" } %>
                   <%# end %>
                   <span class="file-cta">
                     <span class="file-icon">

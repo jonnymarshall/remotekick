@@ -13,7 +13,7 @@
           <div class="field u-margin-t-10px" data-controller="photo-upload">
             <div class="file has-name is-boxed is-primary is-small is-centered">
               <label class="file-label">
-                <%= f.file_field :avatar, class: "file-input", placeholder: "John", data: { action: "photo-upload#doThis", target: "photo-upload.photoUploadInput" } %>
+                <%= f.file_field :avatar, class: "file-input", placeholder: "John", data: { action: "photo-upload#handleChange", target: "photo-upload.photoUploadInput" } %>
                 <span class="file-cta">
                   <span class="file-icon">
                     <i class="fas fa-upload"></i>

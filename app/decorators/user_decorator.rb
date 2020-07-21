@@ -11,6 +11,6 @@ class UserDecorator < ApplicationDecorator
   #   end
 
   def photo_upload_text
-    !object.avatar.present? ?  "Upload a photo" : "Change photo"
+    object.avatar.present? ?  "Change photo" : "Upload a photo"
   end
 end

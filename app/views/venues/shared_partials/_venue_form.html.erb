@@ -1,4 +1,4 @@
-<%= form_with model: @venue, local: true do |venue_form| %>
+<%= form_with model: venue, local: true do |venue_form| %>
   <section class="section" data-controller="venue-autofill">
     <div class="container">
       <div class="columns">
@@ -126,28 +126,29 @@
             </span>
           </div>
 
-          <!-- PHOTO -->
-          <div class="field" data-controller="photo-upload">
-            <label class="label">Photos</label>
-            <!-- <input class="file-input" type="file" name="resume"> -->
-            <div class="file has-name is-boxed">
+          <!-- PHOTO UPLOAD -->
+          <% if venue.photos.any? %>
+            <figure class="image is-square">
+              <%= image_tag url_for(venue.photos.first.image), class: "c-user-avatar-large" %>
+            </figure>
+          <% end %>
+          <div class="field u-margin-t-10px" data-controller="photo-upload">
+            <div class="file has-name is-boxed is-primary is-small is-centered">
               <label class="file-label">
-                <%#= review.fields_for review_photo do |review_photo| %>
-                  <%#= review_photo.file_field :photo_cache, as: :hidden %>
-                  <%#= review_photo.file_field :photo, class: "file-input", data: { action: "photo-upload#doThis", target: "photo-upload.photoUploadInput" } %>
-                <%# end %>
+                <%= venue_form.fields_for :photo, photo do |photo_form| %>
+                  <%= photo_form.file_field :image, class: "file-input", placeholder: "John", data: { action: "photo-upload#handleChange", target: "photo-upload.photoUploadInput" } %>
+                <% end %>
                 <span class="file-cta">
                   <span class="file-icon">
                     <i class="fas fa-upload"></i>
                   </span>
-                  <span class="file-label">
-                    Upload a photo...
-                  </span>
+                  <span class="file-label">Upload a photo</span>
                 </span>
                 <span class="file-name is-hidden" data-target="photo-upload.fileName"></span>
               </label>
             </div>
           </div>
+          
 
 
           <div id="opening-hours" class="is-hidden">

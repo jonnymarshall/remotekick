@@ -41,7 +41,6 @@ class VenuesController < ApplicationController
   end
 
   def new
-    @venue = Venue.new
     # @opening_hours = OpeningHour.new
     # @opening_hours = []
     # 7.times do
@@ -51,16 +50,19 @@ class VenuesController < ApplicationController
   end
 
   def create
+    byebug
     @venue = Venue.new(new_venue_params)
     @address = Address.new(new_venue_address_params.merge(venue: @venue))
     @venue.user = current_user
     if @venue.save && @address.save
+      @photo = Photo.new(imageable: @venue) if new_venue_photo_params
+      @photo.image.attach(new_venue_photo_params)
+      @photo.save
       VenueMailer.new_venue_listed(user: @venue.user, venue: @venue).deliver_now!
       flash[:success] = "Thank you, #{@venue.name} was successfully listed."
       redirect_to venue_path(@venue)
     else
       flash[:error] = @venue.errors.messages.merge(@address.errors.messages)
-      # flash[:error] = 
       render :new
     end
 
@@ -144,6 +146,10 @@ class VenuesController < ApplicationController
       :longitude,
       :latitude,
     )
+  end
+
+  def new_venue_photo_params
+    params.require(:venue).require(:photo).require(:image)
   end
 
   def venues_boolean_params

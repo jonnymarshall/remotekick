@@ -10,6 +10,7 @@ class Venue < ApplicationRecord
   has_one :address, dependent: :destroy
   has_many :photos, as: :imageable
   accepts_nested_attributes_for :address
+  accepts_nested_attributes_for :photos
 
   validates :foursquare_id, uniqueness: true, allow_blank: true
   validates :name, presence: true
