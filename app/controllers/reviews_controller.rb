@@ -11,10 +11,14 @@ class ReviewsController < ApplicationController
   def create
     @review = @venue.reviews.new(review_params.merge(user: current_user))
     @review.has_wifi = reverse_checkbox_value(review_has_wifi_param[:has_wifi])
-    if review_photo_params[:review_photo].present?
-      @review_photo = @review.review_photos.new(photo: review_photo_params[:review_photo][:photo])
-      @review_photo.save!
-    end
+
+
+    # REVIEW PHOTO BLOCK - CHANGE ME
+    # if review_photo_params[:review_photo].present?
+    #   @review_photo = @review.review_photos.new(photo: review_photo_params[:review_photo][:photo])
+    #   @review_photo.save!
+    # end
+
     @review.save!
     redirect_to venue_path(@venue)
   end
@@ -59,9 +63,9 @@ class ReviewsController < ApplicationController
   end
 
 
-  def review_photo_params
-    params.require(:review).permit(review_photo: [:photo])
-  end
+  # def review_photo_params
+  #   params.require(:review).permit(review_photo: [:photo])
+  # end
 
   def set_venue
     @venue = Venue.find(params[:venue_id])

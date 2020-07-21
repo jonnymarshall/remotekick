@@ -2,13 +2,13 @@ class Venue < ApplicationRecord
   belongs_to :user
   belongs_to :city, optional: true
   has_many :reviews, dependent: :destroy
-  has_many :review_photos, through: :reviews
   belongs_to :owner, class_name: 'User', optional: true
   has_one :cover_photo, dependent: :destroy
   has_and_belongs_to_many :categories
   has_many :opening_hours
   has_one :feature_set
   has_one :address, dependent: :destroy
+  has_many :photos, as: :imageable
   accepts_nested_attributes_for :address
 
   validates :foursquare_id, uniqueness: true, allow_blank: true
@@ -64,6 +64,12 @@ class Venue < ApplicationRecord
   # def to_param
   #   "#{to_global_id.to_param}-#{name.parameterize}"
   # end
+
+  def all_images(combined_images = [])
+    photos.map { |photo| combined_images << photo }
+    reviews.map { |review| review.photos.map { |photo| combined_images << photo } }
+    combined_images
+  end
 
   private
 

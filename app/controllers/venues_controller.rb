@@ -37,7 +37,7 @@ class VenuesController < ApplicationController
 
   def show
     @review = Review.new
-    @review_photo = @review.review_photos.new
+    # @review_photo = @review.review_photos.new
   end
 
   def new

@@ -134,13 +134,28 @@ RSpec.describe Venue do
 
     describe 'has_wifi' do
       
-      it 'returns an ActiveRecord::Relation of venues which serve food' do
+      it 'returns an ActiveRecord::Relation of venues which have wifi' do
         has_wifi = FactoryBot.create(:venue, user: u, has_wifi: true)
         also_has_wifi = FactoryBot.create(:venue, user: FactoryBot.create(:user), has_wifi: true)
         does_not_have_wifi = FactoryBot.create(:venue, user: FactoryBot.create(:user), has_wifi: false)
         also_does_not_have_wifi = FactoryBot.create(:venue, user: FactoryBot.create(:user), has_wifi: false)
         
         expect(Venue.has_wifi).to eq([has_wifi, also_has_wifi])
+      end
+    end
+
+  end
+
+  describe 'methods' do
+
+    describe 'all_images', focus: true do
+      
+      it 'returns an array of all images of the venue (venue and reviews)' do
+        photo_belonging_to_venue = create(:photo, imageable: ven)
+        review = create(:review, user: u, venue: ven, rating: 4)
+        photo_belonging_to_review = create(:photo, imageable: review)
+        
+        expect(ven.all_images).to eq([photo_belonging_to_venue, photo_belonging_to_review])
       end
     end
 

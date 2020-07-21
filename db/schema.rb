@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_11_180229) do
+ActiveRecord::Schema.define(version: 2020_07_21_123447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,12 +92,13 @@ ActiveRecord::Schema.define(version: 2020_07_11_180229) do
     t.index ["venue_id"], name: "index_opening_hours_on_venue_id"
   end
 
-  create_table "review_photos", force: :cascade do |t|
-    t.string "photo"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "review_id"
-    t.index ["review_id"], name: "index_review_photos_on_review_id"
+  create_table "photos", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "imageable_type"
+    t.bigint "imageable_id"
+    t.boolean "featured", default: false
+    t.index ["imageable_type", "imageable_id"], name: "index_photos_on_imageable_type_and_imageable_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -172,7 +173,6 @@ ActiveRecord::Schema.define(version: 2020_07_11_180229) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cover_photos", "venues"
   add_foreign_key "opening_hours", "venues"
-  add_foreign_key "review_photos", "reviews"
   add_foreign_key "reviews", "users"
   add_foreign_key "reviews", "venues"
   add_foreign_key "venues", "categories"
