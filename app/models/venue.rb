@@ -72,6 +72,11 @@ class Venue < ApplicationRecord
     combined_images
   end
 
+  def featured_photo
+    # byebug
+    # all_images.select { |photo| photo.featured }
+  end
+
   private
 
   def attr_is_averageable?(k)

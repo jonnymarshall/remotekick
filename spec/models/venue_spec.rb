@@ -148,7 +148,7 @@ RSpec.describe Venue do
 
   describe 'methods' do
 
-    describe 'all_images', focus: true do
+    describe 'all_images' do
       
       it 'returns an array of all images of the venue (venue and reviews)' do
         photo_belonging_to_venue = create(:photo, imageable: ven)

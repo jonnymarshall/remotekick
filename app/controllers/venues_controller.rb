@@ -50,14 +50,15 @@ class VenuesController < ApplicationController
   end
 
   def create
-    byebug
     @venue = Venue.new(new_venue_params)
     @address = Address.new(new_venue_address_params.merge(venue: @venue))
     @venue.user = current_user
     if @venue.save && @address.save
-      @photo = Photo.new(imageable: @venue) if new_venue_photo_params
-      @photo.image.attach(new_venue_photo_params)
-      @photo.save
+      if new_venue_photo_params
+        @photo = Photo.new(imageable: @venue)
+        @photo.image.attach(new_venue_photo_params)
+        @photo.save
+      end
       VenueMailer.new_venue_listed(user: @venue.user, venue: @venue).deliver_now!
       flash[:success] = "Thank you, #{@venue.name} was successfully listed."
       redirect_to venue_path(@venue)
@@ -162,10 +163,10 @@ class VenuesController < ApplicationController
     )
   end
 
-  def opening_hours_params
-    # params.require([:venue, :opening_hour]).permit(:day, :open, :close)
-    params.require(:venue).permit(opening_hour: [:day, :open, :close])
-  end
+  # def opening_hours_params
+  #   # params.require([:venue, :opening_hour]).permit(:day, :open, :close)
+  #   params.require(:venue).permit(opening_hour: [:day, :open, :close])
+  # end
 
   def mapbox_api
     baseApiUrl = 'https://api.mapbox.com';
