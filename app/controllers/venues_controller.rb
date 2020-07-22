@@ -56,7 +56,7 @@ class VenuesController < ApplicationController
     if @venue.save && @address.save
       if new_venue_photo_params
         @photo = Photo.new(imageable: @venue)
-        @photo.image.attach(new_venue_photo_params)
+        @photo.image.attach(new_venue_photo_params[:image]) if new_venue_photo_params
         @photo.save
       end
       VenueMailer.new_venue_listed(user: @venue.user, venue: @venue).deliver_now!
@@ -150,7 +150,8 @@ class VenuesController < ApplicationController
   end
 
   def new_venue_photo_params
-    params.require(:venue).require(:photo).require(:image)
+    # params.require(:venue).permit(photo: [:image])
+    params[:venue][:photo]
   end
 
   def venues_boolean_params
