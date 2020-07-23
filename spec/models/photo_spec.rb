@@ -18,6 +18,13 @@ RSpec.describe Photo, type: :model do
     it { should belong_to(:imageable) }
   end
 
+  describe 'attached image' do
+    it 'should be an instance of ActiveStorage::Attached' do
+      photo_with_image = create(:photo_with_attached_image, imageable: ven)
+      expect(photo_with_image.image).to be_an_instance_of(ActiveStorage::Attached::One)
+    end
+  end
+
   describe 'callbacks' do
     it 'should mark itself as featured if it is the only photo for the venue' do
       expect(photo.featured).to be true
