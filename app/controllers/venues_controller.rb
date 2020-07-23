@@ -37,11 +37,10 @@ class VenuesController < ApplicationController
 
   def show
     @review = Review.new
-    @review_photo = @review.review_photos.new
+    # @review_photo = @review.review_photos.new
   end
 
   def new
-    @venue = Venue.new
     # @opening_hours = OpeningHour.new
     # @opening_hours = []
     # 7.times do
@@ -55,12 +54,16 @@ class VenuesController < ApplicationController
     @address = Address.new(new_venue_address_params.merge(venue: @venue))
     @venue.user = current_user
     if @venue.save && @address.save
+      if new_venue_photo_params
+        @photo = Photo.new(imageable: @venue)
+        @photo.image.attach(new_venue_photo_params[:image]) if new_venue_photo_params
+        @photo.save
+      end
       VenueMailer.new_venue_listed(user: @venue.user, venue: @venue).deliver_now!
       flash[:success] = "Thank you, #{@venue.name} was successfully listed."
       redirect_to venue_path(@venue)
     else
       flash[:error] = @venue.errors.messages.merge(@address.errors.messages)
-      # flash[:error] = 
       render :new
     end
 
@@ -146,6 +149,11 @@ class VenuesController < ApplicationController
     )
   end
 
+  def new_venue_photo_params
+    # params.require(:venue).permit(photo: [:image])
+    params[:venue][:photo]
+  end
+
   def venues_boolean_params
     params.permit(
       :serves_food,
@@ -156,10 +164,10 @@ class VenuesController < ApplicationController
     )
   end
 
-  def opening_hours_params
-    # params.require([:venue, :opening_hour]).permit(:day, :open, :close)
-    params.require(:venue).permit(opening_hour: [:day, :open, :close])
-  end
+  # def opening_hours_params
+  #   # params.require([:venue, :opening_hour]).permit(:day, :open, :close)
+  #   params.require(:venue).permit(opening_hour: [:day, :open, :close])
+  # end
 
   def mapbox_api
     baseApiUrl = 'https://api.mapbox.com';

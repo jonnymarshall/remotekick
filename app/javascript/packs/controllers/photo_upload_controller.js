@@ -14,12 +14,7 @@ export default class extends Controller {
     console.log(`${this.controllerName} disconnected.`)
   }
 
-  test() {
-    console.log("why am I not reaching here???")
-  }
-
-  doThis() {
-    
+  handleChange() {
     let fullPath = this.photoUploadInputTarget.value;
     var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
     var filename = fullPath.substring(startIndex);

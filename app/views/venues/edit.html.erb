@@ -1,1 +1,5 @@
-<%= render partial: "venues/shared_partials/venue_form", locals: { venue: @venue.decorate, address: @venue.address } %>
+<%= render partial: "venues/shared_partials/venue_form", locals: {
+  venue: @venue.decorate,
+  address: @venue.address,
+  photo: @venue.photos.new
+  } %>

@@ -23,7 +23,7 @@ export default class extends Controller {
     document.body.classList.toggle('u-lock-scrolling')
   }
 
-  doThisThing() {
+  handleChange() {
     self = this
     
     if (!this.menuToggleInProgress) {

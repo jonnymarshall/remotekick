@@ -1,5 +1,4 @@
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: "http://TODO_PUT_YOUR_DOMAIN_HERE" }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -99,7 +98,7 @@ Rails.application.configure do
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
     config.action_mailer.show_previews = true
-    config.action_mailer.default_url_options = { :host => ENV['DOMAIN'] }
+    config.action_mailer.default_url_options = { host: ENV['DOMAIN'] }
     config.action_mailer.asset_host = "http://#{ENV['DOMAIN']}"
   
     config.action_mailer.smtp_settings = {

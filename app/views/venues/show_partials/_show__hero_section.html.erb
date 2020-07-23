@@ -1,4 +1,4 @@
-<section id="c-venues-show-hero-section" class="hero is-medium is-bold" style="<%= venue.gradient %>, <%= venue.hero_image_url %>">
+<section id="c-venues-show-hero-section" class="hero is-medium is-bold" style="<%= venue.gradient %>, <%= venue.decorate.hero_image_url(venue.featured_photo ? url_for(venue.featured_photo.image) : nil) %>">
   <div class="hero-body">
   <% if policy(venue).update? %>
     <%= link_to edit_venue_path(venue) do %>
