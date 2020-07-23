@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Photo, type: :model do
   let(:u) { create(:user) }
   let(:ven) { create(:venue, user: u) }
-  let(:photo) { create(:photo, imageable: ven) }
+  let!(:photo) { create(:photo, imageable: ven) }
   let(:photo_is_featured) { create(:photo, imageable: ven) }
 
   describe 'photo factories' do
@@ -16,5 +16,16 @@ RSpec.describe Photo, type: :model do
 
   describe 'validations' do
     it { should belong_to(:imageable) }
+  end
+
+  describe 'callbacks' do
+    it 'should mark itself as featured if it is the only photo for the venue' do
+      expect(photo.featured).to be true
+    end
+
+    it 'should not mark itself as featured if it is not the only photo for the venue' do
+      photo_not_featured = create(:photo, imageable: ven)
+      expect(photo_not_featured.featured).to be false
+    end
   end
 end

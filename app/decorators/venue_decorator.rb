@@ -4,15 +4,14 @@ class VenueDecorator < Draper::Decorator
   # `helpers` (aka `h`). You can override attributes, for example:
   #
   include IconDisplay
-  include ActionView::Helpers::UrlHelper
 
   def gradient
     "background: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.6))"
   end
 
-  def hero_image_url
-    if object.photos.any?
-      "url('#{url_for(venue.photos.first.image)}') center / cover;"
+  def hero_image_url(venue_url)
+    if venue_url
+      "url('#{venue_url}') center / cover;"
     else
       "url('https://images.unsplash.com/photo-1521017432531-fbd92d768814?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80') center / cover;"
     end

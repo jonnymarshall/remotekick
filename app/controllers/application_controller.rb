@@ -7,9 +7,9 @@ class ApplicationController < ActionController::Base
   before_action :store_current_location, :unless => :devise_controller?
   add_flash_types :success, :error
 
-  def default_url_options
-    { host: ENV["DOMAIN"] || "localhost:3000" }
-  end
+  # def default_url_options
+  #   { host: ENV["DOMAIN"] || "localhost:3000" }
+  # end
   
   
   private

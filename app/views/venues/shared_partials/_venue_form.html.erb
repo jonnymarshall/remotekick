@@ -129,7 +129,7 @@
           <!-- PHOTO UPLOAD -->
           <% if venue.photos.any? %>
             <figure class="image is-square">
-              <%= image_tag url_for(venue.photos.first.image), class: "c-user-avatar-large" %>
+              <%= image_tag venue.photos.first.image, class: "c-user-avatar-large" %>
             </figure>
           <% end %>
           <div class="field u-margin-t-10px" data-controller="photo-upload">

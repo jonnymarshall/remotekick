@@ -58,7 +58,6 @@ class Venue < ApplicationRecord
     updated_values = averaged_values.merge(truth_checked_values)
 
     # Update values
-    # byebug
     update(updated_values)
   end
 
@@ -66,15 +65,14 @@ class Venue < ApplicationRecord
   #   "#{to_global_id.to_param}-#{name.parameterize}"
   # end
 
-  def all_images(combined_images = [])
+  def all_photos(combined_images = [])
     photos.map { |photo| combined_images << photo }
     reviews.map { |review| review.photos.map { |photo| combined_images << photo } }
     combined_images
   end
 
   def featured_photo
-    # byebug
-    # all_images.select { |photo| photo.featured }
+    all_photos.find { |photo| photo.featured }
   end
 
   private

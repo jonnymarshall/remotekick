@@ -146,16 +146,23 @@ RSpec.describe Venue do
 
   end
 
-  describe 'methods' do
+  describe 'photo methods' do
 
-    describe 'all_images' do
-      
+    let!(:photo_belonging_to_venue) { create(:photo, imageable: ven) }
+
+    describe 'all_photos' do
       it 'returns an array of all images of the venue (venue and reviews)' do
-        photo_belonging_to_venue = create(:photo, imageable: ven)
         review = create(:review, user: u, venue: ven, rating: 4)
         photo_belonging_to_review = create(:photo, imageable: review)
         
-        expect(ven.all_images).to eq([photo_belonging_to_venue, photo_belonging_to_review])
+        expect(ven.all_photos).to eq([photo_belonging_to_venue, photo_belonging_to_review])
+      end
+    end
+
+    describe 'featured_photo' do
+      it 'returns featured photo for venue' do
+        unfeatured_photo_belonging_to_venue = create(:photo, imageable: ven)
+        expect(ven.featured_photo).to eq(photo_belonging_to_venue)
       end
     end
 
