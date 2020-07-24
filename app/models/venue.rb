@@ -8,7 +8,7 @@ class Venue < ApplicationRecord
   has_many :opening_hours
   has_one :feature_set
   has_one :address, dependent: :destroy
-  has_many :photos, as: :imageable
+  has_many :photos, as: :imageable, dependent: :destroy
   accepts_nested_attributes_for :address
   accepts_nested_attributes_for :photos
 
