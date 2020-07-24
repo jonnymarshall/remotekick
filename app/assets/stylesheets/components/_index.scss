@@ -4,13 +4,24 @@
 @import "card";
 @import "toggle";
 @import "star_rating";
-@import "filter_radio_buttons";
+@import "map/map";
+
+// Forms
+// @import "forms/filter_radio_buttons";
+@import "forms/radio_buttons";
 @import "rating_stars";
-@import "map";
-@import "range_slider";
-@import "forms";
-@import "forms";
+@import "forms/range_slider";
+@import "forms/forms";
+
+// Venues
 @import "venues/venues_show_hero_section";
+
+// Photos
+@import "photos/photos_index";
+
+// Mailers
 @import "mailers/mailers";
-@import "flash";
+
+// Flashes
+@import "flashes/flash";
 @import "users/user.index.scss";

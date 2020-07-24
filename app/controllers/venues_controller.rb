@@ -54,6 +54,7 @@ class VenuesController < ApplicationController
     @address = Address.new(new_venue_address_params.merge(venue: @venue))
     @venue.user = current_user
     if @venue.save && @address.save
+      save_photo_if_photo_uploaded(venue: @venue)
       if new_venue_photo_params
         @photo = Photo.new(imageable: @venue)
         @photo.image.attach(new_venue_photo_params[:image]) if new_venue_photo_params
@@ -87,6 +88,7 @@ class VenuesController < ApplicationController
 
   def update
     if @venue.update(new_venue_params)
+      save_photo_if_photo_uploaded(venue: @venue)
       redirect_to venue_path(@venue)
     else
       render :edit
@@ -162,6 +164,14 @@ class VenuesController < ApplicationController
       :no_wifi_restrictions,
       :has_wifi
     )
+  end
+
+  def save_photo_if_photo_uploaded(venue:)
+    if new_venue_photo_params
+      @photo = Photo.new(imageable: venue)
+      @photo.image.attach(new_venue_photo_params[:image]) if new_venue_photo_params
+      @photo.save
+    end
   end
 
   # def opening_hours_params
