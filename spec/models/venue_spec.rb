@@ -144,6 +144,17 @@ RSpec.describe Venue do
       end
     end
 
+    describe 'location', focus: true do
+      
+      it 'returns an ActiveRecord::Relation of venues which have addresses near given location' do
+        leeds_address = FactoryBot.create(:address, venue: ven)
+        chiang_mai_venue = create(:venue, user: create(:user) )
+        chiang_mai_address = FactoryBot.create(:address_full_chiang_mai, venue: chiang_mai_venue)
+        
+        expect(Venue.location("Chiang Mai")).to eq([chiang_mai_venue])
+      end
+    end
+
   end
 
   describe 'photo methods' do

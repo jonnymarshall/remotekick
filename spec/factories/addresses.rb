@@ -17,13 +17,21 @@ FactoryBot.define do
       longitude { nil }
     end
 
-    trait :chiang_mai_address do
+    trait :chiang_mai_lng_lat do
       latitude { 18.80117127010728 }
       longitude { 98.96564847010727 }
     end
 
+    trait :chiang_mai_address do
+      address { "Chang Phueak, Mueang Chiang Mai District" }
+      city { "Chiang Mai" }
+      postcode { "50300" }
+      country { "Thailand" }
+    end
+
     factory :address_only_lng_lat, traits: [:only_lng_lat]
-    factory :address_only_lng_lat_chiang_mai, traits: [:only_lng_lat, :chiang_mai_address]
+    factory :address_only_lng_lat_chiang_mai, traits: [:only_lng_lat, :chiang_mai_lng_lat]
+    factory :address_full_chiang_mai, traits: [:chiang_mai_lng_lat, :chiang_mai_address]
     factory :address_only_address, traits: [:only_address]
   end
 end

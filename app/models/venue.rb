@@ -17,7 +17,8 @@ class Venue < ApplicationRecord
   validates_uniqueness_of :name, scope: :user_id
   # validates :description, length: { maximum: 68 }, allow_blank: true
   
-  scope :location, -> location { near(location) }
+  # scope :location, -> location { near(location) }
+  scope :location, -> location { where(Address.near(location)) }
   scope :rating, -> number { where("rating >= ?", number) }
   scope :upload_speed, -> number { where("upload_speed >= ?", number) if number > "0" }
   scope :serves_food, -> { where(serves_food: true) }
