@@ -4,9 +4,11 @@ export default class extends Controller {
 
   controllerName = "password_validation_controller"
 
-  static targets = ["email", "password", "passwordConfirm", "validationMessageContainer"]
+  static targets = ["email", "password", "passwordConfirm", "validationMessageContainer", "firstName", "lastName"]
   
   minimumPasswordLength = 6
+  enteredfirstName = null
+  enteredlastName = null
   enteredEmail = null
   enteredPassword = null
   enteredPasswordConfirmation = null
@@ -35,6 +37,14 @@ export default class extends Controller {
       this.enteredPasswordConfirmation = this.passwordConfirmTarget.value
       this.fieldsToValidate.push("passwordConfirm")
     }
+    if (this.hasFirstNameTarget) {
+      this.enteredfirstName = this.firstNameTarget.value
+      this.fieldsToValidate.push("firstName")
+    }
+    if (this.hasLastNameTarget) {
+      this.enteredlastName = this.lastNameTarget.value
+      this.fieldsToValidate.push("lastName")
+    }
   }
 
   // Key up event triggers
@@ -53,11 +63,45 @@ export default class extends Controller {
     this.refreshValidationMessages()
   }
 
+  async enteredfirstNameValidation(e) {
+    this.enteredfirstName = e.target.value
+    this.refreshValidationMessages()
+  }
+
+  async enteredlastNameValidation(e) {
+    this.enteredlastName = e.target.value
+    this.refreshValidationMessages()
+  }
+
   
 
   // Validations
   checkValidations() {
     this.fieldsToValidate.forEach((field) => {
+      if (field == "firstName") {
+        if (!this.enteredfirstName) {
+          this.validationMessages.push(this.validationMessage(
+            {
+              subject: "First name",
+              qualifier: "cannot be",
+              value: "blank"
+            })
+          )
+        }
+      }
+
+      if (field == "lastName") {
+        if (!this.enteredlastName) {
+          this.validationMessages.push(this.validationMessage(
+            {
+              subject: "Last name",
+              qualifier: "cannot be",
+              value: "blank"
+            })
+          )
+        }
+      }
+
       if (field == "email") {
         if (!!this.enteredEmail) {
           if (!this.enteredEmail.includes("@")) {
