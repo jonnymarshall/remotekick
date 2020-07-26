@@ -8,22 +8,41 @@
         <div class="column" data-controller="password-validation">
           <h1 class="title">Sign up</h1>
           <div class="field">
+            <%= f.label :first_name, class: "label" %>
             <p class="control has-icons-left has-icons-right">
-              <%= f.text_field :first_name, autofocus: true, class: "input", placeholder: "John" %>
+              <%= f.text_field :first_name,
+                autofocus: true,
+                class: "input",
+                placeholder: "John",
+                :data => {
+                  :target => 'password-validation.firstName',
+                  :action => 'keyup->password-validation#enteredfirstNameValidation'
+                }
+              %>
               <span class="icon is-small is-left">
                 <i class="fas fa-user"></i>
               </span>
             </p>
           </div>
           <div class="field">
+            <%= f.label :last_name, class: "label" %>
             <p class="control has-icons-left has-icons-right">
-              <%= f.text_field :last_name, autofocus: true, class: "input", placeholder: "Doe" %>
+              <%= f.text_field :last_name,
+                autofocus: true,
+                class: "input",
+                placeholder: "Doe",
+                :data => {
+                  :target => 'password-validation.lastName',
+                  :action => 'keyup->password-validation#enteredlastNameValidation'
+                }
+              %>
               <span class="icon is-small is-left">
                 <i class="fas fa-user"></i>
               </span>
             </p>
           </div>
           <div class="field">
+          <%= f.label :email, class: "label" %>
             <p class="control has-icons-left has-icons-right">
               <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input", placeholder: "Email", :data => { :target => 'password-validation.email', :action => 'keyup->password-validation#emailEntryValidation' } %>
               <span class="icon is-small is-left">
