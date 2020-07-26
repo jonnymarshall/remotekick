@@ -110,6 +110,6 @@ module VenuesHelper
   end
 
   def full_results_for_location(location)
-    Venue.near("#{location}")
+    Venue.where(id: Address.near(location).joins(:venue).preload(:venue).map(&:venue).map(&:id))
   end
 end

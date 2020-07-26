@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_21_123447) do
+ActiveRecord::Schema.define(version: 2020_07_25_220136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,7 +143,6 @@ ActiveRecord::Schema.define(version: 2020_07_21_123447) do
   create_table "venues", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.string "address"
     t.float "rating"
     t.float "upload_speed"
     t.float "download_speed"
@@ -156,8 +155,6 @@ ActiveRecord::Schema.define(version: 2020_07_21_123447) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.float "latitude"
-    t.float "longitude"
     t.string "foursquare_id"
     t.boolean "has_wifi"
     t.bigint "owner_id"
@@ -165,7 +162,6 @@ ActiveRecord::Schema.define(version: 2020_07_21_123447) do
     t.bigint "category_id"
     t.index ["category_id"], name: "index_venues_on_category_id"
     t.index ["city_id"], name: "index_venues_on_city_id"
-    t.index ["latitude", "longitude"], name: "index_venues_on_latitude_and_longitude"
     t.index ["owner_id"], name: "index_venues_on_owner_id"
     t.index ["user_id"], name: "index_venues_on_user_id"
   end
