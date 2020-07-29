@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_25_220136) do
+ActiveRecord::Schema.define(version: 2020_07_28_181900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,6 +140,14 @@ ActiveRecord::Schema.define(version: 2020_07_25_220136) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "venue_users", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "venue_id", null: false
+    t.integer "user_type", default: 0
+    t.index ["user_id"], name: "index_venue_users_on_user_id"
+    t.index ["venue_id"], name: "index_venue_users_on_venue_id"
+  end
+
   create_table "venues", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -171,6 +179,8 @@ ActiveRecord::Schema.define(version: 2020_07_25_220136) do
   add_foreign_key "opening_hours", "venues"
   add_foreign_key "reviews", "users"
   add_foreign_key "reviews", "venues"
+  add_foreign_key "venue_users", "users"
+  add_foreign_key "venue_users", "venues"
   add_foreign_key "venues", "categories"
   add_foreign_key "venues", "cities"
   add_foreign_key "venues", "users"
