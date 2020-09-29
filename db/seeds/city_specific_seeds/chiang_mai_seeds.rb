@@ -4,7 +4,7 @@ def create_chiang_mai_venues
     {
       name: 'CAMP @ Maya',
       description:  '24H coworking space on the 5th floor of MAYA shopping center',
-      user: User.first,
+      users: [User.first],
       # serves_plant_milk: false,
       # serves_food: false,
       # serves_smoothies: true,
@@ -15,7 +15,7 @@ def create_chiang_mai_venues
     {
       name: "Ab'Petite Café",
       description:  'Cosy little independent café',
-      user: User.first,
+      users: [User.first],
       # serves_plant_milk: false,
       # serves_food: true,
       # serves_smoothies: true,
@@ -26,7 +26,7 @@ def create_chiang_mai_venues
     {
       name: "My Secret Cafe In Town",
       description:  'Cute and quiet café in the middle of old town',
-      user: User.first,
+      users: [User.first],
       # serves_plant_milk: true,
       # serves_food: true,
       # serves_smoothies: true,
@@ -37,7 +37,7 @@ def create_chiang_mai_venues
     {
       name: "The Barn Eatery And Design",
       description:  'Light, rustic and airy café',
-      user: User.first,
+      users: [User.first],
       # serves_plant_milk: true,
       # serves_food: true,
       # serves_smoothies: false,
@@ -48,7 +48,7 @@ def create_chiang_mai_venues
     {
       name: "Cottontree",
       description:  'Bright, airy café behind MAYA shopping center',
-      user: User.first,
+      users: [User.first],
       # serves_plant_milk: true,
       # serves_food: true,
       # serves_smoothies: false,
@@ -59,7 +59,7 @@ def create_chiang_mai_venues
     {
       name: "Ombra Caffe",
       description:  'Cafe and popular coworking spot',
-      user: User.first,
+      users: [User.first],
       # serves_plant_milk: false,
       # serves_food: true,
       # serves_smoothies: true,
@@ -70,7 +70,7 @@ def create_chiang_mai_venues
     {
       name: "SS1254372",
       description:  'Cosy cafe with a homely feel',
-      user: User.first,
+      users: [User.first],
       # serves_plant_milk: true,
       # serves_food: true,
       # serves_smoothies: true,
@@ -81,7 +81,7 @@ def create_chiang_mai_venues
     {
       name: "Wake Up",
       description:  '24H cafe in the popular Nimman area',
-      user: User.first,
+      users: [User.first],
       # serves_plant_milk: false,
       # serves_food: false,
       # serves_smoothies: false,
@@ -92,7 +92,7 @@ def create_chiang_mai_venues
     {
       name: "Nine One Coffee",
       description:  'Small coffee shop in the popular Nimman area',
-      user: User.first,
+      users: [User.first],
       # serves_plant_milk: false,
       # serves_food: false,
       # serves_smoothies: false,
@@ -103,7 +103,7 @@ def create_chiang_mai_venues
     {
       name: "Wawee Bistro",
       description:  'Coffee chain serving food',
-      user: User.first,
+      users: [User.first],
       # serves_plant_milk: false,
       # serves_food: true,
       # serves_smoothies: false,
@@ -114,7 +114,7 @@ def create_chiang_mai_venues
     {
       name: "Wawee Coffee",
       description:  'Popular coffee chain',
-      user: User.first,
+      users: [User.first],
       # serves_plant_milk: false,
       # serves_food: false,
       # serves_smoothies: false,
@@ -125,7 +125,7 @@ def create_chiang_mai_venues
     {
       name: "Artisan Café",
       description:  'Coffee shop popular with digital nomads',
-      user: User.first,
+      users: [User.first],
       # serves_plant_milk: true,
       # serves_food: true,
       # serves_smoothies: true,
@@ -136,7 +136,7 @@ def create_chiang_mai_venues
     {
       name: "ADDICT CAFE",
       description:  'Small, cosy and relaxed cafe in Nimman',
-      user: User.first,
+      users: [User.first],
       # serves_plant_milk: false,
       # serves_food: false,
       # serves_smoothies: false,
@@ -147,7 +147,7 @@ def create_chiang_mai_venues
     {
       name: "Thesis Coffee",
       description:  'Large cafe and popular coworking space',
-      user: User.first,
+      users: [User.first],
       # serves_plant_milk: false,
       # serves_food: true,
       # serves_smoothies: true,
@@ -158,7 +158,7 @@ def create_chiang_mai_venues
     {
       name: "Only Coffee",
       description:  'Large cafe and popular coworking space',
-      user: User.first,
+      users: [User.first],
       # serves_plant_milk: true,
       # serves_food: true,
       # serves_smoothies: false,
@@ -169,7 +169,7 @@ def create_chiang_mai_venues
     {
       name: "Annista Cafe",
       description:  'Large cafe and popular coworking space',
-      user: User.first,
+      users: [User.first],
       # serves_plant_milk: false,
       # serves_food: true,
       # serves_smoothies: true,
@@ -180,7 +180,7 @@ def create_chiang_mai_venues
     {
       name: "Elephant Cafe & Coworking",
       description:  'Coworking space',
-      user: User.first,
+      users: [User.first],
       # serves_food: false,
       # air_conditioning: true,
       has_wifi: true,
@@ -189,7 +189,7 @@ def create_chiang_mai_venues
     {
       name: "Bay's Cafe",
       description:  'Cafe',
-      user: User.first,
+      users: [User.first],
       # serves_food: false,
       # air_conditioning: false,
       has_wifi: true,
@@ -198,7 +198,7 @@ def create_chiang_mai_venues
     {
       name: "Coffee Addict",
       description: 'Cafe',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       # air_conditioning: true,
       has_wifi: true,
@@ -207,7 +207,7 @@ def create_chiang_mai_venues
     {
       name: "Bird's Nest Cafe",
       description:  'Restaurant',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       # air_conditioning: false,
       has_wifi: true,

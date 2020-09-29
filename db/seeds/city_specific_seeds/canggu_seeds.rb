@@ -3,7 +3,7 @@ def canggu_venue_attributes
     {
       name: 'Plant Cartel',
       description:  'Restaurant',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -13,7 +13,7 @@ def canggu_venue_attributes
     {
       name: 'I Am Vegan Babe',
       description:  'Casual hangout preparing a westernized selection of plant-based food & drink.',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -23,7 +23,7 @@ def canggu_venue_attributes
     {
       name: 'Cinta Cafe',
       description:  'Tempat nongkrong berkonsep tempat terbuka dengan menu yg unik, tersedia playground untuk anak-anak.',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -33,7 +33,7 @@ def canggu_venue_attributes
     {
       name: 'Peleton Supershop',
       description: 'Vegan restaurant',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -43,7 +43,7 @@ def canggu_venue_attributes
     {
       name: 'DuaTiga',
       description: 'Cafe',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -53,7 +53,7 @@ def canggu_venue_attributes
     {
       name: 'Sunny Cafe Canggu',
       description: 'Western restaurant',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -63,7 +63,7 @@ def canggu_venue_attributes
     {
       name: 'Ruko',
       description: 'Restaurant',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -73,7 +73,7 @@ def canggu_venue_attributes
     {
       name: 'Milk and Madu',
       description: 'Cafe',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -83,7 +83,7 @@ def canggu_venue_attributes
     {
       name: 'Milu by Nook',
       description: 'Balinese restaurant',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -93,7 +93,7 @@ def canggu_venue_attributes
     {
       name: 'Cafe Organic',
       description: 'Vegetarian restaurant',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -103,7 +103,7 @@ def canggu_venue_attributes
     {
       name: 'The Slow',
       description: 'Hotel & Cafe',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -113,7 +113,7 @@ def canggu_venue_attributes
     {
       name: 'The Loft Canggu',
       description: 'Restaurant',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -123,7 +123,7 @@ def canggu_venue_attributes
     {
       name: 'Motion Cafe - Fitness Food',
       description: 'Cafe',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -133,7 +133,7 @@ def canggu_venue_attributes
     {
       name: 'Eden Cafe',
       description: 'Cafe',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -143,7 +143,7 @@ def canggu_venue_attributes
     {
       name: 'SatuSatu Coffee Company',
       description: 'Coffee Shop',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -153,7 +153,7 @@ def canggu_venue_attributes
     {
       name: 'FRii Bali Echo Beach',
       description: 'Hotel',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -163,7 +163,7 @@ def canggu_venue_attributes
     {
       name: 'Sprout',
       description: 'Cafe',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -173,7 +173,7 @@ def canggu_venue_attributes
     {
       name: 'Hungry Bird Coffee Roaster',
       description: 'Coffee Shop',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -183,7 +183,7 @@ def canggu_venue_attributes
     {
       name: 'District Canggu',
       description: 'Cafe',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -193,7 +193,7 @@ def canggu_venue_attributes
     {
       name: 'The Mocca',
       description: 'Restaurant',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -203,7 +203,7 @@ def canggu_venue_attributes
     {
       name: 'Rise & Shine Cafe',
       description: 'Cafe',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -213,7 +213,7 @@ def canggu_venue_attributes
     {
       name: 'Secret Spot',
       description: 'Vegetarian cafe and deli',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -223,7 +223,7 @@ def canggu_venue_attributes
     {
       name: 'Ritual Coffee & Eatery',
       description: 'Coffee shop',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -233,7 +233,7 @@ def canggu_venue_attributes
     {
       name: 'Manggis in Canggu',
       description: 'Fusion restaurant',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -243,7 +243,7 @@ def canggu_venue_attributes
     {
       name: 'The Common Cafe',
       description: 'Brunch restaurant',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -253,7 +253,7 @@ def canggu_venue_attributes
     {
       name: 'Capung Skybar',
       description: 'Restaurant',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -263,7 +263,7 @@ def canggu_venue_attributes
     {
       name: 'Matcha Cafe Bali',
       description: 'Restaurant',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -273,7 +273,7 @@ def canggu_venue_attributes
     {
       name: 'Dapur Kitchn',
       description: 'Italian restaurant',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -283,7 +283,7 @@ def canggu_venue_attributes
     {
       name: 'Give Cafe',
       description: 'Cafe',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
