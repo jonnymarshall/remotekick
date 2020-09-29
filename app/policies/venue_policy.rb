@@ -27,7 +27,7 @@ class VenuePolicy < ApplicationPolicy
 
   def user_is_authorized?
     venue_user = @venue.venue_users.find_by(user: @user)
-    
+
     # Checks if there is a venue_user association between the user and venue
     if !venue_user
       false

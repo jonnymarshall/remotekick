@@ -14,7 +14,7 @@ node_modules
 yarn-error.log
 .byebug_history
 .env*
-spec/examaples.tct
+spec/examaples.txt
 
 # Ignore application configuration
 /config/application.yml
