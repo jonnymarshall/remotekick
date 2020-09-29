@@ -12,6 +12,7 @@ public/packs-test
 public/superseded_code
 node_modules
 yarn-error.log
+yarn.lock
 .byebug_history
 .env*
 spec/examaples.txt

@@ -5,30 +5,35 @@ class ReviewsController < ApplicationController
   def new
     @review = current_user.reviews.new
     @descriptives = ["wonderful", "fabulous", "superb", "amazing", "stupendous", "phenomenal"]
-    @review_photo = ReviewPhoto.new
+    @review_photo = Photo.new
   end
 
   def create
     @review = @venue.reviews.new(review_params.merge(user: current_user))
     @review.has_wifi = reverse_checkbox_value(review_has_wifi_param[:has_wifi])
 
-
-    # REVIEW PHOTO BLOCK - CHANGE ME
-    # if review_photo_params[:review_photo].present?
-    #   @review_photo = @review.review_photos.new(photo: review_photo_params[:review_photo][:photo])
-    #   @review_photo.save!
-    # end
-
-    @review.save!
-    redirect_to venue_path(@venue)
+    if @review.save
+      save_photo_if_photo_uploaded(review: @review)
+      # VenueMailer.new_review_listed(user: current_user, review: @venue).deliver_now!
+      flash[:success] = "Thank you, your review was successfully posted."
+      redirect_to venue_path(@venue)
+    else
+      flash[:error] = @review.errors.messages
+      render :new
+    end
   end
 
   def edit
+    @review_photo = Photo.new
   end
 
   def update
-    @review.update(review_params)
-    redirect_to venue_path(@venue)
+    if @review.update(review_params)
+      save_photo_if_photo_uploaded(review: @review)
+      redirect_to venue_path(@venue)
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -52,7 +57,8 @@ class ReviewsController < ApplicationController
       :download_speed,
       :serves_food,
       :air_conditioning,
-      :has_wifi
+      :has_wifi,
+      :photo
     )
   end
 
@@ -63,9 +69,17 @@ class ReviewsController < ApplicationController
   end
 
 
-  # def review_photo_params
-  #   params.require(:review).permit(review_photo: [:photo])
-  # end
+  def save_photo_if_photo_uploaded(review:)
+    if new_review_photo_params
+      @photo = Photo.new(imageable: review)
+      @photo.image.attach(new_review_photo_params[:image])
+      @photo.save
+    end
+  end
+
+  def new_review_photo_params
+    params[:review][:photo]
+  end
 
   def set_venue
     @venue = Venue.find(params[:venue_id])

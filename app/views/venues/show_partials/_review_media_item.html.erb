@@ -12,14 +12,34 @@
           <%= raw review.rating_stars("1x") %>
         </span><br>
         <%= review.content %><br>
-      <small>
-      <% if policy(review).update? %>
-        <%= link_to "Edit", edit_venue_review_path(venue, review) %> · 
-        <%= link_to "Delete", venue_review_path(venue, review), method: :delete %> · 
-      <% end %>
-      <a>Like</a> · <a>Reply</a> · <%= review.when_reviewed %></small>
+        <!-- <img src="/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBMZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--e5bd017c29e916aeefbe53e77b4e7e86330fb6e2/tian-zi-12-9-3.jpg"> -->
+                                                        
+                                                                <!-- PHOTO DISPLAY -->
+        <div class="columns is-multiline">
+          <% if review.photos.any? %>
+            <% review.photos.each do |photo| %>
+              <div class="column is-one-third">
+                <figure class="image is-square c-photo-thumbnail">
+                  <%= image_tag photo.image, class: "u-object-fit" %>
+                </figure>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+
+        <small>
+          <% if policy(review).update? %>
+            <%= link_to "Edit", edit_venue_review_path(venue, review) %>
+            ·
+            <%= link_to "Delete", venue_review_path(venue, review), method: :delete %>
+            ·
+          <% end %>
+          <a>Like</a>
+          ·
+          <a>Reply</a>
+          ·
+          <%= review.when_reviewed %></small>
       </p>
     </div>
   </div>
 </article>
-

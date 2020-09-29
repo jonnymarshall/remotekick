@@ -55,11 +55,6 @@ class VenuesController < ApplicationController
     @venue.users << current_user
     if @venue.save && @address.save
       save_photo_if_photo_uploaded(venue: @venue)
-      if new_venue_photo_params
-        @photo = Photo.new(imageable: @venue)
-        @photo.image.attach(new_venue_photo_params[:image]) if new_venue_photo_params
-        @photo.save
-      end
       VenueMailer.new_venue_listed(user: current_user, venue: @venue).deliver_now!
       flash[:success] = "Thank you, #{@venue.name} was successfully listed."
       redirect_to venue_path(@venue)
@@ -152,7 +147,6 @@ class VenuesController < ApplicationController
   end
 
   def new_venue_photo_params
-    # params.require(:venue).permit(photo: [:image])
     params[:venue][:photo]
   end
 
@@ -169,7 +163,7 @@ class VenuesController < ApplicationController
   def save_photo_if_photo_uploaded(venue:)
     if new_venue_photo_params
       @photo = Photo.new(imageable: venue)
-      @photo.image.attach(new_venue_photo_params[:image]) if new_venue_photo_params
+      @photo.image.attach(new_venue_photo_params[:image])
       @photo.save
     end
   end
