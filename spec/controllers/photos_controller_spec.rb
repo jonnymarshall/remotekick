@@ -4,7 +4,7 @@ RSpec.describe PhotosController do
 
   describe "guest user" do
     let(:u) { create(:user) }
-    let(:venue) { create(:venue, user: create(:user)) }
+    let(:venue) { create(:venue, users: [create(:user)]) }
     let(:address) { create(:address, venue: venue) }
     let!(:photo) { create(:photo, imageable: venue) }
   

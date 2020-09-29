@@ -4,7 +4,7 @@ RSpec.describe VenueMailer, type: :mailer do
   
   describe 'new_venue_listed' do
     let(:u) { create(:user) }
-    let(:ven) { create(:venue, user: u) }
+    let(:ven) { create(:venue, users: [u]) }
     let(:mail) { described_class.new_venue_listed(user: u, venue: ven).deliver_now }
 
     it 'has the venue name in the subject' do

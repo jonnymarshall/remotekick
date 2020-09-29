@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Address, type: :model do
   let(:user) { create(:user) }
-  let(:venue) { create(:venue, user: user) }
+  let(:venue) { create(:venue, users: [user]) }
   
 
   describe 'address factories' do

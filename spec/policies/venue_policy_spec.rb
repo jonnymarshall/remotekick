@@ -4,7 +4,7 @@ RSpec.describe VenuePolicy, type: :policy do
   context "authenticated user" do
 
     let(:u) { create(:user) }
-    let!(:ven) { create(:venue, user: create(:user)) }
+    let!(:ven) { create(:venue, users: [create(:user)]) }
 
     before do
       sign_in u

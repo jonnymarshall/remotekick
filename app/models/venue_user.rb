@@ -1,4 +1,6 @@
 class VenueUser < ApplicationRecord
-  has_one :venue
-  has_one :user
+  enum user_type: [ :guest, :employee, :owner ]
+
+  belongs_to :venue
+  belongs_to :user
 end
