@@ -87,12 +87,13 @@
           </div>
 
           <!-- PHOTO DISPLAY -->
+          <label class="label">Photos</label>
           <div class="columns is-multiline">
-            <% if venue.photos.any? %>
+            <% if review.photos.any? %>
               <% review.photos.each do |photo| %>
                 <div class="column is-one-third">
                   <figure class="image is-square c-photo-thumbnail">
-                    # <%= link_to "Delete", venue_photo_path(venue, photo), method: :delete, class: "delete delete-button" %>
+                    <%= link_to "Delete", venue_review_photo_path(venue, review, photo), method: :delete, class: "delete delete-button" %>
                     <%= image_tag photo.image, class: "u-object-fit" %>
                   </figure>
                 </div>
@@ -100,11 +101,8 @@
             <% end %>
           </div>
 
+          <!-- PHOTO UPLOAD -->
           <div class="field" data-controller="photo-upload">
-            <label class="label">Photos</label>
-
-
-            <!-- PHOTO UPLOAD -->
             <div class="field u-margin-t-10px" data-controller="photo-upload">
               <div class="file has-name is-boxed is-primary is-small is-centered">
                 <label class="file-label">
