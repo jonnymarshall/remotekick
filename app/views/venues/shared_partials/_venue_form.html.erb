@@ -117,7 +117,7 @@
 
           <!-- TAGS -->
           <label class="label">Please select appropriate tags</label>
-          <div class="tags"  data-controller="tags">
+          <div class="tags" data-controller="tags">
             <span class="tag u-pointer" data-action="click->tags#activateTag">
               Serves Food
             </span>
@@ -127,6 +127,7 @@
           </div>
 
           <!-- PHOTO DISPLAY -->
+          <label class="label">Photos</label>
           <div class="columns is-multiline">
             <% if venue.photos.any? %>
               <% venue.photos.each do |photo| %>

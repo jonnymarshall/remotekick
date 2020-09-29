@@ -15,7 +15,7 @@
               <% end %>
             </div>
           </div>
-    
+
           <!-- FILTER > CONTENT -->
           <div class="field">
             <label class="label">Review content</label>
@@ -42,7 +42,7 @@
               This venue does not have wifi
             </label>
           </div>
-      
+
           <!-- FILTER > PLUG SOCKETS -->
           <div class="field">
             <label class="label">Plug sockets</label>
@@ -53,7 +53,7 @@
               <% end %>
             </div>
           </div>
-     
+
           <!-- FILTER > COMFORT -->
           <div class="field">
             <label class="label">Comfort</label>
@@ -64,7 +64,7 @@
               <% end %>
             </div>
           </div>
-    
+
           <!-- FILTER > QUIETNESS -->
           <div class="field">
             <label class="label">Quietness</label>
@@ -75,9 +75,9 @@
               <% end %>
             </div>
           </div>
-        
+
           <label class="label">Please select appropriate tags</label>
-          <div class="tags"  data-controller="tags">
+          <div class="tags" data-controller="tags">
             <span class="tag u-pointer" data-action="click->tags#activateTag">
               Serves Food
             </span>
@@ -85,30 +85,43 @@
               Open late
             </span>
           </div>
+
+          <!-- PHOTO DISPLAY -->
+          <label class="label">Photos</label>
+          <div class="columns is-multiline">
+            <% if review.photos.any? %>
+              <% review.photos.each do |photo| %>
+                <div class="column is-one-third">
+                  <figure class="image is-square c-photo-thumbnail">
+                    <%= link_to "Delete", venue_review_photo_path(venue, review, photo), method: :delete, class: "delete delete-button" %>
+                    <%= image_tag photo.image, class: "u-object-fit" %>
+                  </figure>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+
+          <!-- PHOTO UPLOAD -->
           <div class="field" data-controller="photo-upload">
-            <label class="label">Photos</label>
-            
-              
-              <!-- <input class="file-input" type="file" name="resume"> -->
-              <div class="file has-name is-boxed">
+            <div class="field u-margin-t-10px" data-controller="photo-upload">
+              <div class="file has-name is-boxed is-primary is-small is-centered">
                 <label class="file-label">
-                  <%#= review.fields_for review_photo do |review_photo| %>
-                    <%#= review_photo.file_field :photo_cache, as: :hidden %>
-                    <%#= review_photo.file_field :photo, class: "file-input", data: { action: "photo-upload#handleChange", target: "photo-upload.photoUploadInput" } %>
-                  <%# end %>
+                  <%= review_form.fields_for :photo, photo do |photo_form| %>
+                    <%= photo_form.file_field :image, class: "file-input", placeholder: "John", data: { action: "photo-upload#handleChange", target: "photo-upload.photoUploadInput" } %>
+                  <% end %>
                   <span class="file-cta">
                     <span class="file-icon">
                       <i class="fas fa-upload"></i>
                     </span>
-                    <span class="file-label">
-                      Upload a photo...
-                    </span>
+                    <span class="file-label">Upload a photo</span>
                   </span>
                   <span class="file-name is-hidden" data-target="photo-upload.fileName"></span>
                 </label>
               </div>
+            </div>
           </div>
-          
+
+
           <div class="field is-grouped">
             <p class="control">
               <%= review.form_submit_button(review_form) %>

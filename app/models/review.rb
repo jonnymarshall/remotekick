@@ -2,6 +2,7 @@ class Review < ApplicationRecord
   belongs_to :user
   belongs_to :venue
   has_many :photos, as: :imageable
+  accepts_nested_attributes_for :photos
 
   validates_numericality_of :rating, greater_than_or_equal_to: 0, less_than_or_equal_to: 4
   validates_numericality_of :plug_sockets, greater_than_or_equal_to: 0, less_than_or_equal_to: 2, allow_blank: true
