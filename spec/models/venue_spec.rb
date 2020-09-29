@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Venue do
   let(:u) { create(:user) }
-  let(:ven) { create(:venue, user: u) }
+  let(:ven) { create(:venue, users: [u]) }
   
   describe 'venue factories' do
     it 'must have valid data' do
@@ -41,7 +41,7 @@ RSpec.describe Venue do
     end
 
     describe 'user' do
-      it { should belong_to(:user) }
+      it { should have_many(:users) }
     end
   end
 
@@ -135,10 +135,10 @@ RSpec.describe Venue do
     describe 'has_wifi' do
       
       it 'returns an ActiveRecord::Relation of venues which have wifi' do
-        has_wifi = FactoryBot.create(:venue, user: u, has_wifi: true)
-        also_has_wifi = FactoryBot.create(:venue, user: FactoryBot.create(:user), has_wifi: true)
-        does_not_have_wifi = FactoryBot.create(:venue, user: FactoryBot.create(:user), has_wifi: false)
-        also_does_not_have_wifi = FactoryBot.create(:venue, user: FactoryBot.create(:user), has_wifi: false)
+        has_wifi = FactoryBot.create(:venue, users: [u], has_wifi: true, name: "Venue with wifi")
+        also_has_wifi = FactoryBot.create(:venue, users: [u], has_wifi: true, name: "Another venue with wifi")
+        does_not_have_wifi = FactoryBot.create(:venue, users: [u], has_wifi: false, name: "Venue without wifi")
+        also_does_not_have_wifi = FactoryBot.create(:venue, users: [u], has_wifi: false, name: "Another venue without wifi")
         
         expect(Venue.has_wifi).to eq([has_wifi, also_has_wifi])
       end
@@ -148,7 +148,7 @@ RSpec.describe Venue do
       
       it 'returns an ActiveRecord::Relation of venues which have addresses near given location' do
         leeds_address = FactoryBot.create(:address, venue: ven)
-        chiang_mai_venue = create(:venue, user: create(:user) )
+        chiang_mai_venue = create(:venue, users: [create(:user)], name: "Leeds venue")
         chiang_mai_address = FactoryBot.create(:address_full_chiang_mai, venue: chiang_mai_venue)
         
         expect(Venue.location("Chiang Mai")).to eq([chiang_mai_venue])

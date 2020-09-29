@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Venues' do
   let!(:u) { create(:user) }
-  let!(:ven) { create(:venue, user: u) }
+  let!(:ven) { create(:venue, users: [u]) }
   let!(:address) { create(:address, venue: ven) }
 
   describe 'index' do 

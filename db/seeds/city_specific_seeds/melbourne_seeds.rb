@@ -3,7 +3,7 @@ def melbourne_venue_attributes
     {
       name: 'Mr Tulk',
       description:  'Light fare and coffee in a high-ceilinged, roomy cafe in the State Library, attracting uni students.',
-      user: User.first,
+      users: [User.first],
       # serves_plant_milk: true,
       # serves_food: true,
       has_wifi: true,
@@ -14,14 +14,14 @@ def melbourne_venue_attributes
     {
       name: "Cheeky Monkey",
       description:  'Classic brekkie, plus sandwiches and salads, in a casual, industrial cafe with pavement tables.',
-      user: User.first,
+      users: [User.first],
       latitude: -37.824971,
       longitude: 144.994392
     },
     {
       name: "Seven Seeds Coffee Roasters",
       description:  'Airy, industrial-chic cafe and micro-roaster serving all-day brunch, salads and specialty teas.',
-      user: User.first,
+      users: [User.first],
       has_wifi: false,
       latitude: -37.8028677,
       longitude: 144.9569323
@@ -29,7 +29,7 @@ def melbourne_venue_attributes
     {
       name: "Naughty Boy Cafe",
       description:  'Café',
-      user: User.first,
+      users: [User.first],
       # serves_plant_milk: true,
       # serves_food: true,
       # air_conditioning: true,
@@ -40,14 +40,14 @@ def melbourne_venue_attributes
     {
       name: "The Queensberry Pour House",
       description:  'Café',
-      user: User.first,
+      users: [User.first],
       latitude: -37.8042177,
       longitude: 144.9598333
     },
     {
       name: "Everyday Coffee",
       description:  'Café',
-      user: User.first,
+      users: [User.first],
       # serves_plant_milk: true,
       # serves_food: true,
       # air_conditioning: false,
@@ -59,7 +59,7 @@ def melbourne_venue_attributes
     {
       name: "Fourth Chapter",
       description:  'Cafe',
-      user: User.first,
+      users: [User.first],
       # serves_plant_milk: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -69,14 +69,14 @@ def melbourne_venue_attributes
     {
       name: "Three Bags Full",
       description:  'Industrial-chic cafe with art gallery, prepping eclectic dishes, gourmet coffee and handmade sodas.',
-      user: User.first,
+      users: [User.first],
       has_wifi: true,
       latitude: -37.8074648,
       longitude: 144.9943101
     },
     {
       name: "Avist Cafe",
-      user: User.first,
+      users: [User.first],
       # serves_plant_milk: true,
       # serves_food: true,
       # air_conditioning: false,
@@ -88,7 +88,7 @@ def melbourne_venue_attributes
     {
       name: "Auction Rooms",
       description: 'Cafe',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       # air_conditioning: false,
       has_wifi: true,
@@ -99,7 +99,7 @@ def melbourne_venue_attributes
     {
       name: "Roobi Cafe",
       description: 'Cafe',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       # air_conditioning: true,
       has_wifi: true,
@@ -110,7 +110,7 @@ def melbourne_venue_attributes
     {
       name: "Olivier's Cafe",
       description: 'Restaurant',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       # air_conditioning: true,
       has_wifi: true,
@@ -121,7 +121,7 @@ def melbourne_venue_attributes
     {
       name: "Lucky 8 Cafe",
       description: 'Cafe',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       # air_conditioning: false,
       has_wifi: true,
@@ -132,7 +132,7 @@ def melbourne_venue_attributes
     {
       name: "Small Block",
       description: 'Cafe',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       # air_conditioning: true,
       has_wifi: true,
@@ -143,7 +143,7 @@ def melbourne_venue_attributes
     {
       name: "Chez Dré",
       description: 'Cafe',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -153,7 +153,7 @@ def melbourne_venue_attributes
     {
       name: "Ink Hotel Melbourne Southbank",
       description: 'Hotel Cafe',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -163,7 +163,7 @@ def melbourne_venue_attributes
     {
       name: "YBF Ventures",
       description: 'Co-working Space',
-      user: User.first,
+      users: [User.first],
       has_wifi: true,
       wifi_restrictions: 0,
       latitude: -37.815180,
@@ -172,7 +172,7 @@ def melbourne_venue_attributes
     {
       name: "St Edmonds Cafe",
       description: 'Cafe',
-      user: User.first,
+      users: [User.first],
       # air_conditioning: true,
       # serves_food: true,
       has_wifi: true,
@@ -183,7 +183,7 @@ def melbourne_venue_attributes
     {
       name: "Hannah",
       description: 'Cafe',
-      user: User.first,
+      users: [User.first],
       # air_conditioning: false,
       # serves_food: true,
       has_wifi: true,
@@ -194,7 +194,7 @@ def melbourne_venue_attributes
     {
       name: "neighbours cafe",
       description: 'Modern Australian restaurant',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -204,7 +204,7 @@ def melbourne_venue_attributes
     {
       name: "HOME Vegan Bar",
       description: 'Vegan restaurant',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,
@@ -214,7 +214,7 @@ def melbourne_venue_attributes
     {
       name: "Higher Ground",
       description: 'Cafe',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: false,
       wifi_restrictions: 0,
@@ -224,7 +224,7 @@ def melbourne_venue_attributes
     {
       name: "Monk Bodhi Dharma",
       description: 'Coffee Shop',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: false,
       wifi_restrictions: 0,
@@ -234,7 +234,7 @@ def melbourne_venue_attributes
     {
       name: "Glass Merchants",
       description: 'Cafe',
-      user: User.first,
+      users: [User.first],
       # serves_food: true,
       has_wifi: true,
       wifi_restrictions: 0,

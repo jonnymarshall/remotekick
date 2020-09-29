@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Show Venue' do
   let(:u) { create(:user) }
-  let(:ven) { create(:venue, user: u) }
+  let(:ven) { create(:venue, users: [u]) }
   
 
   describe 'showing a new venue' do

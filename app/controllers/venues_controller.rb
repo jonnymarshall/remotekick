@@ -52,7 +52,7 @@ class VenuesController < ApplicationController
   def create
     @venue = Venue.new(new_venue_params)
     @address = Address.new(new_venue_address_params.merge(venue: @venue))
-    @venue.user = current_user
+    @venue.users << current_user
     if @venue.save && @address.save
       save_photo_if_photo_uploaded(venue: @venue)
       if new_venue_photo_params
@@ -60,7 +60,7 @@ class VenuesController < ApplicationController
         @photo.image.attach(new_venue_photo_params[:image]) if new_venue_photo_params
         @photo.save
       end
-      VenueMailer.new_venue_listed(user: @venue.user, venue: @venue).deliver_now!
+      VenueMailer.new_venue_listed(user: current_user, venue: @venue).deliver_now!
       flash[:success] = "Thank you, #{@venue.name} was successfully listed."
       redirect_to venue_path(@venue)
     else

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe City do
   let(:city) { create(:city) }
   let(:u) { create(:user) }
-  let(:ven) { create(:venue, user: u) }
+  let(:ven) { create(:venue, users: [u]) }
   
   describe 'city factories' do
     it 'must have valid data' do

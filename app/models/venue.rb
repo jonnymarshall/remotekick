@@ -1,14 +1,16 @@
 class Venue < ApplicationRecord
-  belongs_to :user
+  # belongs_to :user
   belongs_to :city, optional: true
   has_many :reviews, dependent: :destroy
-  belongs_to :owner, class_name: 'User', optional: true
+  # belongs_to :owner, class_name: 'User', optional: true
   has_one :cover_photo, dependent: :destroy
   has_and_belongs_to_many :categories
   has_many :opening_hours
   has_one :feature_set
   has_one :address, dependent: :destroy
   has_many :photos, as: :imageable, dependent: :destroy
+  has_many :venue_users, dependent: :destroy
+  has_many :users, through: :venue_users
   accepts_nested_attributes_for :address
   accepts_nested_attributes_for :photos
 

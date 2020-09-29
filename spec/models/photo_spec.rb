@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Photo, type: :model do
   let(:u) { create(:user) }
-  let(:ven) { create(:venue, user: u) }
+  let(:ven) { create(:venue, users: [u]) }
   let!(:photo) { create(:photo, imageable: ven) }
   let(:photo_is_featured) { create(:photo, imageable: ven) }
 

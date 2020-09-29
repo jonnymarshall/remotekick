@@ -26,19 +26,19 @@ class VenuePolicy < ApplicationPolicy
   private
 
   def user_is_authorized?
-    venue_has_no_owner_and_user_is_venues_user || venue_has_owner_who_is_the_user
-  end
+    venue_user = @venue.venue_users.find_by(user: @user)
 
-  def venue_has_no_owner_and_user_is_venues_user
-    !venue_has_owner? && @venue.user == user
+    # Checks if there is a venue_user association between the user and venue
+    if !venue_user
+      false
+    # Checks if venue_user works for the venue
+    elsif venue_user.owner? || venue_user.employee?
+      true
+    elsif venue_user.guest?
+      # If user is venue_user is a guest, checks to see if an employee or owner exists for venue
+      VenueUser.employee.or(VenueUser.owner).where(venue: @venue).none? ? true : false
+    else
+      raise "Error: User venue_user's user_type was not recognised"
+    end
   end
-
-  def venue_has_owner_who_is_the_user
-    venue_has_owner? && @venue.owner == user
-  end
-
-  def venue_has_owner?
-    @venue.owner.present?
-  end
-  
 end

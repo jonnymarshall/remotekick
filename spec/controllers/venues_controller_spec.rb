@@ -4,7 +4,7 @@ RSpec.describe VenuesController do
 
   describe "guest user" do
   let(:u) { create(:user) }
-  let!(:ven) { create(:venue, user: create(:user)) }
+  let!(:ven) { create(:venue, users: [create(:user)]) }
   let!(:address) { create(:address, venue: ven) }
 
     describe "GET index" do
@@ -79,10 +79,11 @@ RSpec.describe VenuesController do
       sign_in u
     end
 
-    context "is not the owner of the venue"  do
+    context "is not the owner of the venue" do
 
       context "an owner exists for the venue" do
-        let!(:ven) { create(:venue, user: u, owner: create(:user)) }
+        let!(:ven) { create(:venue_with_owner) }
+        let!(:ven_usr) { create(:venue_user, user: u, venue: ven) }
         
         describe "GET edit" do
           it "redirects to show page" do
@@ -120,7 +121,7 @@ RSpec.describe VenuesController do
       context "an owner does not exist for the venue" do
 
         context "the current user is the user who added the venue" do
-          let!(:ven) { create(:venue, user: u) }
+          let!(:ven) { create(:venue, users: [u]) }
 
           describe "GET edit" do
     
@@ -167,7 +168,7 @@ RSpec.describe VenuesController do
         end
 
         context "the current user is not the user who added the venue" do
-          let!(:ven) { create(:venue, user: create(:user)) }
+          let!(:ven) { create(:venue, users: [create(:user)]) }
 
           describe "GET edit" do
             it "redirects to show page" do
@@ -206,7 +207,8 @@ RSpec.describe VenuesController do
     end
     
     context "is the owner of the venue" do
-      let!(:ven) { create(:venue, user: u, owner: u) }
+      let!(:ven) {create(:venue)}
+      let!(:ven_usr) { create(:venue_user, user: u, venue: ven, user_type: "owner") }
       
       describe "GET edit" do
     
