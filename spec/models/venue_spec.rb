@@ -139,7 +139,7 @@ RSpec.describe Venue do
         also_has_wifi = FactoryBot.create(:venue, users: [u], has_wifi: true, name: "Another venue with wifi")
         does_not_have_wifi = FactoryBot.create(:venue, users: [u], has_wifi: false, name: "Venue without wifi")
         also_does_not_have_wifi = FactoryBot.create(:venue, users: [u], has_wifi: false, name: "Another venue without wifi")
-        
+
         expect(Venue.has_wifi).to eq([has_wifi, also_has_wifi])
       end
     end

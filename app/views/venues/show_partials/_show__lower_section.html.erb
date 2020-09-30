@@ -3,32 +3,14 @@
     <div class="columns">
       <div class="column">
         <% if policy(review).new?(@venue) %>
-          <%= form_with model: [@venue, review], local: true, class: "form-group col-xs-6" do |review_form| %>
-            <!-- FILTER > CONTENT -->
-            <article class="media">
-              <%= render(AvatarComponent.new(user: current_user)) %>
-              <div class="media-content">
-                <div class="field">
-                  <p class="control has-icons-left">
-                    <%= review_form.text_area :content, required: true, class: "textarea" %>
-                  </p>
-                </div>
-                <div class="field">
-                  <p class="control">
-                    <%= review_form.hidden_field :from_showpage, :value => true %>
-                    <%= review_form.submit "Post review", class: "button is-primary c-venue-edit-button" %>
-                  </p>
-                </div>
-              </div>
-            </article>
-          <% end %>
+          <%= render "venues/show_partials/show__new_review_quickform", venue: @venue, review: review %>
         <% end %>
         <% @venue.reviews.order('updated_at DESC').each do |review| %>
           <%= render partial: "venues/show_partials/review_media_item", locals: { review: review.decorate } %>
         <% end %>
       </div>
       <div class="column">
-        Second column
+        <!-- Second column -->
       </div>
     </div>
   </div>
