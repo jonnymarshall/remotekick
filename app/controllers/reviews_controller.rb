@@ -3,23 +3,31 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: [:edit, :update, :destroy]
 
   def new
-    @review = current_user.reviews.new
+    if form_submitted_from_showpage?
+      @review = current_user.reviews.new(review_params)
+    else
+      @review = current_user.reviews.new
+    end
     @descriptives = ["wonderful", "fabulous", "superb", "amazing", "stupendous", "phenomenal"]
     @review_photo = Photo.new
   end
 
   def create
-    @review = @venue.reviews.new(review_params.merge(user: current_user))
-    @review.has_wifi = reverse_checkbox_value(review_has_wifi_param[:has_wifi])
-
-    if @review.save
-      save_photo_if_photo_uploaded(review: @review)
-      # VenueMailer.new_review_listed(user: current_user, review: @venue).deliver_now!
-      flash[:success] = "Thank you, your review was successfully posted."
-      redirect_to venue_path(@venue)
+    if form_submitted_from_showpage?
+      redirect_to new_venue_review_path(request.parameters)
     else
-      flash[:error] = @review.errors.messages
-      render :new
+      @review = @venue.reviews.new(review_params.merge(user: current_user))
+      @review.has_wifi = reverse_checkbox_value(review_has_wifi_param[:has_wifi])
+
+      if @review.save
+        save_photo_if_photo_uploaded(review: @review)
+        # VenueMailer.new_review_listed(user: current_user, review: @venue).deliver_now!
+        flash[:success] = "Thank you, your review was successfully posted."
+        redirect_to venue_path(@venue)
+      else
+        flash[:error] = @review.errors.messages
+        render :new
+      end
     end
   end
 
@@ -87,5 +95,9 @@ class ReviewsController < ApplicationController
 
   def set_review
     @review = Review.find(params[:id])
+  end
+
+  def form_submitted_from_showpage?
+    params[:review][:from_showpage]
   end
 end
