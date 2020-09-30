@@ -1,45 +1,38 @@
 <article class="media">
-  <figure class="media-left">
-    <p class="image is-64x64">
-      <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
-    </p>
-  </figure>
+  <%= render(AvatarComponent.new(user: review.user)) %>
+  <%#= render(AvatarComponent.new(avatar_url: url_for(review.user.avatar.attachment))) %>
   <div class="media-content">
     <div class="content">
-      <p>
-        <strong><%= review.user.first_name %></strong><br>
-        <span class="has-text-primary">
-          <%= raw review.rating_stars("1x") %>
-        </span><br>
-        <%= review.content %><br>
-        <!-- <img src="/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBMZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--e5bd017c29e916aeefbe53e77b4e7e86330fb6e2/tian-zi-12-9-3.jpg"> -->
-                                                        
-                                                                <!-- PHOTO DISPLAY -->
-        <div class="columns is-multiline">
-          <% if review.photos.any? %>
-            <% review.photos.each do |photo| %>
-              <div class="column is-one-third">
-                <figure class="image is-square c-photo-thumbnail">
-                  <%= image_tag photo.image, class: "u-object-fit" %>
-                </figure>
-              </div>
-            <% end %>
+      <strong><%= review.user.first_name %></strong><br>
+      <span class="has-text-primary">
+        <%= raw review.rating_stars("1x") %>
+      </span><br>
+      <%= review.content %>
+      <div class="columns is-multiline">
+        <% if review.photos.any? %>
+          <% review.photos.each do |photo| %>
+            <div class="column is-one-third">
+              <figure class="image is-square c-photo-thumbnail">
+                <%= image_tag photo.image, class: "u-object-fit" %>
+              </figure>
+            </div>
           <% end %>
-        </div>
+        <% end %>
+      </div>
 
-        <small>
-          <% if policy(review).update? %>
-            <%= link_to "Edit", edit_venue_review_path(venue, review) %>
-            ·
-            <%= link_to "Delete", venue_review_path(venue, review), method: :delete %>
-            ·
-          <% end %>
-          <a>Like</a>
+      <small>
+        <% if policy(review).update? %>
+          <%= link_to "Edit", edit_venue_review_path(venue, review) %>
           ·
-          <a>Reply</a>
+          <%= link_to "Delete", venue_review_path(venue, review), method: :delete %>
           ·
-          <%= review.when_reviewed %></small>
-      </p>
+        <% end %>
+        <!-- <a>Like</a>
+        ·
+        <a>Reply</a>
+        · -->
+        <%= review.when_reviewed %>
+      </small>
     </div>
   </div>
 </article>
