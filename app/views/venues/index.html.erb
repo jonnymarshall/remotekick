@@ -16,9 +16,7 @@
               <%= render partial: "venues/index_partials/index__cards-info-bar", locals: { venues: @venues } %>
               <!-- CARDS -->
               <div class="columns is-desktop is-multiline" data-target="index-cards-ordering.cardsList" id="index__cards">
-                <% @venues.each do |venue| %>
-                  <%= render partial: "venues/index_partials/index__cards", locals: { venue: venue } %>
-                <% end %>
+                <%= render(VenueCardComponent.with_collection(@venues)) %>
               </div>
               <!-- CARDS PAGINATION -->
               <%#= render 'venues/index_partials/index__pagination' %>
