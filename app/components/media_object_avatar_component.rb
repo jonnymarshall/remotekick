@@ -1,4 +1,4 @@
-class AvatarComponent < ViewComponent::Base
+class MediaObjectAvatarComponent < ViewComponent::Base
 
   def initialize(user:)
     @user = user

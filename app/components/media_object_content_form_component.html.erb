@@ -1,0 +1,13 @@
+<div class="media-content">
+  <div class="field">
+    <p class="control has-icons-left">
+      <%= @review_form.text_area :content, required: true, class: "textarea" %>
+    </p>
+  </div>
+  <div class="field">
+    <p class="control">
+      <%= @review_form.hidden_field :from_showpage, :value => true %>
+      <%= @review_form.submit "Post review", class: "button is-primary c-venue-edit-button" %>
+    </p>
+  </div>
+</div>
