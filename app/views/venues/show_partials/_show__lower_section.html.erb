@@ -6,11 +6,7 @@
           <%= form_with model: [@venue, review], local: true, class: "form-group col-xs-6" do |review_form| %>
             <!-- FILTER > CONTENT -->
             <article class="media">
-              <figure class="media-left">
-                <p class="image is-64x64">
-                  <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
-                </p>
-              </figure>
+              <%= render(AvatarComponent.new(user: current_user)) %>
               <div class="media-content">
                 <div class="field">
                   <p class="control has-icons-left">

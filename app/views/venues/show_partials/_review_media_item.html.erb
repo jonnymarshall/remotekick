@@ -1,6 +1,5 @@
 <article class="media">
   <%= render(AvatarComponent.new(user: review.user)) %>
-  <%#= render(AvatarComponent.new(avatar_url: url_for(review.user.avatar.attachment))) %>
   <div class="media-content">
     <div class="content">
       <strong><%= review.user.first_name %></strong><br>
