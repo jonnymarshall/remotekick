@@ -8,6 +8,7 @@ class VenuesController < ApplicationController
   before_action :authorize_user, only: [:edit, :update, :destroy]
   # @venue should be called as venue for decorated instance in views
   decorates_assigned :venue
+  decorates_assigned :review
   has_scope :location, if: :location_given?
   has_scope :rating
   has_scope :upload_speed
