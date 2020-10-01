@@ -1,5 +1,14 @@
 <%= render 'venues/show_partials/show__hero_section' %>
 <%= render 'venues/show_partials/show__feature_bar' %>
+
+
+<div class="tabs is-centered" data-controller="tabs">
+  <ul>
+    <%= render(TabComponent.new(tab: "Reviews", icon_name: "comments")) %>
+    <%= render(TabComponent.new(tab: "Map", icon_name: "map-marked-alt")) %>
+  </ul>
+</div>
+
 <%= render 'venues/show_partials/show__lower_section' %>
 <div class="section">
   <div class="container">
