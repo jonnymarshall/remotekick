@@ -22,23 +22,19 @@ class VenuesController < ApplicationController
   def index
     @venues = apply_scopes(Venue).all
     redirect_to cities_path and return if !@venues.any?
-    if venues_params[:order_by]
-      order_venues_by_param(@venues, venues_params[:order_by])
-    end
-    if location_given? && distance_given?
-      @venues = @venues.near(venues_params[:location], venues_params[:distance])
-    end
+    
+    order_venues_by_param(@venues, venues_params[:order_by]) if venues_params[:order_by]
+    @venues = @venues.near(venues_params[:location], venues_params[:distance]) if location_given? && distance_given?
 
-    unless request.xhr?
-      set_map_markers(@venues) unless params[:order_by]
+    if !request.xhr?
+      set_map_markers(@venues) unless params[:order_by] 
+      respond_with(@venues)
     end
-
-    respond_with(@venues)
   end
 
   def show
     @review = Review.new
-    # @review_photo = @review.review_photos.new
+    set_map_markers(@venue)
   end
 
   def new
@@ -133,8 +129,6 @@ class VenuesController < ApplicationController
       :air_conditioning,
       :wifi_restrictions,
       :has_wifi,
-      # :longitude,
-      # :latitude,
       :foursquare_id
     )
   end
@@ -174,17 +168,13 @@ class VenuesController < ApplicationController
   #   params.require(:venue).permit(opening_hour: [:day, :open, :close])
   # end
 
-  def mapbox_api
-    baseApiUrl = 'https://api.mapbox.com';
-  end
-
   def venue_search_params
     params.permit(:query, :location)
   end
 
   def set_map_markers(venues)
     @markers = []
-    venues.each do |venue|
+    Array(venues).each do |venue|
       @markers << {
         lat: venue.address.latitude,
         lng: venue.address.longitude,
