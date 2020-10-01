@@ -1,4 +1,4 @@
-<div class="column is-one-third-desktop">
+<div class="column">
   <%= link_to venue_path(@venue_card), data: { target: "index-cards-ordering.card", id: "#{@venue_card.id}"} do %>
     <div class="c-card">
       <div class="image" style="<%= @venue_card.decorate.gradient %>, <%= @venue_card.decorate.hero_image_url(@venue_card.featured_photo ? url_for(@venue_card.featured_photo.image) : nil) %>">
