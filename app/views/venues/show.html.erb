@@ -1,14 +1,11 @@
 <%= render 'venues/show_partials/show__hero_section' %>
 <%= render 'venues/show_partials/show__feature_bar' %>
-<%= render 'venues/show_partials/show__lower_section' %>
-<div class="section">
-  <div class="container">
-    <%= render 'venues/shared_partials/map' %>
-  </div>
-</div>
 
-<!--DIVIDING LINE -->
-<div class="divider"></div>
+<div data-controller="tabs">
+  <%= render 'venues/show_partials/show__tabs' %>
+  <%= render 'venues/show_partials/show__reviews' %>
+  <%= render 'venues/show_partials/show__map' %>
+</div>
 
 <!-- FEATURES SECTION-->
 <% if @venue.feature_set.present? %>
@@ -16,7 +13,6 @@
     <h6>Has air conditioning</h6>
   <% end %>
   <% if @venue.feature_set.serves_food %>
-    <% raise %>
     <h6>Serves Food</h6>
   <% end %>
 <% end %>

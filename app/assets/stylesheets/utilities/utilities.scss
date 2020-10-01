@@ -45,6 +45,10 @@
   pointer-events: none;
 }
 
+.u-no-child-pointer-events * {
+  pointer-events: none;
+}
+
 // Centering
 .u-top-auto {
   top: auto !important;
@@ -80,7 +84,6 @@
 .u-transition-all-1s {
   transition: 1s all;
 }
-
 
 // Images
 .u-object-fit {
