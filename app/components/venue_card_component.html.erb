@@ -1,4 +1,6 @@
-<div class="column">
+<% if @is_column_wrapped %>
+  <div class="column is-one-third-desktop">
+  <% end %>
   <%= link_to venue_path(@venue_card), data: { target: "index-cards-ordering.card", id: "#{@venue_card.id}"} do %>
     <div class="c-card">
       <div class="image" style="<%= @venue_card.decorate.gradient %>, <%= @venue_card.decorate.hero_image_url(@venue_card.featured_photo ? url_for(@venue_card.featured_photo.image) : nil) %>">
@@ -7,7 +9,7 @@
             <span class="icon is-medium has-text-primary">
               <i class="fas fa-lg fa-wifi"></i>
             </span>
-          <h1 class="is-size-6 is-size-7-touch has-text-white has-text-shadow"><%= @venue_card.decorate.wifi_speed %></h1>
+            <h1 class="is-size-6 is-size-7-touch has-text-white has-text-shadow"><%= @venue_card.decorate.wifi_speed %></h1>
           </div>
           <div class="distance-block">
             <span class="icon is-medium has-text-primary">
@@ -27,13 +29,16 @@
         <div class="card-info-footer">
           <%= @venue_card.decorate.category_tags %>
           <div class="has-text-dark">
-            <%= raw @venue_card.decorate.rounded_rating %> <%= @venue_card.decorate.review_count %>
+            <%= raw @venue_card.decorate.rounded_rating %>
+            <%= @venue_card.decorate.review_count %>
           </div>
         </div>
-      
+
       </div>
     </div>
   <% end %>
-</div>
+  <% if @is_column_wrapped %>
+  </div>
+<% end %>
 
 <%#= raw @venue_card.decorate.rating_stars("1x") %>
