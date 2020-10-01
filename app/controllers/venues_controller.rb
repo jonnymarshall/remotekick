@@ -188,7 +188,7 @@ class VenuesController < ApplicationController
       @markers << {
         lat: venue.address.latitude,
         lng: venue.address.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { venue: venue })
+        infoWindow: render_to_string(partial: "venues/index_partials/index__map_cards", locals: { venue: venue })
       }
     end
   end
