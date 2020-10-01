@@ -16,7 +16,6 @@
 //   color: black;
 // }
 
-
 .mapboxgl-popup-content {
   position: relative;
   background: transparent !important;
@@ -24,4 +23,8 @@
   box-shadow: 0 0px 0px rgba(0, 0, 0, 0) !important;
   padding: 0px !important;
   // pointer-events: auto;
+}
+
+.mapboxgl-marker {
+  cursor: pointer;
 }
