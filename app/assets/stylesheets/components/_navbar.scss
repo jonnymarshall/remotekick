@@ -17,3 +17,9 @@
     justify-content: space-around;
   }
 }
+
+.c-navbar {
+  &__logo {
+    height: max-content;
+  }
+}

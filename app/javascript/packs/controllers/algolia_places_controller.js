@@ -18,10 +18,6 @@ export default class extends Controller {
     console.log(`${this.controllerName} disconnected.`);
   }
 
-  // async changeHandler(e) {
-  //   this.searchHandler(e);
-  // }
-
   changeHandler = this.debounce(async function(e) {
     let self = this;
     this.searchQuery = e.target.value;
