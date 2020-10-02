@@ -18,28 +18,26 @@ export default class extends Controller {
     console.log(`${this.controllerName} disconnected.`);
   }
 
-  async changeHandler(e) {
-    this.searchHandler(e);
-  }
+  // async changeHandler(e) {
+  //   this.searchHandler(e);
+  // }
 
-  searchHandler = this.debounce(async function(e) {
+  changeHandler = this.debounce(async function(e) {
     let self = this;
     this.searchQuery = e.target.value;
     await this.executeAjaxRequest();
     this.clearResults();
     this.generateResults();
-    let resultItems = document.querySelectorAll("[data-target='resultItem']");
-    resultItems.forEach((resultItem) => {
-      // Click
-      resultItem.addEventListener("click", (e) => {
-        self.setLocation(resultItem);
-        self.clearResults();
-        if (self.submitButtonTargets.length > 0) {
-          self.submitButtonTarget.click();
-        }
-      });
-    });
   }, 250);
+
+  executeSearch(e) {
+    this.addressInputTarget.value = e.target.innerText;
+    this.addressInputTarget.dataset.selectedVenue = e.target.innerText;
+    this.clearResults();
+    if (this.submitButtonTargets.length > 0) {
+      this.submitButtonTarget.click();
+    }
+  }
 
   debounce(func, wait, immediate) {
     var timeout;
@@ -65,11 +63,6 @@ export default class extends Controller {
       prevSelection.classList.remove("is-primary");
     }
     h.target.classList.add("is-primary");
-  }
-
-  setLocation(resultItem) {
-    this.addressInputTarget.value = resultItem.innerText;
-    this.addressInputTarget.dataset.selectedVenue = resultItem.innerText;
   }
 
   async executeAjaxRequest() {
@@ -117,7 +110,7 @@ export default class extends Controller {
         <div class="control has-icons-left">
           <span
             class="input u-pointer u-padding-tb-30px has-border-primary-on-hover"
-            data-target="resultItem"
+            data-target="resultItem" data-action="click->algolia-places#executeSearch"
             type="text"
           >
             <span class="u-no-pointer-events">
