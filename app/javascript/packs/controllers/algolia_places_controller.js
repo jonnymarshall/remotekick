@@ -28,17 +28,17 @@ export default class extends Controller {
     await this.executeAjaxRequest();
     this.clearResults();
     this.generateResults();
-    // let resultItems = document.querySelectorAll("[data-target='resultItem']");
-    // resultItems.forEach((resultItem) => {
-    //   // Click
-    //   resultItem.addEventListener("click", (e) => {
-    //     self.setLocation(resultItem);
-    //     self.clearResults();
-    //     if (self.submitButtonTargets.length > 0) {
-    //       self.submitButtonTarget.click();
-    //     }
-    //   });
-    // });
+    let resultItems = document.querySelectorAll("[data-target='resultItem']");
+    resultItems.forEach((resultItem) => {
+      // Click
+      resultItem.addEventListener("click", (e) => {
+        self.setLocation(resultItem);
+        self.clearResults();
+        if (self.submitButtonTargets.length > 0) {
+          self.submitButtonTarget.click();
+        }
+      });
+    });
   }, 250);
 
   debounce(func, wait, immediate) {
@@ -86,23 +86,26 @@ export default class extends Controller {
 
   clearResults() {
     this.resultsContainerTarget.innerHTML = "";
+    if (this.searchQuery.length === 0) {
+      this.results = [];
+    }
   }
 
-  generateResults() {
-    console.log("_____");
+  generateResults(sanitizedResults = []) {
     this.results.forEach((result) => {
-      console.log(result);
-      console.log(result.locale_names[0]);
-      console.log(result.country);
-      // debugger;
-      console.log(
-        result._highlightResult.locale_names[0].matchedWords[0]
-        // .replace("<em>", "<strong>")
-        // .replace("</em>", "</strong>")
-      );
+      if (
+        result.locale_names[0]
+          .toLowerCase()
+          .includes(this.searchQuery.toLowerCase())
+      ) {
+        sanitizedResults.push(result);
+      }
     });
 
-    this.results.forEach((result) => {
+    sanitizedResults.forEach((result) => {
+      // const beforeAfterMatchedSection = result.locale_names[0].split(
+      //   this.searchQuery
+      // );
       // const tagReplacedResult = (result) => {
       //   result.locale_names[0]
       //     .replace("<em>", "<strong>")
