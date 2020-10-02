@@ -13,7 +13,8 @@ class AlgoliaPlaces
         'query' => query,
         'type' => 'city',
         'hitsPerPage' => 5,
-
+        'language' => 'en',
+        'getRankingInfo' => 'true'
       }.to_json
     }
   end
