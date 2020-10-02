@@ -1,51 +1,51 @@
-import { Controller } from "stimulus"
+import { Controller } from "stimulus";
 
 export default class extends Controller {
+  controllerName = "algolia_places_controller";
 
-  controllerName = "algolia_places_controller"
+  static targets = ["addressInput", "resultsContainer", "submitButton"];
 
-  static targets = ["addressInput", "resultsContainer", "submitButton"]
-
-  baseURL = null
-  searchQuery = null
-  results = null
+  baseURL = null;
+  searchQuery = null;
+  results = null;
 
   connect() {
-    console.log(`${this.controllerName} connected.`)
-    this.baseURL = this.addressInputTarget.dataset.requestPath
+    console.log(`${this.controllerName} connected.`);
+    this.baseURL = this.addressInputTarget.dataset.requestPath;
   }
 
   disconnect() {
-    console.log(`${this.controllerName} disconnected.`)
+    console.log(`${this.controllerName} disconnected.`);
   }
 
   async changeHandler(e) {
-    this.searchHandler(e)
+    this.searchHandler(e);
   }
 
   searchHandler = this.debounce(async function(e) {
-    let self = this
-    this.searchQuery = e.target.value
-    await this.executeAjaxRequest()
-    this.clearResults()
-    this.generateResults()
-    let resultItems = document.querySelectorAll("[data-target='resultItem']")
-    resultItems.forEach((resultItem) => {
-      // Click
-      resultItem.addEventListener("click", (e) => {
-        self.setLocation(resultItem)
-        self.clearResults()
-        if (self.submitButtonTargets.length > 0) {
-          self.submitButtonTarget.click()
-        }
-      })
-    });
+    let self = this;
+    this.searchQuery = e.target.value;
+    await this.executeAjaxRequest();
+    this.clearResults();
+    this.generateResults();
+    // let resultItems = document.querySelectorAll("[data-target='resultItem']");
+    // resultItems.forEach((resultItem) => {
+    //   // Click
+    //   resultItem.addEventListener("click", (e) => {
+    //     self.setLocation(resultItem);
+    //     self.clearResults();
+    //     if (self.submitButtonTargets.length > 0) {
+    //       self.submitButtonTarget.click();
+    //     }
+    //   });
+    // });
   }, 250);
 
   debounce(func, wait, immediate) {
     var timeout;
     return function() {
-      var context = this, args = arguments;
+      var context = this,
+        args = arguments;
       var later = function() {
         timeout = null;
         if (!immediate) func.apply(context, args);
@@ -55,33 +55,33 @@ export default class extends Controller {
       timeout = setTimeout(later, wait);
       if (callNow) func.apply(context, args);
     };
-  };
+  }
 
   hoverHandler(h) {
-    console.log("prevSelection", prevSelection)
-    console.log("target", h.target)
-    let prevSelection = this.resultsContainerTarget.querySelector(".is-primary");
-    if ((prevSelection)) {
+    let prevSelection = this.resultsContainerTarget.querySelector(
+      ".is-primary"
+    );
+    if (prevSelection) {
       prevSelection.classList.remove("is-primary");
     }
     h.target.classList.add("is-primary");
   }
 
   setLocation(resultItem) {
-    this.addressInputTarget.value = resultItem.innerText
-    this.addressInputTarget.dataset.selectedVenue = resultItem.innerText
+    this.addressInputTarget.value = resultItem.innerText;
+    this.addressInputTarget.dataset.selectedVenue = resultItem.innerText;
   }
 
   async executeAjaxRequest() {
-    let self = this
-    let urlString = `${this.baseURL}?query=${this.searchQuery}`
+    let self = this;
+    let urlString = `${this.baseURL}?query=${this.searchQuery}`;
 
     await fetch(urlString, { headers: { accept: "application/json" } })
       .then((response) => response.json())
       .then((data) => {
-        console.log('Success:', data);
-        self.results = data.hits
-      })
+        console.log("Success:", data);
+        self.results = data.hits;
+      });
   }
 
   clearResults() {
@@ -89,44 +89,28 @@ export default class extends Controller {
   }
 
   generateResults() {
-    const sanitizeCountry = (result) => {
-      if (result.country.en) {
-        return result.country.en
-      } else {
-        return result.country.default
-      }
-    }
+    console.log("_____");
+    this.results.forEach((result) => {
+      console.log(result);
+      console.log(result.locale_names[0]);
+      console.log(result.country);
+      // debugger;
+      console.log(
+        result._highlightResult.locale_names[0].matchedWords[0]
+        // .replace("<em>", "<strong>")
+        // .replace("</em>", "</strong>")
+      );
+    });
 
-    const sanitizeCity = (result) => {
-      if (result.locale_names.en) {
-        return result.locale_names.en[0]
-      } else {
-        return result.locale_names.default[0]
-      }
-    }
-
-    const sanitizeCountryCode = (result) => {
-      return result.country_code
-    }
-
-    const sanitizeMatchedLocale = (result) => { 
-      if (result._highlightResult.locale_names.en) {
-        if (result._highlightResult.locale_names.en[0].matchedWords.length > 0) {
-          return result._highlightResult.locale_names.en[0].value.replace("<em>", "<strong>").replace("</em>", "</strong>")
-        }
-      } else if (result._highlightResult.locale_names.default) {
-        if (result._highlightResult.locale_names.default[0].matchedWords.length > 0) {
-          return result._highlightResult.locale_names.default[0].value.replace("<em>", "<strong>").replace("</em>", "</strong>")
-        }
-      }
-      else {
-        throw "Unable to sanitize data from result."
-      }
-    }
-
-    this.results.forEach((result) => {     
-      if (sanitizeMatchedLocale(result)) {
-        this.resultsContainerTarget.insertAdjacentHTML("afterbegin", `
+    this.results.forEach((result) => {
+      // const tagReplacedResult = (result) => {
+      //   result.locale_names[0]
+      //     .replace("<em>", "<strong>")
+      //     .replace("</em>", "</strong>");
+      // };
+      this.resultsContainerTarget.insertAdjacentHTML(
+        "afterbegin",
+        `
         <div class="control has-icons-left">
           <span
             class="input u-pointer u-padding-tb-30px has-border-primary-on-hover"
@@ -134,15 +118,15 @@ export default class extends Controller {
             type="text"
           >
             <span class="u-no-pointer-events">
-              ${sanitizeMatchedLocale(result)}, ${sanitizeCountry(result)}
+              ${result.locale_names[0]}, ${result.country}
             </span>
             <span class="icon is-small is-left u-top-auto">
               <i class="fas fa-city"></i>
             </span>
           </span>
         </div>
-        `);
-      }
+        `
+      );
     });
   }
 }
