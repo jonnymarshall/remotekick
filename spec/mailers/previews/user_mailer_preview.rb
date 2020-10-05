@@ -1,7 +1,7 @@
-class UserMailerPreview < ActionMailer::Previewß
+class UserMailerPreview < ActionMailer::Preview
 
   def confirmation_instructions
     user = FactoryBot.build_stubbed(:user)
-    UserMailer.confirmation_instructions(user: user, token: "faketoken")
+    UserMailer.confirmation_instructions(user, "faketoken")
   end
 end

@@ -26,6 +26,15 @@
     </div>
   <% end %>
 
+  <% if key == "warning" %>
+    <div class="notification is-warning is-radiusless flash <%= "home-flash" if @current_page == "/" %>" data-controller="notification-dismissal">
+      <button class="delete" data-action="notification-dismissal#dismissNotification"></button>
+      <ul>
+        <li><%= value %></li>
+      </ul>
+    </div>
+  <% end %>
+
   <% if key == "error" %>
     <div class="notification is-danger is-radiusless flash <%= "home-flash" if @current_page == "/" %>" data-controller="notification-dismissal">
       <button class="delete" data-action="notification-dismissal#dismissNotification"></button>

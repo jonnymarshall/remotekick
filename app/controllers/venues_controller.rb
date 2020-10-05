@@ -52,8 +52,12 @@ class VenuesController < ApplicationController
     @venue.users << current_user
     if @venue.save && @address.save
       save_photo_if_photo_uploaded(venue: @venue)
-      VenueMailer.new_venue_listed(user: current_user, venue: @venue).deliver_now!
-      flash[:success] = "Thank you, #{@venue.name} was successfully listed."
+      begin
+        VenueMailer.new_venue_listed(user: current_user, venue: @venue).deliver_now!
+        flash[:success] = "Thank you, #{@venue.name} was successfully listed."
+      rescue StandardError => e
+        flash[:warning] = "#{@venue.name} was listed, but there was a problem sending an email confirmation. Please check your email."
+      end
       redirect_to venue_path(@venue)
     else
       flash[:error] = @venue.errors.messages.merge(@address.errors.messages)
