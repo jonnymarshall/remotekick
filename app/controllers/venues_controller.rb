@@ -56,7 +56,7 @@ class VenuesController < ApplicationController
         VenueMailer.new_venue_listed(user: current_user, venue: @venue).deliver_now!
         flash[:success] = "Thank you, #{@venue.name} was successfully listed."
       rescue StandardError => e
-        flash[:warning] = "#{@venue.name} was listed, but there was a problem sending an email confirmation. Please check your email."
+        flash[:alert] = "#{@venue.name} was listed, but there was a problem sending an email confirmation. Please check your email."
       end
       redirect_to venue_path(@venue)
     else
