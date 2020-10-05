@@ -8,6 +8,7 @@ class Photo < ApplicationRecord
 
   def set_as_featured_image
     self.update!(featured: true)
+    self.imageable.photos.reload
   end
 
   private

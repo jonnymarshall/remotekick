@@ -1,11 +1,13 @@
 FactoryBot.define do
   factory :photo do
+    
     trait :is_featured do
       featured { true }
     end
+
     trait :attached_image do
-      after(:build) do |culture|
-        culture.image.attach(io: File.open(Rails.root.join('spec', 'support', 'assets', 'petr-sevcovic-594807-unsplash_1920X1280.jpg')),
+      after(:build) do |photo|
+        photo.image.attach(io: File.open(Rails.root.join('spec', 'support', 'assets', 'petr-sevcovic-594807-unsplash_1920X1280.jpg')),
             filename: 'petr-sevcovic-594807-unsplash_1920X1280.jpg',
             content_type: 'image/jpeg'
           )
