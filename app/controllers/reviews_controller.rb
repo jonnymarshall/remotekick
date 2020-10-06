@@ -25,7 +25,9 @@ class ReviewsController < ApplicationController
         flash[:success] = "Thank you, your review was successfully posted."
         redirect_to venue_path(@venue)
       else
-        flash[:error] = @review.errors.messages
+        @review.errors.messages.each_pair do |key, value|
+          flash[:error] = "#{key.capitalize} #{value[0]}."
+        end
         render :new
       end
     end
