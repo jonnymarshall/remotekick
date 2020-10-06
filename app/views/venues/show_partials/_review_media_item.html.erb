@@ -1,5 +1,5 @@
 <article class="media">
-  <%= render(AvatarComponent.new(user: review.user, size: "small", rounded: true)) %>
+  <%= render(AvatarComponent.new(user: review.user, media_object: true)) %>
   <div class="media-content">
     <div class="content">
       <strong><%= review.user.first_name %></strong><br>

@@ -1,5 +1,9 @@
-<figure class="media-left c-user-avatar-small">
+<% if @media_object %>
+<figure class="media-left">
   <div class="image is-<%= @width %>x<%= @height %>">
+    <% end %>
     <img class="<%= @rounded %>" src="<%= @avatar_url %>">
+    <% if @media_object %>
   </div>
 </figure>
+<% end %>
