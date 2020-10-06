@@ -17,8 +17,12 @@ class ReviewsController < ApplicationController
 
       if @review.save
         save_photo_if_photo_uploaded(review: @review)
-        # VenueMailer.new_review_listed(user: current_user, review: @venue).deliver_now!
-        flash[:success] = "Thank you, your review was successfully posted."
+        begin
+          ReviewMailer.new_review_posted(user: current_user, review: @review, venue: @venue).deliver_now!
+          flash[:success] = "Thank you, your review was successfully posted."
+        rescue StandardError => e
+          flash[:alert] = "#{@venue.name} was listed, but there was a problem sending an email confirmation. Please check your email."
+        end
         redirect_to venue_path(@venue)
       else
         @review.errors.messages.each_pair do |key, value|
