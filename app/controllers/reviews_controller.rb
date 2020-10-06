@@ -3,11 +3,7 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: [:edit, :update, :destroy]
 
   def new
-    if form_submitted_from_showpage?
-      @review = current_user.reviews.new(review_params)
-    else
-      @review = current_user.reviews.new
-    end
+    assign_review_and_any_existing_params
     @descriptives = ["wonderful", "fabulous", "superb", "amazing", "stupendous", "phenomenal"]
     @review_photo = Photo.new
   end
@@ -101,5 +97,13 @@ class ReviewsController < ApplicationController
 
   def form_submitted_from_showpage?
     params[:review][:from_showpage]
+  end
+
+  def assign_review_and_any_existing_params
+    if params[:review] && form_submitted_from_showpage?
+      @review = current_user.reviews.new(review_params)
+    else
+      @review = current_user.reviews.new
+    end
   end
 end

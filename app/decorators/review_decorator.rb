@@ -14,11 +14,11 @@ class ReviewDecorator < ApplicationDecorator
     end
   end
 
-  def form_heading
+  def form_heading(venue)
     if object.persisted?
-      h.tag.h1 'Edit Review', class: "title"
+      h.tag.h1 "Edit Review for #{venue.name}", class: "title"
     else
-      h.tag.h1 'Add New Review', class: "title"
+      h.tag.h1 "Add New Review for #{venue.name}", class: "title"
     end
   end
 

@@ -3,7 +3,7 @@
     <div class="columns">
       <div class="column is-paddingless"></div>
       <div class="column is-two-fifths">
-        <%= review.form_heading %>
+        <%= review.form_heading(venue) %>
         <%= form_with model: [venue, review], local: true, class: "form-group col-xs-6", :data => { :controller => 'icon-state' } do |review_form| %>
           <!-- FILTER > RATING -->
           <div class="field">

@@ -1,11 +1,11 @@
-.c-user-avatar-large img {
-  object-fit: cover;
-  border-radius: 40px;
-  margin-bottom: 10px;
-}
-
-.c-user-avatar-small img {
-  object-fit: cover;
-  height: 100%;
-  width: 100%;
+.c-user-avatar {
+  &--large img {
+    object-fit: cover;
+    border-radius: 40px;
+    min-height: 260px;
+  }
+  &--small img {
+    object-fit: cover;
+    width: 100%;
+  } 
 }
