@@ -6,7 +6,7 @@
       </div>
     <% end %>
     
-    <h1 class="title is-4"><%= @venue.name %> is now live!</h1>
+    <h1 class="title is-4">Your review is now live.</h1>
     <% if @venue.photos.any? %>
       <figure class="image is-16by9">
         <img src="<%= url_for(@venue.featured_photo.image) %>">
@@ -14,18 +14,22 @@
     <% end %>
     
     <h2 class="subtitle is 6">
-      Hi <%= @user.first_name %>, thanks for adding <strong><%= @venue.name %></strong> on remotekick.
+      Hi <%= @user.first_name %>, thanks for posting a review for <strong><%= @venue.name %></strong> on remotekick.
       <br><br>
-      <%= @venue.name %> is now live and can be accessed using the following URL:
+      Your review is now live and can be found on the venue page at the following url:
       <br><br>
       <strong><%= @venue_url %></strong>
       <br><br>
       Feel free to share this link with your friends and colleagues, and help to get <%= @venue.name %> noticed as a fantastic place to kick back and do some work!
       <br><br>
-      If you haven't already, why not be the first to <%= link_to "leave a review", @new_venue_review_url %>?
+      Here's what you said:
+      <br><br>
+      <strong>"<%= @review.content %>"</strong>
+      <br><br>
+      If you want to make any changes to your review, feel free to <%= link_to "edit your review", @edit_venue_review_url %> at any time.
     </h2>
 
     <%= link_to "Go to listing", @venue_url, class: "button is-medium is-primary is-fullwidth" %>
-    <%= link_to "Edit listing", @edit_venue_url, class: "button is-medium is-light is-fullwidth" %>
+    <%= link_to "Edit review", @edit_venue_review_url, class: "button is-medium is-light is-fullwidth" %>
   </div>
 </section>

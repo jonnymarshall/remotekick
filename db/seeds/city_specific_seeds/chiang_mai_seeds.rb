@@ -2,7 +2,7 @@ def create_chiang_mai_venues
   puts 'Creating chiang mai coffee shops...'
   venue_attributes = [
     {
-      name: 'CAMP @ Maya',
+      name: 'AIS Camp',
       description:  '24H coworking space on the 5th floor of MAYA shopping center',
       users: [User.first],
       # serves_plant_milk: false,
@@ -491,8 +491,8 @@ def create_chiang_mai_addresses
   puts "Creating Jonny's chiang mai coffee shop addresses..."
   address_attributes = [{
     # Camp@MAYA
-      latitude: 18.80117127010728,
-      longitude: 98.96564847010727
+      latitude: 18.802795,
+      longitude: 98.967014
     },
     # Ab'Petite Café
     {
