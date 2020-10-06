@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe ReviewMailer, type: :mailer do
-  describe 'new_review_posted', focus: true do
+  describe 'new_review_posted' do
     let(:u) { create(:user) }
     let(:ven) { create(:venue, users: [u]) }
     let(:rev) { create(:review, user: u, venue: ven) }
