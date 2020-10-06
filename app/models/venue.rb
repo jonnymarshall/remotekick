@@ -16,6 +16,7 @@ class Venue < ApplicationRecord
 
   validates :foursquare_id, uniqueness: true, allow_blank: true
   validates :name, presence: true
+  # validates :address, presence: true
   validates_uniqueness_of :name, scope: :user_id
   # validates :description, length: { maximum: 68 }, allow_blank: true
   
