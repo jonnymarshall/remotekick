@@ -16,6 +16,7 @@
   <div id="c-navbar-links" class="navbar-menu" data-target="mobile-menu.menu">
     <div class="navbar-end">
       <% if user_signed_in? %>
+        <%= link_to "Search for a listing", venues_path, id: "new_venue_link", class: "navbar-item heading is-size-6-touch" %>
         <%= link_to "Add a new listing", new_venue_path, id: "new_venue_link", class: "navbar-item heading is-size-6-touch" %>
         <%= link_to "Dashboard", "#", class: "navbar-item heading is-size-6-touch" %>
         <%= link_to "Account Settings", edit_user_registration_path, class: "navbar-item heading is-size-6-touch" %>
