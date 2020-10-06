@@ -5,9 +5,7 @@
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <div class="columns">
       <div class="column is-4">
-        <% if @user.avatar.present? %>
-        <%= render(AvatarComponent.new(user: @user)) %>
-        <% end %>
+        <%= render(AvatarComponent.new(user: @user, type: "account")) %>
         <div class="field u-margin-t-10px" data-controller="photo-upload">
           <div class="file has-name is-boxed is-primary is-small is-centered">
             <label class="file-label">
