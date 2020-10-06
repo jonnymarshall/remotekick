@@ -1,7 +1,7 @@
 <%= form_with model: [venue, review], local: true, class: "form-group col-xs-6" do |review_form| %>
   <article class="media">
     <%#= render(MediaObjectComponent.new(user: current_user)) %>
-    <%= render(MediaObjectAvatarComponent.new(user: current_user)) %>
+    <%= render(AvatarComponent.new(user: current_user, size: "small", rounded: true)) %>
     <%= render(MediaObjectContentFormComponent.new(review_form: review_form)) %>
   </article>
 <% end %>
