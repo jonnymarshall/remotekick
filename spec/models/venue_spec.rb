@@ -144,6 +144,18 @@ RSpec.describe Venue do
       end
     end
 
+    describe 'wifi_speed' do
+      
+      it 'returns an ActiveRecord::Relation of venues which are over given wifi speed', focus: true do
+        has_upload_speed_whole = FactoryBot.create(:venue, users: [u], upload_speed: 5, name: "Venue has_upload_speed_whole")
+        has_upload_speed_round_down = FactoryBot.create(:venue, users: [u], upload_speed: 10.4, name: "Venue has_upload_speed_round_down")
+        has_upload_speed_round_up = FactoryBot.create(:venue, users: [u], upload_speed: 4.6, name: "Venue has_upload_speed_round_up")
+        has_upload_speed_low = FactoryBot.create(:venue, users: [u], upload_speed: 4.4, name: "Venue has_upload_speed_low")
+        byebug
+        expect(Venue.upload_speed(5).count).to eq(3)
+      end
+    end
+
     describe 'location' do
       
       it 'returns an ActiveRecord::Relation of venues which have addresses near given location' do
@@ -157,7 +169,7 @@ RSpec.describe Venue do
 
     describe 'has_upload_speed_data' do
       
-      it 'returns an ActiveRecord::Relation of venues which have addresses near given location' do
+      it 'returns an ActiveRecord::Relation of venues which have upload speed data' do
         has_upload_speed = FactoryBot.create(:venue, users: [u], name: "Venue with upload speed")
         also_has_upload_speed = FactoryBot.create(:venue, users: [u], name: "Another venue with upload speed")
         does_not_have_upload_speed = FactoryBot.create(:venue, users: [u], upload_speed: nil, name: "Venue without upload speed")
