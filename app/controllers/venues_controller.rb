@@ -1,6 +1,7 @@
 class VenuesController < ApplicationController
   include Foursquare
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  before_action :set_venues, only: [:index]
   before_action :set_venue, only: [:show, :edit, :update, :destroy]
   before_action :venues_params, only: [:index]
   before_action :new_venue_params, only: [:create]
@@ -9,7 +10,7 @@ class VenuesController < ApplicationController
   # @venue should be called as venue for decorated instance in views
   decorates_assigned :venue
   decorates_assigned :review
-  has_scope :location, if: :location_given?
+  has_scope :location, if: :location_given?, unless: :distance_given?
   has_scope :rating
   has_scope :upload_speed
   has_scope :no_wifi_restrictions
@@ -20,11 +21,13 @@ class VenuesController < ApplicationController
   respond_to :html, :json
   
   def index
-    @venues = apply_scopes(Venue).all
+    @venues = @venues.location(venues_params[:location]) if location_given?
     redirect_to cities_path and return if !@venues.any?
-    
+    @venues = apply_scopes(Venue).all
+    @venues = @venues.location_with_distance(venues_params[:location], venues_params[:distance].to_i) if location_given? && distance_given?
+    # @venues = @venues.near(venues_params[:location], venues_params[:distance]) if location_given? && distance_given?
+
     order_venues_by_param(@venues, venues_params[:order_by]) if venues_params[:order_by]
-    @venues = @venues.near(venues_params[:location], venues_params[:distance]) if location_given? && distance_given?
 
     if !request.xhr?
       set_map_markers(@venues) unless params[:order_by] 
@@ -108,6 +111,10 @@ class VenuesController < ApplicationController
 
   def set_venue
     @venue = Venue.find(params[:id])
+  end
+
+  def set_venues
+    @venues = Venue.all
   end
 
   def venues_params
