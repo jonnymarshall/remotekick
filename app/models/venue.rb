@@ -24,14 +24,13 @@ class Venue < ApplicationRecord
   # scope :location, -> location {  Venue.where(id: Address.near(location).map(&:venue).map(&:id)) }
   scope :location, -> location {  Venue.where(id: Address.near(location).joins(:venue).preload(:venue).map(&:venue).map(&:id)) }
   scope :rating, -> number { where("rating >= ?", number) }
-  scope :upload_speed, -> number { where("upload_speed >= ?", number) if number > "0" }
+  scope :upload_speed, -> number { where("upload_speed >= ?", number.to_i - 0.5) if number.to_i > 0 }
   scope :serves_food, -> { where(serves_food: true) }
   scope :air_conditioning, -> { where(air_conditioning: true) }
   scope :comfort, -> number { where("comfort >= ?", number) }
   scope :quietness, -> number { where("quietness >= ?", number) }
   scope :plug_sockets, -> number { where("plug_sockets >= ?", number) }
   scope :has_wifi, -> { where(has_wifi: true) }
-  # scope :has_wifi, -> boolean { where("has_wifi = ?", boolean) if boolean == "1" }
   scope :no_wifi_restrictions, -> hours { where("wifi_restrictions < ?", hours) if hours > "0" }
   scope :has_upload_speed_data, -> { where.not(upload_speed: nil) }
 

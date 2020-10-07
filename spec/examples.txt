@@ -86,8 +86,9 @@ example_id                                                         | status  | r
 ./spec/models/venue_spec.rb[1:3:2:2:1:1]                           | passed  | 0.02271 seconds |
 ./spec/models/venue_spec.rb[1:3:2:2:2:1]                           | passed  | 0.02724 seconds |
 ./spec/models/venue_spec.rb[1:4:1:1]                               | passed  | 0.01992 seconds |
-./spec/models/venue_spec.rb[1:4:2:1]                               | passed  | 1.31 seconds    |
+./spec/models/venue_spec.rb[1:4:2:1]                               | passed  | 1.04 seconds    |
 ./spec/models/venue_spec.rb[1:4:3:1]                               | passed  | 1.17 seconds    |
+./spec/models/venue_spec.rb[1:4:4:1]                               | unknown |                 |
 ./spec/models/venue_spec.rb[1:5:1:1]                               | passed  | 0.02051 seconds |
 ./spec/models/venue_spec.rb[1:5:2:1]                               | passed  | 0.01518 seconds |
 ./spec/models/venue_user_spec.rb[1:1]                              | pending | 0.00001 seconds |
