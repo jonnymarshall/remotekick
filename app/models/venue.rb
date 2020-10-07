@@ -24,7 +24,7 @@ class Venue < ApplicationRecord
   # scope :location, -> location {  Venue.where(id: Address.near(location).map(&:venue).map(&:id)) }
   scope :location, -> location {  Venue.where(id: Address.near(location).joins(:venue).preload(:venue).map(&:venue).map(&:id)) }
   scope :rating, -> number { where("rating >= ?", number) }
-  scope :upload_speed, -> number { where("upload_speed >= ?", number.to_i - 0.5) if number.to_i > 0 }
+  scope :upload_speed, -> number { where("round(upload_speed) >= ?", number.to_i) if number.to_i > 0 }
   scope :serves_food, -> { where(serves_food: true) }
   scope :air_conditioning, -> { where(air_conditioning: true) }
   scope :comfort, -> number { where("comfort >= ?", number) }
