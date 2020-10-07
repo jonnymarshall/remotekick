@@ -3,7 +3,8 @@ class PhotosController < ApplicationController
   before_action :set_photo, only: [:destroy]
   
   def destroy
-    redirect_to edit_venue_path(@venue) if @photo.destroy!
+    @photo.destroy!
+    redirect_to request.referrer if request.referrer
   end
 
   private

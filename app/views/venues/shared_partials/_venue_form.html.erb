@@ -188,7 +188,11 @@
             </p>
             <%= venue.form_delete_button %>
             <p class="control">
+            <% if venue.persisted? %>
+              <%= link_to "Cancel", venue_path(venue), class: "button is-light" %>
+            <% else %>
               <%= link_to 'Cancel', :back, class: "button is-light" %>
+            <% end %>
             </p>
           </div>
         </div>
