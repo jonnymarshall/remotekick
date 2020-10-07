@@ -11,6 +11,9 @@ class ApplicationController < ActionController::Base
   #   { host: ENV["DOMAIN"] || "localhost:3000" }
   # end
   
+  # def user_root_path
+  #   edit_user_registration_path
+  # end
   
   private
 
