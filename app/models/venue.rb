@@ -33,6 +33,7 @@ class Venue < ApplicationRecord
   scope :has_wifi, -> { where(has_wifi: true) }
   # scope :has_wifi, -> boolean { where("has_wifi = ?", boolean) if boolean == "1" }
   scope :no_wifi_restrictions, -> hours { where("wifi_restrictions < ?", hours) if hours > "0" }
+  scope :has_upload_speed_data, -> { where.not(upload_speed: nil) }
 
   def update_values(
       review,

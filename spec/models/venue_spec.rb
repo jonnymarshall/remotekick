@@ -155,6 +155,18 @@ RSpec.describe Venue do
       end
     end
 
+    describe 'has_upload_speed_data' do
+      
+      it 'returns an ActiveRecord::Relation of venues which have addresses near given location' do
+        has_upload_speed = FactoryBot.create(:venue, users: [u], name: "Venue with upload speed")
+        also_has_upload_speed = FactoryBot.create(:venue, users: [u], name: "Another venue with upload speed")
+        does_not_have_upload_speed = FactoryBot.create(:venue, users: [u], upload_speed: nil, name: "Venue without upload speed")
+        also_does_not_have_upload_speed = FactoryBot.create(:venue, users: [u], upload_speed: nil, name: "Another venue without upload speed")
+
+        expect(Venue.has_upload_speed_data).to eq([has_upload_speed, also_has_upload_speed])
+      end
+    end
+
   end
 
   describe 'photo methods' do
