@@ -4,10 +4,7 @@
       <%= f.hidden_field :reset_password_token %>
       <%= f.hidden_field :reset_password_token %>
       <div class="columns">
-        <div class="column">
-          <!-- First column -->
-        </div>
-        <div class="column" id="sign_up_form" data-controller="password-validation">
+        <div class="column is-half is-offset-one-quarter" id="sign_up_form" data-controller="password-validation">
           <h1 class="title">Set Your Password</h1>
           <div class="field">
             <p class="control has-icons-left has-icons-right">
@@ -64,9 +61,6 @@
               <%= link_to "Back", :back, class: "button is-light is-light" %>
             </p>
           </div>
-        </div>
-        <div class="column">
-          <!-- Second column -->
         </div>
       </div>
     <% end %>

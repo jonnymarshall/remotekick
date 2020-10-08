@@ -2,10 +2,7 @@
   <section class="section">
     <div class="container">
       <div class="columns">
-        <div class="column">
-          <!-- First column -->
-        </div>
-        <div class="column" data-controller="password-validation">
+        <div class="column is-half is-offset-one-quarter" data-controller="password-validation">
           <h1 class="title">Sign up</h1>
           <div class="field">
             <%= f.label :first_name, class: "label" %>
@@ -53,7 +50,8 @@
               </span>
             </p>
           </div>
-          <div data-target="password-validation.validationMessageContainer">
+          <div class="field">
+            <div data-target="password-validation.validationMessageContainer"></div>
           </div>
           <div class="field">
             <p class="control">
@@ -65,9 +63,6 @@
               <%= link_to "Didn't receive confirmation email?", new_confirmation_path(resource_name), class: "button is-warning" %><br />
             </p>
           </div>
-        </div>
-        <div class="column">
-          <!-- Second column -->
         </div>
       </div>
     </div>

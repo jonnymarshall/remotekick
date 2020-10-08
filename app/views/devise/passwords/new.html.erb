@@ -3,10 +3,7 @@
   <section class="section">
     <div class="container">
       <div class="columns">
-      <div class="column">
-        <!-- First column -->
-      </div>
-        <div class="column" id="log_in_form" data-controller="password-validation">
+        <div class="column is-half is-offset-one-quarter" id="log_in_form" data-controller="password-validation">
           <h1 class="title">Forgot your password?</h1>
           <div class="field">
             <p class="control has-icons-left">
@@ -25,16 +22,15 @@
               </span>
             </p>
           </div>
-          <div data-target="password-validation.validationMessageContainer">
+          <div class="field">
+            <div data-target="password-validation.validationMessageContainer">
+            </div>
           </div>
           <div class="field is-grouped">
             <p class="control">
               <%= f.submit "Send me reset password instructions", class: "button is-primary" %>
             </p>
           </div>
-        </div>
-        <div class="column">
-          <!-- Second column -->
         </div>
       </div>
     </div>
