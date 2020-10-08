@@ -20,7 +20,12 @@
           <div class="field">
             <label class="label">Review content</label>
             <p class="control has-icons-left">
-              <%= review_form.text_area :content, required: true, class: "textarea", placeholder: "#{ review.content }" %>
+              <%= review_form.text_area :content,
+                required: true,
+                class: "textarea",
+                placeholder: "How was your experience?",
+                value: "#{ review.content }"
+              %>
             </p>
           </div>
 
@@ -28,7 +33,14 @@
           <div class="field">
             <label class="label">Wifi Speed</label>
             <p class="control has-icons-left">
-              <%= review_form.number_field :upload_speed, value: "#{review.upload_speed}", class: "input", type: "number", step: 0.1 %>
+              <%= review_form.number_field :upload_speed,
+                value: "#{review.upload_speed}",
+                class: "input",
+                type: "number",
+                placeholder: "Enter upload speed in Mbps",
+                step: 1,
+                min: 0
+              %>
               <span class="icon is-small is-left">
                 <i class="fas fa-wifi"></i>
               </span>
