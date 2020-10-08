@@ -3,12 +3,10 @@
   <section class="section">
     <div class="container">
       <div class="columns">
-      <div class="column">
-        <!-- First column -->
-      </div>
-        <div class="column" id="log_in_form" data-controller="password-validation">
+        <div class="column is-half is-offset-one-quarter" id="log_in_form" data-controller="password-validation">
           <h1 class="title">Log in</h1>
           <div class="field">
+            <%= f.label :email, class: "label" %>
             <p class="control has-icons-left has-icons-right">
               <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input", placeholder: "Email", :data => { :target => 'password-validation.email', :action => 'keyup->password-validation#emailEntryValidation' } %>
               <span class="icon is-small is-left">
@@ -20,6 +18,7 @@
             </p>
           </div>
           <div class="field">
+            <%= f.label :password, class: "label" %>
             <p class="control has-icons-left">
               <%= f.password_field :password, autocomplete: "current-password", class: "input", placeholder: "Password", :data => { :target => 'password-validation.password', :action => 'keyup->password-validation#passwordEntryValidation' } %>
               <span class="icon is-small is-left">
@@ -27,7 +26,8 @@
               </span>
             </p>
           </div>
-          <div data-target="password-validation.validationMessageContainer">
+          <div class="field">
+            <div data-target="password-validation.validationMessageContainer"></div>
           </div>
           <div class="field">
             <div class="control">
@@ -45,9 +45,6 @@
               <%= link_to "Forgot your password?", new_password_path(resource_name), class: "button is-warning" %><br />
             </p>
           </div>
-        </div>
-        <div class="column">
-          <!-- Second column -->
         </div>
       </div>
     </div>
