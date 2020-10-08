@@ -2,8 +2,7 @@
   <section class="section" data-controller="venue-autofill">
     <div class="container">
       <div class="columns">
-        <div class="column is-paddingless"></div>
-        <div class="column is-two-fifths">
+        <div class="column is-half is-offset-one-quarter">
         <%= venue.form_heading %>
           <div class="field c-field-has-autocomplete-results" data-controller="algolia-places">
             <label class="label">Location</label>
@@ -43,22 +42,46 @@
           </div>
 
           <!-- ADDRESS -->
-          <div class="field">
-            <label class="label">Address</label>
-            <p class="control has-icons-left">
-
-              <%= venue_form.fields_for :address, address do |address_form| %>
-                <%= address_form.text_field :address, class: "input", value: "#{address.address}", placeholder: "What's the address?", :data => { :target => 'venue-autofill.address' } %>
-                <%= address_form.hidden_field :longitude, :data => { :target => 'venue-autofill.longitude' } %>
-                <%= address_form.hidden_field :latitude, :data => { :target => 'venue-autofill.latitude' } %>
-              <% end %>
-
-              <%#= venue_form.text_field :address, class: "input", value: "#{venue.address.address}", placeholder: "What's the address?", :data => { :target => 'venue-autofill.address' } %>
-              <span class="icon is-small is-left">
-                <i class="fas fa-city"></i>
-              </span>
-            </p>
-          </div>
+          <%= venue_form.fields_for :address, address do |address_form| %>
+            <div class="field">
+              <label class="label">Address</label>
+              <p class="control has-icons-left">
+                <%= address_form.text_field :address, class: "input", value: "#{address.address}" %>
+                <span class="icon is-small is-left">
+                  <i class="fas fa-home"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <label class="label">City</label>
+              <p class="control has-icons-left">
+                <%= address_form.text_field :city, class: "input", value: "#{address.city}" %>
+                <span class="icon is-small is-left">
+                  <i class="fas fa-city"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <label class="label">Postcode</label>
+              <p class="control has-icons-left">
+                <%= address_form.text_field :postcode, class: "input", value: "#{address.postcode}" %>
+                <span class="icon is-small is-left">
+                  <i class="fas fa-paper-plane"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <label class="label">Country</label>
+              <p class="control has-icons-left">
+                  <%= address_form.text_field :country, class: "input", value: "#{address.country}" %>
+                <span class="icon is-small is-left">
+                  <i class="fas fa-globe-europe"></i>
+                </span>
+              </p>
+            </div>
+            <%= address_form.hidden_field :longitude, :data => { :target => 'venue-autofill.longitude' } %>
+            <%= address_form.hidden_field :latitude, :data => { :target => 'venue-autofill.latitude' } %>
+          <% end %>
 
           <!-- CATEGORY -->
           <div class="field">
@@ -196,7 +219,6 @@
             </p>
           </div>
         </div>
-        <div class="column is-paddingless"></div>
       </div>
     </div>
   </section>

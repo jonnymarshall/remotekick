@@ -4,7 +4,6 @@ class VenuesController < ApplicationController
   before_action :set_venues, only: [:index]
   before_action :set_venue, only: [:show, :edit, :update, :destroy]
   before_action :venues_params, only: [:index]
-  before_action :new_venue_params, only: [:create]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :authorize_user, only: [:edit, :update, :destroy]
   # @venue should be called as venue for decorated instance in views
@@ -50,8 +49,8 @@ class VenuesController < ApplicationController
   end
 
   def create
-    @venue = Venue.new(new_venue_params)
-    @address = Address.new(new_venue_address_params.merge(venue: @venue))
+    @venue = Venue.new(venue_params)
+    @address = Address.new(venue_address_params.merge(venue: @venue))
     @venue.users << current_user
     if @venue.save && @address.save
       save_photo_if_photo_uploaded(venue: @venue)
@@ -88,7 +87,8 @@ class VenuesController < ApplicationController
   end
 
   def update
-    if @venue.update(new_venue_params)
+    @venue.address.update(venue_address_params) if venue_address_params
+    if @venue.update(venue_params)
       save_photo_if_photo_uploaded(venue: @venue)
       redirect_to venue_path(@venue)
     else
@@ -134,7 +134,7 @@ class VenuesController < ApplicationController
     )
   end
 
-  def new_venue_params
+  def venue_params
     params.require(:venue).permit(
       :name,
       :description,
@@ -146,11 +146,14 @@ class VenuesController < ApplicationController
     )
   end
 
-  def new_venue_address_params
+  def venue_address_params
     params.require(:venue).require(:address_attributes).permit(
       :address,
       :longitude,
       :latitude,
+      :city,
+      :postcode,
+      :country
     )
   end
 
