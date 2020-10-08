@@ -63,7 +63,9 @@ class VenuesController < ApplicationController
       end
       redirect_to venue_path(@venue)
     else
-      flash[:error] = @venue.errors.messages.merge(@address.errors.messages)
+      @venue.errors.messages.merge(@address.errors.messages).each_pair do |key, value|
+        flash[:error] = "#{key.capitalize} #{value[0]}."
+      end
       render :new
     end
 
