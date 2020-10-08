@@ -6,13 +6,16 @@ export default class extends Controller {
 
   static targets = [
     "locationInput",
-    "input",
+    "name",
     "path",
     "results",
     "test",
     "category",
     "description",
     "address",
+    "city",
+    "postcode",
+    "country",
     "longitude",
     "latitude",
     "fourSquareId"
@@ -32,11 +35,7 @@ export default class extends Controller {
     console.log(`${this.controllerName} disconnected.`)
   }
 
-  nameInputHandler(e) {
-    this.searchHandler(e)
-  }
-
-  searchHandler = this.debounce(async function(e) {
+  searchHandler = this.debounce(async function (e) {
     this.location = this.locationInputTarget.dataset.selectedVenue
     this.searchQuery = e.target.value;
     if ((this.location) && (this.location.length > 1)) {
@@ -47,9 +46,9 @@ export default class extends Controller {
 
   debounce(func, wait, immediate) {
     var timeout;
-    return function() {
+    return function () {
       var context = this, args = arguments;
-      var later = function() {
+      var later = function () {
         timeout = null;
         if (!immediate) func.apply(context, args);
       };
@@ -61,20 +60,16 @@ export default class extends Controller {
   };
 
   resultsHandler() {
-    let self = this
     this.clearResults();
     if (this.searchQuery.length > 1) {
       this.generateResults();
-      let resultItems = document.querySelectorAll("[data-target='resultItem']")
-      resultItems.forEach((resultItem) => {
-      // Select
-        resultItem.addEventListener("click", (e) => {
-          self.setQueryParams(resultItem)
-          self.clearResults()
-          self.setInputValues()
-        })
-      });
     }
+  }
+
+  selectResult(e) {
+    self.matchSelectedResult(e.target)
+    self.clearResults()
+    self.populateInputsWithVenueData()
   }
 
   clearResults() {
@@ -83,18 +78,9 @@ export default class extends Controller {
 
   // Capitalizes first letter of each word in string
   toTitleCase(str) {
-    return str.replace(/\w\S*/g, function(txt){
+    return str.replace(/\w\S*/g, function (txt) {
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
-  }
-
-  // Formats address using each line in the address array
-  addressFormatter(selectedVenue) {
-    let formattedAddress = ""
-    selectedVenue.location.formattedAddress.forEach((line) => {
-      formattedAddress += `${line}, `;
-    });
-    return formattedAddress.slice(0, -2)
   }
 
   hoverHandler(e) {
@@ -104,25 +90,53 @@ export default class extends Controller {
     }
     e.target.classList.add("is-primary");
   }
-  
-  setQueryParams(resultItem) {
+
+  matchSelectedResult(resultItem) {
     // Match resultItem.id with clicked result and assign object to selectedVenue
-    this.selectedVenue = this.results.filter((result) => {
+    this.selectedVenue = this.results.find((result) => {
       return result.id == resultItem.id
-    })[0];
-    // Reassign searchQuery to be the name of the selected venue
-    this.searchQuery = this.selectedVenue.name;
+    });
   }
 
-  // Populate the input field with the venue name
-  setInputValues() {
-    self.inputTarget.value = self.searchQuery;
-    self.addressTarget.value = self.addressFormatter(self.selectedVenue);
-    self.categoryTarget.value = this.selectedVenue.categories[0].name;
-    // self.descriptionTargets[0].value = this.selectedVenue.categories[0].name;
-    self.longitudeTarget.value = this.selectedVenue.location.lng;
-    self.latitudeTarget.value = this.selectedVenue.location.lat;
-    self.fourSquareIdTarget.value = this.selectedVenue.id;
+  // Formats address using each line in the address array
+  venueDataParser(type, selectedVenue) {
+    switch (type) {
+      case 'address':
+        if (selectedVenue.location.address) {
+          return selectedVenue.location.address
+        } else {
+          return selectedVenue.location.formattedAddress[0]
+        }
+        break;
+      case 'city':
+        if (selectedVenue.location.city) {
+          return selectedVenue.location.city
+        } else {
+          return ""
+        }
+        break;
+      case 'postcode':
+        if (selectedVenue.location.postalCode) {
+          return selectedVenue.location.postalCode
+        } else {
+          return ""
+        }
+        break;
+    }
+  }
+
+  // Populate the input fields with selected venue data
+  populateInputsWithVenueData() {
+    this.nameTarget.value = this.selectedVenue.name;
+    this.addressTarget.value = this.venueDataParser("address", this.selectedVenue)
+    this.cityTarget.value = this.venueDataParser("city", this.selectedVenue)
+    this.postcodeTarget.value = this.venueDataParser("postcode", this.selectedVenue)
+    this.countryTarget.value = this.selectedVenue.location.country
+    this.categoryTarget.value = this.selectedVenue.categories[0].name;
+    // Hidden fields
+    this.longitudeTarget.value = this.selectedVenue.location.lng;
+    this.latitudeTarget.value = this.selectedVenue.location.lat;
+    this.fourSquareIdTarget.value = this.selectedVenue.id;
   }
 
   generateResults() {
@@ -131,7 +145,7 @@ export default class extends Controller {
       let venueLocation = self.locationValueAssigner(venue)
       this.resultsTargets[0].insertAdjacentHTML("afterbegin", `
         <div class="control has-icons-left">
-          <span id=${venue.id} class="input u-pointer u-padding-tb-30px has-border-primary-on-hover" data-target="resultItem" type="text"><span class="u-no-pointer-events">${venue.name}, ${venueLocation}</span>
+          <span id=${venue.id} class="input u-pointer u-padding-tb-30px has-border-primary-on-hover" data-action="click->venue-autofill#selectResult" type="text"><span class="u-no-pointer-events">${venue.name}, ${venueLocation}</span>
             <span class="icon is-small is-left u-top-auto">
               <i class="fas fa-city"></i>
             </span>
@@ -152,7 +166,7 @@ export default class extends Controller {
 
   apiCallUrlGenerator() {
     // SearchQuery and Location given
-    if ((this.searchQuery != null) && (this.location != null)){
+    if ((this.searchQuery != null) && (this.location != null)) {
       return `${this.url}?query=${this.searchQuery}&location=${this.location}`
     }
     // SearchQuery only

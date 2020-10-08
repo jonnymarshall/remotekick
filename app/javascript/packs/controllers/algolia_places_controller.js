@@ -18,7 +18,7 @@ export default class extends Controller {
     console.log(`${this.controllerName} disconnected.`);
   }
 
-  changeHandler = this.debounce(async function(e) {
+  changeHandler = this.debounce(async function (e) {
     let self = this;
     this.searchQuery = e.target.value;
     await this.executeAjaxRequest();
@@ -37,10 +37,10 @@ export default class extends Controller {
 
   debounce(func, wait, immediate) {
     var timeout;
-    return function() {
+    return function () {
       var context = this,
         args = arguments;
-      var later = function() {
+      var later = function () {
         timeout = null;
         if (!immediate) func.apply(context, args);
       };

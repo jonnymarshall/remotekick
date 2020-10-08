@@ -29,8 +29,8 @@
                 class: "input",
                 placeholder: "What is the name of the venue?",
                 :data => {
-                  :target => 'venue-autofill.input',
-                  :action => 'keyup->venue-autofill#nameInputHandler'
+                  :target => 'venue-autofill.name',
+                  :action => 'keyup->venue-autofill#searchHandler'
                 }
               %>
               <span class="icon is-small is-left">
@@ -46,7 +46,14 @@
             <div class="field">
               <label class="label">Address</label>
               <p class="control has-icons-left">
-                <%= address_form.text_field :address, class: "input", value: "#{address.address}" %>
+                <%= address_form.text_field :address,
+                  class: "input",
+                  value: "#{address.address}",
+                  placeholder: "What's the address?",
+                  :data => {
+                    :target => 'venue-autofill.address'
+                  }
+                %>
                 <span class="icon is-small is-left">
                   <i class="fas fa-home"></i>
                 </span>
@@ -55,7 +62,13 @@
             <div class="field">
               <label class="label">City</label>
               <p class="control has-icons-left">
-                <%= address_form.text_field :city, class: "input", value: "#{address.city}" %>
+                <%= address_form.text_field :city,
+                  class: "input",
+                  value: "#{address.city}",
+                  :data => {
+                    :target => 'venue-autofill.city'
+                  }
+                %>
                 <span class="icon is-small is-left">
                   <i class="fas fa-city"></i>
                 </span>
@@ -64,7 +77,13 @@
             <div class="field">
               <label class="label">Postcode</label>
               <p class="control has-icons-left">
-                <%= address_form.text_field :postcode, class: "input", value: "#{address.postcode}" %>
+                <%= address_form.text_field :postcode,
+                  class: "input",
+                  value: "#{address.postcode}",
+                  :data => {
+                    :target => 'venue-autofill.postcode'
+                  }
+                %>
                 <span class="icon is-small is-left">
                   <i class="fas fa-paper-plane"></i>
                 </span>
@@ -73,7 +92,13 @@
             <div class="field">
               <label class="label">Country</label>
               <p class="control has-icons-left">
-                  <%= address_form.text_field :country, class: "input", value: "#{address.country}" %>
+                  <%= address_form.text_field :country,
+                    class: "input",
+                    value: "#{address.country}",
+                    :data => {
+                      :target => 'venue-autofill.country'
+                    }
+                  %>
                 <span class="icon is-small is-left">
                   <i class="fas fa-globe-europe"></i>
                 </span>

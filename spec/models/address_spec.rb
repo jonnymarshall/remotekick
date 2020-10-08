@@ -24,17 +24,24 @@ RSpec.describe Address, type: :model do
 
   describe 'geocoder' do
     
-    it 'should geocode an address with no latitude and longitude values' do
+    it 'should geocode an address with no lng/lat values' do
       address_only_address = create(:address_only_address, venue: venue)
       expect(address_only_address.latitude).to_not be_nil
       expect(address_only_address.longitude).to_not be_nil
     end
 
-    it 'should reverse geocode an address with latitude and longitude values and no address' do
+    it 'should reverse geocode an address with lng/lat values' do
       address_only_lng_lat_chiang_mai = create(:address_only_lng_lat_chiang_mai, venue: venue)
       expect(address_only_lng_lat_chiang_mai.address).to_not be_nil
       address_only_lng_lat = create(:address_only_lng_lat, venue: venue)
       expect(address_only_lng_lat.address).to_not be_nil
+    end
+
+    it 'should not geocode if address and lng/lat supplied' do
+      address = create(:address, venue: venue)
+      expect(address.address).to eq("155 Hyde Park Road")
+      expect(address.latitude).to eq(53.618514)
+      expect(address.longitude).to eq(-1.712789)
     end
   end
 end

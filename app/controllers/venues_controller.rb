@@ -87,7 +87,7 @@ class VenuesController < ApplicationController
   end
 
   def update
-    @venue.address.update(venue_address_params) if venue_address_params
+    @venue.address.update(venue_address_params) if params[:venue][:address_attributes].present?
     if @venue.update(venue_params)
       save_photo_if_photo_uploaded(venue: @venue)
       redirect_to venue_path(@venue)
@@ -149,11 +149,11 @@ class VenuesController < ApplicationController
   def venue_address_params
     params.require(:venue).require(:address_attributes).permit(
       :address,
-      :longitude,
-      :latitude,
       :city,
       :postcode,
-      :country
+      :country,
+      :longitude,
+      :latitude,
     )
   end
 
