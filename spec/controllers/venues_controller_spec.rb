@@ -208,6 +208,7 @@ RSpec.describe VenuesController do
     
     context "is the owner of the venue" do
       let!(:ven) {create(:venue)}
+      let!(:address) {create(:address, venue: ven)}
       let!(:ven_usr) { create(:venue_user, user: u, venue: ven, user_type: "owner") }
       
       describe "GET edit" do
@@ -224,18 +225,38 @@ RSpec.describe VenuesController do
       end
     
       describe "PUT update" do
-        let(:valid_data) { FactoryBot.attributes_for(:venue, name: "New name") }
         
         describe "valid data" do
-          it "redirects to venues#show" do
-            put :update, params: { id: ven.id, venue: valid_data }
-            expect(response).to redirect_to(venue_path(assigns[:venue]))
+          describe "venue only" do
+
+            let(:valid_data) { FactoryBot.attributes_for(:venue, name: "New name") }
+            
+            it "redirects to venues#show" do
+              put :update, params: { id: ven.id, venue: valid_data }
+              expect(response).to redirect_to(venue_path(assigns[:venue]))
+            end
+      
+            it "updates venue in database" do
+              put :update, params: { id: ven.id, venue: valid_data }
+              ven.reload
+              expect(ven.name).to eq("New name")
+            end
           end
-    
-          it "updates venue in database" do
-            put :update, params: { id: ven.id, venue: valid_data }
-            ven.reload
-            expect(ven.name).to eq("New name")
+
+          describe "venue with address" do
+
+            let(:valid_data) { FactoryBot.attributes_for(:venue, name: "New name", address_attributes: FactoryBot.attributes_for(:address, city: "New city name")) }
+            
+            it "redirects to venues#show" do
+              put :update, params: { id: ven.id, venue: valid_data }
+              expect(response).to redirect_to(venue_path(assigns[:venue]))
+            end
+      
+            it "updates address in database" do
+              put :update, params: { id: ven.id, venue: valid_data }
+              ven.reload
+              expect(ven.address.city).to eq("New city name")
+            end
           end
         end
     
