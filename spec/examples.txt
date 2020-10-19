@@ -63,6 +63,7 @@ example_id                                                         | status  | r
 ./spec/models/address_spec.rb[1:4:1]                               | passed  | 0.59639 seconds |
 ./spec/models/address_spec.rb[1:4:2]                               | passed  | 0.60807 seconds |
 ./spec/models/address_spec.rb[1:4:3]                               | passed  | 0.00969 seconds |
+./spec/models/address_spec.rb[1:4:4]                               | failed  | 0.10458 seconds |
 ./spec/models/category_spec.rb[1:1:1]                              | passed  | 0.00541 seconds |
 ./spec/models/category_spec.rb[1:2:1:1]                            | passed  | 0.00635 seconds |
 ./spec/models/category_spec.rb[1:3:1]                              | passed  | 0.00238 seconds |

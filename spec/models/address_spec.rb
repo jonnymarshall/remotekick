@@ -43,5 +43,12 @@ RSpec.describe Address, type: :model do
       expect(address.latitude).to eq(53.618514)
       expect(address.longitude).to eq(-1.712789)
     end
+
+    it 'should re-geocode lng/lat if new address supplied', focus: true do
+      address = create(:address, venue: venue)
+      initial_longitude_value = address.longitude
+      address.update(FactoryBot.attributes_for(:address_only_address_chiang_mai))
+      expect(address.longitude).not_to eq(initial_longitude_value)
+    end
   end
 end
