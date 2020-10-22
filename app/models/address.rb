@@ -9,10 +9,16 @@ class Address < ApplicationRecord
 
 
   def geocode_self
-    if longitude_latitude_supplied?
-      self.reverse_geocode if address.nil?
-    else
+    # Create handling
+    if !longitude_latitude_exist? && !address.nil? && address_was == nil
       self.geocode
+    elsif longitude_latitude_exist? && address.nil? && longitude_was == nil
+      self.reverse_geocode
+    # Update handling
+    elsif address_changed? && !address_was == nil
+      self.geocode
+    elsif longitude_changed? && !longitude_was == nil
+      self.reverse_geocode
     end
   end
 
@@ -22,7 +28,7 @@ class Address < ApplicationRecord
 
   private
 
-  def longitude_latitude_supplied?
+  def longitude_latitude_exist?
     self.latitude.present? && self.longitude.present?
   end
 
