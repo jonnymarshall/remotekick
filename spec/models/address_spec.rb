@@ -22,7 +22,7 @@ RSpec.describe Address, type: :model do
     it { should validate_presence_of(:latitude) }
   end
 
-  describe 'geocoder', focus: true do
+  describe 'geocoder' do
     
     it 'should geocode an address with no lng/lat values' do
       address_only_address = create(:address_only_address, venue: venue)

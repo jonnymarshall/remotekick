@@ -9,7 +9,7 @@ class VenuesController < ApplicationController
   # @venue should be called as venue for decorated instance in views
   decorates_assigned :venue
   decorates_assigned :review
-  has_scope :location, if: :location_given?, unless: :distance_given?
+  # has_scope :location, if: :location_given?, unless: :distance_given?
   has_scope :rating
   has_scope :upload_speed
   has_scope :no_wifi_restrictions
@@ -20,9 +20,12 @@ class VenuesController < ApplicationController
   respond_to :html, :json
   
   def index
-    @venues = @venues.location(venues_params[:location]) if location_given?
-    redirect_to cities_path and return if !@venues.any?
-    @venues = apply_scopes(Venue).all
+    # checks if venues exist for location and redirects if not
+    venues_in_searched_location = @venues.location(venues_params[:location]) if location_given?
+    redirect_to cities_path and return if !venues_in_searched_location.present?
+
+    # Applies scopes
+    @venues = apply_scopes(venues_in_searched_location).all
     @venues = @venues.location_with_distance(venues_params[:location], venues_params[:distance].to_i) if location_given? && distance_given?
     # @venues = @venues.near(venues_params[:location], venues_params[:distance]) if location_given? && distance_given?
 
