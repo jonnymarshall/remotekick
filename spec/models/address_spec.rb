@@ -22,7 +22,7 @@ RSpec.describe Address, type: :model do
     it { should validate_presence_of(:latitude) }
   end
 
-  describe 'geocoder' do
+  describe 'geocoder', focus: true do
     
     it 'should geocode an address with no lng/lat values' do
       address_only_address = create(:address_only_address, venue: venue)
@@ -42,6 +42,13 @@ RSpec.describe Address, type: :model do
       expect(address.address).to eq("155 Hyde Park Road")
       expect(address.latitude).to eq(53.618514)
       expect(address.longitude).to eq(-1.712789)
+    end
+
+    it 'should re-reverse-geocode lng/lat if new address supplied' do
+      address = create(:address, venue: venue)
+      initial_longitude_value = address.longitude
+      address.update(FactoryBot.attributes_for(:address_only_address_chiang_mai))
+      expect(address.longitude).not_to eq(initial_longitude_value)
     end
   end
 end

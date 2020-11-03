@@ -32,6 +32,7 @@ FactoryBot.define do
     factory :address_only_lng_lat, traits: [:only_lng_lat]
     factory :address_only_lng_lat_chiang_mai, traits: [:only_lng_lat, :chiang_mai_lng_lat]
     factory :address_full_chiang_mai, traits: [:chiang_mai_lng_lat, :chiang_mai_address]
+    factory :address_only_address_chiang_mai, traits: [:chiang_mai_address]
     factory :address_only_address, traits: [:only_address]
   end
 end
