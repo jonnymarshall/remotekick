@@ -22,7 +22,7 @@ RSpec.describe 'Create Venue' do
         login_form.visit_page(new_user_session_path).login_as(u)
       end
 
-      it 'successfully adds a new venue' do
+      it 'successfully adds a new venue', focus: true do
         new_venue_form.visit_page.fill_in_with.submit
         expect(page).to have_content 'Test'
       end
