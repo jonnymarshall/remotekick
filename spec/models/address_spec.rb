@@ -22,7 +22,7 @@ RSpec.describe Address, type: :model do
     it { should validate_presence_of(:latitude) }
   end
 
-  describe 'geocoder' do
+  describe 'geocoder', focus: true do
     
     it 'should geocode an address with no lng/lat values' do
       address_only_address = create(:address_only_address, venue: venue)
@@ -37,7 +37,7 @@ RSpec.describe Address, type: :model do
       expect(address_only_lng_lat.address).to_not be_nil
     end
 
-    it 'should not geocode if address and lng/lat supplied', focus: true do
+    it 'should not geocode if address and lng/lat supplied' do
       address = create(:address, venue: venue)
       expect(address.address).to eq("155 Hyde Park Road")
       expect(address.latitude).to eq(53.618514)

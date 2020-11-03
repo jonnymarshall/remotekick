@@ -60,10 +60,10 @@ example_id                                                         | status  | r
 ./spec/models/address_spec.rb[1:2:1]                               | passed  | 0.00277 seconds |
 ./spec/models/address_spec.rb[1:3:1]                               | passed  | 0.00419 seconds |
 ./spec/models/address_spec.rb[1:3:2]                               | passed  | 0.00431 seconds |
-./spec/models/address_spec.rb[1:4:1]                               | passed  | 0.55993 seconds |
-./spec/models/address_spec.rb[1:4:2]                               | passed  | 36.38 seconds   |
-./spec/models/address_spec.rb[1:4:3]                               | passed  | 0.06916 seconds |
-./spec/models/address_spec.rb[1:4:4]                               | passed  | 0.91218 seconds |
+./spec/models/address_spec.rb[1:4:1]                               | passed  | 0.14226 seconds |
+./spec/models/address_spec.rb[1:4:2]                               | passed  | 0.88979 seconds |
+./spec/models/address_spec.rb[1:4:3]                               | passed  | 0.01252 seconds |
+./spec/models/address_spec.rb[1:4:4]                               | passed  | 0.60491 seconds |
 ./spec/models/category_spec.rb[1:1:1]                              | passed  | 0.00355 seconds |
 ./spec/models/category_spec.rb[1:2:1:1]                            | passed  | 0.00822 seconds |
 ./spec/models/category_spec.rb[1:3:1]                              | passed  | 0.00679 seconds |

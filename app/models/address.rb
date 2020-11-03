@@ -3,7 +3,7 @@ class Address < ApplicationRecord
   validates :latitude, presence: true
   validates :longitude, presence: true
 
-  geocoded_by :full_address
+  geocoded_by :address_parser
   reverse_geocoded_by :latitude, :longitude
   before_validation :geocode_self
 
@@ -15,15 +15,23 @@ class Address < ApplicationRecord
     elsif longitude_latitude_exist? && address.nil? && longitude_was == nil
       self.reverse_geocode
     # Update handling
-    elsif address_changed? && !address_was == nil
+    elsif address_changed? && address_was.present?
       self.geocode
-    elsif longitude_changed? && !longitude_was == nil
+    elsif longitude_changed? && longitude_was.present?
       self.reverse_geocode
     end
   end
 
-  def full_address
-    [address, city, postcode, country].compact.join(', ')
+  def address_parser
+    if postcode
+      postcode
+    elsif address && city && country
+      [address, city, country].compact.join(', ')
+    elsif address && city
+      [address, city].compact.join(', ')
+    elsif address
+      address
+    end
   end
 
   private
