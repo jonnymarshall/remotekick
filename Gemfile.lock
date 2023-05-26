@@ -252,6 +252,8 @@ GEM
       pry (>= 0.10.4)
     public_suffix (5.0.1)
     puma (6.2.2)
+    public_suffix (5.0.0)
+    puma (5.0.2)
       nio4r (~> 2.0)
     pundit (2.3.0)
       activesupport (>= 3.0.0)
